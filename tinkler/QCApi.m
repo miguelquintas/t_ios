@@ -68,7 +68,6 @@
     
     PFQuery *sentMsgs = [PFQuery queryWithClassName:@"Message"];
     [sentMsgs whereKey:@"from" equalTo:[PFUser currentUser]];
-//    [sentMsgs whereKeyExists:@"customText"];
     
     PFQuery *receivedMsgs = [PFQuery queryWithClassName:@"Message"];
     [receivedMsgs whereKey:@"to" equalTo:[PFUser currentUser]];
