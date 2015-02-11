@@ -35,7 +35,7 @@
                                                          UIRemoteNotificationTypeSound)];
     }
     
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:115/255.0 green:202/255.0 blue:205/255.0 alpha:1]];
+    [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     [application setStatusBarHidden:NO];

@@ -31,5 +31,6 @@
 + (void) getBlockedConversationsWithBlock:(NSMutableArray*) conversations :(void (^)(NSMutableArray *blkdConversations, NSError *error))block;
 + (void)queryBlockedWithCompletion:(PFObject *) thisTinkler :(PFUser *) talkingToUser completion:(void (^)(BOOL finished, BOOL blocked))completion;
 + (void)blockConversationWithCompletion:(QCConversation *) conversation completion:(void (^)(BOOL finished))completion;
++ (UIColor*)colorWithHexString:(NSString*)hex;
 
 @end
