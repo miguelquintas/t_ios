@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSArray *thumbnails;
 
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
-- (IBAction)registerButton:(id)sender;
+- (IBAction)logoutButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *tinklersTabView;
 

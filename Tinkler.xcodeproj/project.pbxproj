@@ -100,6 +100,12 @@
 		BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7ADC91A0557E200AE9CBD /* QCMessageType.m */; };
 		BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */; };
 		BCC181DD19E8654700B5D5BA /* QCInboxDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */; };
+		BCCE02821A8D6F1300FA9AD9 /* tutorial4.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE027D1A8D6F1300FA9AD9 /* tutorial4.png */; };
+		BCCE02831A8D6F1300FA9AD9 /* tutorial3.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE027E1A8D6F1300FA9AD9 /* tutorial3.png */; };
+		BCCE02841A8D6F1300FA9AD9 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE027F1A8D6F1300FA9AD9 /* tutorial1.png */; };
+		BCCE02851A8D6F1300FA9AD9 /* tutorial2.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02801A8D6F1300FA9AD9 /* tutorial2.png */; };
+		BCCE02861A8D6F1300FA9AD9 /* tutorial5.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02811A8D6F1300FA9AD9 /* tutorial5.png */; };
+		BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */; };
 		BCD0822319FBD2430065A6EB /* QCConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0822219FBD2430065A6EB /* QCConversation.m */; };
 		BCD88F5119BB911D0090103B /* QCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5019BB911D0090103B /* QCProfileViewController.m */; };
 		BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5319BB91340090103B /* QCInboxViewController.m */; };
@@ -322,6 +328,12 @@
 		BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxTableViewCell.m; sourceTree = "<group>"; };
 		BCC181DB19E8654700B5D5BA /* QCInboxDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCInboxDetailViewController.h; sourceTree = "<group>"; };
 		BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxDetailViewController.m; sourceTree = "<group>"; };
+		BCCE027D1A8D6F1300FA9AD9 /* tutorial4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial4.png; sourceTree = "<group>"; };
+		BCCE027E1A8D6F1300FA9AD9 /* tutorial3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial3.png; sourceTree = "<group>"; };
+		BCCE027F1A8D6F1300FA9AD9 /* tutorial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial1.png; sourceTree = "<group>"; };
+		BCCE02801A8D6F1300FA9AD9 /* tutorial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial2.png; sourceTree = "<group>"; };
+		BCCE02811A8D6F1300FA9AD9 /* tutorial5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial5.png; sourceTree = "<group>"; };
+		BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialBG.png; sourceTree = "<group>"; };
 		BCD0822119FBD2430065A6EB /* QCConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCConversation.h; sourceTree = "<group>"; };
 		BCD0822219FBD2430065A6EB /* QCConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCConversation.m; sourceTree = "<group>"; };
 		BCD88F4F19BB911D0090103B /* QCProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCProfileViewController.h; sourceTree = "<group>"; };
@@ -446,6 +458,12 @@
 		5D4170D818C68ACD0098DD3B /* tinkler */ = {
 			isa = PBXGroup;
 			children = (
+				BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */,
+				BCCE027D1A8D6F1300FA9AD9 /* tutorial4.png */,
+				BCCE027E1A8D6F1300FA9AD9 /* tutorial3.png */,
+				BCCE027F1A8D6F1300FA9AD9 /* tutorial1.png */,
+				BCCE02801A8D6F1300FA9AD9 /* tutorial2.png */,
+				BCCE02811A8D6F1300FA9AD9 /* tutorial5.png */,
 				BC10829619E73ACB007BD62C /* default_pic.jpg */,
 				BC91377E19BE3E32008A598B /* API */,
 				BC91377A19BE33D6008A598B /* Model */,
@@ -921,15 +939,21 @@
 			files = (
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
+				BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */,
+				BCCE02821A8D6F1300FA9AD9 /* tutorial4.png in Resources */,
+				BCCE02861A8D6F1300FA9AD9 /* tutorial5.png in Resources */,
 				BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				BCCE02841A8D6F1300FA9AD9 /* tutorial1.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
 				BC72B7E91A6858F700AC720B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */,
 				BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */,
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
+				BCCE02851A8D6F1300FA9AD9 /* tutorial2.png in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
+				BCCE02831A8D6F1300FA9AD9 /* tutorial3.png in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 			);

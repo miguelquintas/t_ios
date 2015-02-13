@@ -88,7 +88,7 @@
 
 //End of Delegate methods
 
-- (IBAction)registerButton:(id)sender {
+- (IBAction)logoutButton:(id)sender {
     [PFUser logOut];
     
     // Present the log in view controller

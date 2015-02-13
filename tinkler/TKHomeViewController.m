@@ -19,14 +19,16 @@
     //validate viewController one being displayed
     if([PFUser currentUser].username != nil && [[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]){
         
-        UIStoryboard *storyBoard = self.storyboard;
-        UIViewController *targetViewController = [storyBoard instantiateViewControllerWithIdentifier:@"TabViewController"];
-        UINavigationController *navController = self.navigationController;
+        //Verify if user as seen tutorial through user preferences
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        long hasSeenTut = [defaults integerForKey:@"hasSeenTut"];
         
-        if (navController) {
-            //Code to hide the back button in the following tabs of the Tab View Controller
-            targetViewController.navigationItem.hidesBackButton = YES;
-            [navController pushViewController:targetViewController animated:NO];
+        if(hasSeenTut == 0){
+            NSLog(@"hasSeenTut value %ld", hasSeenTut);
+           [self customPushVC:@"TutorialViewController"];
+            
+        }else{
+            [self customPushVC:@"TabViewController"];
         }
     }
 }
@@ -36,5 +38,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)customPushVC:(NSString *) identifier {
+    UIStoryboard *storyBoard = self.storyboard;
+    UIViewController *targetViewController = [storyBoard instantiateViewControllerWithIdentifier:identifier];
+    UINavigationController *navController = self.navigationController;
+    
+    if (navController) {
+        [navController pushViewController:targetViewController animated:NO];
+    }
+}
 
 @end

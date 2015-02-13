@@ -28,11 +28,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    //validate viewController one being displayed
     if([PFUser currentUser].username != nil && [[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]){
-        
-        //Verify if user as seen tutorial through user preferences
-        
         [self performSegueWithIdentifier:@"SucessLogin" sender:self];
     }else{
         [self.email setText:_registeredEmail];
@@ -70,7 +66,23 @@
                         installation[@"user"] = [PFUser currentUser];
                         [installation saveInBackground];
                         
-                        [self performSegueWithIdentifier:@"SucessLogin" sender:self];
+                        //Verify if user as seen tutorial through user preferences
+                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                        long hasSeenTut = [defaults integerForKey:@"hasSeenTut"];
+                        
+                        if(hasSeenTut == 0){
+                            NSLog(@"hasSeenTut value %ld", hasSeenTut);
+                            UIStoryboard *storyBoard = self.storyboard;
+                            UIViewController *targetViewController = [storyBoard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
+                            UINavigationController *navController = self.navigationController;
+                            
+                            if (navController) {
+                                [navController pushViewController:targetViewController animated:NO];
+                            }
+                        }else{
+                            [self performSegueWithIdentifier:@"SucessLogin" sender:self];
+                        }
+                        
                     }else{
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please insert correct email and password" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                         [alertView show];

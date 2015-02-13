@@ -16,16 +16,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
     //STEP 1 Construct Panels
-    MYIntroductionPanel *panel = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"SampleImage1"] title:@"Sample Title" description:@"Welcome to MYIntroductionView, your 100 percent customizable interface for introductions and tutorials! Simply add a few classes to your project, and you are ready to go!" ];
+    MYIntroductionPanel *panel = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial1"] title:@"Step 1" description:@"Description 1" ];
     
-    //You may also add in a title for each panel
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"SampleImage2"] title:@"Your Ticket!" description:@"MYIntroductionView is your ticket to a great tutorial or introduction!"];
+    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial2"] title:@"Step 2" description:@"Description 2"];
+    
+    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial3"] title:@"Step 3" description:@"Description 3"];
+    
+    MYIntroductionPanel *panel4 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial4"] title:@"Step 4" description:@"MDescription 4"];
+    
+    MYIntroductionPanel *panel5 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial5"] title:@"Step 5" description:@"Description 5"];
     
     //STEP 2 Create IntroductionView
     /*A standard version*/
@@ -35,8 +40,8 @@
     // MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) panels:@[panel, panel2]];
     
     /*A more customized version*/
-    MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) headerText:@"MYIntroductionView" panels:@[panel, panel2] languageDirection:MYLanguageDirectionLeftToRight];
-    [introductionView setBackgroundImage:[UIImage imageNamed:@"SampleBackground"]];
+    MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) headerText:@"Tinkler Tutorial" panels:@[panel, panel2, panel3, panel4, panel5] languageDirection:MYLanguageDirectionLeftToRight];
+    [introductionView setBackgroundImage:[UIImage imageNamed:@"tutorialBG"]];
     
     /*
      MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) headerText:@"MYIntroductionView" panels:@[panel, panel2] languageDirection:MYLanguageDirectionLeftToRight];
@@ -50,9 +55,6 @@
     [introductionView.PageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [introductionView.SkipButton setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
-    
-    
-    
     //Set delegate to self for callbacks (optional)
     introductionView.delegate = self;
     
@@ -65,14 +67,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)goToScanPage {
+    UIStoryboard *storyBoard = self.storyboard;
+    UIViewController *targetViewController = [storyBoard instantiateViewControllerWithIdentifier:@"TabViewController"];
+    UINavigationController *navController = self.navigationController;
+    
+    if (navController) {
+        //Code to show the navigation bar
+        [[self navigationController] setNavigationBarHidden:NO animated:YES];
+        [navController pushViewController:targetViewController animated:NO];
+    }
+}
+
 #pragma mark - Sample Delegate Methods
 
 -(void)introductionDidFinishWithType:(MYFinishType)finishType{
     if (finishType == MYFinishTypeSkipButton) {
         NSLog(@"Did Finish Introduction By Skipping It");
+        [self goToScanPage];
     }
     else if (finishType == MYFinishTypeSwipeOut){
         NSLog(@"Did Finish Introduction By Swiping Out");
+        // Store the hasSeenTutorial flag to true (1) in the user preferences
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setInteger:1 forKey:@"hasSeenTut"];
+//        [defaults synchronize];
+        
+        //Go to ScanPage
+        [self goToScanPage];
     }
     
     //One might consider making the introductionview a class variable and releasing it here.
@@ -80,7 +102,7 @@
 }
 
 -(void)introductionDidChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
-    NSLog(@"%@ \nPanelIndex: %d", panel.Description, panelIndex);
+    NSLog(@"%@ \nPanelIndex: %ld", panel.Description, (long)panelIndex);
 }
 
 @end

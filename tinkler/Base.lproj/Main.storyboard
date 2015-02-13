@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -50,6 +50,9 @@
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="QNQ-cq-3SW"/>
+                    <connections>
+                        <segue destination="chU-Vb-hce" kind="push" identifier="seeTutorialFromHome" id="wLP-QD-BYh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PHE-GN-Yf3" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,16 +106,17 @@
                         <outlet property="email" destination="bOv-o9-LSj" id="7Rh-9L-yZL"/>
                         <outlet property="password" destination="n9k-R5-n1s" id="gYj-c3-OfX"/>
                         <segue destination="kul-5J-21Z" kind="push" identifier="SucessLogin" id="xSf-hq-v4v"/>
+                        <segue destination="chU-Vb-hce" kind="push" identifier="seeTutorialFromLogin" id="A4g-dz-6vh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9G-XY-EaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="-37"/>
+            <point key="canvasLocation" x="1201" y="-158"/>
         </scene>
         <!--Tutorial View Controller-->
         <scene sceneID="Jj7-XW-sRW">
             <objects>
-                <viewController id="chU-Vb-hce" customClass="TKTutorialViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialViewController" id="chU-Vb-hce" customClass="TKTutorialViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c0Z-o2-als"/>
                         <viewControllerLayoutGuide type="bottom" id="F9L-Bp-wAh"/>
@@ -122,10 +126,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="sg9-mD-81t"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHC-Wr-1UT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="331" y="1293"/>
+            <point key="canvasLocation" x="650" y="-83"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="rJk-PV-DEo">
@@ -567,7 +572,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerButton:" destination="GFD-GS-f5w" eventType="touchUpInside" id="zel-Fj-Sxt"/>
+                                    <action selector="logoutButton:" destination="GFD-GS-f5w" eventType="touchUpInside" id="h8h-NC-09r"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tinklers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjJ-UK-7FO">
@@ -731,5 +736,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="zFt-8i-wPw"/>
+        <segue reference="wLP-QD-BYh"/>
     </inferredMetricsTieBreakers>
 </document>

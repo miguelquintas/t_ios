@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     _captureSession = nil;
-    
+
     [QCApi getMessageTypesWithCallBack:^(NSMutableArray *msgTypeArray, NSError *error) {
         if (error == nil){
             self.msgTypes = msgTypeArray;
