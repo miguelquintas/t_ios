@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MYIntroductionView.h"
+#import "QCApi.h"
 
 @interface TKTutorialViewController : UIViewController <MYIntroductionDelegate>
 

@@ -13,6 +13,7 @@
 #import "QCMessage.h"
 #import "QCConversation.h"
 #import "QCApi.h"
+#import "MBProgressHUD.h"
 
 @interface QCInboxViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

@@ -28,15 +28,23 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [QCApi getAllConversationsWithCallBack:^(NSArray *conversationsArray, NSError *error) {
-        if (error == nil){
-            self.conversations = conversationsArray;
-            [self.messageTabView reloadData];
-        } else {
-            NSLog(@"%@", error);
-        }
-    }];
-    NSLog(@"Inbox viewDidAppear");
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [QCApi getAllConversationsWithCallBack:^(NSArray *conversationsArray, NSError *error) {
+            if (error == nil){
+                self.conversations = conversationsArray;
+                [self.messageTabView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+            } else {
+                NSLog(@"%@", error);
+            }
+        }];
+        
+    });
+
 }
 
 

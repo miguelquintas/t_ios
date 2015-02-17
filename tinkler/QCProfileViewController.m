@@ -15,6 +15,11 @@
     [super viewDidLoad];
     self.title = @"Profile";
     self.tinklersTabView.allowsMultipleSelectionDuringEditing = NO;
+    
+    //Set the logout button conversation button
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutUser)];
+    self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -29,15 +34,31 @@
     
     //[[PFUser currentUser] refresh];
     self.usernameLabel.text = [[PFUser currentUser] objectForKey:@"name"];
-    [QCApi getAllTinklersWithCallBack:^(NSMutableArray *tinklersArray, NSError *error) {
-        if (error == nil){
-            self.tinklers = tinklersArray;
-            NSLog(@"Tinkler Array: %@", [[self.tinklers objectAtIndex:0] tinklerName]);
-            [self.tinklersTabView reloadData];
-        } else {
-            NSLog(@"%@", error);
-        }
-    }];
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [QCApi getAllTinklersWithCallBack:^(NSMutableArray *tinklersArray, NSError *error) {
+            if (error == nil){
+                self.tinklers = tinklersArray;
+                NSLog(@"Tinkler Array: %@", [[self.tinklers objectAtIndex:0] tinklerName]);
+                [self.tinklersTabView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+            } else {
+                NSLog(@"%@", error);
+            }
+        }];
+        
+    });
+    
+}
+
+- (void) logoutUser{
+    [PFUser logOut];
+    
+    // Present the log in view controller
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //Delegate methods
@@ -87,12 +108,5 @@
 }
 
 //End of Delegate methods
-
-- (IBAction)logoutButton:(id)sender {
-    [PFUser logOut];
-    
-    // Present the log in view controller
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 @end

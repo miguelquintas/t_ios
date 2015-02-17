@@ -11,6 +11,7 @@
 #import "QCMessage.h"
 #import "QCConversation.h"
 #import "JSQMessagesViewController/JSQMessages.h"
+#import "MBProgressHUD.h"
 
 @interface QCInboxDetailViewController : JSQMessagesViewController <UIActionSheetDelegate>
 

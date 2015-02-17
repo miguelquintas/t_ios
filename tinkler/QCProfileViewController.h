@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "QCTinklerTableViewCell.h"
 #import "QCTinklerDetailViewController.h"
+#import "MBProgressHUD.h"
 
 @interface QCProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,7 +21,6 @@
 @property (strong, nonatomic) NSArray *thumbnails;
 
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
-- (IBAction)logoutButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *tinklersTabView;
 

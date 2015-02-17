@@ -47,13 +47,19 @@
     
     [self loadConversationMessages];
 
-
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
     //Set all this conversation messages as seen
-    [QCApi setMessagesAsRead:_selectedConversation.conversationMsgs];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [QCApi setMessagesAsRead:_selectedConversation.conversationMsgs];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+    
 }
 
 - (void) blockConversation{
