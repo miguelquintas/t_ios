@@ -105,6 +105,7 @@
                 [message setTo:[object objectForKey:@"to"]];
                 [message setSentDate:object.createdAt];
                 [message setTargetTinkler:[object objectForKey:@"tinkler"]];
+                [message setIsRead:[object objectForKey:@"read"]];
                 
                 //Check if there are any conversations created
                 if (conversations.count == 0){
@@ -558,15 +559,12 @@
 + (void) setMessagesAsRead:(NSMutableArray *) messages{
     //Run through all the seen messages and update the "read" field to true
     for (QCMessage *message in messages) {
-        NSLog(@"%@", message.msgText);
-        //query to get this message's record
-        PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-        [query whereKey:@"to" equalTo:[PFUser currentUser]];
-        PFObject *messageToEdit = [query getObjectWithId:message.messageId];
         
-        if ([messageToEdit objectForKey:@"read"]==[NSNumber numberWithBool:NO]){
-            [messageToEdit setObject:[NSNumber numberWithBool:YES] forKey:@"read"];
-            //save editted message object
+        if (message.isRead == 0) {
+            //query to get this message's record
+            PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+            [query whereKey:@"to" equalTo:[PFUser currentUser]];
+            PFObject *messageToEdit = [query getObjectWithId:message.messageId];
             [messageToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(!error){
                     NSLog(@"Message Eddited!");
@@ -575,7 +573,6 @@
                 }
             }];
         }
-        
     }
 }
 

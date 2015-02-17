@@ -18,6 +18,7 @@
 @property (strong, nonatomic) PFUser *to;
 @property (strong, nonatomic) PFObject *targetTinkler;
 @property (strong, nonatomic) NSDate *sentDate;
+@property (strong, nonatomic) NSNumber *isRead;
 
 - (NSString *) messageDateToString:(NSDate *) messageDate;
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;

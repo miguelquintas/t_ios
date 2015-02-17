@@ -13,7 +13,7 @@
 #import "QCApi.h"
 #import "LTHMonthYearPickerView.h"
 
-@interface QCNewTinklerSubmitViewController : UIViewController <LTHMonthYearPickerViewDelegate>
+@interface QCNewTinklerSubmitViewController : UIViewController <LTHMonthYearPickerViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *tinklerNameLabel;
 
