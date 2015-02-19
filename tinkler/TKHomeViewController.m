@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //validate viewController one being displayed
     if([PFUser currentUser].username != nil && [[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]){
         
@@ -31,6 +32,18 @@
             [self customPushVC:@"TabViewController"];
         }
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    //Set BG color
+    [self.view setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

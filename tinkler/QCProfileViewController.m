@@ -15,15 +15,21 @@
     [super viewDidLoad];
     self.title = @"Profile";
     self.tinklersTabView.allowsMultipleSelectionDuringEditing = NO;
-    
-    //Set the logout button conversation button
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutUser)];
-    self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.tabBarController.navigationItem.rightBarButtonItem =nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    
+    //Set the logout button conversation button
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutUser)];
+    self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
+    
     //Set Tab Title
     self.tabBarController.navigationItem.title = @"My Profile";
     [self.tinklersTabView reloadData];

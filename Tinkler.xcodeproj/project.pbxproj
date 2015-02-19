@@ -100,11 +100,6 @@
 		BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7ADC91A0557E200AE9CBD /* QCMessageType.m */; };
 		BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */; };
 		BCC181DD19E8654700B5D5BA /* QCInboxDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */; };
-		BCCE02821A8D6F1300FA9AD9 /* tutorial4.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE027D1A8D6F1300FA9AD9 /* tutorial4.png */; };
-		BCCE02831A8D6F1300FA9AD9 /* tutorial3.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE027E1A8D6F1300FA9AD9 /* tutorial3.png */; };
-		BCCE02841A8D6F1300FA9AD9 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE027F1A8D6F1300FA9AD9 /* tutorial1.png */; };
-		BCCE02851A8D6F1300FA9AD9 /* tutorial2.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02801A8D6F1300FA9AD9 /* tutorial2.png */; };
-		BCCE02861A8D6F1300FA9AD9 /* tutorial5.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02811A8D6F1300FA9AD9 /* tutorial5.png */; };
 		BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */; };
 		BCD0822319FBD2430065A6EB /* QCConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0822219FBD2430065A6EB /* QCConversation.m */; };
 		BCD88F5119BB911D0090103B /* QCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5019BB911D0090103B /* QCProfileViewController.m */; };
@@ -129,6 +124,11 @@
 		BCEF3D8E1A5861A1004F3F26 /* QCNewTinklerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D8D1A5861A1004F3F26 /* QCNewTinklerViewController.m */; };
 		BCEF3D911A5862A0004F3F26 /* QCTinklerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */; };
 		BCEF3D941A587114004F3F26 /* QCTinklerType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D931A587114004F3F26 /* QCTinklerType.m */; };
+		BCF9A85E1A940CC600639B88 /* tutorial3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A8591A940CC600639B88 /* tutorial3.jpg */; };
+		BCF9A85F1A940CC600639B88 /* tutorial2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85A1A940CC600639B88 /* tutorial2.jpg */; };
+		BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85B1A940CC600639B88 /* tutorial4.jpg */; };
+		BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85C1A940CC600639B88 /* tutorial1.jpg */; };
+		BCF9A8621A940CC600639B88 /* tutorial5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85D1A940CC600639B88 /* tutorial5.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,11 +328,6 @@
 		BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxTableViewCell.m; sourceTree = "<group>"; };
 		BCC181DB19E8654700B5D5BA /* QCInboxDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCInboxDetailViewController.h; sourceTree = "<group>"; };
 		BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxDetailViewController.m; sourceTree = "<group>"; };
-		BCCE027D1A8D6F1300FA9AD9 /* tutorial4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial4.png; sourceTree = "<group>"; };
-		BCCE027E1A8D6F1300FA9AD9 /* tutorial3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial3.png; sourceTree = "<group>"; };
-		BCCE027F1A8D6F1300FA9AD9 /* tutorial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial1.png; sourceTree = "<group>"; };
-		BCCE02801A8D6F1300FA9AD9 /* tutorial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial2.png; sourceTree = "<group>"; };
-		BCCE02811A8D6F1300FA9AD9 /* tutorial5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial5.png; sourceTree = "<group>"; };
 		BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialBG.png; sourceTree = "<group>"; };
 		BCD0822119FBD2430065A6EB /* QCConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCConversation.h; sourceTree = "<group>"; };
 		BCD0822219FBD2430065A6EB /* QCConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCConversation.m; sourceTree = "<group>"; };
@@ -370,6 +365,11 @@
 		BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerTableViewCell.m; sourceTree = "<group>"; };
 		BCEF3D921A587114004F3F26 /* QCTinklerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCTinklerType.h; sourceTree = "<group>"; };
 		BCEF3D931A587114004F3F26 /* QCTinklerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerType.m; sourceTree = "<group>"; };
+		BCF9A8591A940CC600639B88 /* tutorial3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial3.jpg; sourceTree = "<group>"; };
+		BCF9A85A1A940CC600639B88 /* tutorial2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial2.jpg; sourceTree = "<group>"; };
+		BCF9A85B1A940CC600639B88 /* tutorial4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial4.jpg; sourceTree = "<group>"; };
+		BCF9A85C1A940CC600639B88 /* tutorial1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial1.jpg; sourceTree = "<group>"; };
+		BCF9A85D1A940CC600639B88 /* tutorial5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial5.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,13 +458,7 @@
 		5D4170D818C68ACD0098DD3B /* tinkler */ = {
 			isa = PBXGroup;
 			children = (
-				BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */,
-				BCCE027D1A8D6F1300FA9AD9 /* tutorial4.png */,
-				BCCE027E1A8D6F1300FA9AD9 /* tutorial3.png */,
-				BCCE027F1A8D6F1300FA9AD9 /* tutorial1.png */,
-				BCCE02801A8D6F1300FA9AD9 /* tutorial2.png */,
-				BCCE02811A8D6F1300FA9AD9 /* tutorial5.png */,
-				BC10829619E73ACB007BD62C /* default_pic.jpg */,
+				BCD85DC51A95499A0004875D /* images */,
 				BC91377E19BE3E32008A598B /* API */,
 				BC91377A19BE33D6008A598B /* Model */,
 				5DE27AD918C90A6300C4C763 /* libraries */,
@@ -828,6 +822,20 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		BCD85DC51A95499A0004875D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9A8591A940CC600639B88 /* tutorial3.jpg */,
+				BCF9A85A1A940CC600639B88 /* tutorial2.jpg */,
+				BCF9A85B1A940CC600639B88 /* tutorial4.jpg */,
+				BCF9A85C1A940CC600639B88 /* tutorial1.jpg */,
+				BCF9A85D1A940CC600639B88 /* tutorial5.jpg */,
+				BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */,
+				BC10829619E73ACB007BD62C /* default_pic.jpg */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		BCE30F1D1A75648D0087C03A /* MYIntroduction */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,23 +945,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */,
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
+				BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */,
+				BCF9A8621A940CC600639B88 /* tutorial5.jpg in Resources */,
+				BCF9A85F1A940CC600639B88 /* tutorial2.jpg in Resources */,
 				BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */,
-				BCCE02821A8D6F1300FA9AD9 /* tutorial4.png in Resources */,
-				BCCE02861A8D6F1300FA9AD9 /* tutorial5.png in Resources */,
 				BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
-				BCCE02841A8D6F1300FA9AD9 /* tutorial1.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
 				BC72B7E91A6858F700AC720B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */,
 				BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */,
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
-				BCCE02851A8D6F1300FA9AD9 /* tutorial2.png in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				BCCE02831A8D6F1300FA9AD9 /* tutorial3.png in Resources */,
+				BCF9A85E1A940CC600639B88 /* tutorial3.jpg in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 			);

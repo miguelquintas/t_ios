@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     _captureSession = nil;
-
+    
     [QCApi getMessageTypesWithCallBack:^(NSMutableArray *msgTypeArray, NSError *error) {
         if (error == nil){
             self.msgTypes = msgTypeArray;
@@ -31,9 +31,6 @@
     //TODO Swipe between tabs
     
 }
-
-
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
@@ -215,6 +212,7 @@
             
             //Get the first part of the qrCode content (until the '?' sign)
             NSString *tinklerUrl =[[[metadataObj stringValue] componentsSeparatedByString:@"?"] objectAtIndex:0];
+            
             //Get the second part of the qrCode content (after the '?' sign)
             NSString *objectData =[[[metadataObj stringValue] componentsSeparatedByString:@"?"] objectAtIndex:1];
             //Create an array to pass the QR-Code data as an argument

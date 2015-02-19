@@ -22,15 +22,15 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
     //STEP 1 Construct Panels
-    MYIntroductionPanel *panel = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial1"] title:@"Step 1" description:@"Description 1" ];
+    MYIntroductionPanel *panel = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial1.jpg"] title:@"Step 1" description:@"Description 1" ];
     
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial2"] title:@"Step 2" description:@"Description 2"];
+    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial2.jpg"] title:@"Step 2" description:@"Description 2"];
     
-    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial3"] title:@"Step 3" description:@"Description 3"];
+    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial3.jpg"] title:@"Step 3" description:@"Description 3"];
     
-    MYIntroductionPanel *panel4 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial4"] title:@"Step 4" description:@"MDescription 4"];
+    MYIntroductionPanel *panel4 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial4.jpg"] title:@"Step 4" description:@"MDescription 4"];
     
-    MYIntroductionPanel *panel5 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial5"] title:@"Step 5" description:@"Description 5"];
+    MYIntroductionPanel *panel5 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial5.jpg"] title:@"Step 5" description:@"Description 5"];
     
     //STEP 2 Create IntroductionView
     /*A standard version*/
@@ -38,7 +38,7 @@
     
     /*A version with no header (ala "Path")*/
     // MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) panels:@[panel, panel2]];
-    
+
     /*A more customized version*/
     MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) headerText:@"Tinkler Tutorial" panels:@[panel, panel2, panel3, panel4, panel5] languageDirection:MYLanguageDirectionLeftToRight];
     [introductionView setBackgroundImage:[UIImage imageNamed:@"tutorialBG"]];
