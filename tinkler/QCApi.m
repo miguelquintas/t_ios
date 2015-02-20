@@ -524,13 +524,13 @@
             PFRelation *relation = [tinklerObject relationForKey:@"ban"];
             // generate a query based on that relation
             PFQuery *blockedQuery = [relation query];
-            
-            [blockedQuery getObjectInBackgroundWithId:[PFUser currentUser].objectId block:^(PFObject *banObject, NSError *error) {
+            [blockedQuery whereKey:@"email" equalTo:[[PFUser currentUser]username]];
+            [blockedQuery findObjectsInBackgroundWithBlock:^(NSArray *banObjects, NSError *error) {
                 if (!error) {
                     if ([[PFUser currentUser].username isEqualToString:[[tinklerObject objectForKey:@"owner"]username]]){
                         completion(YES, NO, NO, NO, YES);
                         NSLog(@"Tinkler belongs to current user - QR-Code not valid");
-                    }else if([banObject.objectId isEqualToString:[PFUser currentUser].objectId]){
+                    }else if(banObjects.count > 0){
                         completion(YES, NO, NO, YES, NO);
                         NSLog(@"Tinkler exists - This conversation channel is blocked");
                     }else if(!([tinklerObject objectForKey:@"qrCodeKey"] == objectKey)){
@@ -543,7 +543,6 @@
                         completion(YES, YES, NO, NO, NO);
                         NSLog(@"Tinkler exists - QR-Code valid and user doesnt allow custom msgs");
                     }
-                    
                 }else{
                     NSLog(@"Error querying the banned users");
                 }
