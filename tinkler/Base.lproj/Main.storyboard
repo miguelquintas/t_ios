@@ -36,25 +36,28 @@
                                     <segue destination="Hum-CR-ot6" kind="push" id="zFt-8i-wPw"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tinkler" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="265-1t-bji">
-                                <rect key="frame" x="112" y="146" width="97" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0r-YN-uTA">
+                                <rect key="frame" x="16" y="127" width="288" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="69" id="dTu-ZW-mUw"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="vMW-PJ-Uf1" secondAttribute="trailing" constant="31" id="02f-Lf-MSS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="83T-fT-dJ6" secondAttribute="trailing" constant="104" id="4fx-KT-Qox"/>
+                            <constraint firstItem="S0r-YN-uTA" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" id="7Jd-YR-gVj"/>
                             <constraint firstItem="vMW-PJ-Uf1" firstAttribute="top" secondItem="83T-fT-dJ6" secondAttribute="bottom" constant="8" id="o3r-wR-nAA"/>
                             <constraint firstItem="83T-fT-dJ6" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" constant="104" id="rRN-fe-6Ls"/>
                             <constraint firstItem="vMW-PJ-Uf1" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" constant="32" id="vGZ-wV-1w9"/>
+                            <constraint firstItem="S0r-YN-uTA" firstAttribute="trailing" secondItem="gLe-Tb-ylt" secondAttribute="trailingMargin" id="xlq-j1-ETL"/>
                             <constraint firstItem="xqf-EP-hTl" firstAttribute="top" secondItem="vMW-PJ-Uf1" secondAttribute="bottom" constant="37" id="yiI-Hn-Z5r"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QNQ-cq-3SW"/>
                     <connections>
+                        <outlet property="homeLogo" destination="S0r-YN-uTA" id="YQl-nZ-fgG"/>
                         <segue destination="chU-Vb-hce" kind="push" identifier="seeTutorialFromHome" id="wLP-QD-BYh"/>
                     </connections>
                 </viewController>

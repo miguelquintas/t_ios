@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "QCApi.h"
 #import "QCLoginViewController.h"
+#import "MBProgressHUD.h"
 
 @interface QCRegisterViewController : UIViewController
 

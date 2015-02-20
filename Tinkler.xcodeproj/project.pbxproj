@@ -96,6 +96,7 @@
 		BC72B7F31A68591400AC720B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72B7F21A68591400AC720B /* JSQSystemSoundPlayer.m */; };
 		BC8C5B2619E33E1C006774F1 /* QCProfileUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */; };
 		BC91378119BE3E7C008A598B /* QCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BC91378019BE3E7C008A598B /* QCApi.m */; };
+		BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7CED01A96C5D0000C6E1D /* logo_home.png */; };
 		BCAFD6921A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */; };
 		BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7ADC91A0557E200AE9CBD /* QCMessageType.m */; };
 		BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */; };
@@ -320,6 +321,7 @@
 		BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCProfileUpdateViewController.m; sourceTree = "<group>"; };
 		BC91377F19BE3E7C008A598B /* QCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCApi.h; sourceTree = "<group>"; };
 		BC91378019BE3E7C008A598B /* QCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCApi.m; sourceTree = "<group>"; };
+		BCA7CED01A96C5D0000C6E1D /* logo_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_home.png; sourceTree = "<group>"; };
 		BCAFD6901A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCNewTinklerSubmitViewController.h; sourceTree = "<group>"; };
 		BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCNewTinklerSubmitViewController.m; sourceTree = "<group>"; };
 		BCB7ADC81A0557E200AE9CBD /* QCMessageType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMessageType.h; sourceTree = "<group>"; };
@@ -827,6 +829,7 @@
 			children = (
 				BCF9A8591A940CC600639B88 /* tutorial3.jpg */,
 				BCF9A85A1A940CC600639B88 /* tutorial2.jpg */,
+				BCA7CED01A96C5D0000C6E1D /* logo_home.png */,
 				BCF9A85B1A940CC600639B88 /* tutorial4.jpg */,
 				BCF9A85C1A940CC600639B88 /* tutorial1.jpg */,
 				BCF9A85D1A940CC600639B88 /* tutorial5.jpg */,
@@ -946,6 +949,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */,
+				BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */,
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
 				BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */,

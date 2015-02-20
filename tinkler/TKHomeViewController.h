@@ -11,5 +11,6 @@
 #import "TKTutorialViewController.h"
 
 @interface TKHomeViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *homeLogo;
 
 @end

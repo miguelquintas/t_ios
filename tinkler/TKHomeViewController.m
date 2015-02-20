@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _homeLogo.image = [UIImage imageNamed:@"logo_home"];
+    
     //validate viewController one being displayed
     if([PFUser currentUser].username != nil && [[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]){
         

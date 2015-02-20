@@ -60,16 +60,22 @@
     newUser.username = _email.text;
     newUser.email = _email.text;
     newUser.password = _password.text;
-    
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            NSLog(@"User was registered successfully!");
-            
-            //Code to set name, bans, customMsg and installation details to the new registered user
-            [PFCloud callFunctionInBackground:@"postRegisterActions"
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                NSLog(@"User was registered successfully!");
+                
+                //Code to set name, bans, customMsg and installation details to the new registered user
+                [PFCloud callFunctionInBackground:@"postRegisterActions"
                                withParameters:@{@"newName": _name.text}
                                         block:^(NSString *success, NSError *error) {
                                             if (!error) {
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                });
                                                 // Push sent successfully
                                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Registration Success" message:@"Please check your email to validate your user then and log in" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                                 [alertView show];
@@ -77,18 +83,23 @@
                                                 [self performSegueWithIdentifier:@"loginAfterRegister" sender:self];
                                                 
                                             }else{
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                                });
                                                 NSLog(@"Error while registering!");
                                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Register Failed" message:@"Error while registering!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                                 [alertView show];
                                             }
                                         }];
                         
-        }else{
-            NSLog(@"Error while registering!");
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Register Failed" message:@"Error while registering!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-    }];
+            }else{
+                NSLog(@"Error while registering!");
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Register Failed" message:@"Error while registering!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+        
+    });
 }
 
 - (IBAction)registerButtonClicked:(id)sender{
