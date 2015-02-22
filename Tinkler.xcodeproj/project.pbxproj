@@ -105,6 +105,9 @@
 		BCD0822319FBD2430065A6EB /* QCConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0822219FBD2430065A6EB /* QCConversation.m */; };
 		BCD88F5119BB911D0090103B /* QCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5019BB911D0090103B /* QCProfileViewController.m */; };
 		BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5319BB91340090103B /* QCInboxViewController.m */; };
+		BCDCD8391A9A5DB400BA1AC3 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDCD8371A9A5DB400BA1AC3 /* profile.png */; };
+		BCDCD83A1A9A5DB400BA1AC3 /* scan.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDCD8381A9A5DB400BA1AC3 /* scan.png */; };
+		BCDCD83C1A9A5DCE00BA1AC3 /* inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDCD83B1A9A5DCE00BA1AC3 /* inbox.png */; };
 		BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F181A755BB00087C03A /* TKHomeViewController.m */; };
 		BCE30F1C1A7563540087C03A /* TKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */; };
 		BCE30F221A75648D0087C03A /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1F1A75648D0087C03A /* MYIntroductionPanel.m */; };
@@ -337,6 +340,9 @@
 		BCD88F5019BB911D0090103B /* QCProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCProfileViewController.m; sourceTree = "<group>"; };
 		BCD88F5219BB91340090103B /* QCInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCInboxViewController.h; sourceTree = "<group>"; };
 		BCD88F5319BB91340090103B /* QCInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxViewController.m; sourceTree = "<group>"; };
+		BCDCD8371A9A5DB400BA1AC3 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		BCDCD8381A9A5DB400BA1AC3 /* scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan.png; sourceTree = "<group>"; };
+		BCDCD83B1A9A5DCE00BA1AC3 /* inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox.png; sourceTree = "<group>"; };
 		BCE30F171A755BB00087C03A /* TKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKHomeViewController.h; sourceTree = "<group>"; };
 		BCE30F181A755BB00087C03A /* TKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKHomeViewController.m; sourceTree = "<group>"; };
 		BCE30F1A1A7563540087C03A /* TKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTutorialViewController.h; sourceTree = "<group>"; };
@@ -827,7 +833,10 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BCDCD83B1A9A5DCE00BA1AC3 /* inbox.png */,
 				BCF9A8591A940CC600639B88 /* tutorial3.jpg */,
+				BCDCD8371A9A5DB400BA1AC3 /* profile.png */,
+				BCDCD8381A9A5DB400BA1AC3 /* scan.png */,
 				BCF9A85A1A940CC600639B88 /* tutorial2.jpg */,
 				BCA7CED01A96C5D0000C6E1D /* logo_home.png */,
 				BCF9A85B1A940CC600639B88 /* tutorial4.jpg */,
@@ -950,6 +959,7 @@
 			files = (
 				BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */,
 				BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */,
+				BCDCD83A1A9A5DB400BA1AC3 /* scan.png in Resources */,
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
 				BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */,
@@ -961,7 +971,9 @@
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
 				BC72B7E91A6858F700AC720B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
+				BCDCD8391A9A5DB400BA1AC3 /* profile.png in Resources */,
 				BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */,
+				BCDCD83C1A9A5DCE00BA1AC3 /* inbox.png in Resources */,
 				BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */,
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,

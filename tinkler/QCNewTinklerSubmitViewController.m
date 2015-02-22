@@ -55,7 +55,7 @@
     _colorTF.userInteractionEnabled = YES;
     _colorTF.clearButtonMode = UITextFieldViewModeAlways;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 150)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
     [view addSubview:_brandTF];
     [view addSubview:_colorTF];
     [self.view addSubview:view];
@@ -86,7 +86,7 @@
     _monthYearPicker.delegate = self;
     _petAgeTF.inputView = _monthYearPicker;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 150)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
     [view addSubview:_petBreedTF];
     [view addSubview:_petAgeTF];
     [self.view addSubview:view];
@@ -119,7 +119,7 @@
     _vehicleYearTF.inputView = _monthYearPicker;
 
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 150)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
     [view addSubview:_vehiclePlateTF];
     [view addSubview:_vehicleYearTF];
     [self.view addSubview:view];
@@ -176,17 +176,23 @@
 
 - (IBAction)addNewTinkler:(id)sender {
     
-    [QCApi addTinklerWithCompletion:[self saveNewTinkler] completion:^void(BOOL finished) {
-        if (finished) {
-            //String with the alert message
-            NSString* alertmessage = [NSString stringWithFormat: @"New tinkler %@ created! Check your email or your phone's camera roll to get your QR-Code", _tinklerName];
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alertView show];
-            // Present the profile view controller
-            [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:1] animated:YES];
-        }
-    }];
-    
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [QCApi addTinklerWithCompletion:[self saveNewTinkler] completion:^void(BOOL finished) {
+            if (finished) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                //String with the alert message
+                NSString* alertmessage = [NSString stringWithFormat: @"New tinkler %@ created! Check your email or your phone's camera roll to get your QR-Code", _tinklerName];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+                // Present the profile view controller
+                [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:2] animated:YES];
+            }
+        }];
+    });
 }
 //Delegate methods for imagePicker
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

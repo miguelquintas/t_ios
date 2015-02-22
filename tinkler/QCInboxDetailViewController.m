@@ -83,10 +83,10 @@
         
         //Case when its the current user sending an answer through a custom message
         if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
-            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:self.senderDisplayName date: message.sentDate text:message.msgText];
+            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
             [self.messages addObject:newMessage];
         }else if(![[PFUser currentUser].username isEqualToString:message.from.username]){
-            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"User" date: message.sentDate text:[message msgType][@"text"] ];
+            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:[message msgType][@"text"] ];
             [self.messages addObject:newMessage];
         }
     }

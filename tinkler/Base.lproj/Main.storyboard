@@ -21,6 +21,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83T-fT-dJ6">
                                 <rect key="frame" x="120" y="463" width="80" height="30"/>
                                 <state key="normal" title="Get Started">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -30,6 +31,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMW-PJ-Uf1">
                                 <rect key="frame" x="48" y="501" width="225" height="30"/>
                                 <state key="normal" title="Already have an account? Log In">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -256,7 +258,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="BPp-T4-MGt" secondAttribute="trailing" constant="8" id="P9A-aN-l9r"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Scan" id="TlR-3O-2Gr"/>
+                    <tabBarItem key="tabBarItem" title="Scan" image="scan.png" id="TlR-3O-2Gr"/>
                     <connections>
                         <outlet property="qrCam" destination="BPp-T4-MGt" id="KCD-Dd-vHs"/>
                         <segue destination="jFg-YT-aMo" kind="push" identifier="CapturedQrCode" id="MEn-OT-2qv"/>
@@ -368,7 +370,7 @@
                             <constraint firstItem="mUm-jm-5O9" firstAttribute="leading" secondItem="vY2-9M-8Gn" secondAttribute="leadingMargin" id="ku7-gE-x0K"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Inbox" id="9K7-If-4uS"/>
+                    <tabBarItem key="tabBarItem" title="Inbox" image="inbox.png" id="9K7-If-4uS"/>
                     <connections>
                         <outlet property="messageTabView" destination="mUm-jm-5O9" id="STr-DZ-S2Z"/>
                     </connections>
@@ -625,13 +627,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsw-65-N16">
-                                <rect key="frame" x="20" y="71" width="223" height="21"/>
+                                <rect key="frame" x="97" y="71" width="207" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tinklers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjJ-UK-7FO">
-                                <rect key="frame" x="20" y="165" width="60" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Tinklers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjJ-UK-7FO">
+                                <rect key="frame" x="20" y="165" width="88" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -643,8 +645,8 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-97-zZd">
-                                <rect key="frame" x="136" y="100" width="75" height="30"/>
-                                <state key="normal" title="Edit Profile">
+                                <rect key="frame" x="97" y="109" width="57" height="30"/>
+                                <state key="normal" title="Settings">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -693,6 +695,18 @@
                                     <segue destination="SzF-Wo-RC4" kind="push" identifier="addNewTinkler" id="mJN-Vb-9Hv"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gJH-FE-zkm">
+                                <rect key="frame" x="16" y="72" width="70" height="70"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="187-MZ-juR">
+                                <rect key="frame" x="20" y="72" width="66" height="67"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="GFD-GS-f5w" eventType="touchUpInside" id="C4R-pH-ZwH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -702,8 +716,9 @@
                             <constraint firstItem="yoH-Ef-7lc" firstAttribute="top" secondItem="hn7-Qo-osa" secondAttribute="bottom" constant="8" id="wZS-pH-1yD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="ORW-Va-unn"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile.png" id="ORW-Va-unn"/>
                     <connections>
+                        <outlet property="profilePic" destination="gJH-FE-zkm" id="C8f-GQ-Ra6"/>
                         <outlet property="tinklersTabView" destination="hn7-Qo-osa" id="UaS-Uh-57V"/>
                         <outlet property="usernameLabel" destination="Gsw-65-N16" id="uww-uO-Qc9"/>
                     </connections>
@@ -725,15 +740,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tinkler Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HuU-Rx-AYu">
-                                <rect key="frame" x="110" y="91" width="200" height="30"/>
+                                <rect key="frame" x="122" y="84" width="182" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOo-0W-b6L">
-                                <rect key="frame" x="4" y="84" width="98" height="88"/>
+                                <rect key="frame" x="16" y="84" width="98" height="88"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HlF-Io-1lI">
-                                <rect key="frame" x="4" y="84" width="98" height="88"/>
+                                <rect key="frame" x="16" y="84" width="98" height="88"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -742,7 +757,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWs-RR-8As">
-                                <rect key="frame" x="110" y="232" width="148" height="30"/>
+                                <rect key="frame" x="118" y="232" width="148" height="30"/>
                                 <state key="normal" title="Regenerate QR-Code">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -751,22 +766,31 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XO5-5n-o0h">
-                                <rect key="frame" x="110" y="130" width="200" height="30"/>
+                                <rect key="frame" x="122" y="130" width="186" height="30"/>
                                 <state key="normal" title="Tinkler Type">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rA-gb-2ue">
-                                <rect key="frame" x="4" y="203" width="98" height="88"/>
+                                <rect key="frame" x="16" y="203" width="98" height="88"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Additional Fields" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-LJ-8oR">
-                                <rect key="frame" x="4" y="305" width="128" height="21"/>
+                                <rect key="frame" x="16" y="305" width="128" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2d-NR-BFo">
+                                <rect key="frame" x="16" y="433" width="101" height="30"/>
+                                <state key="normal" title="Update Tinkler">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateTinkler:" destination="VIG-YS-9ac" eventType="touchUpInside" id="7gM-Sd-EYp"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlP-AZ-DTL">
-                                <rect key="frame" x="113" y="472" width="94" height="30"/>
+                                <rect key="frame" x="210" y="433" width="94" height="30"/>
                                 <state key="normal" title="Delete Tinkler">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -790,6 +814,11 @@
             <point key="canvasLocation" x="2247" y="951"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="inbox.png" width="35" height="35"/>
+        <image name="profile.png" width="35" height="35"/>
+        <image name="scan.png" width="35" height="35"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

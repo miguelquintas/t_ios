@@ -62,19 +62,6 @@
     [_tinklerTypeEdit addTarget:self action:@selector(showTinklerTypePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(void) viewWillDisappear:(BOOL)animated {
-    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        //Save edited object
-        [self editTinkler];
-        [QCApi editTinklerWithCompletion:self.selectedTinkler completion:^void(BOOL finished) {
-            if (finished) {
-                NSLog(@"Updates were saved!");
-            }
-        }];
-    }
-    [super viewWillDisappear:animated];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -99,7 +86,7 @@
     _colorTF.clearButtonMode = UITextFieldViewModeAlways;
     _colorTF.text = [self.selectedTinkler color];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 150)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
     [view addSubview:_brandTF];
     [view addSubview:_colorTF];
     [self.view addSubview:view];
@@ -132,9 +119,10 @@
     _monthYearPicker.delegate = self;
     _petAgeTF.inputView = _monthYearPicker;
     
-    
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 150)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
+    //Test view position
+//    view.layer.borderColor = [UIColor redColor].CGColor;
+//    view.layer.borderWidth = 3.0f;
     [view addSubview:_petBreedTF];
     [view addSubview:_petAgeTF];
     [self.view addSubview:view];
@@ -168,7 +156,7 @@
     _vehicleYearTF.inputView = _monthYearPicker;
     
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 150)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
     [view addSubview:_vehiclePlateTF];
     [view addSubview:_vehicleYearTF];
     [self.view addSubview:view];
@@ -298,21 +286,48 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Tinkler" message:deletemessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     [alert show];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+- (IBAction)updateTinkler:(id)sender {
+    
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        //Save edited object
+        [self editTinkler];
+        [QCApi editTinklerWithCompletion:self.selectedTinkler completion:^void(BOOL finished) {
+            if (finished) {
+                NSLog(@"Updates were saved!");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                // Back to the Profile VC
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    });
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"%ld", (long)buttonIndex);
-    if(buttonIndex == 1)
-    {
-        [QCApi deleteTinklerWithCompletion:_selectedTinkler completion:^void(BOOL finished) {
-            if (finished) {
-                NSString* deletemessage = [NSString stringWithFormat: @"The Tinkler %@ has been deleted", _tinklerNameEdit.text];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Confirmation" message:deletemessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }];
+    if(buttonIndex == 1){
+        //Loading spinner
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            [QCApi deleteTinklerWithCompletion:_selectedTinkler completion:^void(BOOL finished) {
+                if (finished) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                    NSString* deletemessage = [NSString stringWithFormat: @"The Tinkler %@ has been deleted", _tinklerNameEdit.text];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Confirmation" message:deletemessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [alert show];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        });
     }
 }
 

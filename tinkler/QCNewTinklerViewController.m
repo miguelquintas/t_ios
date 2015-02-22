@@ -102,7 +102,7 @@
     }
 }
 
-//Code to pass selected vehicle data to the Vehicle Edit View Controller
+//Code to pass selected Tinkler's data to the Tinkler Edit View Controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"submitTinkler"]) {
         QCNewTinklerSubmitViewController *destViewController = segue.destinationViewController;

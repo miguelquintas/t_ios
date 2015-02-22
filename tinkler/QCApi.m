@@ -310,18 +310,16 @@
                         if (!error) {
                             //Send QR-Code via email
                             [self sendQrCodeEmail:newTinkler.objectId];
+                            completion(YES);
                             NSLog(@"Saved QR-Code and QR-Code Key!");
+                            NSLog(@"QR-Code created, saved and sent to the user email");
                         }else
                             NSLog(@"Error saving QR-Code and QR-Code Key!");
                     }];
-        
-                    NSLog(@"QR-Code created, saved and sent to the user email");
                 }else{
                     NSLog(@"Error getting the new created tinkler!");
                 }
             }];
-
-            completion(YES);
         }else{
             NSLog(@"Error adding new tinkler!");
         }
@@ -353,8 +351,9 @@
     
     if([tinkler color] != nil)
         [tinklerToEdit setObject:[tinkler color] forKey:@"color"];
-
-    [tinklerToEdit setObject:[tinkler tinklerQRCode] forKey:@"qrCode"];
+    
+    if([tinkler tinklerQRCode] != nil)
+        [tinklerToEdit setObject:[tinkler tinklerQRCode] forKey:@"qrCode"];
     [tinklerToEdit setObject:[tinkler tinklerQRCodeKey] forKey:@"qrCodeKey"];
     if([tinkler tinklerImage] != nil)
         [tinklerToEdit setObject:[tinkler tinklerImage] forKey:@"picture"];
@@ -376,7 +375,6 @@
     //Mark as deleted all messages regarding this Object
     PFQuery *sentMsgs = [PFQuery queryWithClassName:@"Message"];
     [sentMsgs whereKey:@"from" equalTo:[PFUser currentUser]];
-    [sentMsgs whereKeyExists:@"customText"];
     [sentMsgs whereKey:@"tinkler" equalTo:tinklerToDelete];
     
     PFQuery *receivedMsgs = [PFQuery queryWithClassName:@"Message"];
@@ -398,6 +396,7 @@
                     }
                 }];
             }
+            completion(YES);
         }else
             NSLog(@"Error deleting this tinkler's messages!");
         
@@ -405,7 +404,7 @@
     
     [tinklerToDelete deleteEventually];
     
-    completion(YES);
+    
 }
 
 + (void)checkEmailVerifiedWithCompletion:(NSString *)email completion:(void (^)(BOOL finished, BOOL isVerified))completion {

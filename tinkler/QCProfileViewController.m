@@ -15,7 +15,23 @@
     [super viewDidLoad];
     self.title = @"Profile";
     self.tinklersTabView.allowsMultipleSelectionDuringEditing = NO;
-
+    
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+    self.profilePic.clipsToBounds = YES;
+    
+    // Get the stored data before the view loads
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *imageData = [defaults dataForKey:@"profilePic"];
+    UIImage *storedProfilePic = [UIImage imageWithData:imageData];
+    
+    //Set profile pic from NSUserDefaults
+    if(imageData == nil){
+        //Load the default profile pic
+        self.profilePic.image = [UIImage imageNamed:@"default_pic.jpg"];
+    }else{
+        self.profilePic.image = storedProfilePic;
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -81,7 +97,13 @@
     QCTinkler *thisTinkler = [_tinklers objectAtIndex:indexPath.row];
     
     cell.tinklerNameLabel.text = [thisTinkler tinklerName];
-    [cell.thumbnailImageView setImageWithURL: [NSURL URLWithString:thisTinkler.tinklerImage.url]];
+    
+    if(thisTinkler.tinklerImage == nil){
+        [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_pic.jpg"]];
+    }else{
+        [cell.thumbnailImageView setImageWithURL: [NSURL URLWithString:thisTinkler.tinklerImage.url]];
+    }
+    
     return cell;
 }
 
@@ -113,6 +135,57 @@
     }
 }
 
+//Delegate methods for imagePicker
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.profilePic.image = chosenImage;
+    
+    //Set image to NSUserDefaults preferences
+    // Create instances of NSData
+    NSData *imageData = UIImageJPEGRepresentation(chosenImage, 100);
+    // Store the data
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:imageData forKey:@"profilePic"];
+    
+    [defaults synchronize];
+    NSLog(@"Data saved");
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button %ld", (long)buttonIndex);
+    if(buttonIndex == 0){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }else if (buttonIndex == 1){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
 //End of Delegate methods
+
+- (IBAction)selectPhoto:(id)sender {
+    _photoSourceMenu = [[UIActionSheet alloc] initWithTitle:@"Select the picture's source"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                     destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Camera", @"Photo Library", nil];
+    
+    // Show the sheet
+    [_photoSourceMenu showInView:self.view];
+}
 
 @end

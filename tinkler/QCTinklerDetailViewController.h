@@ -13,6 +13,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "LTHMonthYearPickerView.h"
 #import "SBPickerSelector.h"
+#import "MBProgressHUD.h"
 
 @interface QCTinklerDetailViewController : UIViewController <LTHMonthYearPickerViewDelegate, UIActionSheetDelegate, SBPickerSelectorDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -51,5 +52,6 @@
 - (IBAction)generateQRCode:(id)sender;
 - (IBAction)selectPhoto:(id)sender;
 - (IBAction)deleteTinkler:(id)sender;
+- (IBAction)updateTinkler:(id)sender;
 
 @end
