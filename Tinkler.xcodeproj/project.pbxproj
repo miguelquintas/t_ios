@@ -96,6 +96,19 @@
 		BC72B7F31A68591400AC720B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72B7F21A68591400AC720B /* JSQSystemSoundPlayer.m */; };
 		BC8C5B2619E33E1C006774F1 /* QCProfileUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */; };
 		BC91378119BE3E7C008A598B /* QCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BC91378019BE3E7C008A598B /* QCApi.m */; };
+		BC956DC11A9E7E710050C291 /* inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DB81A9E7E710050C291 /* inbox.png */; };
+		BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DB91A9E7E710050C291 /* inbox@2x.png */; };
+		BC956DC31A9E7E710050C291 /* inbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBA1A9E7E710050C291 /* inbox@3x.png */; };
+		BC956DC41A9E7E710050C291 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBB1A9E7E710050C291 /* profile.png */; };
+		BC956DC51A9E7E710050C291 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBC1A9E7E710050C291 /* profile@2x.png */; };
+		BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBD1A9E7E710050C291 /* profile@3x.png */; };
+		BC956DC71A9E7E710050C291 /* scan.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBE1A9E7E710050C291 /* scan.png */; };
+		BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBF1A9E7E710050C291 /* scan@2x.png */; };
+		BC956DC91A9E7E710050C291 /* scan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DC01A9E7E710050C291 /* scan@3x.png */; };
+		BC956DCE1A9E899E0050C291 /* splash_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DCA1A9E899E0050C291 /* splash_4@2x.png */; };
+		BC956DCF1A9E899E0050C291 /* splash_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DCB1A9E899E0050C291 /* splash_5@2x.png */; };
+		BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DCC1A9E899E0050C291 /* splash_6@2x.png */; };
+		BC956DD11A9E899E0050C291 /* splash_6+@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DCD1A9E899E0050C291 /* splash_6+@3x.png */; };
 		BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7CED01A96C5D0000C6E1D /* logo_home.png */; };
 		BCAFD6921A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */; };
 		BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7ADC91A0557E200AE9CBD /* QCMessageType.m */; };
@@ -105,9 +118,6 @@
 		BCD0822319FBD2430065A6EB /* QCConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0822219FBD2430065A6EB /* QCConversation.m */; };
 		BCD88F5119BB911D0090103B /* QCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5019BB911D0090103B /* QCProfileViewController.m */; };
 		BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5319BB91340090103B /* QCInboxViewController.m */; };
-		BCDCD8391A9A5DB400BA1AC3 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDCD8371A9A5DB400BA1AC3 /* profile.png */; };
-		BCDCD83A1A9A5DB400BA1AC3 /* scan.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDCD8381A9A5DB400BA1AC3 /* scan.png */; };
-		BCDCD83C1A9A5DCE00BA1AC3 /* inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDCD83B1A9A5DCE00BA1AC3 /* inbox.png */; };
 		BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F181A755BB00087C03A /* TKHomeViewController.m */; };
 		BCE30F1C1A7563540087C03A /* TKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */; };
 		BCE30F221A75648D0087C03A /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1F1A75648D0087C03A /* MYIntroductionPanel.m */; };
@@ -324,6 +334,19 @@
 		BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCProfileUpdateViewController.m; sourceTree = "<group>"; };
 		BC91377F19BE3E7C008A598B /* QCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCApi.h; sourceTree = "<group>"; };
 		BC91378019BE3E7C008A598B /* QCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCApi.m; sourceTree = "<group>"; };
+		BC956DB81A9E7E710050C291 /* inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox.png; sourceTree = "<group>"; };
+		BC956DB91A9E7E710050C291 /* inbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox@2x.png"; sourceTree = "<group>"; };
+		BC956DBA1A9E7E710050C291 /* inbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox@3x.png"; sourceTree = "<group>"; };
+		BC956DBB1A9E7E710050C291 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		BC956DBC1A9E7E710050C291 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
+		BC956DBD1A9E7E710050C291 /* profile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@3x.png"; sourceTree = "<group>"; };
+		BC956DBE1A9E7E710050C291 /* scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan.png; sourceTree = "<group>"; };
+		BC956DBF1A9E7E710050C291 /* scan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@2x.png"; sourceTree = "<group>"; };
+		BC956DC01A9E7E710050C291 /* scan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@3x.png"; sourceTree = "<group>"; };
+		BC956DCA1A9E899E0050C291 /* splash_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_4@2x.png"; sourceTree = "<group>"; };
+		BC956DCB1A9E899E0050C291 /* splash_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_5@2x.png"; sourceTree = "<group>"; };
+		BC956DCC1A9E899E0050C291 /* splash_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_6@2x.png"; sourceTree = "<group>"; };
+		BC956DCD1A9E899E0050C291 /* splash_6+@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_6+@3x.png"; sourceTree = "<group>"; };
 		BCA7CED01A96C5D0000C6E1D /* logo_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_home.png; sourceTree = "<group>"; };
 		BCAFD6901A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCNewTinklerSubmitViewController.h; sourceTree = "<group>"; };
 		BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCNewTinklerSubmitViewController.m; sourceTree = "<group>"; };
@@ -340,9 +363,6 @@
 		BCD88F5019BB911D0090103B /* QCProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCProfileViewController.m; sourceTree = "<group>"; };
 		BCD88F5219BB91340090103B /* QCInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCInboxViewController.h; sourceTree = "<group>"; };
 		BCD88F5319BB91340090103B /* QCInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxViewController.m; sourceTree = "<group>"; };
-		BCDCD8371A9A5DB400BA1AC3 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
-		BCDCD8381A9A5DB400BA1AC3 /* scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scan.png; sourceTree = "<group>"; };
-		BCDCD83B1A9A5DCE00BA1AC3 /* inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox.png; sourceTree = "<group>"; };
 		BCE30F171A755BB00087C03A /* TKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKHomeViewController.h; sourceTree = "<group>"; };
 		BCE30F181A755BB00087C03A /* TKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKHomeViewController.m; sourceTree = "<group>"; };
 		BCE30F1A1A7563540087C03A /* TKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTutorialViewController.h; sourceTree = "<group>"; };
@@ -833,10 +853,20 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
-				BCDCD83B1A9A5DCE00BA1AC3 /* inbox.png */,
+				BC956DCA1A9E899E0050C291 /* splash_4@2x.png */,
+				BC956DCB1A9E899E0050C291 /* splash_5@2x.png */,
+				BC956DCC1A9E899E0050C291 /* splash_6@2x.png */,
+				BC956DCD1A9E899E0050C291 /* splash_6+@3x.png */,
+				BC956DB81A9E7E710050C291 /* inbox.png */,
+				BC956DB91A9E7E710050C291 /* inbox@2x.png */,
+				BC956DBA1A9E7E710050C291 /* inbox@3x.png */,
+				BC956DBB1A9E7E710050C291 /* profile.png */,
+				BC956DBC1A9E7E710050C291 /* profile@2x.png */,
+				BC956DBD1A9E7E710050C291 /* profile@3x.png */,
+				BC956DBE1A9E7E710050C291 /* scan.png */,
+				BC956DBF1A9E7E710050C291 /* scan@2x.png */,
+				BC956DC01A9E7E710050C291 /* scan@3x.png */,
 				BCF9A8591A940CC600639B88 /* tutorial3.jpg */,
-				BCDCD8371A9A5DB400BA1AC3 /* profile.png */,
-				BCDCD8381A9A5DB400BA1AC3 /* scan.png */,
 				BCF9A85A1A940CC600639B88 /* tutorial2.jpg */,
 				BCA7CED01A96C5D0000C6E1D /* logo_home.png */,
 				BCF9A85B1A940CC600639B88 /* tutorial4.jpg */,
@@ -959,27 +989,37 @@
 			files = (
 				BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */,
 				BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */,
-				BCDCD83A1A9A5DB400BA1AC3 /* scan.png in Resources */,
+				BC956DC71A9E7E710050C291 /* scan.png in Resources */,
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
 				BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */,
 				BCF9A8621A940CC600639B88 /* tutorial5.jpg in Resources */,
+				BC956DC91A9E7E710050C291 /* scan@3x.png in Resources */,
 				BCF9A85F1A940CC600639B88 /* tutorial2.jpg in Resources */,
+				BC956DCE1A9E899E0050C291 /* splash_4@2x.png in Resources */,
+				BC956DCF1A9E899E0050C291 /* splash_5@2x.png in Resources */,
+				BC956DC41A9E7E710050C291 /* profile.png in Resources */,
+				BC956DC31A9E7E710050C291 /* inbox@3x.png in Resources */,
 				BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */,
 				BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
+				BC956DC51A9E7E710050C291 /* profile@2x.png in Resources */,
 				BC72B7E91A6858F700AC720B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
-				BCDCD8391A9A5DB400BA1AC3 /* profile.png in Resources */,
 				BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */,
-				BCDCD83C1A9A5DCE00BA1AC3 /* inbox.png in Resources */,
 				BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */,
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				BCF9A85E1A940CC600639B88 /* tutorial3.jpg in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
+				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
+				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
+				BC956DD11A9E899E0050C291 /* splash_6+@3x.png in Resources */,
+				BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

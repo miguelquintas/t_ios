@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,8 +19,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMW-PJ-Uf1">
+                                <rect key="frame" x="48" y="407" width="225" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="shj-2S-6p8"/>
+                                </constraints>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" red="0.53333333329999999" green="0.7725490196" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Hum-CR-ot6" kind="push" id="zFt-8i-wPw"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83T-fT-dJ6">
-                                <rect key="frame" x="120" y="463" width="80" height="30"/>
+                                <rect key="frame" x="48" y="469" width="225" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="dhl-V8-AF3"/>
+                                </constraints>
                                 <state key="normal" title="Get Started">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,38 +45,23 @@
                                     <segue destination="0ar-mW-lfc" kind="push" id="cSf-DA-hGN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMW-PJ-Uf1">
-                                <rect key="frame" x="48" y="501" width="225" height="30"/>
-                                <state key="normal" title="Already have an account? Log In">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Hum-CR-ot6" kind="push" id="zFt-8i-wPw"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0r-YN-uTA">
-                                <rect key="frame" x="16" y="127" width="288" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="dTu-ZW-mUw"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="vMW-PJ-Uf1" secondAttribute="trailing" constant="31" id="02f-Lf-MSS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="83T-fT-dJ6" secondAttribute="trailing" constant="104" id="4fx-KT-Qox"/>
-                            <constraint firstItem="S0r-YN-uTA" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" id="7Jd-YR-gVj"/>
-                            <constraint firstItem="vMW-PJ-Uf1" firstAttribute="top" secondItem="83T-fT-dJ6" secondAttribute="bottom" constant="8" id="o3r-wR-nAA"/>
-                            <constraint firstItem="83T-fT-dJ6" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" constant="104" id="rRN-fe-6Ls"/>
-                            <constraint firstItem="vMW-PJ-Uf1" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" constant="32" id="vGZ-wV-1w9"/>
-                            <constraint firstItem="S0r-YN-uTA" firstAttribute="trailing" secondItem="gLe-Tb-ylt" secondAttribute="trailingMargin" id="xlq-j1-ETL"/>
-                            <constraint firstItem="xqf-EP-hTl" firstAttribute="top" secondItem="vMW-PJ-Uf1" secondAttribute="bottom" constant="37" id="yiI-Hn-Z5r"/>
+                            <constraint firstAttribute="width" secondItem="83T-fT-dJ6" secondAttribute="height" multiplier="320:41" id="99m-15-SCV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vMW-PJ-Uf1" secondAttribute="trailing" constant="31" id="9kg-Zz-HdF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="83T-fT-dJ6" secondAttribute="trailing" constant="31" id="A9z-8z-4Wz"/>
+                            <constraint firstItem="83T-fT-dJ6" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" constant="32" id="CfJ-Oq-C1C"/>
+                            <constraint firstItem="vMW-PJ-Uf1" firstAttribute="leading" secondItem="gLe-Tb-ylt" secondAttribute="leadingMargin" constant="32" id="Fgo-0o-Hdr"/>
+                            <constraint firstItem="xqf-EP-hTl" firstAttribute="top" secondItem="83T-fT-dJ6" secondAttribute="bottom" constant="58" id="Mzr-CV-iXH"/>
+                            <constraint firstItem="83T-fT-dJ6" firstAttribute="width" secondItem="vMW-PJ-Uf1" secondAttribute="height" multiplier="225:41" id="YaN-89-H9m"/>
+                            <constraint firstItem="83T-fT-dJ6" firstAttribute="top" secondItem="vMW-PJ-Uf1" secondAttribute="bottom" constant="21" id="cPn-oz-sj4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QNQ-cq-3SW"/>
                     <connections>
-                        <outlet property="homeLogo" destination="S0r-YN-uTA" id="YQl-nZ-fgG"/>
+                        <outlet property="loginButton" destination="vMW-PJ-Uf1" id="stU-FG-cCe"/>
+                        <outlet property="registerButton" destination="83T-fT-dJ6" id="WHi-43-Ot6"/>
                         <segue destination="chU-Vb-hce" kind="push" identifier="seeTutorialFromHome" id="wLP-QD-BYh"/>
                     </connections>
                 </viewController>
@@ -245,17 +247,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-T4-MGt">
-                                <rect key="frame" x="22" y="109" width="277" height="309"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-T4-MGt">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="BPp-T4-MGt" firstAttribute="top" secondItem="U2M-yO-7pb" secondAttribute="bottom" constant="50" id="49A-8c-OHc"/>
-                            <constraint firstItem="BPp-T4-MGt" firstAttribute="leading" secondItem="Usg-pU-K5g" secondAttribute="leadingMargin" constant="8" id="6Jy-TF-3SD"/>
-                            <constraint firstItem="lJO-rf-AIU" firstAttribute="top" secondItem="BPp-T4-MGt" secondAttribute="bottom" constant="50" id="Ahy-vN-jG0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BPp-T4-MGt" secondAttribute="trailing" constant="8" id="P9A-aN-l9r"/>
+                            <constraint firstItem="BPp-T4-MGt" firstAttribute="top" secondItem="U2M-yO-7pb" secondAttribute="bottom" id="49A-8c-OHc"/>
+                            <constraint firstItem="lJO-rf-AIU" firstAttribute="top" secondItem="BPp-T4-MGt" secondAttribute="bottom" id="Ahy-vN-jG0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scan" image="scan.png" id="TlR-3O-2Gr"/>
@@ -815,9 +815,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="inbox.png" width="35" height="35"/>
-        <image name="profile.png" width="35" height="35"/>
-        <image name="scan.png" width="35" height="35"/>
+        <image name="inbox.png" width="25" height="25"/>
+        <image name="profile.png" width="25" height="25"/>
+        <image name="scan.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
