@@ -668,32 +668,13 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2F-s8-sml">
                                 <rect key="frame" x="0.0" y="64" width="320" height="146"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsw-65-N16">
-                                        <rect key="frame" x="94" y="37" width="207" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-97-zZd">
-                                        <rect key="frame" x="94" y="58" width="57" height="30"/>
-                                        <state key="normal" title="Settings">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="oCD-1L-rFO" kind="push" id="3uP-DG-yao"/>
-                                        </connections>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gJH-FE-zkm">
-                                        <rect key="frame" x="12" y="21" width="74" height="74"/>
+                                        <rect key="frame" x="117" y="9" width="80" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="74" id="2Rw-sh-5Iv"/>
-                                            <constraint firstAttribute="width" constant="74" id="zVH-Sj-6Sn"/>
+                                            <constraint firstAttribute="height" constant="80" id="U9a-Zf-2rA"/>
+                                            <constraint firstAttribute="width" constant="80" id="vn5-zb-Uea"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Tinklers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjJ-UK-7FO">
-                                        <rect key="frame" x="8" y="117" width="88" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-d6-ddL">
                                         <rect key="frame" x="282" y="113" width="30" height="30"/>
                                         <state key="normal" title="Add">
@@ -703,8 +684,12 @@
                                             <segue destination="SzF-Wo-RC4" kind="push" identifier="addNewTinkler" id="mJN-Vb-9Hv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="187-MZ-juR">
-                                        <rect key="frame" x="16" y="26" width="67" height="67"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="187-MZ-juR">
+                                        <rect key="frame" x="124" y="15" width="67" height="67"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="67" id="Abj-0w-9LM"/>
+                                            <constraint firstAttribute="height" constant="67" id="taS-Ik-uaZ"/>
+                                        </constraints>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -712,21 +697,33 @@
                                             <action selector="selectPhoto:" destination="GFD-GS-f5w" eventType="touchUpInside" id="C4R-pH-ZwH"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsw-65-N16">
+                                        <rect key="frame" x="32" y="97" width="250" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GCJ-97-zZd">
+                                        <rect key="frame" x="129" y="113" width="57" height="30"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="oCD-1L-rFO" kind="push" id="3uP-DG-yao"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="187-MZ-juR" firstAttribute="leading" secondItem="e2F-s8-sml" secondAttribute="leading" constant="16" id="0JP-hc-LVl"/>
-                                    <constraint firstItem="jjJ-UK-7FO" firstAttribute="leading" secondItem="e2F-s8-sml" secondAttribute="leading" constant="8" id="GWq-Ao-9aM"/>
-                                    <constraint firstItem="Gsw-65-N16" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="top" constant="37" id="IdW-AN-xKH"/>
+                                    <constraint firstAttribute="centerX" secondItem="gJH-FE-zkm" secondAttribute="centerX" constant="3" id="0Cf-L4-C5p"/>
+                                    <constraint firstItem="GCJ-97-zZd" firstAttribute="leading" secondItem="e2F-s8-sml" secondAttribute="leading" constant="129" id="5aG-RS-2bN"/>
+                                    <constraint firstItem="Gsw-65-N16" firstAttribute="leading" secondItem="e2F-s8-sml" secondAttribute="leading" constant="32" id="ANu-d0-ODm"/>
+                                    <constraint firstItem="gJH-FE-zkm" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="top" constant="9" id="Eum-RU-iqW"/>
                                     <constraint firstItem="fXI-d6-ddL" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="top" constant="113" id="JBm-Rc-ccK"/>
-                                    <constraint firstItem="gJH-FE-zkm" firstAttribute="leading" secondItem="e2F-s8-sml" secondAttribute="leading" constant="12" id="S1X-as-50a"/>
-                                    <constraint firstItem="gJH-FE-zkm" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="top" constant="21" id="ZWH-Cj-EcG"/>
-                                    <constraint firstItem="GCJ-97-zZd" firstAttribute="top" secondItem="Gsw-65-N16" secondAttribute="bottom" id="b9d-I6-WxV"/>
+                                    <constraint firstAttribute="centerX" secondItem="187-MZ-juR" secondAttribute="centerX" constant="2.5" id="Pax-DK-h8r"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gsw-65-N16" secondAttribute="trailing" constant="38" id="Ryv-hW-PzJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="GCJ-97-zZd" secondAttribute="trailing" constant="134" id="dyi-5d-yH4"/>
                                     <constraint firstAttribute="trailing" secondItem="fXI-d6-ddL" secondAttribute="trailing" constant="8" id="gNa-Wl-j2R"/>
-                                    <constraint firstItem="187-MZ-juR" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="top" constant="26" id="gaW-lH-Q9e"/>
-                                    <constraint firstAttribute="bottom" secondItem="jjJ-UK-7FO" secondAttribute="bottom" constant="8" id="oaK-T6-0zG"/>
-                                    <constraint firstItem="GCJ-97-zZd" firstAttribute="leading" secondItem="gJH-FE-zkm" secondAttribute="trailing" constant="8" id="xlj-vg-jNJ"/>
-                                    <constraint firstItem="Gsw-65-N16" firstAttribute="leading" secondItem="gJH-FE-zkm" secondAttribute="trailing" constant="8" id="yH7-aY-qD0"/>
+                                    <constraint firstItem="187-MZ-juR" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="top" constant="15" id="sJg-4b-Eha"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -735,8 +732,8 @@
                             <constraint firstItem="hn7-Qo-osa" firstAttribute="top" secondItem="e2F-s8-sml" secondAttribute="bottom" constant="8" id="2ir-qB-jRN"/>
                             <constraint firstItem="e2F-s8-sml" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" id="6KJ-mQ-iqX"/>
                             <constraint firstItem="e2F-s8-sml" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" id="Oz1-os-QdX"/>
+                            <constraint firstItem="e2F-s8-sml" firstAttribute="leading" secondItem="yl0-Gi-K1d" secondAttribute="leadingMargin" constant="-16" id="UPL-Dc-vqe"/>
                             <constraint firstItem="qTG-vR-G3O" firstAttribute="leading" secondItem="yl0-Gi-K1d" secondAttribute="leadingMargin" constant="120" id="aSu-Cg-8LP"/>
-                            <constraint firstItem="e2F-s8-sml" firstAttribute="leading" secondItem="yl0-Gi-K1d" secondAttribute="leadingMargin" constant="-16" id="cAi-wq-xT5"/>
                             <constraint firstAttribute="width" secondItem="hn7-Qo-osa" secondAttribute="width" id="cgx-D9-Y2y"/>
                             <constraint firstAttribute="width" secondItem="hn7-Qo-osa" secondAttribute="width" id="rtm-dZ-GI6"/>
                             <constraint firstItem="qTG-vR-G3O" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" constant="97" id="vlA-dd-bDN"/>
@@ -747,7 +744,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile.png" id="ORW-Va-unn"/>
                     <connections>
-                        <outlet property="myTinklerLabel" destination="jjJ-UK-7FO" id="rys-UW-PNE"/>
                         <outlet property="profilePic" destination="gJH-FE-zkm" id="C8f-GQ-Ra6"/>
                         <outlet property="profileView" destination="e2F-s8-sml" id="YEg-m5-YhC"/>
                         <outlet property="tinklersTabView" destination="hn7-Qo-osa" id="UaS-Uh-57V"/>
