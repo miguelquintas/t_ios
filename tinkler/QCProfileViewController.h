@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 
 @interface QCProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *profileView;
 
 @property (strong, nonatomic) NSMutableArray *tinklers;
 @property (strong, nonatomic) NSArray *thumbnails;

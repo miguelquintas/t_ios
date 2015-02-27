@@ -43,8 +43,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     [_qrCam setFrame: self.view.frame];
-    NSLog(@"%f, %f", _qrCam.frame.size.width, _qrCam.frame.size.height);
-    NSLog(@"%f, %f", self.view.frame.size.width, self.view.frame.size.height);
     [self startQrCodeRead];
 }
 

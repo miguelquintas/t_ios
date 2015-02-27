@@ -120,6 +120,11 @@
                         if (([message.from.username isEqualToString:conversation.talkingToUser.username] || [message.to.username isEqualToString:conversation.talkingToUser.username])) {
                             //Check if this message's tinkler is the same from the conversation one
                             if([message.targetTinkler.objectId isEqualToString:conversation.talkingToTinkler.objectId]){
+                                
+                                //Check if this conversation has any unread message
+                                if (message.isRead == 0) {
+                                    conversation.hasUnreadMsg = YES;
+                                }
                                 [conversation.conversationMsgs addObject:message];
                                 isNew=FALSE;
                                 break;
@@ -223,6 +228,11 @@
 + (QCConversation *)createNewConversation:(QCMessage *) message{
     QCConversation *newConversation = [[QCConversation alloc]init];
     NSMutableArray *messages = [[NSMutableArray alloc]init];
+    
+    //Check if this conversation has any unread message
+    if (message.isRead == 0) {
+        newConversation.hasUnreadMsg = YES;
+    }
     
     //Case when this is a message from the current user to another user
     if([[PFUser currentUser].username isEqualToString:message.from.username]){

@@ -49,6 +49,15 @@
     //Set Tab Title
     self.tabBarController.navigationItem.title = @"My Profile";
     [self.tinklersTabView reloadData];
+    
+    //Remove NavBar bottom border
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
+    [self.navigationController.navigationBar setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
+    
+    //Set Profile View background color
+    [_profileView setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

@@ -13,7 +13,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     //Set the default tab
-    self.selectedIndex = 2;
+    self.selectedIndex = 1;
     self.navigationItem.hidesBackButton = YES;
 }
 
