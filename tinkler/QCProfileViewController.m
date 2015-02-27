@@ -51,13 +51,18 @@
     [self.tinklersTabView reloadData];
     
     //Remove NavBar bottom border
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
-    [self.navigationController.navigationBar setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
+//    [self.navigationController.navigationBar setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
     
     //Set Profile View background color
-    [_profileView setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
+    [_profileView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
+    
+    //Set Text Color
+    [_usernameLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
+    [_myTinklerLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -115,6 +120,9 @@
     }else{
         [cell.thumbnailImageView setImageWithURL: [NSURL URLWithString:thisTinkler.tinklerImage.url]];
     }
+    
+    cell.thumbnailImageView.layer.cornerRadius = 30;
+    cell.thumbnailImageView.clipsToBounds = YES;
     
     return cell;
 }
