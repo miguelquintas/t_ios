@@ -12,6 +12,7 @@
 #import "QCInboxDetailViewController.h"
 #import "QCMessage.h"
 #import "QCConversation.h"
+#import "UIImageView+AFNetworking.h"
 #import "QCApi.h"
 #import "MBProgressHUD.h"
 

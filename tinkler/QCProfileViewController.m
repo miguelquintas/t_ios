@@ -55,8 +55,6 @@
     
     //Set Text Color
     [_usernameLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
-    [_myTinklerLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

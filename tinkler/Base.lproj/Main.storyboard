@@ -321,8 +321,8 @@
                                 <rect key="frame" x="16" y="-65" width="288" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mUm-jm-5O9">
-                                <rect key="frame" x="16" y="72" width="284" height="443"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mUm-jm-5O9">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="InboxCell" rowHeight="78" id="ZvN-TE-tL4" customClass="QCInboxTableViewCell">
@@ -331,27 +331,48 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZvN-TE-tL4" id="5tq-bo-SAx">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYc-BI-wWu">
-                                                    <rect key="frame" x="170" y="30" width="77" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYc-BI-wWu">
+                                                    <rect key="frame" x="202" y="28" width="77" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="TinklerName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0W-wf-66r">
-                                                    <rect key="frame" x="8" y="28" width="183" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TinklerName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0W-wf-66r">
+                                                    <rect key="frame" x="75" y="28" width="124" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qBX-SH-I2h">
+                                                    <rect key="frame" x="8" y="16" width="45" height="45"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="Qni-Iv-8xE"/>
+                                                        <constraint firstAttribute="width" constant="45" id="gik-8r-Hos"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nBM-uM-c6g">
+                                                    <rect key="frame" x="58" y="33" width="12" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="TMd-1I-4sk"/>
+                                                        <constraint firstAttribute="width" constant="12" id="dkz-2N-5Dh"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="wYc-BI-wWu" secondAttribute="trailing" constant="-4" id="lMb-kz-dnV"/>
-                                                <constraint firstItem="l0W-wf-66r" firstAttribute="leading" secondItem="5tq-bo-SAx" secondAttribute="leadingMargin" id="ozJ-rR-PGF"/>
+                                                <constraint firstAttribute="centerY" secondItem="wYc-BI-wWu" secondAttribute="centerY" id="5hB-w4-Knh"/>
+                                                <constraint firstItem="wYc-BI-wWu" firstAttribute="trailing" secondItem="5tq-bo-SAx" secondAttribute="trailingMargin" id="8Pr-qz-f0p"/>
+                                                <constraint firstAttribute="centerY" secondItem="qBX-SH-I2h" secondAttribute="centerY" constant="0.5" id="I4e-sP-jeS"/>
+                                                <constraint firstAttribute="centerY" secondItem="l0W-wf-66r" secondAttribute="centerY" constant="0.5" id="MCn-53-5aF"/>
+                                                <constraint firstItem="nBM-uM-c6g" firstAttribute="leading" secondItem="qBX-SH-I2h" secondAttribute="trailing" constant="5" id="S3K-9M-iMh"/>
+                                                <constraint firstItem="l0W-wf-66r" firstAttribute="leading" secondItem="nBM-uM-c6g" secondAttribute="trailing" constant="5" id="dzB-bE-Pxw"/>
+                                                <constraint firstItem="qBX-SH-I2h" firstAttribute="leading" secondItem="5tq-bo-SAx" secondAttribute="leadingMargin" id="ng4-cv-qCZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="msgNotification" destination="nBM-uM-c6g" id="pRr-hU-iJA"/>
                                             <outlet property="sentDate" destination="wYc-BI-wWu" id="IZ9-vb-cuV"/>
                                             <outlet property="tinklerNameLabel" destination="l0W-wf-66r" id="hzY-X1-YYI"/>
+                                            <outlet property="tinklerThumb" destination="qBX-SH-I2h" id="gf8-6a-LCp"/>
                                             <segue destination="bWO-G9-Jmc" kind="push" identifier="messageDetail" id="PLo-Vk-psB"/>
                                         </connections>
                                     </tableViewCell>
@@ -364,10 +385,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="I3G-Y5-OLl" firstAttribute="top" secondItem="mUm-jm-5O9" secondAttribute="bottom" constant="4" id="5Gg-xv-ePy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="mUm-jm-5O9" secondAttribute="trailing" constant="4" id="DsN-GO-KWb"/>
-                            <constraint firstItem="mUm-jm-5O9" firstAttribute="top" secondItem="sPe-7H-HSw" secondAttribute="bottom" constant="8" id="WHA-w0-xAg"/>
-                            <constraint firstItem="mUm-jm-5O9" firstAttribute="leading" secondItem="vY2-9M-8Gn" secondAttribute="leadingMargin" id="ku7-gE-x0K"/>
+                            <constraint firstItem="mUm-jm-5O9" firstAttribute="top" secondItem="sPe-7H-HSw" secondAttribute="bottom" id="63L-p5-T7l"/>
+                            <constraint firstItem="mUm-jm-5O9" firstAttribute="width" secondItem="vY2-9M-8Gn" secondAttribute="width" id="VqK-88-ACe"/>
+                            <constraint firstItem="I3G-Y5-OLl" firstAttribute="top" secondItem="mUm-jm-5O9" secondAttribute="bottom" id="dyG-XF-3tX"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Inbox" image="inbox.png" id="9K7-If-4uS"/>
@@ -377,7 +397,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dx8-ge-bcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1121" y="1292"/>
+            <point key="canvasLocation" x="1121" y="1284"/>
         </scene>
         <!--Inbox Detail View Controller-->
         <scene sceneID="ULp-1B-LRC">
@@ -734,7 +754,6 @@
                             <constraint firstItem="e2F-s8-sml" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" id="Oz1-os-QdX"/>
                             <constraint firstItem="e2F-s8-sml" firstAttribute="leading" secondItem="yl0-Gi-K1d" secondAttribute="leadingMargin" constant="-16" id="UPL-Dc-vqe"/>
                             <constraint firstItem="qTG-vR-G3O" firstAttribute="leading" secondItem="yl0-Gi-K1d" secondAttribute="leadingMargin" constant="120" id="aSu-Cg-8LP"/>
-                            <constraint firstAttribute="width" secondItem="hn7-Qo-osa" secondAttribute="width" id="cgx-D9-Y2y"/>
                             <constraint firstAttribute="width" secondItem="hn7-Qo-osa" secondAttribute="width" id="rtm-dZ-GI6"/>
                             <constraint firstItem="qTG-vR-G3O" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" constant="97" id="vlA-dd-bDN"/>
                             <constraint firstItem="yoH-Ef-7lc" firstAttribute="top" secondItem="hn7-Qo-osa" secondAttribute="bottom" constant="8" id="wZS-pH-1yD"/>

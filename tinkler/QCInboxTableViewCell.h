@@ -12,5 +12,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *tinklerNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sentDate;
+@property (weak, nonatomic) IBOutlet UIImageView *tinklerThumb;
+@property (weak, nonatomic) IBOutlet UIImageView *msgNotification;
+
+
 
 @end

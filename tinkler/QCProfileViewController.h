@@ -21,7 +21,6 @@
 @property (strong, nonatomic) NSMutableArray *tinklers;
 @property (strong, nonatomic) NSArray *thumbnails;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
-@property (weak, nonatomic) IBOutlet UILabel *myTinklerLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 

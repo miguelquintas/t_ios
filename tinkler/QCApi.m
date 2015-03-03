@@ -105,7 +105,7 @@
                 [message setTo:[object objectForKey:@"to"]];
                 [message setSentDate:object.createdAt];
                 [message setTargetTinkler:[object objectForKey:@"tinkler"]];
-                [message setIsRead:[object objectForKey:@"read"]];
+                [message setIsRead:[[object objectForKey:@"read"]boolValue]];
                 
                 //Check if there are any conversations created
                 if (conversations.count == 0){
@@ -122,7 +122,7 @@
                             if([message.targetTinkler.objectId isEqualToString:conversation.talkingToTinkler.objectId]){
                                 
                                 //Check if this conversation has any unread message
-                                if (message.isRead == 0) {
+                                if (!message.isRead && [message.to.objectId isEqualToString:[PFUser currentUser].objectId]) {
                                     conversation.hasUnreadMsg = YES;
                                 }
                                 [conversation.conversationMsgs addObject:message];
@@ -229,11 +229,6 @@
     QCConversation *newConversation = [[QCConversation alloc]init];
     NSMutableArray *messages = [[NSMutableArray alloc]init];
     
-    //Check if this conversation has any unread message
-    if (message.isRead == 0) {
-        newConversation.hasUnreadMsg = YES;
-    }
-    
     //Case when this is a message from the current user to another user
     if([[PFUser currentUser].username isEqualToString:message.from.username]){
         [newConversation setTalkingToTinkler:message.targetTinkler];
@@ -244,6 +239,10 @@
         NSLog(@"This message is from user %@ regarding tinkler %@", newConversation.talkingToUser.username, newConversation.talkingToTinkler.objectId);
     }//Case when this is a message from another user to the current user
     else{
+        //Check if this conversation has any unread message
+        if (!message.isRead) {
+            newConversation.hasUnreadMsg = YES;
+        }
         [newConversation setTalkingToTinkler:message.targetTinkler];
         [newConversation setTalkingToUser:message.from];
         [messages addObject:message];
@@ -568,11 +567,12 @@
     //Run through all the seen messages and update the "read" field to true
     for (QCMessage *message in messages) {
         
-        if (message.isRead == 0) {
+        if (!message.isRead) {
             //query to get this message's record
             PFQuery *query = [PFQuery queryWithClassName:@"Message"];
             [query whereKey:@"to" equalTo:[PFUser currentUser]];
             PFObject *messageToEdit = [query getObjectWithId:message.messageId];
+            [messageToEdit setObject:[NSNumber numberWithBool:YES] forKey:@"read"];
             [messageToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(!error){
                     NSLog(@"Message Eddited!");

@@ -63,10 +63,34 @@
     
     QCInboxTableViewCell *cell = (QCInboxTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     QCConversation *thisConversation = [conversations objectAtIndex:indexPath.row];
+    PFFile *tinklerImage = [thisConversation talkingToTinkler][@"picture"];
     
     cell.tinklerNameLabel.text = [thisConversation talkingToTinkler][@"name"];
     //Get the proper date format
     cell.sentDate.text = thisConversation.lastSentDate;
+    
+    if(tinklerImage== nil){
+        [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_pic.jpg"]];
+    }else{
+        [cell.tinklerThumb setImageWithURL: [NSURL URLWithString:tinklerImage.url]];
+    }
+    
+    cell.tinklerThumb.layer.cornerRadius = cell.tinklerThumb.frame.size.width / 2;
+    cell.tinklerThumb.clipsToBounds = YES;
+    
+    //Messages to see in the current conversation
+    if(thisConversation.hasUnreadMsg == YES){
+        cell.msgNotification.hidden = NO;
+        cell.msgNotification.layer.cornerRadius = cell.msgNotification.frame.size.width / 2;
+        cell.msgNotification.clipsToBounds = YES;
+        [cell.msgNotification setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
+        [cell.tinklerNameLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        [cell.sentDate setFont:[UIFont boldSystemFontOfSize:11]];
+    }else{
+        cell.msgNotification.hidden = YES;
+        [cell.tinklerNameLabel setFont:[UIFont systemFontOfSize:17]];
+        [cell.sentDate setFont:[UIFont systemFontOfSize:11]];
+    }
     
     return cell;
 }
