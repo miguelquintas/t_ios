@@ -68,7 +68,6 @@
         [QCApi getAllTinklersWithCallBack:^(NSMutableArray *tinklersArray, NSError *error) {
             if (error == nil){
                 self.tinklers = tinklersArray;
-                NSLog(@"Tinkler Array: %@", [[self.tinklers objectAtIndex:0] tinklerName]);
                 [self.tinklersTabView reloadData];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.view animated:YES];

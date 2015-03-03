@@ -15,9 +15,6 @@
 		5D4170E318C68ACD0098DD3B /* QCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4170E218C68ACD0098DD3B /* QCAppDelegate.m */; };
 		5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170ED18C68ACD0098DD3B /* Main.storyboard */; };
 		5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170F018C68ACD0098DD3B /* Images.xcassets */; };
-		5D4170F818C68ACD0098DD3B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4170F718C68ACD0098DD3B /* XCTest.framework */; };
-		5D4170F918C68ACD0098DD3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4170D218C68ACD0098DD3B /* Foundation.framework */; };
-		5D4170FA18C68ACD0098DD3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4170D618C68ACD0098DD3B /* UIKit.framework */; };
 		5DE27AEC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */; };
 		5DE27AED18C90A6F00C4C763 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADE18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.m */; };
 		5DE27AEE18C90A6F00C4C763 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27AE018C90A6E00C4C763 /* UIAlertView+AFNetworking.m */; };
@@ -145,16 +142,6 @@
 		BCF9A8621A940CC600639B88 /* tutorial5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85D1A940CC600639B88 /* tutorial5.jpg */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5D4170FB18C68ACD0098DD3B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D4170C718C68ACD0098DD3B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5D4170CE18C68ACD0098DD3B;
-			remoteInfo = qrcar;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		5D4170CF18C68ACD0098DD3B /* Tinkler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinkler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4170D218C68ACD0098DD3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,7 +155,6 @@
 		5D4170E218C68ACD0098DD3B /* QCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QCAppDelegate.m; sourceTree = "<group>"; };
 		5D4170EE18C68ACD0098DD3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D4170F018C68ACD0098DD3B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5D4170F618C68ACD0098DD3B /* TinklerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinklerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4170F718C68ACD0098DD3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5DE27ADB18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
@@ -426,16 +412,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D4170F318C68ACD0098DD3B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5D4170F818C68ACD0098DD3B /* XCTest.framework in Frameworks */,
-				5D4170FA18C68ACD0098DD3B /* UIKit.framework in Frameworks */,
-				5D4170F918C68ACD0098DD3B /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -454,7 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				5D4170CF18C68ACD0098DD3B /* Tinkler.app */,
-				5D4170F618C68ACD0098DD3B /* TinklerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -909,24 +884,6 @@
 			productReference = 5D4170CF18C68ACD0098DD3B /* Tinkler.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5D4170F518C68ACD0098DD3B /* TinklerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5D41710A18C68ACD0098DD3B /* Build configuration list for PBXNativeTarget "TinklerTests" */;
-			buildPhases = (
-				5D4170F218C68ACD0098DD3B /* Sources */,
-				5D4170F318C68ACD0098DD3B /* Frameworks */,
-				5D4170F418C68ACD0098DD3B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5D4170FC18C68ACD0098DD3B /* PBXTargetDependency */,
-			);
-			name = TinklerTests;
-			productName = qrcarTests;
-			productReference = 5D4170F618C68ACD0098DD3B /* TinklerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -944,9 +901,6 @@
 								enabled = 0;
 							};
 						};
-					};
-					5D4170F518C68ACD0098DD3B = {
-						TestTargetID = 5D4170CE18C68ACD0098DD3B;
 					};
 				};
 			};
@@ -977,7 +931,6 @@
 			projectRoot = "";
 			targets = (
 				5D4170CE18C68ACD0098DD3B /* Tinkler */,
-				5D4170F518C68ACD0098DD3B /* TinklerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1020,13 +973,6 @@
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
 				BC956DD11A9E899E0050C291 /* splash_6+@3x.png in Resources */,
 				BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5D4170F418C68ACD0098DD3B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,22 +1068,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D4170F218C68ACD0098DD3B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5D4170FC18C68ACD0098DD3B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5D4170CE18C68ACD0098DD3B /* Tinkler */;
-			targetProxy = 5D4170FB18C68ACD0098DD3B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5D4170DB18C68ACD0098DD3B /* InfoPlist.strings */ = {
@@ -1301,46 +1232,6 @@
 			};
 			name = Release;
 		};
-		5D41710B18C68ACD0098DD3B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/qrcar.app/qrcar";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "qrcar/qrcar-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "qrcarTests/TinklerTests-Info.plist";
-				PRODUCT_NAME = TinklerTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		5D41710C18C68ACD0098DD3B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/qrcar.app/qrcar";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "qrcar/qrcar-Prefix.pch";
-				INFOPLIST_FILE = "qrcarTests/TinklerTests-Info.plist";
-				PRODUCT_NAME = TinklerTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1358,15 +1249,6 @@
 			buildConfigurations = (
 				5D41710818C68ACD0098DD3B /* Debug */,
 				5D41710918C68ACD0098DD3B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5D41710A18C68ACD0098DD3B /* Build configuration list for PBXNativeTarget "TinklerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5D41710B18C68ACD0098DD3B /* Debug */,
-				5D41710C18C68ACD0098DD3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
