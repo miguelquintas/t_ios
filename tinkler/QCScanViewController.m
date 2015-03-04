@@ -167,6 +167,7 @@
         UITextField * alertTextField = [alertView textFieldAtIndex:0];
         NSLog(@"Custom Message Text - %@",alertTextField.text);
         [self sendPushNotification:@"Custom Message" :alertTextField.text];
+        [self startQrCodeRead];
     }
     
 }

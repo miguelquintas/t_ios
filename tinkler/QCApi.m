@@ -416,6 +416,33 @@
     
 }
 
++ (void)deleteConversationWithCompletion:(QCConversation *)conversation completion:(void (^)(BOOL finished))completion {
+    
+    int counter=0;
+    
+    //For loop to run through all the conversation messages
+    for (QCMessage *message in conversation.conversationMsgs) {
+        // Conversation to delete
+        PFObject *messageToDelete = [PFObject objectWithoutDataWithClassName:@"Message"
+                                                                    objectId:message.messageId];
+        
+        [messageToDelete setObject:[NSNumber numberWithBool:YES] forKey:@"deletedByUser"];
+        [messageToDelete saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(!error){
+                NSLog(@"Message marked as deleted");
+            }else{
+                NSLog(@"Error marking as deleted tinkler!");
+            }
+        }];
+        
+        counter++;
+        if (counter == conversation.conversationMsgs.count){
+            completion(YES);
+        }
+    }
+    
+}
+
 + (void)checkEmailVerifiedWithCompletion:(NSString *)email completion:(void (^)(BOOL finished, BOOL isVerified))completion {
 
     PFQuery *userToLoginQuery = [PFUser query];

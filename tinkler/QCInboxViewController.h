@@ -18,7 +18,7 @@
 
 @interface QCInboxViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) NSArray *conversations;
+@property (strong, nonatomic) NSMutableArray *conversations;
 @property (strong, nonatomic) IBOutlet UITableView *messageTabView;
 
 @end

@@ -31,7 +31,7 @@
     //Loading spinner
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [QCApi getAllConversationsWithCallBack:^(NSArray *conversationsArray, NSError *error) {
+        [QCApi getAllConversationsWithCallBack:^(NSMutableArray *conversationsArray, NSError *error) {
             if (error == nil){
                 self.conversations = conversationsArray;
                 [self.messageTabView reloadData];
@@ -50,6 +50,19 @@
 
 }
 
+// Cell Swipe delete code
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [QCApi deleteConversationWithCompletion:[self.conversations objectAtIndex:indexPath.row] completion:^void(BOOL finished) {
+            if (finished) {
+                // Remove the row from data model
+                [self.conversations removeObjectAtIndex:indexPath.row];
+                // Request table view to reload
+                [self.messageTabView reloadData];
+            }
+        }];
+    }
+}
 
 //Delegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

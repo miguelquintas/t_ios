@@ -17,5 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *conversationMsgs;
 @property (strong, nonatomic) NSString *lastSentDate;
 @property (nonatomic) Boolean hasUnreadMsg;
+@property (nonatomic) Boolean wasDeleted;
 
 @end
