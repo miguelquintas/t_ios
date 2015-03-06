@@ -66,163 +66,110 @@
 +(void) getAllConversationsWithCallBack:(void (^)(NSMutableArray *conversationsArray, NSError *error))block {
     NSMutableArray *conversations = [[NSMutableArray alloc]init];
     
-    PFQuery *sentMsgs = [PFQuery queryWithClassName:@"Message"];
-    [sentMsgs whereKey:@"from" equalTo:[PFUser currentUser]];
+    //Query to get the started conversations by the current user
+    PFQuery *startedConv = [PFQuery queryWithClassName:@"Conversation"];
+    [startedConv whereKey:@"starterUser" equalTo:[PFUser currentUser]];
     
-    PFQuery *receivedMsgs = [PFQuery queryWithClassName:@"Message"];
-    [receivedMsgs whereKey:@"to" equalTo:[PFUser currentUser]];
+    //Query to get the conversations started by another user
+    PFQuery *toConv = [PFQuery queryWithClassName:@"Conversation"];
+    [toConv whereKey:@"talkingToUser" equalTo:[PFUser currentUser]];
     
-    PFQuery *myMsgs = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:sentMsgs,receivedMsgs,nil]];
+    //Or query to get all this user's conversations
+    PFQuery *myConv = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:startedConv,toConv,nil]];
     
-    NSLog(@"Trying to retrieve from cache");
-    
-    [myMsgs whereKey:@"deletedByUser" equalTo:[NSNumber numberWithBool:NO]];
-    [myMsgs orderByDescending:@"createdAt"];
-    [myMsgs includeKey:@"type"];
-    [myMsgs includeKey:@"tinkler"];
-    [myMsgs includeKey:@"from"];
-    [myMsgs includeKey:@"to"];
-    [myMsgs findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [myConv orderByDescending:@"createdAt"];
+    [myConv includeKey:@"talkingToTinkler"];
+    [myConv includeKey:@"starterUser"];
+    [myConv includeKey:@"talkingToUser"];
+    [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu messages.", (unsigned long)objects.count);
+            //The find succeeded.
+            NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
             
             // If no objects are loaded in memory, we look to the cache first to fill the table
             // and then subsequently do a query against the network.
             if (objects.count == 0)
-                myMsgs.cachePolicy = kPFCachePolicyCacheThenNetwork;
+                myConv.cachePolicy = kPFCachePolicyCacheThenNetwork;
             else
-                myMsgs.cachePolicy = kPFCachePolicyNetworkOnly;
+                myConv.cachePolicy = kPFCachePolicyNetworkOnly;
             
-            // Create Message objects and group them in Conversation objects
+            // Create Conversation objects and group them in Conversation objects
             for (PFObject *object in objects) {
                 //Create Message Object
-                QCMessage *message = [[QCMessage alloc] init];
-                [message setMessageId:object.objectId];
-                [message setMsgType:[object objectForKey:@"type"]];
-                [message setMsgText:[object objectForKey:@"customText"]];
-                [message setFrom:[object objectForKey:@"from"]];
-                [message setTo:[object objectForKey:@"to"]];
-                [message setSentDate:object.createdAt];
-                [message setTargetTinkler:[object objectForKey:@"tinkler"]];
-                [message setIsRead:[[object objectForKey:@"read"]boolValue]];
+                QCConversation *conversation = [QCConversation new];
+                [conversation setConversationId:object.objectId];
+                [conversation setTalkingToTinkler:[object objectForKey:@"talkingToTinkler"]];
                 
-                //Check if there are any conversations created
-                if (conversations.count == 0){
-                    [conversations addObject:[self createNewConversation:message]];
+                //If the current user started this conversation then set the talkingToUser and the was Deleted values accordingly
+                if([[[object objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+                    [conversation setTalkingToUser:[object objectForKey:@"talkingToUser"]];
+                    [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByStarter"]boolValue]];
                 }else{
-                    //Boolean to know if there is a need to create a new conversation
-                    Boolean isNew=FALSE;
-                    
-                    //Run through all the conversations to see if there is the need to create a new one for the current message
-                    for(QCConversation *conversation in conversations){
-                        //Check if this message belongs to the two intervenients from a conversation
-                        if (([message.from.username isEqualToString:conversation.talkingToUser.username] || [message.to.username isEqualToString:conversation.talkingToUser.username])) {
-                            //Check if this message's tinkler is the same from the conversation one
-                            if([message.targetTinkler.objectId isEqualToString:conversation.talkingToTinkler.objectId]){
-                                
-                                //Check if this conversation has any unread message
-                                if (!message.isRead && [message.to.objectId isEqualToString:[PFUser currentUser].objectId]) {
-                                    conversation.hasUnreadMsg = YES;
-                                }
-                                [conversation.conversationMsgs addObject:message];
-                                isNew=FALSE;
-                                break;
-                            }else{
-                                isNew=TRUE;
-                            }
-                        //Create new conversation
-                        }else{
-                            isNew =TRUE;
-                        }
-                    }
-                    
-                    if (isNew) {
-                        [conversations addObject:[self createNewConversation:message]];
-                    }
-                    
+                    [conversation setTalkingToUser:[object objectForKey:@"starterUser"]];
+                    [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
                 }
+                
+                //Get the messages from the relation "messages"
+                // create a relation based on the messages key
+                PFRelation *relation = [object relationForKey:@"messages"];
+                // generate a query based on that relation
+                PFQuery *messagesQuery = [relation query];
+                [messagesQuery orderByDescending:@"createdAt"];
+                [messagesQuery includeKey:@"type"];
+                [messagesQuery includeKey:@"tinkler"];
+                [messagesQuery includeKey:@"from"];
+                [messagesQuery includeKey:@"to"];
+                NSArray *messsageObjects =[messagesQuery findObjects];
+                
+                //Array to store all this conversation's messages
+                NSMutableArray *messages = [[NSMutableArray alloc]init];
+                int count =0;
+                for (PFObject *object in messsageObjects) {
+                    //Create Message Object
+                    QCMessage *message = [[QCMessage alloc] init];
+                    [message setMessageId:object.objectId];
+                    [message setMsgType:[object objectForKey:@"type"]];
+                    [message setMsgText:[object objectForKey:@"customText"]];
+                    [message setFrom:[object objectForKey:@"from"]];
+                    [message setTo:[object objectForKey:@"to"]];
+                    [message setSentDate:object.createdAt];
+                    [message setTargetTinkler:[object objectForKey:@"tinkler"]];
+                    [message setIsRead:[[object objectForKey:@"read"]boolValue]];
+                            
+                    //Set LastSent Date with the most recent message date
+                    if(count==0){
+                        [conversation setLastSentDate:[message messageDateToString:object.createdAt]];
+                    }
+                            
+                    //Set hasUnreadMsg checking if there is any message sent to this user to read
+                    if([[message to].objectId isEqualToString:[PFUser currentUser].objectId] && ![[object objectForKey:@"read"]boolValue]){
+                        [conversation setHasUnreadMsg:YES];
+                    }
+                            
+                    [messages addObject:message];
+                    count++;
+                }
+                        
+                //Set the messages array to this conversation
+                [conversation setConversationMsgs:messages];
+                
+                //Check blocked conversations
+                if(![[object objectForKey:@"isBlocked"]boolValue]){
+                    [conversations addObject:conversation];
+                }else{
+                    NSLog(@"This conversation is blocked");
+                }
+                
             }
-            NSLog(@"Successfully created %lu conversations.", (unsigned long)conversations.count);
             
-            //Clear the blocked conversations
-            [self getBlockedConversationsWithBlock:conversations:^(NSMutableArray *blkdConversations, NSError *error) {
-                if (error == nil){
-                    [conversations removeObjectsInArray:blkdConversations];
-                    block(conversations,nil);
-                } else {
-                    NSLog(@"%@", error);
-                }
-            }];
             block(conversations,nil);
-        } else {
+        }else{
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
             block(nil,error);
         }
     }];
-}
-
-+ (void) getBlockedConversationsWithBlock:(NSMutableArray*) conversations :(void (^)(NSMutableArray *blkdConversations, NSError *error))block{
-    //Array of blocked conversations to remove
-    NSMutableArray *blockedConversations = [NSMutableArray array];
-    //Counter
-    NSUInteger counter = 0;
     
-    
-    //Run through all the conversations and remove the blocked ones
-    for (QCConversation *conversation in conversations) {
-        //Tinkler Object
-        PFObject* thisTinkler = conversation.talkingToTinkler;
-        //Talking to User
-        PFUser* talkingToUser = conversation.talkingToUser;
-        counter++;
-        
-        [self queryBlockedWithCompletion:thisTinkler :talkingToUser completion:^void(BOOL finished, BOOL blocked){
-            if (finished) {
-                if (blocked) {
-                    [blockedConversations addObject:conversation];
-                    NSLog(@"This conversation is blocked");
-                }else{
-                    NSLog(@"This conversation is allowed");
-                }
-                //Termination clause
-                if(conversations.count == counter){
-                    NSLog(@"blockedConversations has %lu conversations.", (unsigned long)blockedConversations.count);
-                    block(blockedConversations,nil);
-                }
-            }
-        }];
-    }
-}
-
-+ (void)queryBlockedWithCompletion:(PFObject *) thisTinkler :(PFUser *) talkingToUser completion:(void (^)(BOOL finished, BOOL blocked))completion {
-    
-    PFUser* tinklerOwner = [thisTinkler objectForKey:@"owner"];
-    
-    // create a query on the conversation's Tinkler object
-    PFQuery *banQuery = [PFQuery queryWithClassName:@"Tinkler"];
-    [banQuery whereKey:@"objectId" equalTo:thisTinkler.objectId];
-    
-    //If the tinkler's owner is the current user check if the talkingToUser is in the banlist
-    if([tinklerOwner.objectId isEqualToString:[PFUser currentUser].objectId]){
-        [banQuery whereKey:@"ban" equalTo:talkingToUser];
-    //else check if the currentuser has been blocked
-    }else{
-        [banQuery whereKey:@"ban" equalTo:[PFUser currentUser]];
-    }
-    
-    [banQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            if ([objects count] > 0) {
-                completion(YES,YES);
-            }else{
-                completion(YES,NO);
-            }
-        }else{
-            NSLog(@"Error while quering banned users");
-        }
-    }];
 }
 
 + (QCConversation *)createNewConversation:(QCMessage *) message{
@@ -594,7 +541,7 @@
     //Run through all the seen messages and update the "read" field to true
     for (QCMessage *message in messages) {
         
-        if (!message.isRead) {
+        if (!message.isRead && [[message to].objectId isEqualToString:[PFUser currentUser].objectId]) {
             //query to get this message's record
             PFQuery *query = [PFQuery queryWithClassName:@"Message"];
             [query whereKey:@"to" equalTo:[PFUser currentUser]];
@@ -614,8 +561,7 @@
 + (void)blockConversationWithCompletion:(QCConversation *) conversation completion:(void (^)(BOOL finished))completion {
     
     //Set Relationship "Ban" between talkingToUser and TalkingToTinklers
-    
-    PFUser* tinklerOwner = [conversation.talkingToTinkler  objectForKey:@"owner"];
+    PFUser* tinklerOwner = [conversation.talkingToTinkler objectForKey:@"owner"];
     
     //Create a relation to associate the banned user with the tinkler's conversation
     PFRelation *relation = [conversation.talkingToTinkler relationForKey:@"ban"];
@@ -629,7 +575,19 @@
     
     // save the tinkler object
     [conversation.talkingToTinkler saveInBackground];
-    completion(YES);
+    
+    //Update the conversation blocked boolean
+    PFQuery *query = [PFQuery queryWithClassName:@"Conversation"];
+    PFObject *conversationToEdit = [query getObjectWithId:conversation.conversationId];
+    [conversationToEdit setObject:[NSNumber numberWithBool:YES] forKey:@"isBlocked"];
+    [conversationToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(!error){
+            NSLog(@"Conversation Eddited!");
+            completion(YES);
+        }else{
+            NSLog(@"Error edditing conversation!");
+        }
+    }];
     
 }
 

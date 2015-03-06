@@ -94,6 +94,7 @@
                                 block:^(NSString *success, NSError *error) {
                                     if (!error) {
                                         // Push sent successfully
+                                        [self startQrCodeRead];
                                         NSLog(@"Message Sent Successfully");
                                     }
                                 }];
@@ -167,7 +168,6 @@
         UITextField * alertTextField = [alertView textFieldAtIndex:0];
         NSLog(@"Custom Message Text - %@",alertTextField.text);
         [self sendPushNotification:@"Custom Message" :alertTextField.text];
-        [self startQrCodeRead];
     }
     
 }

@@ -12,6 +12,7 @@
 
 @interface QCConversation : NSObject
 
+@property (strong, nonatomic) NSString *conversationId;
 @property (strong, nonatomic) PFUser *talkingToUser;
 @property (strong, nonatomic) PFObject *talkingToTinkler;
 @property (strong, nonatomic) NSMutableArray *conversationMsgs;

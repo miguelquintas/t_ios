@@ -25,7 +25,6 @@
     self.tabBarController.navigationItem.title = @"Inbox";
 }
 
-
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     //Loading spinner
