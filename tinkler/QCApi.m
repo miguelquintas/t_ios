@@ -153,8 +153,8 @@
                 //Set the messages array to this conversation
                 [conversation setConversationMsgs:messages];
                 
-                //Check blocked conversations
-                if(![[object objectForKey:@"isBlocked"]boolValue]){
+                //Check blocked conversations and deleted conversations
+                if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
                     [conversations addObject:conversation];
                 }else{
                     NSLog(@"This conversation is blocked");
@@ -365,29 +365,25 @@
 
 + (void)deleteConversationWithCompletion:(QCConversation *)conversation completion:(void (^)(BOOL finished))completion {
     
-    int counter=0;
+    //Get Conversation to delete
+    PFQuery *query = [PFQuery queryWithClassName:@"Conversation"];
+    PFObject *conversationToDelete = [query getObjectWithId:conversation.conversationId];
     
-    //For loop to run through all the conversation messages
-    for (QCMessage *message in conversation.conversationMsgs) {
-        // Conversation to delete
-        PFObject *messageToDelete = [PFObject objectWithoutDataWithClassName:@"Message"
-                                                                    objectId:message.messageId];
-        
-        [messageToDelete setObject:[NSNumber numberWithBool:YES] forKey:@"deletedByUser"];
-        [messageToDelete saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if(!error){
-                NSLog(@"Message marked as deleted");
-            }else{
-                NSLog(@"Error marking as deleted tinkler!");
-            }
-        }];
-        
-        counter++;
-        if (counter == conversation.conversationMsgs.count){
-            completion(YES);
-        }
+    //If the current user started this conversation set the deletedbystarter flag to true
+    if([[[conversationToDelete objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+        [conversationToDelete setObject:[NSNumber numberWithBool:YES] forKey:@"wasDeletedByStarter"];
+    }else{
+        [conversationToDelete setObject:[NSNumber numberWithBool:YES] forKey:@"wasDeletedByTo"];
     }
     
+    [conversationToDelete saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(!error){
+            completion(YES);
+            NSLog(@"Conversation Eddited!");
+        }else{
+            NSLog(@"Error deleting conversation!");
+        }
+    }];
 }
 
 + (void)checkEmailVerifiedWithCompletion:(NSString *)email completion:(void (^)(BOOL finished, BOOL isVerified))completion {

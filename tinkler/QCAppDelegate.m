@@ -34,7 +34,14 @@
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
     }
-
+    
+    // Extract the notification data
+    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    //If there is something in the notification payload go to the Inbox Tab
+    if(notificationPayload) {
+        // figure out what's in the notificationPayload dictionary
+    }
+    
     [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
@@ -44,16 +51,24 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[ @"global" ];
-    [currentInstallation saveInBackground];
+    
+    NSLog(@"currentInstallation %@", currentInstallation);
+    
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"success : %d  with error : %@",succeeded,error);
+    }];
     
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+    // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

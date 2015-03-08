@@ -16,17 +16,7 @@
 - (void)viewDidLoad{
     self.messageTabView.contentInset = UIEdgeInsetsZero;
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
-    //Set Tab Title
-    [self setTitle:@"Inbox"];
-    self.tabBarController.navigationItem.title = @"Inbox";
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+    
     //Loading spinner
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -46,7 +36,18 @@
         }];
         
     });
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    //Set Tab Title
+    [self setTitle:@"Inbox"];
+    self.tabBarController.navigationItem.title = @"Inbox";
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.messageTabView reloadData];
 }
 
 // Cell Swipe delete code
