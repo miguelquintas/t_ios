@@ -16,55 +16,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
-    //STEP 1 Construct Panels
-    MYIntroductionPanel *panel = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial1.jpg"] title:@"Step 1" description:@"Description 1" ];
     
-    MYIntroductionPanel *panel2 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial2.jpg"] title:@"Step 2" description:@"Description 2"];
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.title = @"Tutorial";
     
-    MYIntroductionPanel *panel3 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial3.jpg"] title:@"Step 3" description:@"Description 3"];
+    // Create the data model
+    _pageImages = @[@"tutorial1.png", @"tutorial2.png", @"tutorial3.png", @"tutorial4.png", @"tutorial5.png"];
+    _pageDescriptions = @[@"tutorial1.png", @"tutorial2.png", @"tutorial3.png", @"tutorial4.png", @"tutorial5.png"];
     
-    MYIntroductionPanel *panel4 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial4.jpg"] title:@"Step 4" description:@"MDescription 4"];
+    // Create page view controller
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
+    self.pageViewController.dataSource = self;
     
-    MYIntroductionPanel *panel5 = [[MYIntroductionPanel alloc] initWithimage:[UIImage imageNamed:@"tutorial5.jpg"] title:@"Step 5" description:@"Description 5"];
+    self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 60, 20, 60, 30)];
+    [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
+    [self.skipButton addTarget:self action:@selector(goToScanPage) forControlEvents:UIControlEventTouchUpInside];
     
-    //STEP 2 Create IntroductionView
-    /*A standard version*/
-    //MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) headerImage:[UIImage imageNamed:@"SampleHeaderImage.png"] panels:@[panel, panel2]];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - 50, self.view.frame.size.height - 60, 100, 50)];
+    self.pageControl.numberOfPages = [self.pageImages count];
+    self.pageControl.currentPage = 0;
     
-    /*A version with no header (ala "Path")*/
-    // MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) panels:@[panel, panel2]];
-
-    /*A more customized version*/
-    MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) headerText:@"Tinkler Tutorial" panels:@[panel, panel2, panel3, panel4, panel5] languageDirection:MYLanguageDirectionLeftToRight];
-    [introductionView setBackgroundImage:[UIImage imageNamed:@"tutorialBG"]];
+    TKPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    NSArray *viewControllers = @[startingViewController];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    /*
-     MYIntroductionView *introductionView = [[MYIntroductionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) headerText:@"MYIntroductionView" panels:@[panel, panel2] languageDirection:MYLanguageDirectionLeftToRight];
-     
-     [introductionView setBackgroundColor:[UIColor colorWithRed:37.0/255 green:104.0/255 blue:154.0/255 alpha:1.0]];  */
+    // Change the size of page view controller
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40);
+    [self.pageViewController setDelegate:self];
     
-    [introductionView.BackgroundImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    [introductionView.HeaderImageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [introductionView.HeaderLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [introductionView.HeaderView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [introductionView.PageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [introductionView.SkipButton setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    
-    //Set delegate to self for callbacks (optional)
-    introductionView.delegate = self;
-    
-    //STEP 3: Show introduction view
-    [introductionView showInView:self.view animateDuration:0.0];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self addChildViewController:_pageViewController];
+    [self.view addSubview:_pageViewController.view];
+    [self.view addSubview:self.skipButton];
+    [self.view addSubview:self.pageControl];
+    [self.pageViewController didMoveToParentViewController:self];
 }
 
 - (void)goToScanPage {
@@ -79,30 +63,77 @@
     }
 }
 
-#pragma mark - Sample Delegate Methods
-
--(void)introductionDidFinishWithType:(MYFinishType)finishType{
-    if (finishType == MYFinishTypeSkipButton) {
-        NSLog(@"Did Finish Introduction By Skipping It");
-        [self goToScanPage];
-    }
-    else if (finishType == MYFinishTypeSwipeOut){
-        NSLog(@"Did Finish Introduction By Swiping Out");
-        // Store the hasSeenTutorial flag to true (1) in the user preferences
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        [defaults setInteger:1 forKey:@"hasSeenTut"];
-//        [defaults synchronize];
-        
-        //Go to ScanPage
-        [self goToScanPage];
-    }
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
     
-    //One might consider making the introductionview a class variable and releasing it here.
-    // I didn't do this to keep things simple for the sake of example.
 }
 
--(void)introductionDidChangeToPanel:(MYIntroductionPanel *)panel withIndex:(NSInteger)panelIndex{
-    NSLog(@"%@ \nPanelIndex: %ld", panel.Description, (long)panelIndex);
+- (TKPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
+{
+    if (([self.pageImages count] == 0) || (index >= [self.pageImages count])) {
+        return nil;
+    }
+    
+    // Create a new view controller and pass suitable data.
+    TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    //pageContentViewController.view.frame = self.pageViewController.view.frame;
+    pageContentViewController.imageFile = self.pageImages[index];
+    pageContentViewController.pageIndex = index;
+    pageContentViewController.descriptionText = self.pageDescriptions[index];
+    
+    if (index == [self.pageImages count] - 1){
+        pageContentViewController.buttonHidden = NO;
+    } else {
+        pageContentViewController.buttonHidden = YES;
+    }
+    
+    return pageContentViewController;
+}
+
+#pragma mark - Page View Controller Data Source
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((TKPageContentViewController*) viewController).pageIndex;
+    
+    if ((index == 0) || (index == NSNotFound)) {
+        [self.pageControl setCurrentPage:index];
+        return nil;
+    }
+    
+    [self.pageControl setCurrentPage:index];
+    
+    index--;
+    
+    return [self viewControllerAtIndex:index];
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((TKPageContentViewController*) viewController).pageIndex;
+    
+    if (index == NSNotFound) {
+        return nil;
+    }
+    
+    [self.pageControl setCurrentPage:index];
+    
+    index++;
+    
+    if (index == [self.pageImages count]) {
+        return nil;
+    }
+    
+    return [self viewControllerAtIndex:index];
+}
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return [self.pageImages count];
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
 }
 
 @end

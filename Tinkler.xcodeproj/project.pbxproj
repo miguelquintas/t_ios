@@ -15,6 +15,12 @@
 		5D4170E318C68ACD0098DD3B /* QCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4170E218C68ACD0098DD3B /* QCAppDelegate.m */; };
 		5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170ED18C68ACD0098DD3B /* Main.storyboard */; };
 		5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170F018C68ACD0098DD3B /* Images.xcassets */; };
+		5DB52C971AA6646500A5CE30 /* TKPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */; };
+		5DB52C9D1AA672DE00A5CE30 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB52C981AA672DE00A5CE30 /* tutorial1.png */; };
+		5DB52C9E1AA672DE00A5CE30 /* tutorial2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB52C991AA672DE00A5CE30 /* tutorial2.png */; };
+		5DB52C9F1AA672DE00A5CE30 /* tutorial3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB52C9A1AA672DE00A5CE30 /* tutorial3.png */; };
+		5DB52CA01AA672DE00A5CE30 /* tutorial4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB52C9B1AA672DE00A5CE30 /* tutorial4.png */; };
+		5DB52CA11AA672DE00A5CE30 /* tutorial5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DB52C9C1AA672DE00A5CE30 /* tutorial5.png */; };
 		5DE27AEC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */; };
 		5DE27AED18C90A6F00C4C763 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADE18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.m */; };
 		5DE27AEE18C90A6F00C4C763 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27AE018C90A6E00C4C763 /* UIAlertView+AFNetworking.m */; };
@@ -117,8 +123,6 @@
 		BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5319BB91340090103B /* QCInboxViewController.m */; };
 		BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F181A755BB00087C03A /* TKHomeViewController.m */; };
 		BCE30F1C1A7563540087C03A /* TKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */; };
-		BCE30F221A75648D0087C03A /* MYIntroductionPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1F1A75648D0087C03A /* MYIntroductionPanel.m */; };
-		BCE30F231A75648D0087C03A /* MYIntroductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F211A75648D0087C03A /* MYIntroductionView.m */; };
 		BCE548D219B79A3A00B8B0BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D019B79A3A00B8B0BE /* Bolts.framework */; };
 		BCE548D319B79A3A00B8B0BE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D119B79A3A00B8B0BE /* Parse.framework */; };
 		BCE548D519B79A8500B8B0BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D419B79A8500B8B0BE /* AudioToolbox.framework */; };
@@ -135,11 +139,6 @@
 		BCEF3D8E1A5861A1004F3F26 /* QCNewTinklerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D8D1A5861A1004F3F26 /* QCNewTinklerViewController.m */; };
 		BCEF3D911A5862A0004F3F26 /* QCTinklerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */; };
 		BCEF3D941A587114004F3F26 /* QCTinklerType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D931A587114004F3F26 /* QCTinklerType.m */; };
-		BCF9A85E1A940CC600639B88 /* tutorial3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A8591A940CC600639B88 /* tutorial3.jpg */; };
-		BCF9A85F1A940CC600639B88 /* tutorial2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85A1A940CC600639B88 /* tutorial2.jpg */; };
-		BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85B1A940CC600639B88 /* tutorial4.jpg */; };
-		BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85C1A940CC600639B88 /* tutorial1.jpg */; };
-		BCF9A8621A940CC600639B88 /* tutorial5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCF9A85D1A940CC600639B88 /* tutorial5.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +155,13 @@
 		5D4170EE18C68ACD0098DD3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D4170F018C68ACD0098DD3B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5D4170F718C68ACD0098DD3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5DB52C951AA6646500A5CE30 /* TKPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPageContentViewController.h; sourceTree = "<group>"; };
+		5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPageContentViewController.m; sourceTree = "<group>"; };
+		5DB52C981AA672DE00A5CE30 /* tutorial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial1.png; sourceTree = "<group>"; };
+		5DB52C991AA672DE00A5CE30 /* tutorial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial2.png; sourceTree = "<group>"; };
+		5DB52C9A1AA672DE00A5CE30 /* tutorial3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial3.png; sourceTree = "<group>"; };
+		5DB52C9B1AA672DE00A5CE30 /* tutorial4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial4.png; sourceTree = "<group>"; };
+		5DB52C9C1AA672DE00A5CE30 /* tutorial5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial5.png; sourceTree = "<group>"; };
 		5DE27ADB18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		5DE27ADD18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -353,10 +359,6 @@
 		BCE30F181A755BB00087C03A /* TKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKHomeViewController.m; sourceTree = "<group>"; };
 		BCE30F1A1A7563540087C03A /* TKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTutorialViewController.h; sourceTree = "<group>"; };
 		BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTutorialViewController.m; sourceTree = "<group>"; };
-		BCE30F1E1A75648D0087C03A /* MYIntroductionPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionPanel.h; sourceTree = "<group>"; };
-		BCE30F1F1A75648D0087C03A /* MYIntroductionPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionPanel.m; sourceTree = "<group>"; };
-		BCE30F201A75648D0087C03A /* MYIntroductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYIntroductionView.h; sourceTree = "<group>"; };
-		BCE30F211A75648D0087C03A /* MYIntroductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYIntroductionView.m; sourceTree = "<group>"; };
 		BCE548D019B79A3A00B8B0BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		BCE548D119B79A3A00B8B0BE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		BCE548D419B79A8500B8B0BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -379,11 +381,6 @@
 		BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerTableViewCell.m; sourceTree = "<group>"; };
 		BCEF3D921A587114004F3F26 /* QCTinklerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCTinklerType.h; sourceTree = "<group>"; };
 		BCEF3D931A587114004F3F26 /* QCTinklerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerType.m; sourceTree = "<group>"; };
-		BCF9A8591A940CC600639B88 /* tutorial3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial3.jpg; sourceTree = "<group>"; };
-		BCF9A85A1A940CC600639B88 /* tutorial2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial2.jpg; sourceTree = "<group>"; };
-		BCF9A85B1A940CC600639B88 /* tutorial4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial4.jpg; sourceTree = "<group>"; };
-		BCF9A85C1A940CC600639B88 /* tutorial1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial1.jpg; sourceTree = "<group>"; };
-		BCF9A85D1A940CC600639B88 /* tutorial5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tutorial5.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -500,6 +497,8 @@
 				BCE30F181A755BB00087C03A /* TKHomeViewController.m */,
 				BCE30F1A1A7563540087C03A /* TKTutorialViewController.h */,
 				BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */,
+				5DB52C951AA6646500A5CE30 /* TKPageContentViewController.h */,
+				5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */,
 			);
 			path = tinkler;
 			sourceTree = "<group>";
@@ -518,7 +517,6 @@
 		5DE27AD918C90A6300C4C763 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BCE30F1D1A75648D0087C03A /* MYIntroduction */,
 				BC72B7EF1A68591400AC720B /* JSQSystemSoundPlayer */,
 				BC72B7571A6858F700AC720B /* JSQMessagesViewController */,
 				BC181ACE19FF05CA0009B2FC /* MBProgressHUD */,
@@ -828,6 +826,11 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5DB52C981AA672DE00A5CE30 /* tutorial1.png */,
+				5DB52C991AA672DE00A5CE30 /* tutorial2.png */,
+				5DB52C9A1AA672DE00A5CE30 /* tutorial3.png */,
+				5DB52C9B1AA672DE00A5CE30 /* tutorial4.png */,
+				5DB52C9C1AA672DE00A5CE30 /* tutorial5.png */,
 				BC956DCA1A9E899E0050C291 /* splash_4@2x.png */,
 				BC956DCB1A9E899E0050C291 /* splash_5@2x.png */,
 				BC956DCC1A9E899E0050C291 /* splash_6@2x.png */,
@@ -841,27 +844,11 @@
 				BC956DBE1A9E7E710050C291 /* scan.png */,
 				BC956DBF1A9E7E710050C291 /* scan@2x.png */,
 				BC956DC01A9E7E710050C291 /* scan@3x.png */,
-				BCF9A8591A940CC600639B88 /* tutorial3.jpg */,
-				BCF9A85A1A940CC600639B88 /* tutorial2.jpg */,
 				BCA7CED01A96C5D0000C6E1D /* logo_home.png */,
-				BCF9A85B1A940CC600639B88 /* tutorial4.jpg */,
-				BCF9A85C1A940CC600639B88 /* tutorial1.jpg */,
-				BCF9A85D1A940CC600639B88 /* tutorial5.jpg */,
 				BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */,
 				BC10829619E73ACB007BD62C /* default_pic.jpg */,
 			);
 			name = images;
-			sourceTree = "<group>";
-		};
-		BCE30F1D1A75648D0087C03A /* MYIntroduction */ = {
-			isa = PBXGroup;
-			children = (
-				BCE30F1E1A75648D0087C03A /* MYIntroductionPanel.h */,
-				BCE30F1F1A75648D0087C03A /* MYIntroductionPanel.m */,
-				BCE30F201A75648D0087C03A /* MYIntroductionView.h */,
-				BCE30F211A75648D0087C03A /* MYIntroductionView.m */,
-			);
-			path = MYIntroduction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -940,15 +927,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCF9A8601A940CC600639B88 /* tutorial4.jpg in Resources */,
 				BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */,
 				BC956DC71A9E7E710050C291 /* scan.png in Resources */,
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
-				BCF9A8611A940CC600639B88 /* tutorial1.jpg in Resources */,
-				BCF9A8621A940CC600639B88 /* tutorial5.jpg in Resources */,
+				5DB52C9F1AA672DE00A5CE30 /* tutorial3.png in Resources */,
 				BC956DC91A9E7E710050C291 /* scan@3x.png in Resources */,
-				BCF9A85F1A940CC600639B88 /* tutorial2.jpg in Resources */,
 				BC956DCE1A9E899E0050C291 /* splash_4@2x.png in Resources */,
 				BC956DCF1A9E899E0050C291 /* splash_5@2x.png in Resources */,
 				BC956DC41A9E7E710050C291 /* profile.png in Resources */,
@@ -956,6 +940,7 @@
 				BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */,
 				BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				5DB52CA01AA672DE00A5CE30 /* tutorial4.png in Resources */,
 				BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
@@ -965,13 +950,15 @@
 				BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */,
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
-				BCF9A85E1A940CC600639B88 /* tutorial3.jpg in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
+				5DB52C9E1AA672DE00A5CE30 /* tutorial2.png in Resources */,
 				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
+				5DB52CA11AA672DE00A5CE30 /* tutorial5.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
 				BC956DD11A9E899E0050C291 /* splash_6+@3x.png in Resources */,
+				5DB52C9D1AA672DE00A5CE30 /* tutorial1.png in Resources */,
 				BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -983,7 +970,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCE30F231A75648D0087C03A /* MYIntroductionView.m in Sources */,
 				BC72B7D11A6858F700AC720B /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				BCAFD6921A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m in Sources */,
 				BCEF3D911A5862A0004F3F26 /* QCTinklerTableViewCell.m in Sources */,
@@ -1007,6 +993,7 @@
 				BC72B7D51A6858F700AC720B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				5DE27B0918C90A9600C4C763 /* AFHTTPRequestOperationManager.m in Sources */,
 				BCEF3D8B1A585A22004F3F26 /* QCTinkler.m in Sources */,
+				5DB52C971AA6646500A5CE30 /* TKPageContentViewController.m in Sources */,
 				BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */,
 				BC72B7D91A6858F700AC720B /* JSQMessage.m in Sources */,
 				5DE27AF218C90A6F00C4C763 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -1047,7 +1034,6 @@
 				BC1A252A19DB5E9D00CACAF5 /* QCQrCode.m in Sources */,
 				5DE27B1018C90A9600C4C763 /* AFURLSessionManager.m in Sources */,
 				BC72B7DB1A6858F700AC720B /* JSQMessagesBubbleImage.m in Sources */,
-				BCE30F221A75648D0087C03A /* MYIntroductionPanel.m in Sources */,
 				5DE27AF318C90A6F00C4C763 /* UIWebView+AFNetworking.m in Sources */,
 				5D4170E318C68ACD0098DD3B /* QCAppDelegate.m in Sources */,
 				BC72B7DD1A6858F700AC720B /* JSQVideoMediaItem.m in Sources */,
