@@ -39,7 +39,14 @@
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     //If there is something in the notification payload go to the Inbox Tab
     if(notificationPayload) {
-        // figure out what's in the notificationPayload dictionary
+        //Go to the inbox tab
+        UINavigationController *navController = [UINavigationController new];
+        
+        UITabBarController *inboxTBC = (UITabBarController *)self.window.rootViewController;
+        [inboxTBC setSelectedIndex:0];
+        
+        UIViewController *inboxVC = [[UIViewController alloc] initWithNibName:@"firstviewcontroller" bundle:nil];
+        [navController pushViewController:inboxVC animated:YES];
     }
     
     [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];

@@ -128,8 +128,6 @@
 		BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5319BB91340090103B /* QCInboxViewController.m */; };
 		BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F181A755BB00087C03A /* TKHomeViewController.m */; };
 		BCE30F1C1A7563540087C03A /* TKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */; };
-		BCE548D219B79A3A00B8B0BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D019B79A3A00B8B0BE /* Bolts.framework */; };
-		BCE548D319B79A3A00B8B0BE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D119B79A3A00B8B0BE /* Parse.framework */; };
 		BCE548D519B79A8500B8B0BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D419B79A8500B8B0BE /* AudioToolbox.framework */; };
 		BCE548D719B79A9100B8B0BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D619B79A9100B8B0BE /* CFNetwork.framework */; };
 		BCE548DF19B79B3200B8B0BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D819B79B3200B8B0BE /* CoreLocation.framework */; };
@@ -144,6 +142,9 @@
 		BCEF3D8E1A5861A1004F3F26 /* QCNewTinklerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D8D1A5861A1004F3F26 /* QCNewTinklerViewController.m */; };
 		BCEF3D911A5862A0004F3F26 /* QCTinklerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */; };
 		BCEF3D941A587114004F3F26 /* QCTinklerType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D931A587114004F3F26 /* QCTinklerType.m */; };
+		BCFBDD541AB2473D00D74DBD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFBDD521AB2473D00D74DBD /* Bolts.framework */; };
+		BCFBDD551AB2473D00D74DBD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFBDD531AB2473D00D74DBD /* Parse.framework */; };
+		BCFBDD571AB24DB700D74DBD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFBDD561AB24DB700D74DBD /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -369,8 +370,6 @@
 		BCE30F181A755BB00087C03A /* TKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKHomeViewController.m; sourceTree = "<group>"; };
 		BCE30F1A1A7563540087C03A /* TKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTutorialViewController.h; sourceTree = "<group>"; };
 		BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTutorialViewController.m; sourceTree = "<group>"; };
-		BCE548D019B79A3A00B8B0BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		BCE548D119B79A3A00B8B0BE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		BCE548D419B79A8500B8B0BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BCE548D619B79A9100B8B0BE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BCE548D819B79B3200B8B0BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -391,6 +390,9 @@
 		BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerTableViewCell.m; sourceTree = "<group>"; };
 		BCEF3D921A587114004F3F26 /* QCTinklerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCTinklerType.h; sourceTree = "<group>"; };
 		BCEF3D931A587114004F3F26 /* QCTinklerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerType.m; sourceTree = "<group>"; };
+		BCFBDD521AB2473D00D74DBD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		BCFBDD531AB2473D00D74DBD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		BCFBDD561AB24DB700D74DBD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +400,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCFBDD571AB24DB700D74DBD /* libsqlite3.dylib in Frameworks */,
 				BC4B94DD19BCBC9C0069D3A7 /* AVFoundation.framework in Frameworks */,
 				BC4B94DE19BCBC9C0069D3A7 /* CoreAudio.framework in Frameworks */,
 				BC4B94DF19BCBC9C0069D3A7 /* CoreMedia.framework in Frameworks */,
@@ -408,14 +411,14 @@
 				BCE548E019B79B3200B8B0BE /* libz.dylib in Frameworks */,
 				BCE548E119B79B3200B8B0BE /* MobileCoreServices.framework in Frameworks */,
 				BCE548E219B79B3200B8B0BE /* QuartzCore.framework in Frameworks */,
+				BCFBDD551AB2473D00D74DBD /* Parse.framework in Frameworks */,
 				BCE548E319B79B3200B8B0BE /* Security.framework in Frameworks */,
 				BCE548E519B79B3200B8B0BE /* SystemConfiguration.framework in Frameworks */,
+				BCFBDD541AB2473D00D74DBD /* Bolts.framework in Frameworks */,
 				BCE548D719B79A9100B8B0BE /* CFNetwork.framework in Frameworks */,
 				BCE548D519B79A8500B8B0BE /* AudioToolbox.framework in Frameworks */,
 				5D4170D718C68ACD0098DD3B /* UIKit.framework in Frameworks */,
 				5D4170D318C68ACD0098DD3B /* Foundation.framework in Frameworks */,
-				BCE548D219B79A3A00B8B0BE /* Bolts.framework in Frameworks */,
-				BCE548D319B79A3A00B8B0BE /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,8 +428,8 @@
 		5D4170C618C68ACD0098DD3B = {
 			isa = PBXGroup;
 			children = (
-				BCE548D019B79A3A00B8B0BE /* Bolts.framework */,
-				BCE548D119B79A3A00B8B0BE /* Parse.framework */,
+				BCFBDD521AB2473D00D74DBD /* Bolts.framework */,
+				BCFBDD531AB2473D00D74DBD /* Parse.framework */,
 				5D4170D818C68ACD0098DD3B /* tinkler */,
 				5D4170D118C68ACD0098DD3B /* Frameworks */,
 				5D4170D018C68ACD0098DD3B /* Products */,
@@ -444,6 +447,7 @@
 		5D4170D118C68ACD0098DD3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCFBDD561AB24DB700D74DBD /* libsqlite3.dylib */,
 				BC4B94D819BCBC9C0069D3A7 /* AVFoundation.framework */,
 				BC4B94D919BCBC9C0069D3A7 /* CoreAudio.framework */,
 				BC4B94DA19BCBC9C0069D3A7 /* CoreMedia.framework */,
@@ -1193,7 +1197,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: pt.Tinkler";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1203,10 +1207,7 @@
 				GCC_PREFIX_HEADER = "tinkler/Tinkler-Prefix.pch";
 				INFOPLIST_FILE = "tinkler/Tinkler-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ZBarSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Tinkler;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1218,7 +1219,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: pt.Tinkler";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1228,10 +1229,7 @@
 				GCC_PREFIX_HEADER = "tinkler/Tinkler-Prefix.pch";
 				INFOPLIST_FILE = "tinkler/Tinkler-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ZBarSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Tinkler;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
