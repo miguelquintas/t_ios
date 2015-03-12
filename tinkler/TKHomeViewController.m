@@ -24,11 +24,9 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         long hasSeenTut = [defaults integerForKey:@"hasSeenTut"];
         
-        if(hasSeenTut == 0){
-            NSLog(@"hasSeenTut value %ld", hasSeenTut);
-           [self customPushVC:@"TutorialViewController"];
-            
-        }else{
+        if(hasSeenTut == 0) {
+            [self performSegueWithIdentifier:@"seeTutorialFromHome" sender:self];
+        } else {
             [self customPushVC:@"TabViewController"];
         }
     }
@@ -85,10 +83,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
-    NSLog(@"%f", self.view.frame.size.width);
-    NSLog(@"%f", self.view.frame.size.height);
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,7 +98,7 @@
     UINavigationController *navController = self.navigationController;
     
     if (navController) {
-        [navController pushViewController:targetViewController animated:NO];
+        [navController pushViewController:targetViewController animated:YES];
     }
 }
 
