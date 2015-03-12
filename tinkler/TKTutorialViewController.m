@@ -14,8 +14,8 @@
 
 @implementation TKTutorialViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
     
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.title = @"Tutorial";
@@ -32,9 +32,11 @@
     [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(goToScanPage) forControlEvents:UIControlEventTouchUpInside];
     
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - 50, self.view.frame.size.height - 60, 100, 50)];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - 50, self.view.frame.size.height - 50, 100, 50)];
     self.pageControl.numberOfPages = [self.pageImages count];
     self.pageControl.currentPage = 0;
+    self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    self.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0 green:.89 blue:.20 alpha:1];
     
     TKPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
@@ -75,7 +77,6 @@
     
     // Create a new view controller and pass suitable data.
     TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    //pageContentViewController.view.frame = self.pageViewController.view.frame;
     pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.pageIndex = index;
     pageContentViewController.descriptionText = self.pageDescriptions[index];

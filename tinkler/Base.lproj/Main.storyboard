@@ -175,10 +175,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-ox-02k">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-ox-02k">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iC-yE-jIV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iC-yE-jIV">
                                 <rect key="frame" x="16" y="455" width="288" height="93"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -187,10 +187,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="F9L-Bp-wAh" firstAttribute="top" secondItem="hfU-ox-02k" secondAttribute="bottom" id="Whb-9h-3Sb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hfU-ox-02k" secondAttribute="trailing" constant="-16" id="ZVm-qS-RG9"/>
-                            <constraint firstItem="hfU-ox-02k" firstAttribute="leading" secondItem="Mtm-Mf-n75" secondAttribute="leadingMargin" constant="-16" id="fSc-dt-BNd"/>
-                            <constraint firstItem="hfU-ox-02k" firstAttribute="top" secondItem="c0Z-o2-als" secondAttribute="bottom" constant="-20" id="ikb-uZ-mMF"/>
+                            <constraint firstAttribute="height" secondItem="hfU-ox-02k" secondAttribute="height" id="AMk-We-Xo5"/>
+                            <constraint firstItem="1iC-yE-jIV" firstAttribute="top" secondItem="c0Z-o2-als" secondAttribute="bottom" constant="435" id="CG3-Rg-TCD"/>
+                            <constraint firstAttribute="width" secondItem="hfU-ox-02k" secondAttribute="width" id="lXb-zg-p6B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sg9-mD-81t"/>
