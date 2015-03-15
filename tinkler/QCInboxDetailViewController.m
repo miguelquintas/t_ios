@@ -128,15 +128,24 @@
     
     [self.messages addObject:message];
     
-    //Validate if the user allows sending customMsgs
-    if ([_selectedConversation.talkingToUser objectForKey:@"allowCustomMsg"]== [NSNumber numberWithBool:YES]) {
-        [self answerPushNotification:@"Custom Message" :text];
-        [self finishSendingMessageAnimated:YES];
+    //Validate if there is network connectivity
+    if ([QCApi checkForNetwork]) {
+        //Validate if the user allows sending customMsgs
+        if ([_selectedConversation.talkingToUser objectForKey:@"allowCustomMsg"]== [NSNumber numberWithBool:YES]) {
+            [self answerPushNotification:@"Custom Message" :text];
+            [self finishSendingMessageAnimated:YES];
+        }else{
+            //Warn user, clean input field and hide keyboard
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This user does not allow custom messages" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }else{
         //Warn user, clean input field and hide keyboard
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Failed" message:@"This user does not allow custom messages" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"You need to have network connectivity to send this message" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
     }
+    
+    
 }
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath

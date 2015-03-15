@@ -22,7 +22,12 @@
     
     //Set Tinkler Image
     if([self.selectedTinkler tinklerImage] != nil){
-        [self.tinklerImage setImageWithURL:[NSURL URLWithString:[self.selectedTinkler tinklerImage].url]];
+        [[self.selectedTinkler tinklerImage] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                [self.tinklerImage setImage:[UIImage imageWithData:data]];
+            }
+        }];
+        
     }else{
         //Load the default vehicle pic
         self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
@@ -30,7 +35,12 @@
     
     //Set Tinkler's QR-Code Image
     if([self.selectedTinkler tinklerQRCode] != nil){
-        [self.qrCodeImage setImageWithURL:[NSURL URLWithString:[self.selectedTinkler tinklerQRCode].url]];
+        [[self.selectedTinkler tinklerQRCode] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                [self.qrCodeImage setImage:[UIImage imageWithData:data]];
+            }
+        }];
+        
     }else{
         //Load the default vehicle pic
         self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
@@ -281,32 +291,45 @@
 }
 
 - (IBAction)deleteTinkler:(id)sender {
-    //String with the alert message
-    NSString* deletemessage = [NSString stringWithFormat: @"Are you sure you want to delete the Tinkler %@?", _tinklerNameEdit.text];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Tinkler" message:deletemessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-    [alert show];
     
-    
+    //Validate if there is network connectivity
+    if ([QCApi checkForNetwork]) {
+        //String with the alert message
+        NSString* deletemessage = [NSString stringWithFormat: @"Are you sure you want to delete the Tinkler %@?", _tinklerNameEdit.text];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Tinkler" message:deletemessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }else{
+        //Warn user
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Delete Failed" message:@"You need to have network connectivity to delete this tinkler" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 - (IBAction)updateTinkler:(id)sender {
     
-    //Loading spinner
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        //Save edited object
-        [self editTinkler];
-        [QCApi editTinklerWithCompletion:self.selectedTinkler completion:^void(BOOL finished) {
-            if (finished) {
-                NSLog(@"Updates were saved!");
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-                // Back to the Profile VC
-                [self.navigationController popViewControllerAnimated:YES];
-            }
-        }];
-    });
+    //Validate if there is network connectivity
+    if ([QCApi checkForNetwork]) {
+        //Loading spinner
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            //Save edited object
+            [self editTinkler];
+            [QCApi editTinklerWithCompletion:self.selectedTinkler completion:^void(BOOL finished) {
+                if (finished) {
+                    NSLog(@"Updates were saved!");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                    // Back to the Profile VC
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        });
+    }else{
+        //Warn user
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Update Failed" message:@"You need to have network connectivity to update this tinkler" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

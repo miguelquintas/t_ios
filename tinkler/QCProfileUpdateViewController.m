@@ -16,8 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[PFUser currentUser] refresh];
-    [self.userNameEdit setText:[[PFUser currentUser] objectForKey:@"name"]];
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self.userNameEdit setText:[defaults stringForKey:@"name"]];
     
     //Set the user's switch value
     if ([[PFUser currentUser] objectForKey:@"allowCustomMsg"] == [NSNumber numberWithBool:YES])
@@ -29,8 +30,15 @@
 
 -(void) viewWillDisappear:(BOOL)animated {
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        //Code to add the name to the current registered user
-        [QCApi editProfileSaveWithCompletion:_userNameEdit.text :_customMsgSwitch.isOn completion:^void(BOOL finished) {
+        //Set name to NSUserDefaults preferences
+        NSString *name =_userNameEdit.text;
+        // Store the data
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:name forKey:@"name"];
+        
+        [defaults synchronize];
+        
+        [QCApi editProfileSaveWithCompletion:_customMsgSwitch.isOn completion:^void(BOOL finished) {
             if (finished) {
                 NSLog(@"Updates were saved!");
             }

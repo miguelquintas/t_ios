@@ -50,6 +50,9 @@
     self.tabBarController.navigationItem.title = @"My Profile";
     [self.tinklersTabView reloadData];
     
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _usernameLabel.text = [defaults stringForKey:@"name"];
+    
     //Set Profile View background color
     [_profileView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
     
@@ -60,8 +63,6 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    //[[PFUser currentUser] refresh];
-    self.usernameLabel.text = [[PFUser currentUser] objectForKey:@"name"];
     //Loading spinner
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -87,8 +88,8 @@
 - (void) logoutUser{
     [PFUser logOut];
     
-    // Present the log in view controller
-    [self.navigationController popViewControllerAnimated:YES];
+    // Present the home view controller
+    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
 }
 
 //Delegate methods
@@ -109,7 +110,11 @@
     if(thisTinkler.tinklerImage == nil){
         [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_pic.jpg"]];
     }else{
-        [cell.thumbnailImageView setImageWithURL: [NSURL URLWithString:thisTinkler.tinklerImage.url]];
+        [thisTinkler.tinklerImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                [cell.thumbnailImageView setImage:[UIImage imageWithData:data]];
+            }
+        }];
     }
     
     cell.thumbnailImageView.layer.cornerRadius = 30;
@@ -129,20 +134,6 @@
         NSIndexPath *indexPath = [self.tinklersTabView indexPathForSelectedRow];
         QCTinklerDetailViewController *destViewController = segue.destinationViewController;
         destViewController.selectedTinkler = [_tinklers objectAtIndex:indexPath.row];
-    }
-}
-
-// Cell Swipe delete code 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [QCApi deleteTinklerWithCompletion:[self.tinklers objectAtIndex:indexPath.row] completion:^void(BOOL finished) {
-            if (finished) {
-                // Remove the row from data model
-                [self.tinklers removeObjectAtIndex:indexPath.row];
-                // Request table view to reload
-                [self.tinklersTabView reloadData];
-            }
-        }];
     }
 }
 

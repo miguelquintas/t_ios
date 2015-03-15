@@ -14,10 +14,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //Parse code
+    //Enable Pinning
+    [Parse enableLocalDatastore];
     [Parse setApplicationId:@"cw3jgrLq6MFIDoaYln4DEKDsJeUIF3GACepXNiMN"
                   clientKey:@"zqfETbeQXwLqDvcZeW0OHYnbPkpcmFt7VTRG6Roh"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
     
     // Register for Push Notitications, if running iOS 8
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {

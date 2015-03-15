@@ -35,6 +35,7 @@
             }
         }];
     });
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -42,24 +43,36 @@
     //Set Tab Title
     [self setTitle:@"Inbox"];
     self.tabBarController.navigationItem.title = @"Inbox";
+    [self.messageTabView reloadData];
+    
+    //TODO refresh conversations when a new msg arrives
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.messageTabView reloadData];
+    
 }
 
 // Cell Swipe delete code
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [QCApi deleteConversationWithCompletion:[self.conversations objectAtIndex:indexPath.row] completion:^void(BOOL finished) {
-            if (finished) {
-                // Remove the row from data model
-                [self.conversations removeObjectAtIndex:indexPath.row];
-                // Request table view to reload
-                [self.messageTabView reloadData];
-            }
-        }];
+        
+        //Validate if there is network connectivity
+        if ([QCApi checkForNetwork]) {
+            [QCApi deleteConversationWithCompletion:[self.conversations objectAtIndex:indexPath.row] completion:^void(BOOL finished) {
+                if (finished) {
+                    // Remove the row from data model
+                    [self.conversations removeObjectAtIndex:indexPath.row];
+                    // Request table view to reload
+                    [self.messageTabView reloadData];
+                }
+            }];
+        }else{
+            //Warn user
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Conversation Delete Failed" message:@"You need to have network connectivity to delete this conversation" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }
 }
 
@@ -84,7 +97,11 @@
     if(tinklerImage== nil){
         [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_pic.jpg"]];
     }else{
-        [cell.tinklerThumb setImageWithURL: [NSURL URLWithString:tinklerImage.url]];
+        [tinklerImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                [cell.tinklerThumb setImage:[UIImage imageWithData:data]];
+            }
+        }];
     }
     
     cell.tinklerThumb.layer.cornerRadius = cell.tinklerThumb.frame.size.width / 2;

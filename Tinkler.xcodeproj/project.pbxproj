@@ -104,6 +104,7 @@
 		BC72B7F31A68591400AC720B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72B7F21A68591400AC720B /* JSQSystemSoundPlayer.m */; };
 		BC8C5B2619E33E1C006774F1 /* QCProfileUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */; };
 		BC91378119BE3E7C008A598B /* QCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BC91378019BE3E7C008A598B /* QCApi.m */; };
+		BC94EDE81AB5CAE1006B7D4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BC94EDE71AB5CAE1006B7D4E /* Reachability.m */; };
 		BC956DC11A9E7E710050C291 /* inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DB81A9E7E710050C291 /* inbox.png */; };
 		BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DB91A9E7E710050C291 /* inbox@2x.png */; };
 		BC956DC31A9E7E710050C291 /* inbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBA1A9E7E710050C291 /* inbox@3x.png */; };
@@ -337,6 +338,8 @@
 		BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCProfileUpdateViewController.m; sourceTree = "<group>"; };
 		BC91377F19BE3E7C008A598B /* QCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCApi.h; sourceTree = "<group>"; };
 		BC91378019BE3E7C008A598B /* QCApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCApi.m; sourceTree = "<group>"; };
+		BC94EDE61AB5CAE1006B7D4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BC94EDE71AB5CAE1006B7D4E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		BC956DB81A9E7E710050C291 /* inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox.png; sourceTree = "<group>"; };
 		BC956DB91A9E7E710050C291 /* inbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox@2x.png"; sourceTree = "<group>"; };
 		BC956DBA1A9E7E710050C291 /* inbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox@3x.png"; sourceTree = "<group>"; };
@@ -531,6 +534,7 @@
 		5DE27AD918C90A6300C4C763 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BC94EDE51AB5CAE1006B7D4E /* Reachability_TM */,
 				BC72B7EF1A68591400AC720B /* JSQSystemSoundPlayer */,
 				BC72B7571A6858F700AC720B /* JSQMessagesViewController */,
 				BC181ACE19FF05CA0009B2FC /* MBProgressHUD */,
@@ -837,6 +841,15 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		BC94EDE51AB5CAE1006B7D4E /* Reachability_TM */ = {
+			isa = PBXGroup;
+			children = (
+				BC94EDE61AB5CAE1006B7D4E /* Reachability.h */,
+				BC94EDE71AB5CAE1006B7D4E /* Reachability.m */,
+			);
+			path = Reachability_TM;
+			sourceTree = "<group>";
+		};
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1074,6 +1087,7 @@
 				BCEF3D8E1A5861A1004F3F26 /* QCNewTinklerViewController.m in Sources */,
 				BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */,
 				BC650F3319C7605300C5F374 /* QCMessage.m in Sources */,
+				BC94EDE81AB5CAE1006B7D4E /* Reachability.m in Sources */,
 				BC1D468F19F9BA9100DAC450 /* SBPickerSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

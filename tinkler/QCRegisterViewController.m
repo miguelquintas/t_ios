@@ -70,12 +70,21 @@
                 
                 //Code to set name, bans, customMsg and installation details to the new registered user
                 [PFCloud callFunctionInBackground:@"postRegisterActions"
-                               withParameters:@{@"newName": _name.text}
+                                   withParameters:@{}
                                         block:^(NSString *success, NSError *error) {
                                             if (!error) {
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                                                 });
+                                                //Set name to NSUserDefaults preferences
+                                                // Create instances of NSData
+                                                NSString *name =_name.text;
+                                                // Store the data
+                                                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                                [defaults setObject:name forKey:@"name"];
+                                                
+                                                [defaults synchronize];
+                                                NSLog(@"Data saved");
                                                 // Push sent successfully
                                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Registration Success" message:@"Please check your email to validate your user then and log in" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                                 [alertView show];

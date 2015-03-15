@@ -22,7 +22,7 @@
     
     // Create the data model
     _pageImages = @[@"tutorial1.png", @"tutorial2.png", @"tutorial3.png", @"tutorial4.png", @"tutorial5.png"];
-    _pageDescriptions = @[@"tutorial1.png", @"tutorial2.png", @"tutorial3.png", @"tutorial4.png", @"tutorial5.png"];
+    _pageDescriptions = @[@"Think of everything you would like to always be connected to and create a Tinkler of it", @"Shortly after, you'll receive an email with the QR-Code for your Tinkler. Print it!", @"Place the QR-Code in your Tinkler so that it stays visible and scannable by everyone", @"From now on when someone scans that QR-Code using Tinkler you'll be notified", @"You can now communicate without having to share personal information between Tinkler users. Enjoy!"];
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -83,7 +83,9 @@
     
     if (index == [self.pageImages count] - 1){
         pageContentViewController.buttonHidden = NO;
+        [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
     } else {
+        [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
         pageContentViewController.buttonHidden = YES;
     }
     

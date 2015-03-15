@@ -28,8 +28,6 @@
         }
     }];
     
-    //TODO Swipe between tabs
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -38,12 +36,24 @@
     //Set Tab Title
     self.tabBarController.navigationItem.title = @"Scan QR-Code";
     self.scannedTinklerId = @"";
+    
+    //if there's no internet connection hide qrCam frame
+    if(![QCApi checkForNetwork]){
+        [_qrCam setHidden:YES];
+    }else{
+        [_qrCam setHidden:NO];
+    }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    [_qrCam setFrame: self.view.frame];
-    [self startQrCodeRead];
+    
+    //Do not start QR-Code Reading while offline
+    if([QCApi checkForNetwork]){
+        [self startQrCodeRead];
+    }
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -96,6 +106,8 @@
                                         // Push sent successfully
                                         [self startQrCodeRead];
                                         NSLog(@"Message Sent Successfully");
+                                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Sent" message:@"Your message was successfully sent!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                        [alertView show];
                                     }
                                 }];
 }

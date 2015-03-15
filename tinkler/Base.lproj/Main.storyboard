@@ -37,7 +37,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="dhl-V8-AF3"/>
                                 </constraints>
-                                <state key="normal" title="Get Started">
+                                <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -178,8 +178,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-ox-02k">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iC-yE-jIV">
-                                <rect key="frame" x="16" y="455" width="288" height="93"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iC-yE-jIV">
+                                <rect key="frame" x="16" y="445" width="288" height="93"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="93" id="k3q-NO-m6u"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -188,8 +191,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="hfU-ox-02k" secondAttribute="height" id="AMk-We-Xo5"/>
-                            <constraint firstItem="1iC-yE-jIV" firstAttribute="top" secondItem="c0Z-o2-als" secondAttribute="bottom" constant="435" id="CG3-Rg-TCD"/>
+                            <constraint firstItem="F9L-Bp-wAh" firstAttribute="top" secondItem="1iC-yE-jIV" secondAttribute="bottom" constant="30" id="AlD-ji-MIF"/>
+                            <constraint firstItem="1iC-yE-jIV" firstAttribute="trailing" secondItem="Mtm-Mf-n75" secondAttribute="trailingMargin" id="jJ8-Qm-9Vy"/>
                             <constraint firstAttribute="width" secondItem="hfU-ox-02k" secondAttribute="width" id="lXb-zg-p6B"/>
+                            <constraint firstItem="1iC-yE-jIV" firstAttribute="leading" secondItem="Mtm-Mf-n75" secondAttribute="leadingMargin" id="obc-cy-LbX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sg9-mD-81t"/>
@@ -296,7 +301,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-T4-MGt">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-T4-MGt">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -305,6 +310,7 @@
                         <constraints>
                             <constraint firstItem="BPp-T4-MGt" firstAttribute="top" secondItem="U2M-yO-7pb" secondAttribute="bottom" id="49A-8c-OHc"/>
                             <constraint firstItem="lJO-rf-AIU" firstAttribute="top" secondItem="BPp-T4-MGt" secondAttribute="bottom" id="Ahy-vN-jG0"/>
+                            <constraint firstAttribute="width" secondItem="BPp-T4-MGt" secondAttribute="width" id="E5X-ef-itn"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scan" image="scan.png" id="TlR-3O-2Gr"/>

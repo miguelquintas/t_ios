@@ -11,194 +11,253 @@
 @implementation QCApi
 
 + (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block{
-    NSMutableArray *tinklers = [[NSMutableArray alloc] init];
+    
     PFQuery *myTinklers = [PFQuery queryWithClassName:@"Tinkler"];
     [myTinklers whereKey:@"owner" equalTo:[PFUser currentUser]];
     [myTinklers includeKey:@"type"];
-    
-    NSLog(@"Trying to retrieve from cache");
-    
     [myTinklers orderByDescending:@"createdAt"];
-    [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
-            
-            // If no objects are loaded in memory, we look to the cache first to fill the table
-            // and then subsequently do a query against the network.
-            if (objects.count == 0)
-                myTinklers.cachePolicy = kPFCachePolicyCacheThenNetwork;
-            else
-                myTinklers.cachePolicy = kPFCachePolicyNetworkOnly;
-            
-            // Create the tinkler objects to include in the tinkler array
-            for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-                QCTinkler *tinkler = [[QCTinkler alloc] init];
-                [tinkler setTinklerId:object.objectId];
-                [tinkler setTinklerName:[object objectForKey:@"name"]];
-                [tinkler setTinklerType:[object objectForKey:@"type"]];
-                [tinkler setOwner:[object objectForKey:@"owner"]];
-                [tinkler setVehiclePlate:[object objectForKey:@"plate"]];
-                [tinkler setVehicleYear:[object objectForKey:@"year"]];
-                [tinkler setPetAge:[object objectForKey:@"petAge"]];
-                [tinkler setPetBreed:[object objectForKey:@"petBreed"]];
-                [tinkler setColor:[object objectForKey:@"color"]];
-                [tinkler setBrand:[object objectForKey:@"brand"]];
-                [tinkler setTinklerImage:[object objectForKey:@"picture"]];
-                [tinkler setTinklerQRCode:[object objectForKey:@"qrCode"]];
-                [tinkler setTinklerQRCodeKey:[object objectForKey:@"qrCodeKey"]];
-                [tinklers addObject:tinkler];
-            }
-            
-            block(tinklers, nil);
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            
-            block(nil,error);
-        }
-    }];
     
+    //Check connectivity
+    if([self checkForNetwork]){
+        NSLog(@"We have network connectivity");
+        [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                // The find succeeded.
+                NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
+                
+                //Unpin previous objects and then pin new collected ones
+                [PFObject unpinAllInBackground:objects withName:@"pinnedTinklers" block:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [PFObject pinAllInBackground:objects withName: @"pinnedTinklers"];
+                    }else{
+                        // Log details of the failure
+                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                    }
+                }];
+                
+                block([self createTinklerObj:objects], nil);
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error quering tinklers: %@ %@", error, [error userInfo]);
+                
+                block(nil,error);
+            }
+        }];
+        
+    }else{
+        NSLog(@"We don't have network connectivity");
+        
+        // Query the Local Datastore
+        [myTinklers fromPinWithName:@"pinnedTinklers"];
+        [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                // The find succeeded.
+                NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
+                
+                // Create the tinkler objects to include in the tinkler array
+                block([self createTinklerObj:objects], nil);
+                
+            }else{
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                
+                block(nil,error);
+            }
+        }];
+    }
+}
+
++ (NSMutableArray *) createTinklerObj:(NSArray *) objects{
+    NSMutableArray *tinklers = [NSMutableArray new];
+    
+    for (PFObject *object in objects) {
+        NSLog(@"%@", object.objectId);
+        QCTinkler *tinkler = [[QCTinkler alloc] init];
+        [tinkler setTinklerId:object.objectId];
+        [tinkler setTinklerName:[object objectForKey:@"name"]];
+        [tinkler setTinklerType:[object objectForKey:@"type"]];
+        [tinkler setOwner:[object objectForKey:@"owner"]];
+        [tinkler setVehiclePlate:[object objectForKey:@"plate"]];
+        [tinkler setVehicleYear:[object objectForKey:@"year"]];
+        [tinkler setPetAge:[object objectForKey:@"petAge"]];
+        [tinkler setPetBreed:[object objectForKey:@"petBreed"]];
+        [tinkler setColor:[object objectForKey:@"color"]];
+        [tinkler setBrand:[object objectForKey:@"brand"]];
+        [tinkler setTinklerImage:[object objectForKey:@"picture"]];
+        [tinkler setTinklerQRCode:[object objectForKey:@"qrCode"]];
+        [tinkler setTinklerQRCodeKey:[object objectForKey:@"qrCodeKey"]];
+        [tinklers addObject:tinkler];
+    }
+    
+    return tinklers;
 }
 
 +(void) getAllConversationsWithCallBack:(void (^)(NSMutableArray *conversationsArray, NSError *error))block {
-    NSMutableArray *conversations = [[NSMutableArray alloc]init];
     
     //Query to get the started conversations by the current user
     PFQuery *startedConv = [PFQuery queryWithClassName:@"Conversation"];
     [startedConv whereKey:@"starterUser" equalTo:[PFUser currentUser]];
-    
+        
     //Query to get the conversations started by another user
     PFQuery *toConv = [PFQuery queryWithClassName:@"Conversation"];
     [toConv whereKey:@"talkingToUser" equalTo:[PFUser currentUser]];
-    
+        
     //Or query to get all this user's conversations
     PFQuery *myConv = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:startedConv,toConv,nil]];
-    
+        
     [myConv orderByDescending:@"createdAt"];
     [myConv includeKey:@"talkingToTinkler"];
     [myConv includeKey:@"starterUser"];
     [myConv includeKey:@"talkingToUser"];
-    [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            //The find succeeded.
-            NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
-            
-            // If no objects are loaded in memory, we look to the cache first to fill the table
-            // and then subsequently do a query against the network.
-            if (objects.count == 0)
-                myConv.cachePolicy = kPFCachePolicyCacheThenNetwork;
-            else
-                myConv.cachePolicy = kPFCachePolicyNetworkOnly;
-            
-            // Create Conversation objects and group them in Conversation objects
-            for (PFObject *object in objects) {
-                //Create Message Object
-                QCConversation *conversation = [QCConversation new];
-                [conversation setConversationId:object.objectId];
-                [conversation setTalkingToTinkler:[object objectForKey:@"talkingToTinkler"]];
-                
-                //If the current user started this conversation then set the talkingToUser and the was Deleted values accordingly
-                if([[[object objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
-                    [conversation setTalkingToUser:[object objectForKey:@"talkingToUser"]];
-                    [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByStarter"]boolValue]];
-                }else{
-                    [conversation setTalkingToUser:[object objectForKey:@"starterUser"]];
-                    [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
-                }
-                
-                //Get the messages from the relation "messages"
-                // create a relation based on the messages key
-                PFRelation *relation = [object relationForKey:@"messages"];
-                // generate a query based on that relation
-                PFQuery *messagesQuery = [relation query];
-                [messagesQuery orderByDescending:@"createdAt"];
-                [messagesQuery includeKey:@"type"];
-                [messagesQuery includeKey:@"tinkler"];
-                [messagesQuery includeKey:@"from"];
-                [messagesQuery includeKey:@"to"];
-                NSArray *messsageObjects =[messagesQuery findObjects];
-                
-                //Array to store all this conversation's messages
-                NSMutableArray *messages = [[NSMutableArray alloc]init];
-                int count =0;
-                for (PFObject *object in messsageObjects) {
-                    //Create Message Object
-                    QCMessage *message = [[QCMessage alloc] init];
-                    [message setMessageId:object.objectId];
-                    [message setMsgType:[object objectForKey:@"type"]];
-                    [message setMsgText:[object objectForKey:@"customText"]];
-                    [message setFrom:[object objectForKey:@"from"]];
-                    [message setTo:[object objectForKey:@"to"]];
-                    [message setSentDate:object.createdAt];
-                    [message setTargetTinkler:[object objectForKey:@"tinkler"]];
-                    [message setIsRead:[[object objectForKey:@"read"]boolValue]];
-                            
-                    //Set LastSent Date with the most recent message date
-                    if(count==0){
-                        [conversation setLastSentDate:[message messageDateToString:object.createdAt]];
-                    }
-                            
-                    //Set hasUnreadMsg checking if there is any message sent to this user to read
-                    if([[message to].objectId isEqualToString:[PFUser currentUser].objectId] && ![[object objectForKey:@"read"]boolValue]){
-                        [conversation setHasUnreadMsg:YES];
-                    }
-                            
-                    [messages addObject:message];
-                    count++;
-                }
-                        
-                //Set the messages array to this conversation
-                [conversation setConversationMsgs:messages];
-                
-                //Check blocked conversations and deleted conversations
-                if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
-                    [conversations addObject:conversation];
-                }else{
-                    NSLog(@"This conversation is blocked");
-                }
-                
-            }
-            
-            block(conversations,nil);
-        }else{
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            block(nil,error);
-        }
-    }];
     
+    //Check internet connection
+    if([self checkForNetwork]){
+        [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                //The find succeeded.
+                NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
+                
+                //Unpin previous objects and then pin new collected ones
+                [PFObject unpinAllInBackground:objects withName:@"pinnedConversations" block:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [PFObject pinAllInBackground:objects withName: @"pinnedConversations"];
+                    }else{
+                        // Log details of the failure
+                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                    }
+                }];
+                
+                block([self createConversationObj:objects],nil);
+            }else{
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                block(nil,error);
+            }
+        }];
+        
+    }else{
+        // Query the Local Datastore
+        [myConv fromPinWithName:@"pinnedConversations"];
+        [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                //The find succeeded.
+                NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
+                
+                block([self createConversationObj:objects],nil);
+            }else{
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                block(nil,error);
+            }
+        }];
+    }
+
 }
 
-+ (QCConversation *)createNewConversation:(QCMessage *) message{
-    QCConversation *newConversation = [[QCConversation alloc]init];
-    NSMutableArray *messages = [[NSMutableArray alloc]init];
++ (NSMutableArray *) createConversationObj:(NSArray *) objects{
+    NSMutableArray *conversations = [NSMutableArray new];
     
-    //Case when this is a message from the current user to another user
-    if([[PFUser currentUser].username isEqualToString:message.from.username]){
-        [newConversation setTalkingToTinkler:message.targetTinkler];
-        [newConversation setTalkingToUser:message.to];
-        [messages addObject:message];
-        [newConversation setConversationMsgs:messages];
-        [newConversation setLastSentDate:[message messageDateToString:[message sentDate]]];
-        NSLog(@"This message is from user %@ regarding tinkler %@", newConversation.talkingToUser.username, newConversation.talkingToTinkler.objectId);
-    }//Case when this is a message from another user to the current user
-    else{
-        //Check if this conversation has any unread message
-        if (!message.isRead) {
-            newConversation.hasUnreadMsg = YES;
+    for (PFObject *object in objects) {
+        //Create Message Object
+        QCConversation *conversation = [QCConversation new];
+        [conversation setConversationId:object.objectId];
+        [conversation setTalkingToTinkler:[object objectForKey:@"talkingToTinkler"]];
+        
+        //If the current user started this conversation then set the talkingToUser and the was Deleted values accordingly
+        if([[[object objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+            [conversation setTalkingToUser:[object objectForKey:@"talkingToUser"]];
+            [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByStarter"]boolValue]];
+        }else{
+            [conversation setTalkingToUser:[object objectForKey:@"starterUser"]];
+            [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
         }
-        [newConversation setTalkingToTinkler:message.targetTinkler];
-        [newConversation setTalkingToUser:message.from];
-        [messages addObject:message];
-        [newConversation setConversationMsgs:messages];
-        [newConversation setLastSentDate:[message messageDateToString:[message sentDate]]];
-        NSLog(@"This message is from user %@ regarding tinkler %@", newConversation.talkingToUser.username, newConversation.talkingToTinkler.objectId);
+        
+        if([self checkForNetwork]){
+            //Get the messages from the relation "messages"
+            // create a relation based on the messages key
+            PFRelation *relation = [object relationForKey:@"messages"];
+            // generate a query based on that relation
+            PFQuery *messagesQuery = [relation query];
+            [messagesQuery orderByDescending:@"createdAt"];
+            [messagesQuery includeKey:@"type"];
+            [messagesQuery includeKey:@"tinkler"];
+            [messagesQuery includeKey:@"from"];
+            [messagesQuery includeKey:@"to"];
+            NSArray *messageObjects =[messagesQuery findObjects];
+            
+            //Pin queried messages objects
+            [PFObject pinAllInBackground:messageObjects withName: @"pinnedConversations"];
+            
+            //Set the messages array to this conversation
+            [conversation setConversationMsgs:[self createMessageObj:messageObjects :conversation]];
+            
+            //Check blocked conversations and deleted conversations
+            if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
+                [conversations addObject:conversation];
+            }else{
+                NSLog(@"This conversation is blocked");
+            }
+            
+        }else{
+            // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
+            PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
+            [messagesQuery orderByDescending:@"createdAt"];
+            [messagesQuery includeKey:@"type"];
+            [messagesQuery includeKey:@"tinkler"];
+            [messagesQuery includeKey:@"from"];
+            [messagesQuery includeKey:@"to"];
+            [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
+            
+            [messagesQuery fromPinWithName:@"pinnedMessages"];
+            NSArray *messageObjects =[messagesQuery findObjects];
+            
+            //Set the messages array to this conversation
+            [conversation setConversationMsgs:[self createMessageObj:messageObjects :conversation]];
+            
+            //Check blocked conversations and deleted conversations
+            if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
+                [conversations addObject:conversation];
+            }else{
+                NSLog(@"This conversation is blocked");
+            }
+        }
     }
     
-    return newConversation;
+    return conversations;
+}
+
++ (NSMutableArray *) createMessageObj:(NSArray *) objects :(QCConversation *) conversation{
+    NSMutableArray *messages = [NSMutableArray new];
+    int count =0;
+    for (PFObject *object in objects) {
+        
+        //Create Message Object
+        QCMessage *message = [QCMessage new];
+        [message setMessageId:object.objectId];
+        [message setMsgType:[object objectForKey:@"type"]];
+        [message setMsgText:[object objectForKey:@"customText"]];
+        [message setFrom:[object objectForKey:@"from"]];
+        [message setTo:[object objectForKey:@"to"]];
+        [message setSentDate:object.createdAt];
+        [message setTargetTinkler:[object objectForKey:@"tinkler"]];
+        [message setIsRead:[[object objectForKey:@"read"]boolValue]];
+        
+        //Set LastSent Date with the most recent message date
+        if(count==0){
+            [conversation setLastSentDate:[message messageDateToString:object.createdAt]];
+        }
+        
+        //Set hasUnreadMsg checking if there is any message sent to this user to read
+        if([[message to].objectId isEqualToString:[PFUser currentUser].objectId] && ![[object objectForKey:@"read"]boolValue]){
+            [conversation setHasUnreadMsg:YES];
+        }
+        
+        [messages addObject:message];
+        count++;
+    }
+    
+    return messages;
 }
 
 + (void)sendQrCodeEmail:(NSString *) objectId{
@@ -313,6 +372,7 @@
     [tinklerToEdit setObject:[tinkler tinklerQRCodeKey] forKey:@"qrCodeKey"];
     if([tinkler tinklerImage] != nil)
         [tinklerToEdit setObject:[tinkler tinklerImage] forKey:@"picture"];
+    
     [tinklerToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(!error){
             completion(YES);
@@ -328,39 +388,23 @@
     PFObject *tinklerToDelete = [PFObject objectWithoutDataWithClassName:@"Tinkler"
                                                                 objectId:[tinkler tinklerId]];
 
-    //Mark as deleted all messages regarding this Object
-    PFQuery *sentMsgs = [PFQuery queryWithClassName:@"Message"];
-    [sentMsgs whereKey:@"from" equalTo:[PFUser currentUser]];
-    [sentMsgs whereKey:@"tinkler" equalTo:tinklerToDelete];
+    //Delete all conversations regarding this Tinkler
+    PFQuery *conversationsToDelete = [PFQuery queryWithClassName:@"Conversation"];
+    [conversationsToDelete whereKey:@"talkingToTinkler" equalTo:tinklerToDelete];
     
-    PFQuery *receivedMsgs = [PFQuery queryWithClassName:@"Message"];
-    [receivedMsgs whereKey:@"to" equalTo:[PFUser currentUser]];
-    [receivedMsgs whereKey:@"tinkler" equalTo:tinklerToDelete];
-    
-    PFQuery *tinklerMsgs = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:sentMsgs,receivedMsgs,nil]];
-    
-    [tinklerMsgs findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [conversationsToDelete findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            // Create Message objects and group them in Conversation objects
+            //Delete all found conversations
             for (PFObject *object in objects) {
-                [object setObject:[NSNumber numberWithBool:YES] forKey:@"deletedByUser"];
-                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if(!error){
-                        NSLog(@"Message marked as deleted");
-                    }else{
-                        NSLog(@"Error marking as deleted tinkler!");
-                    }
-                }];
+                [object deleteEventually];
             }
             completion(YES);
         }else
-            NSLog(@"Error deleting this tinkler's messages!");
+            NSLog(@"Error deleting this tinkler's conversations!");
         
     }];
     
     [tinklerToDelete deleteEventually];
-    
-    
 }
 
 + (void)deleteConversationWithCompletion:(QCConversation *)conversation completion:(void (^)(BOOL finished))completion {
@@ -393,7 +437,7 @@
     [userToLoginQuery getFirstObjectInBackgroundWithBlock:^(PFObject *userToValidate, NSError *error) {
         if (!error) {
             // Refresh to make sure the user did not recently verify
-            [userToValidate refresh];
+            [userToValidate fetch];
             if([[userToValidate objectForKey:@"emailVerified"] boolValue])
                 completion(YES, YES);
             else
@@ -407,86 +451,135 @@
 }
 
 + (void) getMessageTypesWithCallBack:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block{
-    NSMutableArray *msgTypes = [[NSMutableArray alloc] init];
     PFQuery *myMsgTypes = [PFQuery queryWithClassName:@"MessageType"];
     [myMsgTypes includeKey:@"type"];
-    NSLog(@"Trying to retrieve from cache");
-    
     [myMsgTypes orderByAscending:@"createdAt"];
-    [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            
-            // If no objects are loaded in memory, we look to the cache first to fill the table
-            // and then subsequently do a query against the network.
-            if (objects.count == 0)
-                myMsgTypes.cachePolicy = kPFCachePolicyCacheThenNetwork;
-            else
-                myMsgTypes.cachePolicy = kPFCachePolicyNetworkOnly;
-            
-            // Add the returned results to the msg types array
-            for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-                //Create Message Object
-                QCMessageType *msgType = [[QCMessageType alloc] init];
-                [msgType setMsgTypeId:object.objectId];
-                [msgType setText:[object objectForKey:@"text"]];
-                [msgType setTinklerType:[object objectForKey:@"type"]];
-                [msgTypes addObject:msgType];
+    
+    //Check connectivity
+    if([self checkForNetwork]){
+        NSLog(@"We have network connectivity");
+        [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                
+                //Unpin previous objects and then pin new collected ones
+                [PFObject unpinAllInBackground:objects withName:@"pinnedMsgTypes" block:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [PFObject pinAllInBackground:objects withName: @"pinnedMsgTypes"];
+                    }else{
+                        // Log details of the failure
+                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                    }
+                }];
+                
+                block([self createMsgTypeObj:objects], nil);
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                
+                block(nil,error);
             }
-            
-            block(msgTypes, nil);
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            
-            block(nil,error);
-        }
-    }];
+        }];
+    }else{
+        NSLog(@"We are offline");
+        // Query the Local Datastore
+        [myMsgTypes fromPinWithName:@"pinnedMsgTypes"];
+        [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                block([self createMsgTypeObj:objects], nil);
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                
+                block(nil,error);
+            }
+        }];
+    }
+    
+    
+}
+
++ (NSMutableArray *) createMsgTypeObj:(NSArray *) objects{
+    NSMutableArray *msgTypes = [NSMutableArray new];
+    
+    // Add the returned results to the msg types array
+    for (PFObject *object in objects) {
+        NSLog(@"%@", object.objectId);
+        //Create Message Object
+        QCMessageType *msgType = [[QCMessageType alloc] init];
+        [msgType setMsgTypeId:object.objectId];
+        [msgType setText:[object objectForKey:@"text"]];
+        [msgType setTinklerType:[object objectForKey:@"type"]];
+        [msgTypes addObject:msgType];
+    }
+    
+    return msgTypes;
 }
 
 + (void) getAllTinklerTypesWithCallBack:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block{
-    NSMutableArray *typeNames = [[NSMutableArray alloc] init];
     PFQuery *myTinklerTypes = [PFQuery queryWithClassName:@"TinklerType"];
-    NSLog(@"Trying to retrieve from cache");
     [myTinklerTypes includeKey:@"type"];
-    
     [myTinklerTypes orderByAscending:@"createdAt"];
-    [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            
-            // If no objects are loaded in memory, we look to the cache first to fill the table
-            // and then subsequently do a query against the network.
-            if (objects.count == 0)
-                myTinklerTypes.cachePolicy = kPFCachePolicyCacheThenNetwork;
-            else
-                myTinklerTypes.cachePolicy = kPFCachePolicyNetworkOnly;
-            
-            // Add the returned results to the tinkler types array
-            for (PFObject *object in objects) {
-                NSLog(@"%@", object.objectId);
-                [typeNames addObject:[object objectForKey:@"typeName"]];
+    //Check connectivity
+    if([self checkForNetwork]){
+        NSLog(@"We have network connectivity");
+        [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                
+                //Unpin previous objects and then pin new collected ones
+                [PFObject unpinAllInBackground:objects withName:@"pinnedTinklerTypes" block:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [PFObject pinAllInBackground:objects withName: @"pinnedTinklerTypes"];
+                    }else{
+                        // Log details of the failure
+                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                    }
+                }];
+                
+                // Add the returned results to the tinkler types array
+                block(objects, [self createTinklerTypeObj:objects], nil);
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                block(nil, nil, error);
             }
-            
-            block(objects, typeNames, nil);
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-            
-            block(nil, nil, error);
-        }
-    }];
+        }];
+    }else{
+        NSLog(@"We are offline");
+        // Query the Local Datastore
+        [myTinklerTypes fromPinWithName:@"pinnedTinklerTypes"];
+        [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                // Add the returned results to the tinkler types array
+                block(objects, [self createTinklerTypeObj:objects], nil);
+            } else {
+                //Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+                block(nil, nil, error);
+            }
+        }];
+    }
 }
 
-+ (void) editProfileSaveWithCompletion:(NSString *)name :(BOOL) customMsg completion:(void (^)(BOOL finished))completion {
++ (NSMutableArray *) createTinklerTypeObj:(NSArray *) objects{
+    NSMutableArray *typeNames = [NSMutableArray new];
     
-    [[PFUser currentUser] setObject:name forKey:@"name"];
+    for (PFObject *object in objects) {
+        NSLog(@"%@", object.objectId);
+        [typeNames addObject:[object objectForKey:@"typeName"]];
+    }
+    
+    return typeNames;
+}
+
++ (void) editProfileSaveWithCompletion:(BOOL) customMsg completion:(void (^)(BOOL finished))completion {
     
     NSNumber *customMsgAsAnNSNumber = [NSNumber numberWithBool: customMsg ];
     [[PFUser currentUser] setObject:customMsgAsAnNSNumber forKey:@"allowCustomMsg"];
     
-    [[PFUser currentUser] saveInBackground];
+    [[PFUser currentUser] saveEventually];
     
     completion(YES);
 }
@@ -621,6 +714,34 @@
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
+}
+
++ (BOOL)checkForNetwork
+{
+    // check if we've got network connectivity
+    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
+    NetworkStatus myStatus = [myNetwork currentReachabilityStatus];
+    
+    switch (myStatus) {
+        case NotReachable:
+            NSLog(@"There's no internet connection at all. Display error message now.");
+            return NO;
+            break;
+            
+        case ReachableViaWWAN:
+            NSLog(@"We have a 3G connection");
+            return YES;
+            break;
+            
+        case ReachableViaWiFi:
+            NSLog(@"We have WiFi.");
+            return YES;
+            break;
+            
+        default:
+            return NO;
+            break;
+    }
 }
 
 @end
