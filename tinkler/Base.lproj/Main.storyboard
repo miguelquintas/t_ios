@@ -81,17 +81,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-o9-LSj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bOv-o9-LSj">
                                 <rect key="frame" x="16" y="94" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n9k-R5-n1s">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n9k-R5-n1s">
                                 <rect key="frame" x="16" y="132" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN9-Mq-T9y">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eN9-Mq-T9y">
                                 <rect key="frame" x="16" y="170" width="126" height="30"/>
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +100,7 @@
                                     <action selector="forgotPasswordButton:" destination="Hum-CR-ot6" eventType="touchUpInside" id="Oqv-P0-zaf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IK5-Lg-huq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IK5-Lg-huq">
                                 <rect key="frame" x="266" y="170" width="38" height="30"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,14 +112,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bOv-o9-LSj" firstAttribute="leading" secondItem="dvj-7i-mOy" secondAttribute="leadingMargin" id="1OL-fk-8Jz"/>
-                            <constraint firstItem="n9k-R5-n1s" firstAttribute="trailing" secondItem="dvj-7i-mOy" secondAttribute="trailingMargin" id="9gS-Ne-EBd"/>
-                            <constraint firstItem="IK5-Lg-huq" firstAttribute="top" secondItem="n9k-R5-n1s" secondAttribute="bottom" constant="8" id="C3z-Og-4Nj"/>
-                            <constraint firstItem="eN9-Mq-T9y" firstAttribute="leading" secondItem="dvj-7i-mOy" secondAttribute="leadingMargin" id="JWb-Rj-LAv"/>
-                            <constraint firstItem="eN9-Mq-T9y" firstAttribute="top" secondItem="n9k-R5-n1s" secondAttribute="bottom" constant="8" id="M2d-ca-UVp"/>
-                            <constraint firstItem="n9k-R5-n1s" firstAttribute="leading" secondItem="dvj-7i-mOy" secondAttribute="leadingMargin" id="UlU-WY-mhk"/>
-                            <constraint firstItem="bOv-o9-LSj" firstAttribute="trailing" secondItem="dvj-7i-mOy" secondAttribute="trailingMargin" id="oz0-Ta-eZ1"/>
-                            <constraint firstItem="IK5-Lg-huq" firstAttribute="trailing" secondItem="dvj-7i-mOy" secondAttribute="trailingMargin" id="pQw-1M-PJu"/>
+                            <constraint firstItem="IK5-Lg-huq" firstAttribute="trailing" secondItem="dvj-7i-mOy" secondAttribute="trailingMargin" id="51h-5q-xFY"/>
+                            <constraint firstItem="bOv-o9-LSj" firstAttribute="trailing" secondItem="dvj-7i-mOy" secondAttribute="trailingMargin" id="9eC-E9-Uu8"/>
+                            <constraint firstItem="IK5-Lg-huq" firstAttribute="top" secondItem="n9k-R5-n1s" secondAttribute="bottom" constant="8" id="A4H-qT-MVB"/>
+                            <constraint firstItem="eN9-Mq-T9y" firstAttribute="leading" secondItem="dvj-7i-mOy" secondAttribute="leadingMargin" id="Bki-ED-GDG"/>
+                            <constraint firstItem="bOv-o9-LSj" firstAttribute="top" secondItem="TMV-rk-olq" secondAttribute="bottom" constant="30" id="Nje-sD-ZUF"/>
+                            <constraint firstItem="eN9-Mq-T9y" firstAttribute="top" secondItem="n9k-R5-n1s" secondAttribute="bottom" constant="8" id="QW1-gy-izj"/>
+                            <constraint firstItem="n9k-R5-n1s" firstAttribute="trailing" secondItem="dvj-7i-mOy" secondAttribute="trailingMargin" id="VrM-BC-HHo"/>
+                            <constraint firstItem="bOv-o9-LSj" firstAttribute="leading" secondItem="dvj-7i-mOy" secondAttribute="leadingMargin" id="duO-6j-tAM"/>
+                            <constraint firstItem="n9k-R5-n1s" firstAttribute="leading" secondItem="dvj-7i-mOy" secondAttribute="leadingMargin" id="h2C-1k-uWE"/>
+                            <constraint firstItem="n9k-R5-n1s" firstAttribute="top" secondItem="bOv-o9-LSj" secondAttribute="bottom" constant="8" id="lMy-HQ-nlf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="msM-AF-YmH"/>
@@ -175,7 +177,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-ox-02k">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-ox-02k">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iC-yE-jIV">
@@ -190,10 +192,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" secondItem="hfU-ox-02k" secondAttribute="height" id="AMk-We-Xo5"/>
                             <constraint firstItem="F9L-Bp-wAh" firstAttribute="top" secondItem="1iC-yE-jIV" secondAttribute="bottom" constant="30" id="AlD-ji-MIF"/>
+                            <constraint firstItem="hfU-ox-02k" firstAttribute="height" secondItem="Mtm-Mf-n75" secondAttribute="height" id="ElN-fS-Lh2"/>
+                            <constraint firstAttribute="centerX" secondItem="hfU-ox-02k" secondAttribute="centerX" id="HkK-b6-oBS"/>
+                            <constraint firstAttribute="centerY" secondItem="hfU-ox-02k" secondAttribute="centerY" id="PmY-jh-iPb"/>
                             <constraint firstItem="1iC-yE-jIV" firstAttribute="trailing" secondItem="Mtm-Mf-n75" secondAttribute="trailingMargin" id="jJ8-Qm-9Vy"/>
-                            <constraint firstAttribute="width" secondItem="hfU-ox-02k" secondAttribute="width" id="lXb-zg-p6B"/>
+                            <constraint firstItem="hfU-ox-02k" firstAttribute="width" secondItem="Mtm-Mf-n75" secondAttribute="width" id="l74-0e-08O"/>
                             <constraint firstItem="1iC-yE-jIV" firstAttribute="leading" secondItem="Mtm-Mf-n75" secondAttribute="leadingMargin" id="obc-cy-LbX"/>
                         </constraints>
                     </view>
@@ -927,6 +931,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="zFt-8i-wPw"/>
-        <segue reference="wh4-1P-z7a"/>
+        <segue reference="PtU-4m-nT6"/>
     </inferredMetricsTieBreakers>
 </document>
