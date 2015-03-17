@@ -22,12 +22,12 @@
         
         //Verify if user as seen tutorial through user preferences
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        long hasSeenTut = [defaults integerForKey:@"hasSeenTut"];
+        bool hasSeenTut = [defaults boolForKey:@"hasSeenTut"];
         
-        if(hasSeenTut == 0) {
-            [self performSegueWithIdentifier:@"seeTutorialFromHome" sender:self];
-        } else {
+        if(hasSeenTut) {
             [self customPushVC:@"TabViewController"];
+        } else {
+            [self performSegueWithIdentifier:@"seeTutorialFromHome" sender:self];
         }
     }
 }
@@ -84,7 +84,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
