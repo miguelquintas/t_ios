@@ -14,7 +14,7 @@
 
 @implementation TKTutorialViewController
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
