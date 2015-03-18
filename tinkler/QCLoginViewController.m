@@ -68,10 +68,11 @@
                         
                         //Verify if user as seen tutorial through user preferences
                         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                        long hasSeenTut = [defaults integerForKey:@"hasSeenTut"];
+                        bool hasSeenTut = [defaults boolForKey:@"hasSeenTut"];
                         
-                        if(hasSeenTut == 0){
-                            NSLog(@"hasSeenTut value %ld", hasSeenTut);
+                        if(hasSeenTut){
+                            [self performSegueWithIdentifier:@"SucessLogin" sender:self];
+                        }else{
                             UIStoryboard *storyBoard = self.storyboard;
                             UIViewController *targetViewController = [storyBoard instantiateViewControllerWithIdentifier:@"TutorialViewController"];
                             UINavigationController *navController = self.navigationController;
@@ -79,8 +80,6 @@
                             if (navController) {
                                 [navController pushViewController:targetViewController animated:NO];
                             }
-                        }else{
-                            [self performSegueWithIdentifier:@"SucessLogin" sender:self];
                         }
                         
                     }else{

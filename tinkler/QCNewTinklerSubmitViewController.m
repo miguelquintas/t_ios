@@ -187,9 +187,15 @@
                 //String with the alert message
                 NSString* alertmessage = [NSString stringWithFormat: @"New tinkler %@ created! Check your email or your phone's camera roll to get your QR-Code", _tinklerName];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                
                 [alertView show];
+                
                 // Present the profile view controller
-                [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:2] animated:YES];
+                for (UIViewController* view in [self.navigationController viewControllers]){
+                    if ([view isKindOfClass:[QCTabViewController class]]){
+                        [self.navigationController popToViewController:view animated:YES];
+                    }
+                }
             }
         }];
     });

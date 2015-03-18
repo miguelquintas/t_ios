@@ -24,6 +24,10 @@
 }
 
 - (IBAction)goToScanPage {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"hasSeenTut"];
+    [defaults synchronize];
+    
     UIStoryboard *storyBoard = self.storyboard;
     UIViewController *targetViewController = [storyBoard instantiateViewControllerWithIdentifier:@"TabViewController"];
     UINavigationController *navController = self.navigationController;

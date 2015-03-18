@@ -10,6 +10,7 @@
 #import "QCTinkler.h"
 #import "QCTinklerType.h"
 #import "QCProfileViewController.h"
+#import "QCTabViewController.h"
 #import "QCApi.h"
 #import "LTHMonthYearPickerView.h"
 
