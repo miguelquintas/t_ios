@@ -85,7 +85,7 @@
         if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
             JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
             [self.messages addObject:newMessage];
-        }else if(![[PFUser currentUser].username isEqualToString:message.from.username]){
+        }else {
             JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:[message msgType][@"text"] ];
             [self.messages addObject:newMessage];
         }

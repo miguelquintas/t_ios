@@ -104,7 +104,6 @@
                                 block:^(NSString *success, NSError *error) {
                                     if (!error) {
                                         // Push sent successfully
-                                        [self startQrCodeRead];
                                         NSLog(@"Message Sent Successfully");
                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Sent" message:@"Your message was successfully sent!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                         [alertView show];
