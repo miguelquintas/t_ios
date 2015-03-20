@@ -32,5 +32,7 @@
 + (void)blockConversationWithCompletion:(QCConversation *) conversation completion:(void (^)(BOOL finished))completion;
 + (UIColor*)colorWithHexString:(NSString*)hex;
 + (BOOL)checkForNetwork;
++ (void)lockConversation:(QCConversation *)conversation;
++ (void)unlockConversation:(QCConversation *)conversation;
 
 @end

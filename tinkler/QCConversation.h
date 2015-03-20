@@ -19,5 +19,6 @@
 @property (strong, nonatomic) NSString *lastSentDate;
 @property (nonatomic) Boolean hasUnreadMsg;
 @property (nonatomic) Boolean wasDeleted;
+@property (nonatomic) Boolean isLocked;
 
 @end

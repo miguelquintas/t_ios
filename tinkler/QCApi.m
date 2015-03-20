@@ -106,7 +106,7 @@
     //Or query to get all this user's conversations
     PFQuery *myConv = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:startedConv,toConv,nil]];
         
-    [myConv orderByDescending:@"createdAt"];
+    [myConv orderByDescending:@"updatedAt"];
     [myConv includeKey:@"talkingToTinkler"];
     [myConv includeKey:@"starterUser"];
     [myConv includeKey:@"talkingToUser"];
@@ -168,9 +168,11 @@
         if([[[object objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
             [conversation setTalkingToUser:[object objectForKey:@"talkingToUser"]];
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByStarter"]boolValue]];
+            [conversation setIsLocked:[[object objectForKey:@"isLockedByStarter"]boolValue]];
         }else{
             [conversation setTalkingToUser:[object objectForKey:@"starterUser"]];
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
+            [conversation setIsLocked:[[object objectForKey:@"isLockedByTo"]boolValue]];
         }
         
         if([self checkForNetwork]){
@@ -229,7 +231,7 @@
 
 + (NSMutableArray *) createMessageObj:(NSArray *) objects :(QCConversation *) conversation{
     NSMutableArray *messages = [NSMutableArray new];
-    int count =0;
+    int countLastSentDate =0;
     for (PFObject *object in objects) {
         
         //Create Message Object
@@ -244,7 +246,7 @@
         [message setIsRead:[[object objectForKey:@"read"]boolValue]];
         
         //Set LastSent Date with the most recent message date
-        if(count==0){
+        if(countLastSentDate==0){
             [conversation setLastSentDate:[message messageDateToString:object.createdAt]];
         }
         
@@ -254,7 +256,7 @@
         }
         
         [messages addObject:message];
-        count++;
+        countLastSentDate++;
     }
     
     return messages;
@@ -714,6 +716,38 @@
                            green:((float) g / 255.0f)
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
+}
+
++ (void)lockConversation:(QCConversation *)conversation{
+    //Get Conversation to lock
+    PFQuery *query = [PFQuery queryWithClassName:@"Conversation"];
+    PFObject *conversationToLock = [query getObjectWithId:conversation.conversationId];
+    
+    //If the current user started this conversation set the islockedbystarter flag to true
+    if([[[conversationToLock objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+        [conversationToLock setObject:[NSNumber numberWithBool:YES] forKey:@"isLockedByStarter"];
+    }else{
+        [conversationToLock setObject:[NSNumber numberWithBool:YES] forKey:@"isLockedByTo"];
+    }
+    
+    [conversationToLock saveEventually];
+    
+}
+
++ (void)unlockConversation:(QCConversation *)conversation{
+    //Get Conversation to unlock
+    PFQuery *query = [PFQuery queryWithClassName:@"Conversation"];
+    PFObject *conversationToUnlock = [query getObjectWithId:conversation.conversationId];
+    
+    //If the current user started this conversation set the islockedbyto flag to NO
+    if([[[conversationToUnlock objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+        [conversationToUnlock setObject:[NSNumber numberWithBool:NO] forKey:@"isLockedByTo"];
+    }else{
+        [conversationToUnlock setObject:[NSNumber numberWithBool:NO] forKey:@"isLockedByStarter"];
+    }
+    
+    [conversationToUnlock saveEventually];
+
 }
 
 + (BOOL)checkForNetwork

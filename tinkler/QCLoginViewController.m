@@ -33,7 +33,6 @@
     }else{
         [self.email setText:_registeredEmail];
     }
-
 }
 
 //Code to hide keyboard when return key is pressed

@@ -80,7 +80,6 @@
     
     //Run through the reversed messages array to have the most recent msgs displayed at the bottom of the screen
     for(QCMessage *message in [[self.selectedConversation.conversationMsgs reverseObjectEnumerator]allObjects]){
-        
         //Case when its the current user sending an answer through a custom message
         if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
             JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
@@ -102,6 +101,25 @@
                                         NSLog(@"Message Sent Successfully");
                                     }
                                 }];
+}
+
+//Check the last 2 messages in the stack, if they belong to you it will lock the conversation
+- (void)isItToLock{
+    QCMessage *message1 = [self.selectedConversation.conversationMsgs objectAtIndex:0];
+    QCMessage *message2 = [self.selectedConversation.conversationMsgs objectAtIndex:1];
+    if ([message1.from.username isEqualToString:[PFUser currentUser].username] && [message2.from.username isEqualToString:[PFUser currentUser].username]) {
+        [QCApi lockConversation:self.selectedConversation];
+    }
+}
+
+//Check the last 3 messages in the stack, if they belong to the other user it will unlock the conversation
+- (void)isItToUnLock{
+    QCMessage *message1 = [self.selectedConversation.conversationMsgs objectAtIndex:0];
+    QCMessage *message2 = [self.selectedConversation.conversationMsgs objectAtIndex:1];
+    QCMessage *message3 = [self.selectedConversation.conversationMsgs objectAtIndex:2];
+    if (![message1.from.username isEqualToString:[PFUser currentUser].username] && ![message2.from.username isEqualToString:[PFUser currentUser].username] && ![message3.from.username isEqualToString:[PFUser currentUser].username]) {
+        [QCApi unlockConversation:self.selectedConversation];
+    }
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -132,8 +150,17 @@
     if ([QCApi checkForNetwork]) {
         //Validate if the user allows sending customMsgs
         if ([_selectedConversation.talkingToUser objectForKey:@"allowCustomMsg"]== [NSNumber numberWithBool:YES]) {
-            [self answerPushNotification:@"Custom Message" :text];
-            [self finishSendingMessageAnimated:YES];
+            if (!_selectedConversation.isLocked){
+                [self isItToLock];
+                [self isItToUnLock];
+                [self answerPushNotification:@"Custom Message" :text];
+                [self finishSendingMessageAnimated:YES];
+            }else{
+                //Warn user, clean input field and hide keyboard
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This conversation is locked until you get an answer from the other Tinkler user" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+            
         }else{
             //Warn user, clean input field and hide keyboard
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This user does not allow custom messages" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

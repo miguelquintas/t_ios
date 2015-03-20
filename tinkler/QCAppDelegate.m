@@ -40,14 +40,8 @@
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     //If there is something in the notification payload go to the Inbox Tab
     if(notificationPayload) {
-        //Go to the inbox tab
-        UINavigationController *navController = [UINavigationController new];
-        
-        UITabBarController *inboxTBC = (UITabBarController *)self.window.rootViewController;
-        [inboxTBC setSelectedIndex:0];
-        
-        UIViewController *inboxVC = [[UIViewController alloc] initWithNibName:@"firstviewcontroller" bundle:nil];
-        [navController pushViewController:inboxVC animated:YES];
+    
+        //Load inbox VC here
     }
     
     [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
@@ -57,6 +51,7 @@
     [application setStatusBarHidden:NO];
     return YES;
 }
+
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
@@ -74,9 +69,19 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+//    [PFPush handlePush:userInfo];
+    if ([PFUser currentUser] != nil)
+    {
+        //If inside Inbox tab refresh the conversation list
+        
+        //if inside a chat show push note
+        
+        //else show push note and change inbox icon to alert notifications
+    }
     // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
-    
+    //        NSLog(@"Estou no %@", ((UITabBarController*)self.window.rootViewController).selectedViewController);
+    //        NSLog(@"Estou no %@", ((UINavigationController*)self.window.rootViewController).visibleViewController);
+    //        UINavigationController *navController = [UINavigationController new];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

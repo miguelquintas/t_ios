@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "QCApi.h"
+#include "QCScanViewController.h"
 #import <Parse/Parse.h>
 
 @interface QCAppDelegate : UIResponder <UIApplicationDelegate>
