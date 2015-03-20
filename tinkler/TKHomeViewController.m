@@ -98,7 +98,7 @@
     UINavigationController *navController = self.navigationController;
     
     if (navController) {
-        [navController pushViewController:targetViewController animated:YES];
+        [navController pushViewController:targetViewController animated:NO];
     }
 }
 

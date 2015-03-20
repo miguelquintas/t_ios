@@ -189,7 +189,7 @@
             NSArray *messageObjects =[messagesQuery findObjects];
             
             //Pin queried messages objects
-            [PFObject pinAllInBackground:messageObjects withName: @"pinnedConversations"];
+            [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
             
             //Set the messages array to this conversation
             [conversation setConversationMsgs:[self createMessageObj:messageObjects :conversation]];
@@ -753,7 +753,7 @@
 + (BOOL)checkForNetwork
 {
     // check if we've got network connectivity
-    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
+    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"apple.com"];
     NetworkStatus myStatus = [myNetwork currentReachabilityStatus];
     
     switch (myStatus) {

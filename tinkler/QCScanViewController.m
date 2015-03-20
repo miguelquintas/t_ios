@@ -42,6 +42,7 @@
         [_qrCam setHidden:YES];
     }else{
         [_qrCam setHidden:NO];
+        [self startQrCodeRead];
     }
 
 }
@@ -49,9 +50,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     
-    //Do not start QR-Code Reading while offline
+    //Place the QR Code Image in the screen during some time
     if([QCApi checkForNetwork]){
-        [self startQrCodeRead];
+        
     }
     
 }
@@ -162,7 +163,12 @@
     //If it is a regular message send push notification with the message text
     }else{
         NSLog(@"Selected %@", clicked);
-        [self sendPushNotification:clicked :clicked];
+        if([QCApi checkForNetwork]){
+            [self sendPushNotification:clicked :clicked];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"You need to have network connectivity to send messages" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }
     
 }
@@ -208,23 +214,28 @@
         self.scannedTinklerKey = [f numberFromString:[[[[objectData componentsSeparatedByString:@"!"] objectAtIndex:1] componentsSeparatedByString:@"&"] objectAtIndex:0]];
         NSLog(@"Tinkler Key: %@", self.scannedTinklerKey);
         
-        //Validate Object QR-Code and Custom Messages boolean
-        [QCApi validateObjectsQrCodeWithCompletion:self.scannedTinklerId :self.scannedTinklerKey completion:^void(BOOL finished, BOOL isValidated, BOOL allowCustom, BOOL isBlocked, BOOL isSelfTinkler){
-            if (finished) {
-                if(isSelfTinkler){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid Scan" message:@"This Tinkler belongs to you" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                    [alertView show];
-                }else if(isBlocked){
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid Scan" message:@"This conversation is blocked" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                    [alertView show];
-                }else if (isValidated) {
-                    [self chooseMessageType:allowCustom];
-                }else{
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid QR-Code" message:@"This QR-Code is not valid" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                    [alertView show];
+        if([QCApi checkForNetwork]){
+            //Validate Object QR-Code and Custom Messages boolean
+            [QCApi validateObjectsQrCodeWithCompletion:self.scannedTinklerId :self.scannedTinklerKey completion:^void(BOOL finished, BOOL isValidated, BOOL allowCustom, BOOL isBlocked, BOOL isSelfTinkler){
+                if (finished) {
+                    if(isSelfTinkler){
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid Scan" message:@"This Tinkler belongs to you" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alertView show];
+                    }else if(isBlocked){
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid Scan" message:@"This conversation is blocked" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alertView show];
+                    }else if (isValidated) {
+                        [self chooseMessageType:allowCustom];
+                    }else{
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid QR-Code" message:@"This QR-Code is not valid" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alertView show];
+                    }
                 }
-            }
-        }];
+            }];
+        }else{
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Scan Failed" message:@"You need to have network connectivity to scan Tinklers" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
     }
 }
 
