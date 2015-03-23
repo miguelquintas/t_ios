@@ -17,6 +17,7 @@
 
 @interface QCTinklerDetailViewController : UIViewController <LTHMonthYearPickerViewDelegate, UIActionSheetDelegate, SBPickerSelectorDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *tinklerDetailView;
 @property (strong, nonatomic) IBOutlet UITextField * tinklerNameEdit;
 @property (strong, nonatomic) IBOutlet UIButton * tinklerTypeEdit;
 @property (strong, nonatomic) IBOutlet UIImageView * tinklerImage;

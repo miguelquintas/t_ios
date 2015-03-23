@@ -20,6 +20,11 @@
     self.tinklerNameEdit.text = [self.selectedTinkler tinklerName];
     [_tinklerTypeEdit setTitle:[[self.selectedTinkler tinklerType] objectForKey:@"typeName"] forState:UIControlStateNormal];
     
+    //Set Profile View background color
+    [_tinklerDetailView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
+    
+    self.title = [self.selectedTinkler tinklerName];
+    
     //Set Tinkler Image
     if([self.selectedTinkler tinklerImage] != nil){
         [[self.selectedTinkler tinklerImage] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -33,11 +38,16 @@
         self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
     }
     
+    self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;
+    self.tinklerImage.clipsToBounds = YES;
+    
     //Set Tinkler's QR-Code Image
     if([self.selectedTinkler tinklerQRCode] != nil){
         [[self.selectedTinkler tinklerQRCode] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 [self.qrCodeImage setImage:[UIImage imageWithData:data]];
+                self.qrCodeImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 10;
+                self.qrCodeImage.clipsToBounds = YES;
             }
         }];
         
@@ -96,7 +106,7 @@
     _colorTF.clearButtonMode = UITextFieldViewModeAlways;
     _colorTF.text = [self.selectedTinkler color];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(60, 295, 300, 100)];
     [view addSubview:_brandTF];
     [view addSubview:_colorTF];
     [self.view addSubview:view];
@@ -129,7 +139,7 @@
     _monthYearPicker.delegate = self;
     _petAgeTF.inputView = _monthYearPicker;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(60, 295, 300, 100)];
     //Test view position
 //    view.layer.borderColor = [UIColor redColor].CGColor;
 //    view.layer.borderWidth = 3.0f;
@@ -166,7 +176,7 @@
     _vehicleYearTF.inputView = _monthYearPicker;
     
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(60, 295, 300, 100)];
     [view addSubview:_vehiclePlateTF];
     [view addSubview:_vehicleYearTF];
     [self.view addSubview:view];
