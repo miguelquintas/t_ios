@@ -13,7 +13,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Profile";
+    self.title = @"Tinklers";
     self.tinklersTabView.allowsMultipleSelectionDuringEditing = NO;
     
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;

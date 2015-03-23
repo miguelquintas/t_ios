@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -714,7 +714,7 @@
             </objects>
             <point key="canvasLocation" x="2247" y="315"/>
         </scene>
-        <!--Profile-->
+        <!--Tinklers-->
         <scene sceneID="yxT-Ay-njS">
             <objects>
                 <viewController storyboardIdentifier="profileVC" id="GFD-GS-f5w" customClass="QCProfileViewController" sceneMemberID="viewController">
@@ -841,7 +841,7 @@
                             <constraint firstItem="e2F-s8-sml" firstAttribute="width" secondItem="yl0-Gi-K1d" secondAttribute="width" id="z2h-TR-H6Y"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profile.png" id="ORW-Va-unn"/>
+                    <tabBarItem key="tabBarItem" title="Tinklers" image="tinklers.png" id="ORW-Va-unn"/>
                     <connections>
                         <outlet property="profilePic" destination="gJH-FE-zkm" id="C8f-GQ-Ra6"/>
                         <outlet property="profileView" destination="e2F-s8-sml" id="YEg-m5-YhC"/>
@@ -942,8 +942,8 @@
     </scenes>
     <resources>
         <image name="inbox.png" width="25" height="25"/>
-        <image name="profile.png" width="25" height="25"/>
         <image name="scan.png" width="25" height="25"/>
+        <image name="tinklers.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
