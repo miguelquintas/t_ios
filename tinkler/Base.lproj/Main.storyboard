@@ -352,7 +352,16 @@
         <scene sceneID="ReS-in-0GW">
             <objects>
                 <tabBarController storyboardIdentifier="TabViewController" definesPresentationContext="YES" id="kul-5J-21Z" customClass="QCTabViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="U4A-ZL-usi"/>
+                    <navigationItem key="navigationItem" id="U4A-ZL-usi">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dma-dk-EM8">
+                            <rect key="frame" x="145" y="7" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" backgroundImage="tinklernav.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="xNH-p8-gXV">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -360,6 +369,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="tinklerNav" destination="dma-dk-EM8" id="oij-iQ-W1Z"/>
                         <segue destination="Mt8-8B-pjg" kind="relationship" relationship="viewControllers" id="NJd-U1-2wY"/>
                         <segue destination="XrC-nA-NXR" kind="relationship" relationship="viewControllers" id="tao-sD-7ZI"/>
                         <segue destination="GFD-GS-f5w" kind="relationship" relationship="viewControllers" id="NiX-O0-OhL"/>
@@ -367,7 +377,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nb7-Y7-WHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1201" y="597"/>
+            <point key="canvasLocation" x="1208" y="597"/>
         </scene>
         <!--Inbox-->
         <scene sceneID="2GK-PO-Go8">
@@ -943,6 +953,7 @@
     <resources>
         <image name="inbox.png" width="25" height="25"/>
         <image name="scan.png" width="25" height="25"/>
+        <image name="tinklernav.png" width="25" height="25"/>
         <image name="tinklers.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

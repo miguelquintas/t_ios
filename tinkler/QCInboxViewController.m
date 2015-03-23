@@ -42,7 +42,6 @@
     [super viewWillAppear:YES];
     //Set Tab Title
     [self setTitle:@"Inbox"];
-    self.tabBarController.navigationItem.title = @"Inbox";
     [self.messageTabView reloadData];
     
     //TODO refresh conversations when a new msg arrives

@@ -34,7 +34,6 @@
     [super viewWillAppear:YES];
     
     //Set Tab Title
-    self.tabBarController.navigationItem.title = @"Scan QR-Code";
     self.scannedTinklerId = @"";
     
     //if there's no internet connection hide qrCam frame

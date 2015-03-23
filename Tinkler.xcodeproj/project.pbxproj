@@ -130,6 +130,9 @@
 		BCDFFF971ABF93E4004D392E /* tinklers.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFFF941ABF93E4004D392E /* tinklers.png */; };
 		BCDFFF981ABF93E4004D392E /* tinklers@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFFF951ABF93E4004D392E /* tinklers@2x.png */; };
 		BCDFFF991ABF93E4004D392E /* tinklers@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFFF961ABF93E4004D392E /* tinklers@3x.png */; };
+		BCDFFF9D1ABF99EF004D392E /* tinklernav.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFFF9A1ABF99EF004D392E /* tinklernav.png */; };
+		BCDFFF9E1ABF99EF004D392E /* tinklernav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */; };
+		BCDFFF9F1ABF99EF004D392E /* tinklernav@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFFF9C1ABF99EF004D392E /* tinklernav@3x.png */; };
 		BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F181A755BB00087C03A /* TKHomeViewController.m */; };
 		BCE30F1C1A7563540087C03A /* TKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE30F1B1A7563540087C03A /* TKTutorialViewController.m */; };
 		BCE548D519B79A8500B8B0BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE548D419B79A8500B8B0BE /* AudioToolbox.framework */; };
@@ -375,6 +378,9 @@
 		BCDFFF941ABF93E4004D392E /* tinklers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinklers.png; sourceTree = "<group>"; };
 		BCDFFF951ABF93E4004D392E /* tinklers@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers@2x.png"; sourceTree = "<group>"; };
 		BCDFFF961ABF93E4004D392E /* tinklers@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers@3x.png"; sourceTree = "<group>"; };
+		BCDFFF9A1ABF99EF004D392E /* tinklernav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinklernav.png; sourceTree = "<group>"; };
+		BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklernav@2x.png"; sourceTree = "<group>"; };
+		BCDFFF9C1ABF99EF004D392E /* tinklernav@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklernav@3x.png"; sourceTree = "<group>"; };
 		BCE30F171A755BB00087C03A /* TKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKHomeViewController.h; sourceTree = "<group>"; };
 		BCE30F181A755BB00087C03A /* TKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKHomeViewController.m; sourceTree = "<group>"; };
 		BCE30F1A1A7563540087C03A /* TKTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTutorialViewController.h; sourceTree = "<group>"; };
@@ -859,6 +865,9 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BCDFFF9A1ABF99EF004D392E /* tinklernav.png */,
+				BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */,
+				BCDFFF9C1ABF99EF004D392E /* tinklernav@3x.png */,
 				BCDFFF941ABF93E4004D392E /* tinklers.png */,
 				BCDFFF951ABF93E4004D392E /* tinklers@2x.png */,
 				BCDFFF961ABF93E4004D392E /* tinklers@3x.png */,
@@ -969,6 +978,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */,
+				BCDFFF9F1ABF99EF004D392E /* tinklernav@3x.png in Resources */,
 				BC956DC71A9E7E710050C291 /* scan.png in Resources */,
 				5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */,
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
@@ -987,6 +997,7 @@
 				5D23D05B1AB248B7003E3DF5 /* tutorial4@3x.png in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */,
+				BCDFFF9D1ABF99EF004D392E /* tinklernav.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
 				BC956DC51A9E7E710050C291 /* profile@2x.png in Resources */,
@@ -1002,6 +1013,7 @@
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
 				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
+				BCDFFF9E1ABF99EF004D392E /* tinklernav@2x.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 				5D23D0591AB248B7003E3DF5 /* tutorial2@3x.png in Resources */,
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,

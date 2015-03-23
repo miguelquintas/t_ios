@@ -11,4 +11,5 @@
 
 @interface QCTabViewController : UITabBarController
 
+@property (weak, nonatomic) IBOutlet UIButton *tinklerNav;
 @end

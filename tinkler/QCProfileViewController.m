@@ -47,7 +47,6 @@
     self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     
     //Set Tab Title
-    self.tabBarController.navigationItem.title = @"My Profile";
     [self.tinklersTabView reloadData];
     
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
