@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */; };
 		5D23D04E1AB24886003E3DF5 /* tutorial1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D23D0491AB24886003E3DF5 /* tutorial1@2x.png */; };
 		5D23D04F1AB24886003E3DF5 /* tutorial2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D23D04A1AB24886003E3DF5 /* tutorial2@2x.png */; };
 		5D23D0501AB24886003E3DF5 /* tutorial3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D23D04B1AB24886003E3DF5 /* tutorial3@2x.png */; };
@@ -155,6 +156,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers_empty@3x.png"; sourceTree = "<group>"; };
 		5D23D0491AB24886003E3DF5 /* tutorial1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial1@2x.png"; sourceTree = "<group>"; };
 		5D23D04A1AB24886003E3DF5 /* tutorial2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial2@2x.png"; sourceTree = "<group>"; };
 		5D23D04B1AB24886003E3DF5 /* tutorial3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorial3@2x.png"; sourceTree = "<group>"; };
@@ -865,6 +867,7 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */,
 				BCDFFF9A1ABF99EF004D392E /* tinklernav.png */,
 				BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */,
 				BCDFFF9C1ABF99EF004D392E /* tinklernav@3x.png */,
@@ -1009,6 +1012,7 @@
 				5D23D0511AB24886003E3DF5 /* tutorial4@2x.png in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				5D23D05A1AB248B7003E3DF5 /* tutorial3@3x.png in Resources */,
+				5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */,
 				5D23D05C1AB248B7003E3DF5 /* tutorial5@3x.png in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,

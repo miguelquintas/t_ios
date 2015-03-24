@@ -67,16 +67,25 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [QCApi getAllTinklersWithCallBack:^(NSMutableArray *tinklersArray, NSError *error) {
             if (error == nil){
-                self.tinklers = tinklersArray;
-                [self.tinklersTabView reloadData];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
+                
+                // remove //////////////
+                //[tinklersArray removeAllObjects];
+                ////////////////////////
+
+                if ([tinklersArray count] == 0){
+                    [self.noItemsView setHidden:NO];
+                    
+                    [self.tinklersTabView setHidden:YES];
+                } else {
+                    [self.noItemsView setHidden:YES];
+                    
+                    self.tinklers = tinklersArray;
+                    [self.tinklersTabView reloadData];
+                }
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-                NSLog(@"%@", error);
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
         }];
         

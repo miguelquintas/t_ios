@@ -20,5 +20,6 @@
 
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (strong, nonatomic) IBOutlet UITableView *messageTabView;
+@property (strong, nonatomic) IBOutlet UIView *noItemsView;
 
 @end

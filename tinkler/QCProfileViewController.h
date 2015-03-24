@@ -16,15 +16,14 @@
 #import "MBProgressHUD.h"
 
 @interface QCProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIView *profileView;
 
+@property (weak, nonatomic) IBOutlet UIView *profileView;
 @property (strong, nonatomic) NSMutableArray *tinklers;
 @property (strong, nonatomic) NSArray *thumbnails;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
-
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
-
 @property (strong, nonatomic) IBOutlet UITableView *tinklersTabView;
+@property (strong, nonatomic) IBOutlet UIView *noItemsView;
 
 //Menu to select photo source
 @property (strong, nonatomic) UIActionSheet *photoSourceMenu;

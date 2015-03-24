@@ -17,21 +17,32 @@
     self.messageTabView.contentInset = UIEdgeInsetsZero;
     [super viewDidLoad];
     
+    [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+    
     //Loading spinner
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [QCApi getAllConversationsWithCallBack:^(NSMutableArray *conversationsArray, NSError *error) {
             if (error == nil){
-                self.conversations = conversationsArray;
-                [self.messageTabView reloadData];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
+
+                // remove //////////////
+                //[conversationsArray removeAllObjects];
+                ////////////////////////
+                
+                if ([conversationsArray count] == 0){
+                    [self.noItemsView setHidden:NO];
+                    
+                    [self.messageTabView setHidden:YES];
+                } else {
+                    [self.noItemsView setHidden:YES];
+                    
+                    self.conversations = conversationsArray;
+                    [self.messageTabView reloadData];
+                }
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-                NSLog(@"%@", error);
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
         }];
     });
