@@ -20,6 +20,11 @@
     self.tinklerNameEdit.text = [self.selectedTinkler tinklerName];
     [_tinklerTypeEdit setTitle:[[self.selectedTinkler tinklerType] objectForKey:@"typeName"] forState:UIControlStateNormal];
     
+    //Set Profile View background color
+    [_tinklerDetailView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
+    
+    self.title = [self.selectedTinkler tinklerName];
+    
     //Set Tinkler Image
     if([self.selectedTinkler tinklerImage] != nil){
         [[self.selectedTinkler tinklerImage] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -33,11 +38,16 @@
         self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
     }
     
+    self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;
+    self.tinklerImage.clipsToBounds = YES;
+    
     //Set Tinkler's QR-Code Image
     if([self.selectedTinkler tinklerQRCode] != nil){
         [[self.selectedTinkler tinklerQRCode] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {
                 [self.qrCodeImage setImage:[UIImage imageWithData:data]];
+                self.qrCodeImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 10;
+                self.qrCodeImage.clipsToBounds = YES;
             }
         }];
         
@@ -79,7 +89,7 @@
 
 - (void) createBagsAcessoriesAdditionalFields{
     _brandTF = [[UITextField alloc] init];
-    _brandTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 35.0f);
+    _brandTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 30.0f);
     _brandTF.delegate = self;
     _brandTF.borderStyle = UITextBorderStyleRoundedRect;
     _brandTF.placeholder = @"Brand";
@@ -88,7 +98,7 @@
     _brandTF.text = [self.selectedTinkler brand];
     
     _colorTF = [[UITextField alloc] init];
-    _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+45, 250.0f, 35.0f);
+    _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+50, 250.0f, 30.0f);
     _colorTF.delegate = self;
     _colorTF.borderStyle = UITextBorderStyleRoundedRect;
     _colorTF.placeholder = @"Color";
@@ -96,24 +106,22 @@
     _colorTF.clearButtonMode = UITextFieldViewModeAlways;
     _colorTF.text = [self.selectedTinkler color];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
-    [view addSubview:_brandTF];
-    [view addSubview:_colorTF];
-    [self.view addSubview:view];
+    [_aditionalFieldsView addSubview:_brandTF];
+    [_aditionalFieldsView addSubview:_colorTF];
+    [self.view addSubview:_aditionalFieldsView];
 }
 
 - (void) createPetAdditionalFields{
     _petBreedTF = [[UITextField alloc] init];
-    _petBreedTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 35.0f);
+    _petBreedTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 30.0f);
     _petBreedTF.delegate = self;
     _petBreedTF.borderStyle = UITextBorderStyleRoundedRect;
     _petBreedTF.placeholder = @"Breed";
     _petBreedTF.userInteractionEnabled = YES;
-    _petBreedTF.clearButtonMode = UITextFieldViewModeAlways;
     _petBreedTF.text = [self.selectedTinkler petBreed];
     
     _petAgeTF = [[UITextField alloc] init];
-    _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 35.0f);
+    _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 30.0f);
     _petAgeTF.delegate = self;
     _petAgeTF.borderStyle = UITextBorderStyleRoundedRect;
     _petAgeTF.placeholder = @"Birth Date";
@@ -129,18 +137,14 @@
     _monthYearPicker.delegate = self;
     _petAgeTF.inputView = _monthYearPicker;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
-    //Test view position
-//    view.layer.borderColor = [UIColor redColor].CGColor;
-//    view.layer.borderWidth = 3.0f;
-    [view addSubview:_petBreedTF];
-    [view addSubview:_petAgeTF];
-    [self.view addSubview:view];
+    [_aditionalFieldsView addSubview:_petBreedTF];
+    [_aditionalFieldsView addSubview:_petAgeTF];
+    [self.view addSubview:_aditionalFieldsView];
 }
 
 - (void) createVehicleAdditionalFields{
     _vehiclePlateTF = [[UITextField alloc] init];
-    _vehiclePlateTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 35.0f);
+    _vehiclePlateTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 30.0f);
     _vehiclePlateTF.delegate = self;
     _vehiclePlateTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehiclePlateTF.placeholder = @"Plate";
@@ -149,7 +153,7 @@
     _vehiclePlateTF.text = [self.selectedTinkler vehiclePlate];
     
     _vehicleYearTF = [[UITextField alloc] init];
-    _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 35.0f);
+    _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 30.0f);
     _vehicleYearTF.delegate = self;
     _vehicleYearTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehicleYearTF.placeholder = @"Year";
@@ -166,10 +170,9 @@
     _vehicleYearTF.inputView = _monthYearPicker;
     
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
-    [view addSubview:_vehiclePlateTF];
-    [view addSubview:_vehicleYearTF];
-    [self.view addSubview:view];
+    [_aditionalFieldsView addSubview:_vehiclePlateTF];
+    [_aditionalFieldsView addSubview:_vehicleYearTF];
+    [self.view addSubview:_aditionalFieldsView];
 }
 
 //Code to hide keyboard when return key is pressed

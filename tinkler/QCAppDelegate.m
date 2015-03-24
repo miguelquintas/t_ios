@@ -40,18 +40,33 @@
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     //If there is something in the notification payload go to the Inbox Tab
     if(notificationPayload) {
-    
-        //Load inbox VC here
+        //Load new messages in inbox VC here
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test" message:self.window.rootViewController delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+//        UIStoryboard *storyBoard = self.window.rootViewController.storyboard;
+//        TKTutorialViewController *vc = (TKTutorialViewController *)[storyBoard instantiateViewControllerWithIdentifier:@"TabViewController"];
+//        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController: vc];
+//        self.window.rootViewController = navVC;
     }
     
-    [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
+    [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"00CEBA"]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    
+    CGSize imageSize = CGSizeMake(40, 40);
+    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [[QCApi colorWithHexString:@"00CEBA"] setFill];
+    CGContextFillRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [[UITabBar appearance] setBackgroundImage:image];
+    [[UITabBar appearance] setTintColor:[QCApi colorWithHexString:@"FF0026"]];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     [application setStatusBarHidden:NO];
     return YES;
 }
-
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
