@@ -16,26 +16,7 @@
 - (void)viewDidLoad{
     self.messageTabView.contentInset = UIEdgeInsetsZero;
     [super viewDidLoad];
-    
-    //Loading spinner
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [QCApi getAllConversationsWithCallBack:^(NSMutableArray *conversationsArray, NSError *error) {
-            if (error == nil){
-                self.conversations = conversationsArray;
-                [self.messageTabView reloadData];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-                NSLog(@"%@", error);
-            }
-        }];
-    });
-    
+    [self loadMessages];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -73,6 +54,28 @@
             [alertView show];
         }
     }
+}
+
+- (void)loadMessages{
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [QCApi getAllConversationsWithCallBack:^(NSMutableArray *conversationsArray, NSError *error) {
+            if (error == nil){
+                self.conversations = conversationsArray;
+                [self.messageTabView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
+                NSLog(@"%@", error);
+            }
+        }];
+    });
+    
 }
 
 //Delegate methods

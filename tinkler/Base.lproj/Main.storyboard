@@ -916,40 +916,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWs-RR-8As">
-                                <rect key="frame" x="184" y="394" width="94" height="30"/>
-                                <state key="normal" title="Regenerate">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="generateQRCode:" destination="VIG-YS-9ac" eventType="touchUpInside" id="8Xm-DO-BoF"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4rA-gb-2ue">
-                                <rect key="frame" x="32" y="369" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="reY-PH-gti"/>
-                                    <constraint firstAttribute="height" constant="80" id="vVA-eT-Q4P"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2d-NR-BFo">
-                                <rect key="frame" x="32" y="457" width="101" height="30"/>
-                                <state key="normal" title="Update Tinkler">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="updateTinkler:" destination="VIG-YS-9ac" eventType="touchUpInside" id="7gM-Sd-EYp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlP-AZ-DTL">
-                                <rect key="frame" x="184" y="457" width="94" height="30"/>
-                                <state key="normal" title="Delete Tinkler">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="deleteTinkler:" destination="VIG-YS-9ac" eventType="touchUpInside" id="nVS-KT-SSa"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XO5-5n-o0h">
                                 <rect key="frame" x="35" y="269" width="250" height="30"/>
                                 <constraints>
@@ -959,28 +925,82 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCX-3B-buy">
+                                <rect key="frame" x="35" y="307" width="250" height="63"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUj-Lo-QyX">
+                                <rect key="frame" x="35" y="395" width="250" height="124"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlP-AZ-DTL">
+                                        <rect key="frame" x="156" y="88" width="94" height="30"/>
+                                        <state key="normal" title="Delete Tinkler">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteTinkler:" destination="VIG-YS-9ac" eventType="touchUpInside" id="nVS-KT-SSa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2d-NR-BFo">
+                                        <rect key="frame" x="0.0" y="88" width="101" height="30"/>
+                                        <state key="normal" title="Update Tinkler">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="updateTinkler:" destination="VIG-YS-9ac" eventType="touchUpInside" id="7gM-Sd-EYp"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rA-gb-2ue">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="reY-PH-gti"/>
+                                            <constraint firstAttribute="height" constant="80" id="vVA-eT-Q4P"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWs-RR-8As">
+                                        <rect key="frame" x="156" y="25" width="94" height="30"/>
+                                        <state key="normal" title="Regenerate">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="generateQRCode:" destination="VIG-YS-9ac" eventType="touchUpInside" id="8Xm-DO-BoF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="S2d-NR-BFo" secondAttribute="bottom" constant="6" id="0U0-0e-XI3"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlP-AZ-DTL" secondAttribute="bottom" constant="6" id="1Ng-Qz-VmE"/>
+                                    <constraint firstItem="4rA-gb-2ue" firstAttribute="leading" secondItem="GUj-Lo-QyX" secondAttribute="leading" id="4LW-4B-smq"/>
+                                    <constraint firstAttribute="trailing" secondItem="AWs-RR-8As" secondAttribute="trailing" id="AaL-H2-K8N"/>
+                                    <constraint firstAttribute="height" constant="124" id="C7r-gK-QBU"/>
+                                    <constraint firstAttribute="trailing" secondItem="IlP-AZ-DTL" secondAttribute="trailing" id="CMI-oY-rff"/>
+                                    <constraint firstItem="S2d-NR-BFo" firstAttribute="leading" secondItem="GUj-Lo-QyX" secondAttribute="leading" id="Pcc-LP-yr1"/>
+                                    <constraint firstItem="4rA-gb-2ue" firstAttribute="top" secondItem="GUj-Lo-QyX" secondAttribute="top" id="ary-rY-dIq"/>
+                                    <constraint firstAttribute="width" constant="250" id="vYU-a2-M67"/>
+                                    <constraint firstItem="AWs-RR-8As" firstAttribute="top" secondItem="GUj-Lo-QyX" secondAttribute="top" constant="25" id="vkT-yO-b7x"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kEu-ro-f7q" firstAttribute="top" secondItem="S2d-NR-BFo" secondAttribute="bottom" constant="32" id="1bU-zN-aSO"/>
                             <constraint firstAttribute="centerX" secondItem="HuU-Rx-AYu" secondAttribute="centerX" id="2jh-Yy-X5Q"/>
-                            <constraint firstItem="kEu-ro-f7q" firstAttribute="top" secondItem="IlP-AZ-DTL" secondAttribute="bottom" constant="32" id="6ce-01-Gk1"/>
                             <constraint firstItem="HuU-Rx-AYu" firstAttribute="top" secondItem="Tc6-cU-hdP" secondAttribute="bottom" constant="21" id="8hg-5r-8Vy"/>
-                            <constraint firstItem="S2d-NR-BFo" firstAttribute="top" secondItem="4rA-gb-2ue" secondAttribute="bottom" constant="8" id="FiU-UM-tDQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AWs-RR-8As" secondAttribute="trailing" constant="26" id="H9X-MV-Ewr"/>
+                            <constraint firstItem="OCX-3B-buy" firstAttribute="width" secondItem="HuU-Rx-AYu" secondAttribute="width" id="K8G-nr-b7V"/>
                             <constraint firstItem="XO5-5n-o0h" firstAttribute="top" secondItem="HuU-Rx-AYu" secondAttribute="bottom" constant="8" id="Nl3-uq-CbI"/>
                             <constraint firstItem="Tc6-cU-hdP" firstAttribute="top" secondItem="p5E-mT-3Nm" secondAttribute="bottom" id="RAU-w4-4UV"/>
+                            <constraint firstAttribute="centerX" secondItem="GUj-Lo-QyX" secondAttribute="centerX" id="Xdc-zt-bGG"/>
                             <constraint firstItem="Tc6-cU-hdP" firstAttribute="width" secondItem="gcZ-Lu-tEJ" secondAttribute="width" id="YVe-f0-b93"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IlP-AZ-DTL" secondAttribute="trailing" constant="26" id="bXa-Zv-B0u"/>
+                            <constraint firstItem="OCX-3B-buy" firstAttribute="top" secondItem="XO5-5n-o0h" secondAttribute="bottom" constant="8" id="Yh9-Aj-HTr"/>
                             <constraint firstAttribute="centerX" secondItem="XO5-5n-o0h" secondAttribute="centerX" id="gtp-r2-kTQ"/>
-                            <constraint firstItem="IlP-AZ-DTL" firstAttribute="top" secondItem="AWs-RR-8As" secondAttribute="bottom" constant="33" id="hDV-oZ-EZ4"/>
-                            <constraint firstItem="S2d-NR-BFo" firstAttribute="leading" secondItem="gcZ-Lu-tEJ" secondAttribute="leadingMargin" constant="16" id="nfu-ei-Ltq"/>
                             <constraint firstAttribute="centerX" secondItem="Tc6-cU-hdP" secondAttribute="centerX" id="nhk-21-Eci"/>
-                            <constraint firstItem="4rA-gb-2ue" firstAttribute="leading" secondItem="gcZ-Lu-tEJ" secondAttribute="leadingMargin" constant="16" id="oOJ-T6-59d"/>
+                            <constraint firstItem="GUj-Lo-QyX" firstAttribute="top" secondItem="OCX-3B-buy" secondAttribute="bottom" constant="25" id="tgx-dQ-dCT"/>
+                            <constraint firstAttribute="centerX" secondItem="OCX-3B-buy" secondAttribute="centerX" id="tjK-QK-A85"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gx4-qp-gIP"/>
                     <connections>
+                        <outlet property="aditionalFieldsView" destination="OCX-3B-buy" id="9fz-qA-uID"/>
                         <outlet property="qrCodeImage" destination="4rA-gb-2ue" id="Mzw-S8-Di1"/>
                         <outlet property="tinklerDetailView" destination="Tc6-cU-hdP" id="yrC-f4-BfY"/>
                         <outlet property="tinklerImage" destination="DOo-0W-b6L" id="ldE-6t-QEa"/>

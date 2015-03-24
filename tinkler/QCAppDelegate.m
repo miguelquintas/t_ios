@@ -40,8 +40,11 @@
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     //If there is something in the notification payload go to the Inbox Tab
     if(notificationPayload) {
-    
-        //Load inbox VC here
+        //Load new messages in inbox VC here
+        UIStoryboard *storyBoard = self.window.rootViewController.storyboard;
+        TKTutorialViewController *vc = (TKTutorialViewController *)[storyBoard instantiateViewControllerWithIdentifier:@"TabViewController"];
+        UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController: vc];
+        self.window.rootViewController = navVC;
     }
     
     [[UINavigationBar appearance] setBarTintColor:[QCApi colorWithHexString:@"73CACD"]];
@@ -51,7 +54,6 @@
     [application setStatusBarHidden:NO];
     return YES;
 }
-
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
