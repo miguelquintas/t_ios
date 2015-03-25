@@ -106,7 +106,7 @@
     //Or query to get all this user's conversations
     PFQuery *myConv = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:startedConv,toConv,nil]];
         
-    [myConv orderByDescending:@"updatedAt"];
+    [myConv orderByDescending:@"lastMessageDate"];
     [myConv includeKey:@"talkingToTinkler"];
     [myConv includeKey:@"starterUser"];
     [myConv includeKey:@"talkingToUser"];
@@ -163,75 +163,92 @@
         QCConversation *conversation = [QCConversation new];
         [conversation setConversationId:object.objectId];
         [conversation setTalkingToTinkler:[object objectForKey:@"talkingToTinkler"]];
-        
+        [conversation setLastSentDate:[conversation conversationDateToString:[object objectForKey:@"lastMessageDate"]]];
         //If the current user started this conversation then set the talkingToUser and the was Deleted values accordingly
         if([[[object objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
             [conversation setTalkingToUser:[object objectForKey:@"talkingToUser"]];
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByStarter"]boolValue]];
             [conversation setIsLocked:[[object objectForKey:@"isLockedByStarter"]boolValue]];
+            [conversation setHasUnreadMsg:[[object objectForKey:@"starterHasUnreadMsgs"]boolValue]];
         }else{
             [conversation setTalkingToUser:[object objectForKey:@"starterUser"]];
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
             [conversation setIsLocked:[[object objectForKey:@"isLockedByTo"]boolValue]];
+            [conversation setHasUnreadMsg:[[object objectForKey:@"toHasUnreadMsgs"]boolValue]];
         }
         
-        if([self checkForNetwork]){
-            //Get the messages from the relation "messages"
-            // create a relation based on the messages key
-            PFRelation *relation = [object relationForKey:@"messages"];
-            // generate a query based on that relation
-            PFQuery *messagesQuery = [relation query];
-            [messagesQuery orderByDescending:@"createdAt"];
-            [messagesQuery includeKey:@"type"];
-            [messagesQuery includeKey:@"tinkler"];
-            [messagesQuery includeKey:@"from"];
-            [messagesQuery includeKey:@"to"];
-            NSArray *messageObjects =[messagesQuery findObjects];
-            
-            //Pin queried messages objects
-            [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
-            
-            //Set the messages array to this conversation
-            [conversation setConversationMsgs:[self createMessageObj:messageObjects :conversation]];
-            
-            //Check blocked conversations and deleted conversations
-            if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
-                [conversations addObject:conversation];
-            }else{
-                NSLog(@"This conversation is blocked");
-            }
-            
+        //Check blocked conversations and deleted conversations
+        if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
+            [conversations addObject:conversation];
         }else{
-            // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
-            PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
-            [messagesQuery orderByDescending:@"createdAt"];
-            [messagesQuery includeKey:@"type"];
-            [messagesQuery includeKey:@"tinkler"];
-            [messagesQuery includeKey:@"from"];
-            [messagesQuery includeKey:@"to"];
-            [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
-            
-            [messagesQuery fromPinWithName:@"pinnedMessages"];
-            NSArray *messageObjects =[messagesQuery findObjects];
-            
-            //Set the messages array to this conversation
-            [conversation setConversationMsgs:[self createMessageObj:messageObjects :conversation]];
-            
-            //Check blocked conversations and deleted conversations
-            if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){
-                [conversations addObject:conversation];
-            }else{
-                NSLog(@"This conversation is blocked");
-            }
+            NSLog(@"This conversation is blocked");
         }
     }
     
     return conversations;
 }
 
-+ (NSMutableArray *) createMessageObj:(NSArray *) objects :(QCConversation *) conversation{
+
++(void) getAllMessagesWithCallBack:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block {
+    
+    if([self checkForNetwork]){
+        //Get selected conversation object
+        PFQuery *selectedConversationquery = [PFQuery queryWithClassName:@"Conversation"];
+        PFObject *selectedConversation = [selectedConversationquery getObjectWithId:conversation.conversationId];
+        
+        //If the current user started this conversation set hasUnreadMsg to false
+        if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
+        }else{
+            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
+        }
+        
+        [selectedConversation saveEventually];
+        
+        //Get the messages from the relation "messages"
+        // create a relation based on the messages key
+        PFRelation *relation = [selectedConversation relationForKey:@"messages"];
+        // generate a query based on that relation
+        PFQuery *messagesQuery = [relation query];
+        [messagesQuery orderByDescending:@"createdAt"];
+        [messagesQuery includeKey:@"type"];
+        [messagesQuery includeKey:@"tinkler"];
+        [messagesQuery includeKey:@"from"];
+        [messagesQuery includeKey:@"to"];
+        NSArray *messageObjects =[messagesQuery findObjects];
+        
+        //Unpin previous objects and then pin new collected ones
+        [PFObject unpinAllInBackground:messageObjects withName:@"pinnedMessages" block:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
+            }else{
+                // Log details of the failure
+                NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+            }
+        }];
+        
+        block([self createMessageObj:messageObjects],nil);
+        
+    }else{
+        // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
+        PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
+        [messagesQuery orderByDescending:@"createdAt"];
+        [messagesQuery includeKey:@"type"];
+        [messagesQuery includeKey:@"tinkler"];
+        [messagesQuery includeKey:@"from"];
+        [messagesQuery includeKey:@"to"];
+        [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
+    
+        [messagesQuery fromPinWithName:@"pinnedMessages"];
+        NSArray *messageObjects =[messagesQuery findObjects];
+        
+        block([self createMessageObj:messageObjects],nil);
+    }
+    
+}
+
++ (NSMutableArray *) createMessageObj:(NSArray *) objects{
     NSMutableArray *messages = [NSMutableArray new];
-    int countLastSentDate =0;
     for (PFObject *object in objects) {
         
         //Create Message Object
@@ -244,19 +261,7 @@
         [message setSentDate:object.createdAt];
         [message setTargetTinkler:[object objectForKey:@"tinkler"]];
         [message setIsRead:[[object objectForKey:@"read"]boolValue]];
-        
-        //Set LastSent Date with the most recent message date
-        if(countLastSentDate==0){
-            [conversation setLastSentDate:[message messageDateToString:object.createdAt]];
-        }
-        
-        //Set hasUnreadMsg checking if there is any message sent to this user to read
-        if([[message to].objectId isEqualToString:[PFUser currentUser].objectId] && ![[object objectForKey:@"read"]boolValue]){
-            [conversation setHasUnreadMsg:YES];
-        }
-        
         [messages addObject:message];
-        countLastSentDate++;
     }
     
     return messages;

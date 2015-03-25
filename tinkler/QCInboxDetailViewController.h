@@ -26,6 +26,6 @@
 @property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
 
 - (void)loadConversationMessages;
-
+- (void)refreshMsgs:(NSMutableArray *) messagesArray;
 
 @end

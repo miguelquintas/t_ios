@@ -16,7 +16,6 @@
 - (void)viewDidLoad{
     self.messageTabView.contentInset = UIEdgeInsetsZero;
     [super viewDidLoad];
-    [self loadMessages];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -25,8 +24,9 @@
     [self setTitle:@"Inbox"];
     [self.messageTabView reloadData];
     
-    //TODO refresh conversations when a new msg arrives
-    
+    [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+
+    [self loadMessages];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -62,16 +62,23 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [QCApi getAllConversationsWithCallBack:^(NSMutableArray *conversationsArray, NSError *error) {
             if (error == nil){
-                self.conversations = conversationsArray;
-                [self.messageTabView reloadData];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
+                
+                //[conversationsArray removeAllObjects];
+                
+                if ([conversationsArray count] == 0){
+                    [self.noItemsView setHidden:NO];
+                    
+                    [self.messageTabView setHidden:YES];
+                } else {
+                    [self.noItemsView setHidden:YES];
+                    
+                    self.conversations = conversationsArray;
+                    [self.messageTabView reloadData];
+                }
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-                NSLog(@"%@", error);
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
         }];
     });
@@ -114,13 +121,9 @@
         cell.msgNotification.hidden = NO;
         cell.msgNotification.layer.cornerRadius = cell.msgNotification.frame.size.width / 2;
         cell.msgNotification.clipsToBounds = YES;
-        [cell.msgNotification setBackgroundColor:[QCApi colorWithHexString:@"73CACD"]];
-        [cell.tinklerNameLabel setFont:[UIFont boldSystemFontOfSize:17]];
-        [cell.sentDate setFont:[UIFont boldSystemFontOfSize:11]];
+        [cell.msgNotification setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
     }else{
         cell.msgNotification.hidden = YES;
-        [cell.tinklerNameLabel setFont:[UIFont systemFontOfSize:17]];
-        [cell.sentDate setFont:[UIFont systemFontOfSize:11]];
     }
     
     return cell;

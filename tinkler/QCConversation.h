@@ -21,4 +21,7 @@
 @property (nonatomic) Boolean wasDeleted;
 @property (nonatomic) Boolean isLocked;
 
+- (NSString *) conversationDateToString:(NSDate *) updateDate;
+- (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
+
 @end

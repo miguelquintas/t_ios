@@ -17,6 +17,7 @@
 
 @interface QCApi : NSObject
 + (void) getAllConversationsWithCallBack:(void (^)(NSMutableArray *conversationsArray, NSError *error))block ;
++(void) getAllMessagesWithCallBack:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block;
 + (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block;
 + (void)addTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;
 + (void)editTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;

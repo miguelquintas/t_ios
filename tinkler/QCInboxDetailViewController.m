@@ -51,8 +51,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
-    //Set all this conversation messages as seen
-    [QCApi setMessagesAsRead:_selectedConversation.conversationMsgs];
 }
 
 - (void) blockConversation{
@@ -77,18 +75,26 @@
 
 - (void)loadConversationMessages {
     self.messages = [[NSMutableArray alloc] init];
-    
-    //Run through the reversed messages array to have the most recent msgs displayed at the bottom of the screen
-    for(QCMessage *message in [[self.selectedConversation.conversationMsgs reverseObjectEnumerator]allObjects]){
-        //Case when its the current user sending an answer through a custom message
-        if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
-            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
-            [self.messages addObject:newMessage];
-        }else {
-            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:[message msgType][@"text"] ];
-            [self.messages addObject:newMessage];
+    [QCApi getAllMessagesWithCallBack:_selectedConversation:^(NSMutableArray *messagesArray, NSError *error) {
+        if (error == nil){
+            [_selectedConversation setConversationMsgs:messagesArray];
+            
+            //Run through the reversed messages array to have the most recent msgs displayed at the bottom of the screen
+            for(QCMessage *message in [[messagesArray reverseObjectEnumerator]allObjects]){
+                //Case when its the current user sending an answer through a custom message
+                if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
+                    JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
+                    [self.messages addObject:newMessage];
+                }else {
+                    JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:[message msgType][@"text"] ];
+                    [self.messages addObject:newMessage];
+                }
+            }
+        } else {
+            NSLog(@"Error loading selected conversation messages");
         }
-    }
+    }];
+    
 }
 
 - (void) answerPushNotification:(NSString *) messageType :(NSString *) messageToSend{
