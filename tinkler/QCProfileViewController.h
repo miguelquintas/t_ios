@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tinklersTabView;
 @property (strong, nonatomic) IBOutlet UIView *noItemsView;
+@property (weak, nonatomic) IBOutlet UIButton *createNewButton;
 
 //Menu to select photo source
 @property (strong, nonatomic) UIActionSheet *photoSourceMenu;

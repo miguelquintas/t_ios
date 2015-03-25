@@ -62,7 +62,7 @@
     UIGraphicsEndImageContext();
     
     [[UITabBar appearance] setBackgroundImage:image];
-    [[UITabBar appearance] setTintColor:[QCApi colorWithHexString:@"FF0026"]];
+    [[UITabBar appearance] setTintColor:[QCApi colorWithHexString:@"EE463E"]];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     [application setStatusBarHidden:NO];
     return YES;

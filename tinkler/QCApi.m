@@ -175,7 +175,7 @@
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
             [conversation setIsLocked:[[object objectForKey:@"isLockedByTo"]boolValue]];
             [conversation setHasUnreadMsg:[[object objectForKey:@"toHasUnreadMsgs"]boolValue]];
-        }
+        } 
         
         //Check blocked conversations and deleted conversations
         if(![[object objectForKey:@"isBlocked"]boolValue] && !conversation.wasDeleted){

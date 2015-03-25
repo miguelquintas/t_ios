@@ -25,6 +25,22 @@
     
     self.title = [self.selectedTinkler tinklerName];
     
+    //Edit the buttons style
+    [_regenerateButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_regenerateButton.layer setBorderWidth:1.0];
+    [_regenerateButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_regenerateButton.layer setCornerRadius: 6.0f];
+    
+    [_deleteButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_deleteButton.layer setBorderWidth:1.0];
+    [_deleteButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_deleteButton.layer setCornerRadius: 6.0f];
+    
+    [_updateButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_updateButton.layer setBorderWidth:1.0];
+    [_updateButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_updateButton.layer setCornerRadius: 6.0f];
+    
     //Set Tinkler Image
     if([self.selectedTinkler tinklerImage] != nil){
         [[self.selectedTinkler tinklerImage] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {

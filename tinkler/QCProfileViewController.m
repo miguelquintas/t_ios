@@ -24,6 +24,13 @@
     NSData *imageData = [defaults dataForKey:@"profilePic"];
     UIImage *storedProfilePic = [UIImage imageWithData:imageData];
     
+    //Edit the buttons style
+    [_createNewButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_createNewButton.layer setBorderWidth:1.0];
+    [_createNewButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_createNewButton.layer setCornerRadius: 6.0f];
+    
+    
     //Set profile pic from NSUserDefaults
     if(imageData == nil){
         //Load the default profile pic
@@ -43,7 +50,7 @@
     [super viewWillAppear:YES];
     
     //Set the logout button conversation button
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutUser)];
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
     self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     
     //Set Tab Title
@@ -93,11 +100,8 @@
     
 }
 
-- (void) logoutUser{
-    [PFUser logOut];
-    
-    // Present the home view controller
-    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
+- (void)goToSettings{
+    [self performSegueWithIdentifier:@"goToSettings" sender:self];
 }
 
 //Delegate methods

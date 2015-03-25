@@ -17,5 +17,6 @@
 - (IBAction)changePasswordButton:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UISwitch *customMsgSwitch;
+- (IBAction)logoutButton:(id)sender;
 
 @end

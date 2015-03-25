@@ -51,6 +51,11 @@
 //Variables to pass information
 @property (nonatomic, strong) QCTinkler *selectedTinkler;
 
+@property (weak, nonatomic) IBOutlet UIButton *regenerateButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *updateButton;
+
+
 -(void)editTinkler;
 - (IBAction)generateQRCode:(id)sender;
 - (IBAction)selectPhoto:(id)sender;

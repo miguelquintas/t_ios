@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    self.title = @"Settings";
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [self.userNameEdit setText:[defaults stringForKey:@"name"]];
     
@@ -75,5 +77,11 @@
 
 }
 
+- (IBAction)logoutButton:(id)sender {
+    [PFUser logOut];
+    
+    // Present the home view controller
+    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
+}
 
 @end
