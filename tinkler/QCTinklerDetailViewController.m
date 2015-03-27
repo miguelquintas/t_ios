@@ -105,7 +105,7 @@
 
 - (void) createBagsAcessoriesAdditionalFields{
     _brandTF = [[UITextField alloc] init];
-    _brandTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 30.0f);
+    _brandTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
     _brandTF.delegate = self;
     _brandTF.borderStyle = UITextBorderStyleRoundedRect;
     _brandTF.placeholder = @"Brand";
@@ -114,7 +114,7 @@
     _brandTF.text = [self.selectedTinkler brand];
     
     _colorTF = [[UITextField alloc] init];
-    _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+50, 250.0f, 30.0f);
+    _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+50, 250.0f, 40.0f);
     _colorTF.delegate = self;
     _colorTF.borderStyle = UITextBorderStyleRoundedRect;
     _colorTF.placeholder = @"Color";
@@ -129,7 +129,7 @@
 
 - (void) createPetAdditionalFields{
     _petBreedTF = [[UITextField alloc] init];
-    _petBreedTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 30.0f);
+    _petBreedTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
     _petBreedTF.delegate = self;
     _petBreedTF.borderStyle = UITextBorderStyleRoundedRect;
     _petBreedTF.placeholder = @"Breed";
@@ -137,7 +137,7 @@
     _petBreedTF.text = [self.selectedTinkler petBreed];
     
     _petAgeTF = [[UITextField alloc] init];
-    _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 30.0f);
+    _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 40.0f);
     _petAgeTF.delegate = self;
     _petAgeTF.borderStyle = UITextBorderStyleRoundedRect;
     _petAgeTF.placeholder = @"Birth Date";
@@ -160,7 +160,7 @@
 
 - (void) createVehicleAdditionalFields{
     _vehiclePlateTF = [[UITextField alloc] init];
-    _vehiclePlateTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 30.0f);
+    _vehiclePlateTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
     _vehiclePlateTF.delegate = self;
     _vehiclePlateTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehiclePlateTF.placeholder = @"Plate";
@@ -169,7 +169,7 @@
     _vehiclePlateTF.text = [self.selectedTinkler vehiclePlate];
     
     _vehicleYearTF = [[UITextField alloc] init];
-    _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 30.0f);
+    _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 40.0f);
     _vehicleYearTF.delegate = self;
     _vehicleYearTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehicleYearTF.placeholder = @"Year";

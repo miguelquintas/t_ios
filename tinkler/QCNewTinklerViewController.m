@@ -20,6 +20,13 @@
     //Load the default vehicle pic
     self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
     
+    //Set the border color of the name textfield
+//    UIColor* blueColor = ([QCApi colorWithHexString:@"00CEBA"]);
+//    _tinklerName.layer.cornerRadius=8.0f;
+//    _tinklerName.layer.masksToBounds=YES;
+//    _tinklerName.layer.borderColor=(__bridge CGColorRef)(blueColor);
+//    _tinklerName.layer.borderWidth= 1.0f;
+    
     //Get the existing Tinkler Types
     [QCApi getAllTinklerTypesWithCallBack:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
         if (error == nil){
