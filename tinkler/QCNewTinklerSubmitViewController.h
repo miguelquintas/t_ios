@@ -16,13 +16,15 @@
 
 @interface QCNewTinklerSubmitViewController : UIViewController <LTHMonthYearPickerViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 
-@property (strong, nonatomic) IBOutlet UILabel *tinklerNameLabel;
-
 @property (strong, nonatomic) IBOutlet UIImageView *tinklerImage;
 @property (strong, nonatomic) IBOutlet UILabel *tinklerTypeLabel;
+@property (weak, nonatomic) IBOutlet UIView *additionalFields;
 
 //New Tinkler Name
 @property (strong, nonatomic) NSString *tinklerName;
+
+//New Tinkler's Photo
+@property (strong, nonatomic) UIImage *selectedImage;
 
 //Selected Tinkler Type
 @property (strong, nonatomic) PFObject *tinklerType;
@@ -43,6 +45,7 @@
 @property (strong, nonatomic) IBOutlet UITextField * petAgeTF;
 @property (strong, nonatomic) IBOutlet UITextField * brandTF;
 @property (strong, nonatomic) IBOutlet UITextField * colorTF;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 - (QCTinkler*)saveNewTinkler;
 

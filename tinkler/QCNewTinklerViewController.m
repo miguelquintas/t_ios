@@ -17,9 +17,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    //Hide the type selector
-    _tinklerType.hidden = YES;
-    _tinklerTypeLabel.hidden = YES;
+    //Load the default vehicle pic
+    self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
     
     //Get the existing Tinkler Types
     [QCApi getAllTinklerTypesWithCallBack:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
@@ -31,6 +30,14 @@
             NSLog(@"%@", error);
         }
     }];
+    
+    self.title = @"New Tinkler";
+    
+    //Edit the buttons style
+    [_nextButtonOutlet setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_nextButtonOutlet.layer setBorderWidth:1.0];
+    [_nextButtonOutlet.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_nextButtonOutlet.layer setCornerRadius: 6.0f];
     
     //TinklerTypePicker Initialization
     [_tinklerType addTarget:self action:@selector(showTinklerTypePicker:) forControlEvents:UIControlEventTouchUpInside];
@@ -72,13 +79,53 @@
     
     if(!([_tinklerName.text length] == 0) && ![_tinklerType.titleLabel.text isEqualToString:@"Select Type"]){
         [self performSegueWithIdentifier:@"submitTinkler" sender:self];
-    }else if(!([_tinklerName.text length] == 0)){
-        _tinklerType.hidden = NO;
-        _tinklerTypeLabel.hidden = NO;
-        [_tinklerType sendActionsForControlEvents:UIControlEventTouchUpInside];
     }else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Empty Name" message:@"Please name your Tinkler before continuing" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Missing Data" message:@"Please fill in the name and type of your new Tinkler before continuing" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
+    }
+}
+
+- (IBAction)tinklerImagePicker:(id)sender {
+    _photoSourceMenu = [[UIActionSheet alloc] initWithTitle:@"Select the picture's source"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                     destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Camera", @"Photo Library", nil];
+    
+    // Show the sheet
+    [_photoSourceMenu showInView:self.view];
+}
+
+//Delegate methods for imagePicker
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.tinklerImage.image = chosenImage;
+    
+    //Change the clicked button flag
+    self.hasNewPhoto = true;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button %ld", (long)buttonIndex);
+    if(buttonIndex == 0){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }else if (buttonIndex == 1){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
     }
 }
 
@@ -102,11 +149,13 @@
     }
 }
 
-//Code to pass selected Tinkler's data to the Tinkler Edit View Controller
+//Code to pass selected Tinkler's data to the Tinkler Submit View Controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"submitTinkler"]) {
         QCNewTinklerSubmitViewController *destViewController = segue.destinationViewController;
         destViewController.tinklerName = _tinklerName.text;
+        destViewController.selectedImage = _tinklerImage.image;
+        destViewController.hasNewPhoto = _hasNewPhoto;
         
         //Set TinklerType Object to the new Tinkler
         for (PFObject *selectedTinklerType in self.tinklerTypes){

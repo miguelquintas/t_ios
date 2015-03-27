@@ -38,7 +38,6 @@
     }else{
         self.profilePic.image = storedProfilePic;
     }
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

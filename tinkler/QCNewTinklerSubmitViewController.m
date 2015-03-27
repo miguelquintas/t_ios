@@ -18,13 +18,18 @@
     [super viewDidLoad];
     
     //Load the default vehicle pic
-    self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
-    
+    [self.tinklerImage setImage:_selectedImage];
     //Set the tinkler name and type to the respective labels
-    [self.tinklerNameLabel setText:_tinklerName];
-    [self.tinklerNameLabel setCenter:self.view.center];
+    self.title = _tinklerName;
+    
     NSString *tinklerTypeName =[_tinklerType objectForKey:@"typeName"];
     [self.tinklerTypeLabel setText:tinklerTypeName];
+    
+    //Edit the buttons style
+    [_submitButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_submitButton.layer setBorderWidth:1.0];
+    [_submitButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_submitButton.layer setCornerRadius: 6.0f];
     
     //Display the optional fields for each tinkler type
     if ([tinklerTypeName isEqualToString:@"Vehicle"]) {
@@ -40,12 +45,11 @@
 
 - (void) createBagsAcessoriesAdditionalFields{
     _brandTF = [[UITextField alloc] init];
-    _brandTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 35.0f);
+    _brandTF.frame = CGRectMake(0.0f, 30.0f, 250.0f, 35.0f);
     _brandTF.delegate = self;
     _brandTF.borderStyle = UITextBorderStyleRoundedRect;
     _brandTF.placeholder = @"Brand";
     _brandTF.userInteractionEnabled = YES;
-    _brandTF.clearButtonMode = UITextFieldViewModeAlways;
     
     _colorTF = [[UITextField alloc] init];
     _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+45, 250.0f, 35.0f);
@@ -53,22 +57,19 @@
     _colorTF.borderStyle = UITextBorderStyleRoundedRect;
     _colorTF.placeholder = @"Color";
     _colorTF.userInteractionEnabled = YES;
-    _colorTF.clearButtonMode = UITextFieldViewModeAlways;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
-    [view addSubview:_brandTF];
-    [view addSubview:_colorTF];
-    [self.view addSubview:view];
+    [_additionalFields addSubview:_brandTF];
+    [_additionalFields addSubview:_colorTF];
+    [self.view addSubview:_additionalFields];
 }
 
 - (void) createPetAdditionalFields{
     _petBreedTF = [[UITextField alloc] init];
-    _petBreedTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 35.0f);
+    _petBreedTF.frame = CGRectMake(0.0f, 30.0f, 250.0f, 35.0f);
     _petBreedTF.delegate = self;
     _petBreedTF.borderStyle = UITextBorderStyleRoundedRect;
     _petBreedTF.placeholder = @"Breed";
     _petBreedTF.userInteractionEnabled = YES;
-    _petBreedTF.clearButtonMode = UITextFieldViewModeAlways;
     
     _petAgeTF = [[UITextField alloc] init];
     _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 35.0f);
@@ -76,7 +77,6 @@
     _petAgeTF.borderStyle = UITextBorderStyleRoundedRect;
     _petAgeTF.placeholder = @"Birth Date";
     _petAgeTF.userInteractionEnabled = YES;
-    _petAgeTF.clearButtonMode = UITextFieldViewModeAlways;
     
     //Datepicker initialization
     _monthYearPicker = [[LTHMonthYearPickerView alloc] initWithDate: [NSDate date]
@@ -86,20 +86,18 @@
     _monthYearPicker.delegate = self;
     _petAgeTF.inputView = _monthYearPicker;
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
-    [view addSubview:_petBreedTF];
-    [view addSubview:_petAgeTF];
-    [self.view addSubview:view];
+    [_additionalFields addSubview:_petBreedTF];
+    [_additionalFields addSubview:_petAgeTF];
+    [self.view addSubview:_additionalFields];
 }
 
 - (void) createVehicleAdditionalFields{
     _vehiclePlateTF = [[UITextField alloc] init];
-    _vehiclePlateTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 35.0f);
+    _vehiclePlateTF.frame = CGRectMake(0.0f, 30.0f, 250.0f, 35.0f);
     _vehiclePlateTF.delegate = self;
     _vehiclePlateTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehiclePlateTF.placeholder = @"Plate";
     _vehiclePlateTF.userInteractionEnabled = YES;
-    _vehiclePlateTF.clearButtonMode = UITextFieldViewModeAlways;
     
     _vehicleYearTF = [[UITextField alloc] init];
     _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 35.0f);
@@ -107,8 +105,6 @@
     _vehicleYearTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehicleYearTF.placeholder = @"Year";
     _vehicleYearTF.userInteractionEnabled = YES;
-    _vehicleYearTF.clearButtonMode = UITextFieldViewModeAlways;
-    
     
     //Datepicker initialization
     _monthYearPicker = [[LTHMonthYearPickerView alloc] initWithDate: [NSDate date]
@@ -119,10 +115,9 @@
     _vehicleYearTF.inputView = _monthYearPicker;
 
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(15, 330, 300, 100)];
-    [view addSubview:_vehiclePlateTF];
-    [view addSubview:_vehicleYearTF];
-    [self.view addSubview:view];
+    [_additionalFields addSubview:_vehiclePlateTF];
+    [_additionalFields addSubview:_vehicleYearTF];
+    [self.view addSubview:_additionalFields];
 }
 
 - (void)didReceiveMemoryWarning {

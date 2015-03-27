@@ -13,18 +13,27 @@
 #import "QCNewTinklerSubmitViewController.h"
 #import "SBPickerSelector.h"
 
-@interface QCNewTinklerViewController : UIViewController <UIActionSheetDelegate, SBPickerSelectorDelegate>
+@interface QCNewTinklerViewController : UIViewController <UIActionSheetDelegate, SBPickerSelectorDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *tinklerName;
 @property (strong, nonatomic) IBOutlet UIButton *tinklerType;
 @property (strong, nonatomic) IBOutlet UILabel *tinklerTypeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
+@property (weak, nonatomic) IBOutlet UIImageView *tinklerImage;
 
 //Array with the existing tinkler types objects
 @property (strong, nonatomic) NSArray *tinklerTypes;
 
+//Selected new photo flag
+@property (nonatomic) BOOL hasNewPhoto;
+
+//Menu to select photo source
+@property (strong, nonatomic) UIActionSheet *photoSourceMenu;
+
 //Array with the existing tinkler types names
 @property (strong, nonatomic) NSMutableArray *tinklerTypeNames;
 - (IBAction)nextButton:(id)sender;
+- (IBAction)tinklerImagePicker:(id)sender;
 
 
 @end
