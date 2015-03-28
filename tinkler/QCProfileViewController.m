@@ -67,36 +67,97 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    //Verify if user has updated the tinklers list - through user preferences
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    bool hasUpdatedTinklers = [defaults boolForKey:@"hasUpdatedTinkler"];
     
+    if(hasUpdatedTinklers) {
+        [self getTinklersOnline];
+        //Set PushNotification Preference OFF
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:@"hasUpdatedTinkler"];
+        [defaults synchronize];
+    } else {
+        [self refreshTinklers];
+    }
+    
+    
+}
+
+- (void)refreshTinklers{
     //Loading spinner
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [QCApi getAllTinklersWithCallBack:^(NSMutableArray *tinklersArray, NSError *error) {
+        [QCApi getLocalTinklers:^(NSMutableArray *localTinklersArray, NSError *error) {
             if (error == nil){
-                
-                // remove //////////////
-                //[tinklersArray removeAllObjects];
-                ////////////////////////
-
-                if ([tinklersArray count] == 0){
-                    [self.noItemsView setHidden:NO];
-                    
-                    [self.tinklersTabView setHidden:YES];
-                } else {
+                //If there are any conversations stored locally load them
+                if(localTinklersArray.count > 0){
                     [self.noItemsView setHidden:YES];
-                    
-                    self.tinklers = tinklersArray;
+                    self.tinklers = localTinklersArray;
                     [self.tinklersTabView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }else{//Check online for conversations
+                    if ([QCApi checkForNetwork]){
+                        [QCApi getOnlineTinklers:^(NSMutableArray *onlineTinklersArray, NSError *error) {
+                            if (error == nil){
+                                //If there are any conversations to load from parse load them
+                                if(onlineTinklersArray.count > 0){
+                                    [self.noItemsView setHidden:YES];
+                                    self.tinklers = onlineTinklersArray;
+                                    [self.tinklersTabView reloadData];
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                }else{//Show empty conversations placeholder
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                    [self.noItemsView setHidden:NO];
+                                    [self.tinklersTabView setHidden:YES];
+                                }
+                            }else{
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                //Warn user
+                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your Tinklers. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                [alertView show];
+                            }
+                        }];
+                    }else{//Show empty conversations placeholder
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self.noItemsView setHidden:NO];
+                        [self.tinklersTabView setHidden:YES];
+                    }
                 }
-                
+            }else{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-            } else {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your Tinklers. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
             }
         }];
         
     });
-    
+}
+
+- (void)getTinklersOnline{
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        if ([QCApi checkForNetwork]){
+            [QCApi getOnlineTinklers:^(NSMutableArray *onlineTinklersArray, NSError *error) {
+                if (error == nil){
+                    self.tinklers = onlineTinklersArray;
+                    [self.tinklersTabView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    //Warn user there was a connection issue
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your Tinklers. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [alertView show];
+                }
+            }];
+        }else{
+            //Warn user that he has no network connection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Network Connection" message:@"You must be online to load new Tinklers." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    });
 }
 
 - (void)goToSettings{

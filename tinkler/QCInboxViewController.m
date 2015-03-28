@@ -72,6 +72,7 @@
             if (error == nil){
                 //If there are any conversations stored locally load them
                 if(localConversationsArray.count > 0){
+                    [self.noItemsView setHidden:YES];
                     self.conversations = localConversationsArray;
                     [self.messageTabView reloadData];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -81,6 +82,7 @@
                             if (error == nil){
                                 //If there are any conversations to load from parse load them
                                 if(onlineConversationsArray.count > 0){
+                                    [self.noItemsView setHidden:YES];
                                     self.conversations = onlineConversationsArray;
                                     [self.messageTabView reloadData];
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];

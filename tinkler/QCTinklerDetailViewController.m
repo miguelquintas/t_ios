@@ -110,7 +110,6 @@
     _brandTF.borderStyle = UITextBorderStyleRoundedRect;
     _brandTF.placeholder = @"Brand";
     _brandTF.userInteractionEnabled = YES;
-    _brandTF.clearButtonMode = UITextFieldViewModeAlways;
     _brandTF.text = [self.selectedTinkler brand];
     
     _colorTF = [[UITextField alloc] init];
@@ -119,7 +118,6 @@
     _colorTF.borderStyle = UITextBorderStyleRoundedRect;
     _colorTF.placeholder = @"Color";
     _colorTF.userInteractionEnabled = YES;
-    _colorTF.clearButtonMode = UITextFieldViewModeAlways;
     _colorTF.text = [self.selectedTinkler color];
     
     [_aditionalFieldsView addSubview:_brandTF];
@@ -142,7 +140,6 @@
     _petAgeTF.borderStyle = UITextBorderStyleRoundedRect;
     _petAgeTF.placeholder = @"Birth Date";
     _petAgeTF.userInteractionEnabled = YES;
-    _petAgeTF.clearButtonMode = UITextFieldViewModeAlways;
     _petAgeTF.text = [self.selectedTinkler tinklerDateToString:[self.selectedTinkler petAge]];
     
     //Datepicker initialization
@@ -165,7 +162,6 @@
     _vehiclePlateTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehiclePlateTF.placeholder = @"Plate";
     _vehiclePlateTF.userInteractionEnabled = YES;
-    _vehiclePlateTF.clearButtonMode = UITextFieldViewModeAlways;
     _vehiclePlateTF.text = [self.selectedTinkler vehiclePlate];
     
     _vehicleYearTF = [[UITextField alloc] init];
@@ -174,7 +170,6 @@
     _vehicleYearTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehicleYearTF.placeholder = @"Year";
     _vehicleYearTF.userInteractionEnabled = YES;
-    _vehicleYearTF.clearButtonMode = UITextFieldViewModeAlways;
     _vehicleYearTF.text = [self.selectedTinkler tinklerDateToString:[self.selectedTinkler vehicleYear]];
     
     //Datepicker initialization
@@ -339,6 +334,11 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     });
+                    //Set Updated Tinkler - ON
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
+                    [defaults synchronize];
+                    
                     // Back to the Profile VC
                     [self.navigationController popViewControllerAnimated:YES];
                 }

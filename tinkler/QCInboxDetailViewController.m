@@ -160,6 +160,10 @@
 
 #pragma mark - JSQMessages CollectionView DataSource
 
+- (void)didPressAccessoryButton:(UIButton *)sender{
+    //TODO in the Future
+}
+
 - (void)didPressSendButton:(UIButton *)button
            withMessageText:(NSString *)text
                   senderId:(NSString *)senderId

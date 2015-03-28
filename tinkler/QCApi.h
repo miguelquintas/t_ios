@@ -20,7 +20,9 @@
 +(void) getOnlineConversations:(void (^)(NSMutableArray *conversationsArray, NSError *error))block;
 +(void) getLocalMessages:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block;
 +(void) getOnlineMessages:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block;
-+ (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block;
++ (void) getLocalTinklers:(void (^)(NSMutableArray *tinklersArray, NSError *error))block;
++ (void) getOnlineTinklers:(void (^)(NSMutableArray *tinklersArray, NSError *error))block;
+//+ (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block;
 + (void)addTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;
 + (void)editTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;
 + (void)deleteTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;

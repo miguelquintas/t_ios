@@ -171,29 +171,41 @@
 
 - (IBAction)addNewTinkler:(id)sender {
     
-    //Loading spinner
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [QCApi addTinklerWithCompletion:[self saveNewTinkler] completion:^void(BOOL finished) {
-            if (finished) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                });
-                //String with the alert message
-                NSString* alertmessage = [NSString stringWithFormat: @"New tinkler %@ created! Check your email or your phone's camera roll to get your QR-Code", _tinklerName];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                
-                [alertView show];
-                
-                // Present the profile view controller
-                for (UIViewController* view in [self.navigationController viewControllers]){
-                    if ([view isKindOfClass:[QCTabViewController class]]){
-                        [self.navigationController popToViewController:view animated:YES];
+    //Validate if there is network connectivity
+    if ([QCApi checkForNetwork]) {
+        //Loading spinner
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            [QCApi addTinklerWithCompletion:[self saveNewTinkler] completion:^void(BOOL finished) {
+                if (finished) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                    //String with the alert message
+                    NSString* alertmessage = [NSString stringWithFormat: @"New tinkler %@ created! Check your email or your phone's camera roll to get your QR-Code", _tinklerName];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    
+                    [alertView show];
+                    
+                    //Set Updated Tinkler - ON
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
+                    [defaults synchronize];
+                    
+                    // Present the profile view controller
+                    for (UIViewController* view in [self.navigationController viewControllers]){
+                        if ([view isKindOfClass:[QCTabViewController class]]){
+                            [self.navigationController popToViewController:view animated:YES];
+                        }
                     }
                 }
-            }
-        }];
-    });
+            }];
+        });
+    }else{
+        //Warn user
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation Failed" message:@"You need to have network connectivity to create new Tinklers" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 //Delegate methods for imagePicker
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {

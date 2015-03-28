@@ -10,8 +10,32 @@
 
 @implementation QCApi
 
-+ (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block{
++ (void) getLocalTinklers:(void (^)(NSMutableArray *tinklersArray, NSError *error))block{
+    PFQuery *myTinklers = [PFQuery queryWithClassName:@"Tinkler"];
+    [myTinklers whereKey:@"owner" equalTo:[PFUser currentUser]];
+    [myTinklers includeKey:@"type"];
+    [myTinklers orderByDescending:@"createdAt"];
     
+    // Query the Local Datastore
+    [myTinklers fromPinWithName:@"pinnedTinklers"];
+    [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
+            
+            // Create the tinkler objects to include in the tinkler array
+            block([self createTinklerObj:objects], nil);
+            
+        }else{
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            
+            block(nil,error);
+        }
+    }];
+}
+
++ (void) getOnlineTinklers:(void (^)(NSMutableArray *tinklersArray, NSError *error))block{
     PFQuery *myTinklers = [PFQuery queryWithClassName:@"Tinkler"];
     [myTinklers whereKey:@"owner" equalTo:[PFUser currentUser]];
     [myTinklers includeKey:@"type"];
@@ -40,33 +64,73 @@
             } else {
                 // Log details of the failure
                 NSLog(@"Error quering tinklers: %@ %@", error, [error userInfo]);
-                
                 block(nil,error);
             }
         }];
         
     }else{
         NSLog(@"We don't have network connectivity");
-        
-        // Query the Local Datastore
-        [myTinklers fromPinWithName:@"pinnedTinklers"];
-        [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                // The find succeeded.
-                NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
-                
-                // Create the tinkler objects to include in the tinkler array
-                block([self createTinklerObj:objects], nil);
-                
-            }else{
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                
-                block(nil,error);
-            }
-        }];
     }
 }
+
+
+//+ (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block{
+//    
+//    PFQuery *myTinklers = [PFQuery queryWithClassName:@"Tinkler"];
+//    [myTinklers whereKey:@"owner" equalTo:[PFUser currentUser]];
+//    [myTinklers includeKey:@"type"];
+//    [myTinklers orderByDescending:@"createdAt"];
+//    
+//    //Check connectivity
+//    if([self checkForNetwork]){
+//        NSLog(@"We have network connectivity");
+//        [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if (!error) {
+//                // The find succeeded.
+//                NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
+//                
+//                //Unpin previous objects and then pin new collected ones
+//                [PFObject unpinAllInBackground:objects withName:@"pinnedTinklers" block:^(BOOL succeeded, NSError *error) {
+//                    if (!error) {
+//                        [PFObject pinAllInBackground:objects withName: @"pinnedTinklers"];
+//                    }else{
+//                        // Log details of the failure
+//                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+//                    }
+//                }];
+//                
+//                block([self createTinklerObj:objects], nil);
+//                
+//            } else {
+//                // Log details of the failure
+//                NSLog(@"Error quering tinklers: %@ %@", error, [error userInfo]);
+//                
+//                block(nil,error);
+//            }
+//        }];
+//        
+//    }else{
+//        NSLog(@"We don't have network connectivity");
+//        
+//        // Query the Local Datastore
+//        [myTinklers fromPinWithName:@"pinnedTinklers"];
+//        [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if (!error) {
+//                // The find succeeded.
+//                NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
+//                
+//                // Create the tinkler objects to include in the tinkler array
+//                block([self createTinklerObj:objects], nil);
+//                
+//            }else{
+//                // Log details of the failure
+//                NSLog(@"Error: %@ %@", error, [error userInfo]);
+//                
+//                block(nil,error);
+//            }
+//        }];
+//    }
+//}
 
 + (NSMutableArray *) createTinklerObj:(NSArray *) objects{
     NSMutableArray *tinklers = [NSMutableArray new];
