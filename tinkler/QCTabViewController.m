@@ -13,7 +13,16 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     //Set the default tab
-    self.selectedIndex = 0;
+    //Verify if user has received a push notification - through user preferences
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    bool hasReceivedMsg = [defaults boolForKey:@"hasReceivedMsg"];
+    
+    if(hasReceivedMsg) {
+        self.selectedIndex = 0;
+    } else {
+        self.selectedIndex = 1;
+    }
+    
     self.navigationItem.hidesBackButton = YES;
 }
 

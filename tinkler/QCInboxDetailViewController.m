@@ -45,8 +45,46 @@
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
     
-    [self loadConversationMessages];
-
+    self.messages = [[NSMutableArray alloc] init];
+    
+    if(_selectedConversation.hasUnreadMsg){
+        [QCApi getOnlineMessages:_selectedConversation:^(NSMutableArray *messagesArray, NSError *error) {
+            if (error == nil){
+                [self loadMessagesToView:messagesArray];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }else{//load messages from localdatastore
+        [QCApi getLocalMessages:_selectedConversation:^(NSMutableArray *localMessagesArray, NSError *error) {
+            if (error == nil){
+                //If there are any messages stored locally load them
+                if (localMessagesArray.count > 0) {
+                    [self loadMessagesToView:localMessagesArray];
+                }else{//go get the messages online
+                    //Validate if there is network connectivity
+                    if ([QCApi checkForNetwork]) {
+                        [QCApi getOnlineMessages:_selectedConversation:^(NSMutableArray *onlineMessagesArray, NSError *error) {
+                            if (error == nil){
+                                [self loadMessagesToView:onlineMessagesArray];
+                            } else {
+                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                [alertView show];
+                            }
+                        }];
+                    }else{
+                        //Warn user that he has no network connection
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Network Connection" message:@"You must be online to load received messages." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alertView show];
+                    }
+                }
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -73,28 +111,20 @@
     }
 }
 
-- (void)loadConversationMessages {
-    self.messages = [[NSMutableArray alloc] init];
-    [QCApi getAllMessagesWithCallBack:_selectedConversation:^(NSMutableArray *messagesArray, NSError *error) {
-        if (error == nil){
-            [_selectedConversation setConversationMsgs:messagesArray];
-            
-            //Run through the reversed messages array to have the most recent msgs displayed at the bottom of the screen
-            for(QCMessage *message in [[messagesArray reverseObjectEnumerator]allObjects]){
-                //Case when its the current user sending an answer through a custom message
-                if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
-                    JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
-                    [self.messages addObject:newMessage];
-                }else {
-                    JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:[message msgType][@"text"] ];
-                    [self.messages addObject:newMessage];
-                }
-            }
-        } else {
-            NSLog(@"Error loading selected conversation messages");
-        }
-    }];
+- (void)loadMessagesToView:(NSMutableArray *) messagesArray{
+    [_selectedConversation setConversationMsgs:messagesArray];
     
+    //Run through the reversed messages array to have the most recent msgs displayed at the bottom of the screen
+    for(QCMessage *message in [[messagesArray reverseObjectEnumerator]allObjects]){
+        //Case when its the current user sending an answer through a custom message
+        if([[message msgType][@"text"] isEqualToString:@"Custom Message"]){
+            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:message.msgText];
+            [self.messages addObject:newMessage];
+        }else {
+            JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:message.from.username senderDisplayName:@"Tinkler User" date: message.sentDate text:[message msgType][@"text"] ];
+            [self.messages addObject:newMessage];
+        }
+    }
 }
 
 - (void) answerPushNotification:(NSString *) messageType :(NSString *) messageToSend{
@@ -107,6 +137,11 @@
                                         NSLog(@"Message Sent Successfully");
                                     }
                                 }];
+}
+
+//After sending the message update the necessary pinned objects
+- (void)updatePinnedObjects{
+    //TODO
 }
 
 //Check the last 2 messages in the stack, if they belong to you it will lock the conversation
@@ -157,10 +192,13 @@
         //Validate if the user allows sending customMsgs
         if ([_selectedConversation.talkingToUser objectForKey:@"allowCustomMsg"]== [NSNumber numberWithBool:YES]) {
             if (!_selectedConversation.isLocked){
-                [self isItToLock];
-                [self isItToUnLock];
+                if(_selectedConversation.conversationMsgs.count < 20){
+                    [self isItToLock];
+                    [self isItToUnLock];
+                }
                 [self answerPushNotification:@"Custom Message" :text];
                 [self finishSendingMessageAnimated:YES];
+                [self updatePinnedObjects];
             }else{
                 //Warn user, clean input field and hide keyboard
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This conversation is locked until you get an answer from the other Tinkler user" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

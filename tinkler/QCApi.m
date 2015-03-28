@@ -93,66 +93,79 @@
     return tinklers;
 }
 
-+(void) getAllConversationsWithCallBack:(void (^)(NSMutableArray *conversationsArray, NSError *error))block {
++(void) getLocalConversations:(void (^)(NSMutableArray *conversationsArray, NSError *error))block {
     
     //Query to get the started conversations by the current user
     PFQuery *startedConv = [PFQuery queryWithClassName:@"Conversation"];
     [startedConv whereKey:@"starterUser" equalTo:[PFUser currentUser]];
-        
+    
     //Query to get the conversations started by another user
     PFQuery *toConv = [PFQuery queryWithClassName:@"Conversation"];
     [toConv whereKey:@"talkingToUser" equalTo:[PFUser currentUser]];
-        
+    
     //Or query to get all this user's conversations
     PFQuery *myConv = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:startedConv,toConv,nil]];
-        
+    
     [myConv orderByDescending:@"lastMessageDate"];
     [myConv includeKey:@"talkingToTinkler"];
     [myConv includeKey:@"starterUser"];
     [myConv includeKey:@"talkingToUser"];
-    
-    //Check internet connection
-    if([self checkForNetwork]){
-        [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                //The find succeeded.
-                NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
-                
-                //Unpin previous objects and then pin new collected ones
-                [PFObject unpinAllInBackground:objects withName:@"pinnedConversations" block:^(BOOL succeeded, NSError *error) {
-                    if (!error) {
-                        [PFObject pinAllInBackground:objects withName: @"pinnedConversations"];
-                    }else{
-                        // Log details of the failure
-                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
-                    }
-                }];
-                
-                block([self createConversationObj:objects],nil);
-            }else{
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                block(nil,error);
-            }
-        }];
-        
-    }else{
-        // Query the Local Datastore
-        [myConv fromPinWithName:@"pinnedConversations"];
-        [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                //The find succeeded.
-                NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
-                
-                block([self createConversationObj:objects],nil);
-            }else{
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                block(nil,error);
-            }
-        }];
-    }
+    // Query the Local Datastore
+    [myConv fromPinWithName:@"pinnedConversations"];
+    [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            //The find succeeded.
+            NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
+            
+            block([self createConversationObj:objects],nil);
+        }else{
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            block(nil,error);
+        }
+    }];
+}
 
++(void) getOnlineConversations:(void (^)(NSMutableArray *conversationsArray, NSError *error))block {
+    //Query to get the started conversations by the current user
+    PFQuery *startedConv = [PFQuery queryWithClassName:@"Conversation"];
+    [startedConv whereKey:@"starterUser" equalTo:[PFUser currentUser]];
+    
+    //Query to get the conversations started by another user
+    PFQuery *toConv = [PFQuery queryWithClassName:@"Conversation"];
+    [toConv whereKey:@"talkingToUser" equalTo:[PFUser currentUser]];
+    
+    //Or query to get all this user's conversations
+    PFQuery *myConv = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:startedConv,toConv,nil]];
+    
+    [myConv orderByDescending:@"lastMessageDate"];
+    [myConv includeKey:@"talkingToTinkler"];
+    [myConv includeKey:@"starterUser"];
+    [myConv includeKey:@"talkingToUser"];
+    [myConv findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            //The find succeeded.
+            NSLog(@"Successfully retrieved %lu conversations.", (unsigned long)objects.count);
+            
+            //Unpin previous objects and then pin new collected ones
+            [PFObject unpinAllInBackground:objects withName:@"pinnedConversations" block:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    [PFObject pinAllInBackground:objects withName: @"pinnedConversations"];
+                }else{
+                    // Log details of the failure
+                    NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                }
+            }];
+            
+            block([self createConversationObj:objects],nil);
+        }else{
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            block(nil,error);
+        }
+    }];
+    
+    
 }
 
 + (NSMutableArray *) createConversationObj:(NSArray *) objects{
@@ -188,64 +201,118 @@
     return conversations;
 }
 
++(void) getLocalMessages:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block {
+    // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
+    PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
+    [messagesQuery orderByDescending:@"createdAt"];
+    [messagesQuery includeKey:@"type"];
+    [messagesQuery includeKey:@"tinkler"];
+    [messagesQuery includeKey:@"from"];
+    [messagesQuery includeKey:@"to"];
+    [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
+    
+    [messagesQuery fromPinWithName:@"pinnedMessages"];
+    NSArray *messageObjects =[messagesQuery findObjects];
+    
+    block([self createMessageObj:messageObjects],nil);
+}
 
-+(void) getAllMessagesWithCallBack:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block {
++(void) getOnlineMessages:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block {
+    //Get selected conversation object
+    PFQuery *selectedConversationquery = [PFQuery queryWithClassName:@"Conversation"];
+    PFObject *selectedConversation = [selectedConversationquery getObjectWithId:conversation.conversationId];
     
-    if([self checkForNetwork]){
-        //Get selected conversation object
-        PFQuery *selectedConversationquery = [PFQuery queryWithClassName:@"Conversation"];
-        PFObject *selectedConversation = [selectedConversationquery getObjectWithId:conversation.conversationId];
-        
-        //If the current user started this conversation set hasUnreadMsg to false
-        if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
-            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
-        }else{
-            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
-        }
-        
-        [selectedConversation saveEventually];
-        
-        //Get the messages from the relation "messages"
-        // create a relation based on the messages key
-        PFRelation *relation = [selectedConversation relationForKey:@"messages"];
-        // generate a query based on that relation
-        PFQuery *messagesQuery = [relation query];
-        [messagesQuery orderByDescending:@"createdAt"];
-        [messagesQuery includeKey:@"type"];
-        [messagesQuery includeKey:@"tinkler"];
-        [messagesQuery includeKey:@"from"];
-        [messagesQuery includeKey:@"to"];
-        NSArray *messageObjects =[messagesQuery findObjects];
-        
-        //Unpin previous objects and then pin new collected ones
-        [PFObject unpinAllInBackground:messageObjects withName:@"pinnedMessages" block:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
-            }else{
-                // Log details of the failure
-                NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
-            }
-        }];
-        
-        block([self createMessageObj:messageObjects],nil);
-        
+    //Set messages as read - If the current user started this conversation set hasUnreadMsg to false
+    if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+        [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
     }else{
-        // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
-        PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
-        [messagesQuery orderByDescending:@"createdAt"];
-        [messagesQuery includeKey:@"type"];
-        [messagesQuery includeKey:@"tinkler"];
-        [messagesQuery includeKey:@"from"];
-        [messagesQuery includeKey:@"to"];
-        [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
-    
-        [messagesQuery fromPinWithName:@"pinnedMessages"];
-        NSArray *messageObjects =[messagesQuery findObjects];
-        
-        block([self createMessageObj:messageObjects],nil);
+        [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
     }
     
+    [selectedConversation saveEventually];
+    
+    //Get the messages from the relation "messages"
+    // create a relation based on the messages key
+    PFRelation *relation = [selectedConversation relationForKey:@"messages"];
+    // generate a query based on that relation
+    PFQuery *messagesQuery = [relation query];
+    [messagesQuery orderByDescending:@"createdAt"];
+    [messagesQuery includeKey:@"type"];
+    [messagesQuery includeKey:@"tinkler"];
+    [messagesQuery includeKey:@"from"];
+    [messagesQuery includeKey:@"to"];
+    NSArray *messageObjects =[messagesQuery findObjects];
+    
+    //Unpin previous objects and then pin new collected ones
+    [PFObject unpinAllInBackground:messageObjects withName:@"pinnedMessages" block:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
+        }else{
+            // Log details of the failure
+            NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    block([self createMessageObj:messageObjects],nil);
 }
+
+//+(void) getAllMessagesWithCallBack:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block {
+//    
+//    if([self checkForNetwork]){
+//        //Get selected conversation object
+//        PFQuery *selectedConversationquery = [PFQuery queryWithClassName:@"Conversation"];
+//        PFObject *selectedConversation = [selectedConversationquery getObjectWithId:conversation.conversationId];
+//        
+//        //Set messages as read - If the current user started this conversation set hasUnreadMsg to false
+//        if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+//            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
+//        }else{
+//            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
+//        }
+//        
+//        [selectedConversation saveEventually];
+//        
+//        //Get the messages from the relation "messages"
+//        // create a relation based on the messages key
+//        PFRelation *relation = [selectedConversation relationForKey:@"messages"];
+//        // generate a query based on that relation
+//        PFQuery *messagesQuery = [relation query];
+//        [messagesQuery orderByDescending:@"createdAt"];
+//        [messagesQuery includeKey:@"type"];
+//        [messagesQuery includeKey:@"tinkler"];
+//        [messagesQuery includeKey:@"from"];
+//        [messagesQuery includeKey:@"to"];
+//        NSArray *messageObjects =[messagesQuery findObjects];
+//        
+//        //Unpin previous objects and then pin new collected ones
+//        [PFObject unpinAllInBackground:messageObjects withName:@"pinnedMessages" block:^(BOOL succeeded, NSError *error) {
+//            if (!error) {
+//                [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
+//            }else{
+//                // Log details of the failure
+//                NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+//            }
+//        }];
+//        
+//        block([self createMessageObj:messageObjects],nil);
+//        
+//    }else{
+//        // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
+//        PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
+//        [messagesQuery orderByDescending:@"createdAt"];
+//        [messagesQuery includeKey:@"type"];
+//        [messagesQuery includeKey:@"tinkler"];
+//        [messagesQuery includeKey:@"from"];
+//        [messagesQuery includeKey:@"to"];
+//        [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
+//    
+//        [messagesQuery fromPinWithName:@"pinnedMessages"];
+//        NSArray *messageObjects =[messagesQuery findObjects];
+//        
+//        block([self createMessageObj:messageObjects],nil);
+//    }
+//    
+//}
 
 + (NSMutableArray *) createMessageObj:(NSArray *) objects{
     NSMutableArray *messages = [NSMutableArray new];

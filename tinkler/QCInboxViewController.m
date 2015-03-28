@@ -23,14 +23,21 @@
     //Set Tab Title
     [self setTitle:@"Inbox"];
     [self.messageTabView reloadData];
-    
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
-
-    [self loadMessages];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+    
+    //Verify if user has received a push notification - through user preferences
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    bool hasReceivedMsg = [defaults boolForKey:@"hasReceivedMsg"];
+    
+    if(hasReceivedMsg) {
+        [self receivePushNotifications];
+        //Set PushNotification Preference OFF
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:@"hasReceivedMsg"];
+        [defaults synchronize];
+    } else {
+        [self refreshMessages];
+    }
     
 }
 
@@ -56,33 +63,78 @@
     }
 }
 
-- (void)loadMessages{
+- (void)refreshMessages{
     //Loading spinner
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [QCApi getAllConversationsWithCallBack:^(NSMutableArray *conversationsArray, NSError *error) {
+        //Query Objects from LocalData Store
+        [QCApi getLocalConversations:^(NSMutableArray *localConversationsArray, NSError *error) {
             if (error == nil){
-                
-                //[conversationsArray removeAllObjects];
-                
-                if ([conversationsArray count] == 0){
-                    [self.noItemsView setHidden:NO];
-                    
-                    [self.messageTabView setHidden:YES];
-                } else {
-                    [self.noItemsView setHidden:YES];
-                    
-                    self.conversations = conversationsArray;
+                //If there are any conversations stored locally load them
+                if(localConversationsArray.count > 0){
+                    self.conversations = localConversationsArray;
                     [self.messageTabView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }else{//Check online for conversations
+                    if ([QCApi checkForNetwork]){
+                        [QCApi getOnlineConversations:^(NSMutableArray *onlineConversationsArray, NSError *error) {
+                            if (error == nil){
+                                //If there are any conversations to load from parse load them
+                                if(onlineConversationsArray.count > 0){
+                                    self.conversations = onlineConversationsArray;
+                                    [self.messageTabView reloadData];
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                }else{//Show empty conversations placeholder
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                    [self.noItemsView setHidden:NO];
+                                    [self.messageTabView setHidden:YES];
+                                }
+                            }else{
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                //Warn user
+                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                [alertView show];
+                            }
+                        }];
+                    }else{//Show empty conversations placeholder
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self.noItemsView setHidden:NO];
+                        [self.messageTabView setHidden:YES];
+                    }
                 }
-                
+            }else{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-            } else {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
             }
         }];
     });
-    
+}
+
+- (void)receivePushNotifications{
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        if ([QCApi checkForNetwork]){
+            [QCApi getOnlineConversations:^(NSMutableArray *onlineConversationsArray, NSError *error) {
+                if (error == nil){
+                    self.conversations = onlineConversationsArray;
+                    [self.messageTabView reloadData];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    //Warn user there was a connection issue
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [alertView show];
+                }
+            }];
+        }else{
+            //Warn user that he has no network connection
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Network Connection" message:@"You must be online to load new received messages." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+        }
+    });
 }
 
 //Delegate methods
