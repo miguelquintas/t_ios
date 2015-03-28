@@ -59,6 +59,9 @@
 		BC4B94E019BCBC9C0069D3A7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94DB19BCBC9C0069D3A7 /* CoreVideo.framework */; };
 		BC4B94E119BCBC9C0069D3A7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94DC19BCBC9C0069D3A7 /* libiconv.dylib */; };
 		BC650F3319C7605300C5F374 /* QCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC650F3219C7605300C5F374 /* QCMessage.m */; };
+		BC6815581AC6FECD0035CCDE /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6815551AC6FECD0035CCDE /* settings.png */; };
+		BC6815591AC6FECD0035CCDE /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6815561AC6FECD0035CCDE /* settings@2x.png */; };
+		BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6815571AC6FECD0035CCDE /* settings@3x.png */; };
 		BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC72B7591A6858F700AC720B /* JSQMessagesAssets.bundle */; };
 		BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC72B75B1A6858F700AC720B /* JSQMessages.strings */; };
 		BC72B7C61A6858F700AC720B /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72B76D1A6858F700AC720B /* JSQSystemSoundPlayer+JSQMessages.m */; };
@@ -241,6 +244,9 @@
 		BC4B94DC19BCBC9C0069D3A7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		BC650F3119C7605300C5F374 /* QCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMessage.h; sourceTree = "<group>"; };
 		BC650F3219C7605300C5F374 /* QCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCMessage.m; sourceTree = "<group>"; };
+		BC6815551AC6FECD0035CCDE /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		BC6815561AC6FECD0035CCDE /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		BC6815571AC6FECD0035CCDE /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
 		BC72B7591A6858F700AC720B /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		BC72B75C1A6858F700AC720B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSQMessages.strings; sourceTree = "<group>"; };
 		BC72B75D1A6858F700AC720B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JSQMessages.strings; sourceTree = "<group>"; };
@@ -867,6 +873,9 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BC6815551AC6FECD0035CCDE /* settings.png */,
+				BC6815561AC6FECD0035CCDE /* settings@2x.png */,
+				BC6815571AC6FECD0035CCDE /* settings@3x.png */,
 				5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */,
 				BCDFFF9A1ABF99EF004D392E /* tinklernav.png */,
 				BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */,
@@ -1000,6 +1009,7 @@
 				5D23D05B1AB248B7003E3DF5 /* tutorial4@3x.png in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */,
+				BC6815581AC6FECD0035CCDE /* settings.png in Resources */,
 				BCDFFF9D1ABF99EF004D392E /* tinklernav.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
@@ -1018,12 +1028,14 @@
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
 				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
 				BCDFFF9E1ABF99EF004D392E /* tinklernav@2x.png in Resources */,
+				BC6815591AC6FECD0035CCDE /* settings@2x.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 				5D23D0591AB248B7003E3DF5 /* tutorial2@3x.png in Resources */,
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
 				BC956DD11A9E899E0050C291 /* splash_6+@3x.png in Resources */,
 				5D23D0501AB24886003E3DF5 /* tutorial3@2x.png in Resources */,
 				BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */,
+				BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */,
 				5D23D04F1AB24886003E3DF5 /* tutorial2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

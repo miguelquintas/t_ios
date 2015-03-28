@@ -49,7 +49,7 @@
     [super viewWillAppear:YES];
     
     //Set the logout button conversation button
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@3x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
     self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     
     //Set Tab Title
