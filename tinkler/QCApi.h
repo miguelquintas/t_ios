@@ -20,7 +20,6 @@
 +(void) getOnlineConversations:(void (^)(NSMutableArray *conversationsArray, NSError *error))block;
 +(void) getLocalMessages:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block;
 +(void) getOnlineMessages:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block;
-//+(void) getAllMessagesWithCallBack:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block;
 + (void) getAllTinklersWithCallBack:(void (^)(NSMutableArray *tinklersArray, NSError *error))block;
 + (void)addTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;
 + (void)editTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;
@@ -32,7 +31,6 @@
 + (void) editProfileSaveWithCompletion:(BOOL) customMsg completion:(void (^)(BOOL finished))completion;
 + (void) validateObjectsQrCodeWithCompletion:(NSString *)objectId :(NSNumber *)objectKey completion:(void (^)(BOOL finished, BOOL isValidated, BOOL allowCustom, BOOL isBlocked, BOOL isSelfTinkler))completion;
 + (void)sendQrCodeEmail:(NSString *) objectId;
-+ (void) setMessagesAsRead:(NSMutableArray *) messages;
 + (void)blockConversationWithCompletion:(QCConversation *) conversation completion:(void (^)(BOOL finished))completion;
 + (UIColor*)colorWithHexString:(NSString*)hex;
 + (BOOL)checkForNetwork;

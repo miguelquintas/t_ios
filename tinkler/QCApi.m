@@ -183,11 +183,14 @@
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByStarter"]boolValue]];
             [conversation setIsLocked:[[object objectForKey:@"isLockedByStarter"]boolValue]];
             [conversation setHasUnreadMsg:[[object objectForKey:@"starterHasUnreadMsgs"]boolValue]];
+            [conversation setHasSentMsg:[[object objectForKey:@"starterHasSentMsg"]boolValue]];
         }else{
             [conversation setTalkingToUser:[object objectForKey:@"starterUser"]];
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
             [conversation setIsLocked:[[object objectForKey:@"isLockedByTo"]boolValue]];
             [conversation setHasUnreadMsg:[[object objectForKey:@"toHasUnreadMsgs"]boolValue]];
+            [conversation setHasUnreadMsg:[[object objectForKey:@"starterHasUnreadMsgs"]boolValue]];
+            [conversation setHasSentMsg:[[object objectForKey:@"toHasSentMsg"]boolValue]];
         } 
         
         //Check blocked conversations and deleted conversations
@@ -225,8 +228,10 @@
     //Set messages as read - If the current user started this conversation set hasUnreadMsg to false
     if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
         [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
+        [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasSentMsg"];
     }else{
         [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
+        [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasSentMsg"];
     }
     
     [selectedConversation saveEventually];
@@ -255,64 +260,6 @@
     
     block([self createMessageObj:messageObjects],nil);
 }
-
-//+(void) getAllMessagesWithCallBack:(QCConversation *) conversation :(void (^)(NSMutableArray *messagesArray, NSError *error))block {
-//    
-//    if([self checkForNetwork]){
-//        //Get selected conversation object
-//        PFQuery *selectedConversationquery = [PFQuery queryWithClassName:@"Conversation"];
-//        PFObject *selectedConversation = [selectedConversationquery getObjectWithId:conversation.conversationId];
-//        
-//        //Set messages as read - If the current user started this conversation set hasUnreadMsg to false
-//        if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
-//            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
-//        }else{
-//            [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
-//        }
-//        
-//        [selectedConversation saveEventually];
-//        
-//        //Get the messages from the relation "messages"
-//        // create a relation based on the messages key
-//        PFRelation *relation = [selectedConversation relationForKey:@"messages"];
-//        // generate a query based on that relation
-//        PFQuery *messagesQuery = [relation query];
-//        [messagesQuery orderByDescending:@"createdAt"];
-//        [messagesQuery includeKey:@"type"];
-//        [messagesQuery includeKey:@"tinkler"];
-//        [messagesQuery includeKey:@"from"];
-//        [messagesQuery includeKey:@"to"];
-//        NSArray *messageObjects =[messagesQuery findObjects];
-//        
-//        //Unpin previous objects and then pin new collected ones
-//        [PFObject unpinAllInBackground:messageObjects withName:@"pinnedMessages" block:^(BOOL succeeded, NSError *error) {
-//            if (!error) {
-//                [PFObject pinAllInBackground:messageObjects withName: @"pinnedMessages"];
-//            }else{
-//                // Log details of the failure
-//                NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
-//            }
-//        }];
-//        
-//        block([self createMessageObj:messageObjects],nil);
-//        
-//    }else{
-//        // Query the Local Datastore (Parse has a bug with relation queries so we are doing it manually)
-//        PFQuery *messagesQuery = [PFQuery queryWithClassName:@"Message"];
-//        [messagesQuery orderByDescending:@"createdAt"];
-//        [messagesQuery includeKey:@"type"];
-//        [messagesQuery includeKey:@"tinkler"];
-//        [messagesQuery includeKey:@"from"];
-//        [messagesQuery includeKey:@"to"];
-//        [messagesQuery whereKey:@"tinkler" equalTo:[conversation talkingToTinkler]];
-//    
-//        [messagesQuery fromPinWithName:@"pinnedMessages"];
-//        NSArray *messageObjects =[messagesQuery findObjects];
-//        
-//        block([self createMessageObj:messageObjects],nil);
-//    }
-//    
-//}
 
 + (NSMutableArray *) createMessageObj:(NSArray *) objects{
     NSMutableArray *messages = [NSMutableArray new];
@@ -698,27 +645,6 @@
             NSLog(@"Error querying the scanned Tinkler");
         }
     }];
-}
-
-+ (void) setMessagesAsRead:(NSMutableArray *) messages{
-    //Run through all the seen messages and update the "read" field to true
-    for (QCMessage *message in messages) {
-        
-        if (!message.isRead && [[message to].objectId isEqualToString:[PFUser currentUser].objectId]) {
-            //query to get this message's record
-            PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-            [query whereKey:@"to" equalTo:[PFUser currentUser]];
-            PFObject *messageToEdit = [query getObjectWithId:message.messageId];
-            [messageToEdit setObject:[NSNumber numberWithBool:YES] forKey:@"read"];
-            [messageToEdit saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if(!error){
-                    NSLog(@"Message Eddited!");
-                }else{
-                    NSLog(@"Error edditing message!");
-                }
-            }];
-        }
-    }
 }
 
 + (void)blockConversationWithCompletion:(QCConversation *) conversation completion:(void (^)(BOOL finished))completion {

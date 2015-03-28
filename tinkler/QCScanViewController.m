@@ -103,6 +103,12 @@
                        withParameters:@{@"recipientId": _scannedTinklerId, @"messageType": messageType, @"message":messageToSend}
                                 block:^(NSString *success, NSError *error) {
                                     if (!error) {
+                                        //Update the conversations online
+                                        //Set PushNotification Preference ON
+                                        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                        [defaults setBool:YES forKey:@"hasReceivedMsg"];
+                                        [defaults synchronize];
+                                        
                                         // Push sent successfully
                                         NSLog(@"Message Sent Successfully");
                                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Sent" message:@"Your message was successfully sent!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

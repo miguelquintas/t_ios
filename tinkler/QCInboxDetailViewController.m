@@ -47,7 +47,7 @@
     
     self.messages = [[NSMutableArray alloc] init];
     
-    if(_selectedConversation.hasUnreadMsg){
+    if(_selectedConversation.hasUnreadMsg || _selectedConversation.hasSentMsg){
         [QCApi getOnlineMessages:_selectedConversation:^(NSMutableArray *messagesArray, NSError *error) {
             if (error == nil){
                 [self loadMessagesToView:messagesArray];
@@ -139,11 +139,6 @@
                                 }];
 }
 
-//After sending the message update the necessary pinned objects
-- (void)updatePinnedObjects{
-    //TODO
-}
-
 //Check the last 2 messages in the stack, if they belong to you it will lock the conversation
 - (void)isItToLock{
     QCMessage *message1 = [self.selectedConversation.conversationMsgs objectAtIndex:0];
@@ -198,7 +193,10 @@
                 }
                 [self answerPushNotification:@"Custom Message" :text];
                 [self finishSendingMessageAnimated:YES];
-                [self updatePinnedObjects];
+                //Set PushNotification Preference ON
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setBool:YES forKey:@"hasReceivedMsg"];
+                [defaults synchronize];
             }else{
                 //Warn user, clean input field and hide keyboard
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This conversation is locked until you get an answer from the other Tinkler user" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
