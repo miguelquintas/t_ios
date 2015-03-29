@@ -80,20 +80,40 @@
     
 }
 
+- (UIViewController*)topViewController {
+    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+
+- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    } else {
+        return rootViewController;
+    }
+}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    [PFPush handlePush:userInfo];
+    // [PFPush handlePush:userInfo];
+    // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
     if ([PFUser currentUser] != nil)
     {
+        NSLog(@"ViewController %@",[self topViewController]);
+        if ([[self topViewController] isKindOfClass:[QCInboxViewController class]]){
+            [AGPushNoteView showWithNotificationMessage:@"Teste"];
+        }
         //If inside Inbox tab refresh the conversation list
         
         //if inside a chat show push note
         
         //else show push note and change inbox icon to alert notifications
     }
-    // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
-    //        NSLog(@"Estou no %@", ((UITabBarController*)self.window.rootViewController).selectedViewController);
-    //        NSLog(@"Estou no %@", ((UINavigationController*)self.window.rootViewController).visibleViewController);
-    //        UINavigationController *navController = [UINavigationController new];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

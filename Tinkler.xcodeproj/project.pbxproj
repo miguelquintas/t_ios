@@ -123,6 +123,8 @@
 		BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DCC1A9E899E0050C291 /* splash_6@2x.png */; };
 		BC956DD11A9E899E0050C291 /* splash_6+@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DCD1A9E899E0050C291 /* splash_6+@3x.png */; };
 		BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7CED01A96C5D0000C6E1D /* logo_home.png */; };
+		BCA8D2801AC832D70012085D /* AGPushNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA8D27F1AC832D70012085D /* AGPushNoteView.m */; };
+		BCA8D2821AC834120012085D /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCA8D2811AC834120012085D /* AGPushNoteView.xib */; };
 		BCAFD6921A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */; };
 		BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7ADC91A0557E200AE9CBD /* QCMessageType.m */; };
 		BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */; };
@@ -368,6 +370,9 @@
 		BC956DCC1A9E899E0050C291 /* splash_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_6@2x.png"; sourceTree = "<group>"; };
 		BC956DCD1A9E899E0050C291 /* splash_6+@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_6+@3x.png"; sourceTree = "<group>"; };
 		BCA7CED01A96C5D0000C6E1D /* logo_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_home.png; sourceTree = "<group>"; };
+		BCA8D27E1AC832D70012085D /* AGPushNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPushNoteView.h; sourceTree = "<group>"; };
+		BCA8D27F1AC832D70012085D /* AGPushNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPushNoteView.m; sourceTree = "<group>"; };
+		BCA8D2811AC834120012085D /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGPushNoteView.xib; sourceTree = "<group>"; };
 		BCAFD6901A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCNewTinklerSubmitViewController.h; sourceTree = "<group>"; };
 		BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCNewTinklerSubmitViewController.m; sourceTree = "<group>"; };
 		BCB7ADC81A0557E200AE9CBD /* QCMessageType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMessageType.h; sourceTree = "<group>"; };
@@ -554,6 +559,7 @@
 		5DE27AD918C90A6300C4C763 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BCA8D27D1AC832D70012085D /* AGPushNote */,
 				BC94EDE51AB5CAE1006B7D4E /* Reachability_TM */,
 				BC72B7EF1A68591400AC720B /* JSQSystemSoundPlayer */,
 				BC72B7571A6858F700AC720B /* JSQMessagesViewController */,
@@ -870,6 +876,16 @@
 			path = Reachability_TM;
 			sourceTree = "<group>";
 		};
+		BCA8D27D1AC832D70012085D /* AGPushNote */ = {
+			isa = PBXGroup;
+			children = (
+				BCA8D2811AC834120012085D /* AGPushNoteView.xib */,
+				BCA8D27E1AC832D70012085D /* AGPushNoteView.h */,
+				BCA8D27F1AC832D70012085D /* AGPushNoteView.m */,
+			);
+			path = AGPushNote;
+			sourceTree = "<group>";
+		};
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,6 +1052,7 @@
 				5D23D0501AB24886003E3DF5 /* tutorial3@2x.png in Resources */,
 				BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */,
 				BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */,
+				BCA8D2821AC834120012085D /* AGPushNoteView.xib in Resources */,
 				5D23D04F1AB24886003E3DF5 /* tutorial2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1107,6 +1124,7 @@
 				BC72B7D71A6858F700AC720B /* JSQLocationMediaItem.m in Sources */,
 				BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */,
 				BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */,
+				BCA8D2801AC832D70012085D /* AGPushNoteView.m in Sources */,
 				BC72B7ED1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				BC1A252A19DB5E9D00CACAF5 /* QCQrCode.m in Sources */,
 				5DE27B1018C90A9600C4C763 /* AFURLSessionManager.m in Sources */,
