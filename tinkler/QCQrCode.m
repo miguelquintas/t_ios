@@ -61,9 +61,25 @@
     CIImage *qrCode = [self createQRForString:qrContent];
     
     // Convert to an UIImage
-    UIImage *qrCodeImg = [self createNonInterpolatedUIImageFromCIImage:qrCode withScale:4*[[UIScreen mainScreen] scale]];
+    UIImage *qrCodeImg = [self createNonInterpolatedUIImageFromCIImage:qrCode withScale:6*[[UIScreen mainScreen] scale]];
     
-    return qrCodeImg;
+    //Code to merge it with the border image
+    UIImage *borderImage = [UIImage imageNamed:@"qrcode_border"]; //background image
+    
+    CGSize newSize = CGSizeMake(qrCodeImg.size.width+130, qrCodeImg.size.width+130);
+    UIGraphicsBeginImageContext( newSize );
+    
+    // Use existing opacity as is
+    [borderImage drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    
+    // Apply supplied opacity if applicable
+    [qrCodeImg drawInRect:CGRectMake(65,35,qrCodeImg.size.width,qrCodeImg.size.height)];
+    
+    UIImage *qrCodeImgComplete = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return qrCodeImgComplete;
     
 }
 

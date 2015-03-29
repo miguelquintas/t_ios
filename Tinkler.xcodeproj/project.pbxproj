@@ -106,6 +106,7 @@
 		BC72B7ED1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72B7C21A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.m */; };
 		BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC72B7C31A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		BC72B7F31A68591400AC720B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72B7F21A68591400AC720B /* JSQSystemSoundPlayer.m */; };
+		BC782FA01AC8B42A004FF2F8 /* qrcode_border.png in Resources */ = {isa = PBXBuildFile; fileRef = BC782F9F1AC8B42A004FF2F8 /* qrcode_border.png */; };
 		BC8C5B2619E33E1C006774F1 /* QCProfileUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */; };
 		BC91378119BE3E7C008A598B /* QCApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BC91378019BE3E7C008A598B /* QCApi.m */; };
 		BC94EDE81AB5CAE1006B7D4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BC94EDE71AB5CAE1006B7D4E /* Reachability.m */; };
@@ -350,6 +351,7 @@
 		BC72B7C31A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		BC72B7F11A68591400AC720B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		BC72B7F21A68591400AC720B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
+		BC782F9F1AC8B42A004FF2F8 /* qrcode_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode_border.png; sourceTree = "<group>"; };
 		BC8C5B2419E33E1C006774F1 /* QCProfileUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCProfileUpdateViewController.h; sourceTree = "<group>"; };
 		BC8C5B2519E33E1C006774F1 /* QCProfileUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCProfileUpdateViewController.m; sourceTree = "<group>"; };
 		BC91377F19BE3E7C008A598B /* QCApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCApi.h; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 				5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */,
 				BCDFFF9A1ABF99EF004D392E /* tinklernav.png */,
 				BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */,
+				BC782F9F1AC8B42A004FF2F8 /* qrcode_border.png */,
 				BCDFFF9C1ABF99EF004D392E /* tinklernav@3x.png */,
 				BCDFFF941ABF93E4004D392E /* tinklers.png */,
 				BCDFFF951ABF93E4004D392E /* tinklers@2x.png */,
@@ -1052,6 +1055,7 @@
 				5D23D0501AB24886003E3DF5 /* tutorial3@2x.png in Resources */,
 				BC956DD01A9E899E0050C291 /* splash_6@2x.png in Resources */,
 				BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */,
+				BC782FA01AC8B42A004FF2F8 /* qrcode_border.png in Resources */,
 				BCA8D2821AC834120012085D /* AGPushNoteView.xib in Resources */,
 				5D23D04F1AB24886003E3DF5 /* tutorial2@2x.png in Resources */,
 			);

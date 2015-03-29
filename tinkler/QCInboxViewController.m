@@ -25,6 +25,8 @@
     [self.messageTabView reloadData];
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
     
+    [self.messageTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
+    
     //Verify if user has received a push notification - through user preferences
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     bool hasReceivedMsg = [defaults boolForKey:@"hasReceivedMsg"];

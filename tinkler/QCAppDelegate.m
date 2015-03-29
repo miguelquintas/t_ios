@@ -105,14 +105,18 @@
     if ([PFUser currentUser] != nil)
     {
         NSLog(@"ViewController %@",[self topViewController]);
+        //If inside Inbox tab load new messages
         if ([[self topViewController] isKindOfClass:[QCInboxViewController class]]){
-            [AGPushNoteView showWithNotificationMessage:@"Teste"];
+            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
+            QCInboxViewController* inboxVC = [QCInboxViewController new];
+            [inboxVC refreshMessages];
+        //if inside a chat show push note and load new messages
+        }else if ([[self topViewController] isKindOfClass:[QCInboxDetailViewController class]]){
+            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
+        //else show push note, load new messages and change inbox icon to alert notifications
+        }else{
+            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
         }
-        //If inside Inbox tab refresh the conversation list
-        
-        //if inside a chat show push note
-        
-        //else show push note and change inbox icon to alert notifications
     }
 }
 

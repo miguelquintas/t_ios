@@ -52,6 +52,8 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@3x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
     self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     
+    [self.tinklersTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
+    
     //Set Tab Title
     [self.tinklersTabView reloadData];
     
@@ -60,6 +62,8 @@
     
     //Set Profile View background color
     [_profileView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
+//    [self.view setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
+//    [_tinklersTabView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
     
     //Set Text Color
     [_usernameLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
@@ -175,6 +179,8 @@
     static NSString *simpleTableIdentifier = @"TinklerCell";
     
     QCTinklerTableViewCell *cell = (QCTinklerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+//    [cell setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
+    
     QCTinkler *thisTinkler = [_tinklers objectAtIndex:indexPath.row];
     
     cell.tinklerNameLabel.text = [thisTinkler tinklerName];
