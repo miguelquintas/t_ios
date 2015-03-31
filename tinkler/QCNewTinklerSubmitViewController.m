@@ -181,23 +181,13 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                     });
-                    //String with the alert message
+//                    //String with the alert message
                     NSString* alertmessage = [NSString stringWithFormat: @"New tinkler %@ created! Check your email or your phone's camera roll to get your QR-Code", _tinklerName];
                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Creation" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     
                     [alertView show];
                     
-                    //Set Updated Tinkler - ON
-                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                    [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
-                    [defaults synchronize];
                     
-                    // Present the profile view controller
-                    for (UIViewController* view in [self.navigationController viewControllers]){
-                        if ([view isKindOfClass:[QCTabViewController class]]){
-                            [self.navigationController popToViewController:view animated:YES];
-                        }
-                    }
                 }
             }];
         });
@@ -207,6 +197,25 @@
         [alertView show];
     }
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    //Re Start the qrcode reader only after the users presses "ok"
+    if(buttonIndex == 0){
+        //Set Updated Tinkler - ON
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
+        [defaults synchronize];
+        
+        // Present the profile view controller
+        for (UIViewController* view in [self.navigationController viewControllers]){
+            if ([view isKindOfClass:[QCTabViewController class]]){
+                [self.navigationController popToViewController:view animated:YES];
+            }
+        }
+    }
+}
+
 //Delegate methods for imagePicker
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     

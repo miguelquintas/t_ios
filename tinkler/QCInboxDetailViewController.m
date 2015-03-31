@@ -51,6 +51,7 @@
         [QCApi getOnlineMessages:_selectedConversation:^(NSMutableArray *messagesArray, NSError *error) {
             if (error == nil){
                 [self loadMessagesToView:messagesArray];
+                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                 [alertView show];
@@ -145,6 +146,7 @@
     QCMessage *message2 = [self.selectedConversation.conversationMsgs objectAtIndex:1];
     if ([message1.from.username isEqualToString:[PFUser currentUser].username] && [message2.from.username isEqualToString:[PFUser currentUser].username]) {
         [QCApi lockConversation:self.selectedConversation];
+        _selectedConversation.isLocked = YES;
     }
 }
 
@@ -156,6 +158,17 @@
     if (![message1.from.username isEqualToString:[PFUser currentUser].username] && ![message2.from.username isEqualToString:[PFUser currentUser].username] && ![message3.from.username isEqualToString:[PFUser currentUser].username]) {
         [QCApi unlockConversation:self.selectedConversation];
     }
+}
+
+//Check the last 3 messages in the stack, if they belong to the other user it will unlock the conversation
+- (void)addMsgToSelConversations:(NSString *) text{
+    QCMessage *newMsg = [QCMessage new];
+    [newMsg setTargetTinkler:_selectedConversation.talkingToTinkler];
+    [newMsg setTo:_selectedConversation.talkingToUser];
+    [newMsg setFrom:[PFUser currentUser]];
+    [newMsg setMsgText:text];
+    
+    [_selectedConversation.conversationMsgs insertObject:newMsg atIndex:0];
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -191,11 +204,14 @@
         //Validate if the user allows sending customMsgs
         if ([_selectedConversation.talkingToUser objectForKey:@"allowCustomMsg"]== [NSNumber numberWithBool:YES]) {
             if (!_selectedConversation.isLocked){
-                if(_selectedConversation.conversationMsgs.count < 20){
-                    [self isItToLock];
-                    [self isItToUnLock];
+                if(_selectedConversation.conversationMsgs.count < 15){
+                    if(_selectedConversation.conversationMsgs.count > 1)
+                        [self isItToLock];
+                    if(_selectedConversation.conversationMsgs.count > 2)
+                        [self isItToUnLock];
                 }
                 [self answerPushNotification:@"Custom Message" :text];
+                [self addMsgToSelConversations: text];
                 [self finishSendingMessageAnimated:YES];
                 //Set PushNotification Preference ON
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

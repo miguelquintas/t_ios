@@ -84,15 +84,34 @@
     }
     
     //Get the existing Tinkler Types
-    [QCApi getAllTinklerTypesWithCallBack:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
-        if (error == nil){
-            self.tinklerTypes = tinklerTypeArray;
-            self.tinklerTypeNames = typeNameArray;
-            NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
-        } else {
-            NSLog(@"%@", error);
-        }
-    }];
+    //Check connectivity
+    if([QCApi checkForNetwork]){
+        [QCApi getOnlineTinklerTypes:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
+            if (error == nil){
+                self.tinklerTypes = tinklerTypeArray;
+                self.tinklerTypeNames = typeNameArray;
+                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
+            } else {
+                NSLog(@"%@", error);
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading the Tinkler types. Please check your connectivity and restart Tinkler." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }else{
+        [QCApi getLocalTinklerTypes:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
+            if (error == nil){
+                self.tinklerTypes = tinklerTypeArray;
+                self.tinklerTypeNames = typeNameArray;
+                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
+            } else {
+                NSLog(@"%@", error);
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading the Tinkler types. Please check your connectivity and restart Tinkler." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }
     
     //TinklerTypePicker Initialization
     [_tinklerTypeEdit addTarget:self action:@selector(showTinklerTypePicker:) forControlEvents:UIControlEventTouchUpInside];
@@ -257,8 +276,6 @@
     //Alert to warn user that the QR Code has been saved
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"QR Code Regenarated!" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alertView show];
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) showTinklerTypePicker:(id)sender{
@@ -353,8 +370,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"%ld", (long)buttonIndex);
-    if(buttonIndex == 1){
+    
+    if(buttonIndex == 0 && ([alertView.title isEqualToString:@"Delete Confirmation"] || [alertView.title isEqualToString:@"QR Code Regenarated!"])){
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if(buttonIndex == 1){
         //Loading spinner
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -366,7 +385,6 @@
                     NSString* deletemessage = [NSString stringWithFormat: @"The Tinkler %@ has been deleted", _tinklerNameEdit.text];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Confirmation" message:deletemessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
-                    [self.navigationController popViewControllerAnimated:YES];
                 }
             }];
         });

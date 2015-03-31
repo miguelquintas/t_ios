@@ -16,13 +16,14 @@
 - (void)viewDidLoad{
     self.messageTabView.contentInset = UIEdgeInsetsZero;
     [super viewDidLoad];
+    
+    self.messageTabView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     //Set Tab Title
     [self setTitle:@"Inbox"];
-    [self.messageTabView reloadData];
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
     
     [self.messageTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
@@ -31,7 +32,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     bool hasReceivedMsg = [defaults boolForKey:@"hasReceivedMsg"];
     
-    if(hasReceivedMsg) {
+    if(hasReceivedMsg && [QCApi checkForNetwork]) {
         [self receivePushNotifications];
         //Set PushNotification Preference OFF
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

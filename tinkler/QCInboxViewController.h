@@ -22,6 +22,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *messageTabView;
 @property (strong, nonatomic) IBOutlet UIView *noItemsView;
 
-- (void)refreshMessages;
+- (void)receivePushNotifications;
 
 @end

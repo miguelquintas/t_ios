@@ -27,8 +27,10 @@
 + (void)deleteTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion;
 + (void)deleteConversationWithCompletion:(QCConversation *)conversation completion:(void (^)(BOOL finished))completion;
 + (void)checkEmailVerifiedWithCompletion:(NSString *)email completion:(void (^)(BOOL finished, BOOL isVerified))completion;
-+ (void) getMessageTypesWithCallBack:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block;
-+ (void) getAllTinklerTypesWithCallBack:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block;
++ (void) getLocalMessageTypes:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block;
++ (void) getOnlineMessageTypes:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block;
++ (void) getLocalTinklerTypes:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block;
++ (void) getOnlineTinklerTypes:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block;
 + (void) editProfileSaveWithCompletion:(BOOL) customMsg completion:(void (^)(BOOL finished))completion;
 + (void) validateObjectsQrCodeWithCompletion:(NSString *)objectId :(NSNumber *)objectKey completion:(void (^)(BOOL finished, BOOL isValidated, BOOL allowCustom, BOOL isBlocked, BOOL isSelfTinkler))completion;
 + (void)sendQrCodeEmail:(NSString *) objectId;

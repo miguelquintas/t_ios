@@ -99,6 +99,7 @@
     }
 }
 
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // [PFPush handlePush:userInfo];
     // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
@@ -108,8 +109,7 @@
         //If inside Inbox tab load new messages
         if ([[self topViewController] isKindOfClass:[QCInboxViewController class]]){
             [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
-            QCInboxViewController* inboxVC = [QCInboxViewController new];
-            [inboxVC refreshMessages];
+            [(QCInboxViewController *)[self topViewController] receivePushNotifications];
         //if inside a chat show push note and load new messages
         }else if ([[self topViewController] isKindOfClass:[QCInboxDetailViewController class]]){
             [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
@@ -139,8 +139,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    application.applicationIconBadgeNumber = 0;
-    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

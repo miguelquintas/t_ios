@@ -28,15 +28,34 @@
 //    _tinklerName.layer.borderWidth= 1.0f;
     
     //Get the existing Tinkler Types
-    [QCApi getAllTinklerTypesWithCallBack:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
-        if (error == nil){
-            self.tinklerTypes = tinklerTypeArray;
-            self.tinklerTypeNames = typeNameArray;
-             NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
-        } else {
-            NSLog(@"%@", error);
-        }
-    }];
+    //Check connectivity
+    if([QCApi checkForNetwork]){
+        [QCApi getOnlineTinklerTypes:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
+            if (error == nil){
+                self.tinklerTypes = tinklerTypeArray;
+                self.tinklerTypeNames = typeNameArray;
+                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
+            } else {
+                NSLog(@"%@", error);
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading the Tinkler types. Please check your connectivity and restart Tinkler." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }else{
+        [QCApi getLocalTinklerTypes:^(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error) {
+            if (error == nil){
+                self.tinklerTypes = tinklerTypeArray;
+                self.tinklerTypeNames = typeNameArray;
+                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
+            } else {
+                NSLog(@"%@", error);
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading the Tinkler types. Please check your connectivity and restart Tinkler." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }
     
     self.title = @"New Tinkler";
     

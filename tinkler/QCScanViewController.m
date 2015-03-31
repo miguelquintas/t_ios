@@ -19,15 +19,32 @@
     
     _captureSession = nil;
     
-    [QCApi getMessageTypesWithCallBack:^(NSMutableArray *msgTypeArray, NSError *error) {
-        if (error == nil){
-            self.msgTypes = msgTypeArray;
-            NSLog(@"Msg type Array: %@", [self.msgTypes objectAtIndex:0]);
-        } else {
-            NSLog(@"%@", error);
-        }
-    }];
-    
+    //Check connectivity
+    if([QCApi checkForNetwork]){
+        [QCApi getOnlineMessageTypes:^(NSMutableArray *msgTypeArray, NSError *error) {
+            if (error == nil){
+                self.msgTypes = msgTypeArray;
+                NSLog(@"Msg type Array: %@", [self.msgTypes objectAtIndex:0]);
+            } else {
+                NSLog(@"%@", error);
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading the message types. Please check your connectivity and restart Tinkler." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }else{
+        [QCApi getLocalMessageTypes:^(NSMutableArray *msgTypeArray, NSError *error) {
+            if (error == nil){
+                self.msgTypes = msgTypeArray;
+                NSLog(@"Msg type Array: %@", [self.msgTypes objectAtIndex:0]);
+            } else {
+                NSLog(@"%@", error);
+                //Warn user
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading the message types. Please check your connectivity and restart Tinkler." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{

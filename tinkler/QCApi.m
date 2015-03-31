@@ -476,54 +476,46 @@
     }];
 }
 
-+ (void) getMessageTypesWithCallBack:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block{
++ (void) getLocalMessageTypes:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block{
     PFQuery *myMsgTypes = [PFQuery queryWithClassName:@"MessageType"];
     [myMsgTypes includeKey:@"type"];
     [myMsgTypes orderByAscending:@"createdAt"];
-    
-    //Check connectivity
-    if([self checkForNetwork]){
-        NSLog(@"We have network connectivity");
-        [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                
-                //Unpin previous objects and then pin new collected ones
-                [PFObject unpinAllInBackground:objects withName:@"pinnedMsgTypes" block:^(BOOL succeeded, NSError *error) {
-                    if (!error) {
-                        [PFObject pinAllInBackground:objects withName: @"pinnedMsgTypes"];
-                    }else{
-                        // Log details of the failure
-                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
-                    }
-                }];
-                
-                block([self createMsgTypeObj:objects], nil);
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                
-                block(nil,error);
-            }
-        }];
-    }else{
-        NSLog(@"We are offline");
-        // Query the Local Datastore
-        [myMsgTypes fromPinWithName:@"pinnedMsgTypes"];
-        [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                block([self createMsgTypeObj:objects], nil);
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                
-                block(nil,error);
-            }
-        }];
-    }
-    
-    
+    // Query the Local Datastore
+    [myMsgTypes fromPinWithName:@"pinnedMsgTypes"];
+    [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            block([self createMsgTypeObj:objects], nil);
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            block(nil,error);
+        }
+    }];
+}
+
++ (void) getOnlineMessageTypes:(void (^)(NSMutableArray *msgTypeArray, NSError *error))block{
+    PFQuery *myMsgTypes = [PFQuery queryWithClassName:@"MessageType"];
+    [myMsgTypes includeKey:@"type"];
+    [myMsgTypes orderByAscending:@"createdAt"];
+    [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            //Unpin previous objects and then pin new collected ones
+            [PFObject unpinAllInBackground:objects withName:@"pinnedMsgTypes" block:^(BOOL succeeded, NSError *error){
+                if (!error) {
+                    [PFObject pinAllInBackground:objects withName: @"pinnedMsgTypes"];
+                }else{
+                    // Log details of the failure
+                    NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                }
+            }];
+            block([self createMsgTypeObj:objects], nil);
+        }else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            block(nil,error);
+        }
+    }];
 }
 
 + (NSMutableArray *) createMsgTypeObj:(NSArray *) objects{
@@ -543,50 +535,48 @@
     return msgTypes;
 }
 
-+ (void) getAllTinklerTypesWithCallBack:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block{
++ (void) getLocalTinklerTypes:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block{
     PFQuery *myTinklerTypes = [PFQuery queryWithClassName:@"TinklerType"];
     [myTinklerTypes includeKey:@"type"];
     [myTinklerTypes orderByAscending:@"createdAt"];
-    //Check connectivity
-    if([self checkForNetwork]){
-        NSLog(@"We have network connectivity");
-        [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                
-                //Unpin previous objects and then pin new collected ones
-                [PFObject unpinAllInBackground:objects withName:@"pinnedTinklerTypes" block:^(BOOL succeeded, NSError *error) {
-                    if (!error) {
-                        [PFObject pinAllInBackground:objects withName: @"pinnedTinklerTypes"];
-                    }else{
-                        // Log details of the failure
-                        NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
-                    }
-                }];
-                
-                // Add the returned results to the tinkler types array
-                block(objects, [self createTinklerTypeObj:objects], nil);
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                block(nil, nil, error);
-            }
-        }];
-    }else{
-        NSLog(@"We are offline");
-        // Query the Local Datastore
-        [myTinklerTypes fromPinWithName:@"pinnedTinklerTypes"];
-        [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                // Add the returned results to the tinkler types array
-                block(objects, [self createTinklerTypeObj:objects], nil);
-            } else {
-                //Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-                block(nil, nil, error);
-            }
-        }];
-    }
+    [myTinklerTypes fromPinWithName:@"pinnedTinklerTypes"];
+    [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // Add the returned results to the tinkler types array
+            block(objects, [self createTinklerTypeObj:objects], nil);
+        } else {
+            //Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            block(nil, nil, error);
+        }
+    }];
+}
+
++ (void) getOnlineTinklerTypes:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block{
+    PFQuery *myTinklerTypes = [PFQuery queryWithClassName:@"TinklerType"];
+    [myTinklerTypes includeKey:@"type"];
+    [myTinklerTypes orderByAscending:@"createdAt"];
+    [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            
+            //Unpin previous objects and then pin new collected ones
+            [PFObject unpinAllInBackground:objects withName:@"pinnedTinklerTypes" block:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    [PFObject pinAllInBackground:objects withName: @"pinnedTinklerTypes"];
+                }else{
+                    // Log details of the failure
+                    NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+                }
+            }];
+            // Add the returned results to the tinkler types array
+            block(objects, [self createTinklerTypeObj:objects], nil);
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            block(nil, nil, error);
+        }
+    }];
 }
 
 + (NSMutableArray *) createTinklerTypeObj:(NSArray *) objects{

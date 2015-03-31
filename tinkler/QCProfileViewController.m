@@ -49,8 +49,24 @@
     [super viewWillAppear:YES];
     
     //Set the logout button conversation button
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@3x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
-    self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
+    CGSize result = [[UIScreen mainScreen] bounds].size;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    result = CGSizeMake(result.width * scale, result.height * scale);
+    
+    if(result.height == 960) {
+        NSLog(@"iPhone 4 Resolution");
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
+        self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
+    }else if(result.height == 1136) {
+        NSLog(@"iPhone 5 Resolution");
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@2x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
+        self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
+    }else{
+        NSLog(@"iPhone 6 or more Resolution");
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@3x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
+        self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
+    }
+    
     
     [self.tinklersTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
     
@@ -75,7 +91,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     bool hasUpdatedTinklers = [defaults boolForKey:@"hasUpdatedTinkler"];
     
-    if(hasUpdatedTinklers) {
+    if(hasUpdatedTinklers && [QCApi checkForNetwork]) {
         [self getTinklersOnline];
         //Set PushNotification Preference OFF
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

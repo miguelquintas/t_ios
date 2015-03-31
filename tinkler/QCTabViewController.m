@@ -23,6 +23,8 @@
         self.selectedIndex = 1;
     }
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.navigationItem.hidesBackButton = YES;
 }
 
