@@ -24,6 +24,8 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Block" style:UIBarButtonItemStylePlain target:self action:@selector(blockConversation)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
+    [self setHasSentMsg:NO];
+    
     //We re not using avatars
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
@@ -92,6 +94,13 @@
     [super viewDidAppear:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    if(_hasSentMsg){
+        [(QCInboxViewController*)_parentVC setHasSentMsg:YES];
+    }
+}
+
 - (void) blockConversation{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Block User" message:@"Are you sure you want to block this conversation?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
     [alertView show];
@@ -130,14 +139,20 @@
 
 - (void) answerPushNotification:(NSString *) messageType :(NSString *) messageToSend{
     
+    //Loading spinner
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     [PFCloud callFunctionInBackground:@"answerPushToUser"
                        withParameters:@{@"userId": _selectedConversation.talkingToUser.objectId, @"messageType": messageType, @"message":messageToSend, @"tinklerId":_selectedConversation.talkingToTinkler.objectId}
                                 block:^(NSString *success, NSError *error) {
                                     if (!error) {
                                         // Push sent successfully
+                                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                        [(QCInboxViewController*)_parentVC setHasSentMsg:YES];
                                         NSLog(@"Message Sent Successfully");
                                     }
                                 }];
+    });
 }
 
 //Check the last 2 messages in the stack, if they belong to you it will lock the conversation
@@ -169,6 +184,34 @@
     [newMsg setMsgText:text];
     
     [_selectedConversation.conversationMsgs insertObject:newMsg atIndex:0];
+}
+
+- (void)updateConversationWithReceivedMsg:(NSString *) msgtext{
+    //Set the msgs read and the hasSent to TRUE to reload messages
+    [QCApi setHasSentMsg:_selectedConversation];
+    
+    //Unlock Conversation
+    [_selectedConversation setIsLocked:NO];
+    
+    //Update the msg array from the _selected_conversation
+    QCMessage *newMsg = [QCMessage new];
+    [newMsg setTargetTinkler:_selectedConversation.talkingToTinkler];
+    [newMsg setTo:[PFUser currentUser]];
+    [newMsg setFrom:_selectedConversation.talkingToUser];
+    [newMsg setMsgText:msgtext];
+    [_selectedConversation.conversationMsgs insertObject:newMsg atIndex:0];
+    
+    //Update the msgs in the current view
+    JSQMessage *newMessage = [[JSQMessage alloc]initWithSenderId:_selectedConversation.talkingToUser.username senderDisplayName:@"Tinkler User" date:[NSDate date] text:msgtext];
+    [self.messages addObject:newMessage];
+    [self.collectionView reloadData];
+    
+    if (self.automaticallyScrollsToMostRecentMessage) {
+        [self scrollToBottomAnimated:YES];
+    }
+    
+    //Reload inbox conversations
+    [(QCInboxViewController*)_parentVC setHasSentMsg:YES];
 }
 
 #pragma mark - JSQMessages CollectionView DataSource
@@ -213,10 +256,6 @@
                 [self answerPushNotification:@"Custom Message" :text];
                 [self addMsgToSelConversations: text];
                 [self finishSendingMessageAnimated:YES];
-                //Set PushNotification Preference ON
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setBool:YES forKey:@"hasReceivedMsg"];
-                [defaults synchronize];
             }else{
                 //Warn user, clean input field and hide keyboard
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This conversation is locked until you get an answer from the other Tinkler user" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

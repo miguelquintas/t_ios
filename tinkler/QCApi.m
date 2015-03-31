@@ -298,6 +298,24 @@
                                 }];
 }
 
++(void) setHasSentMsg:(QCConversation *) conversation{
+    //Get selected conversation object
+    PFQuery *selectedConversationquery = [PFQuery queryWithClassName:@"Conversation"];
+    PFObject *selectedConversation = [selectedConversationquery getObjectWithId:conversation.conversationId];
+    
+    //Set messages as read - If the current user started this conversation set hasUnreadMsg to false
+    if([[[selectedConversation objectForKey:@"starterUser"] objectId] isEqualToString:[PFUser currentUser].objectId]){
+        [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"starterHasUnreadMsgs"];
+        [selectedConversation setObject:[NSNumber numberWithBool:YES] forKey:@"starterHasSentMsg"];
+    }else{
+        [selectedConversation setObject:[NSNumber numberWithBool:NO] forKey:@"toHasUnreadMsgs"];
+        [selectedConversation setObject:[NSNumber numberWithBool:YES] forKey:@"toHasSentMsg"];
+    }
+    
+    [selectedConversation saveEventually];
+}
+
+
 + (void)addTinklerWithCompletion:(QCTinkler *)tinkler completion:(void (^)(BOOL finished))completion {
     
     //Code when adding an entry in the Tinkler table
@@ -498,6 +516,7 @@
     PFQuery *myMsgTypes = [PFQuery queryWithClassName:@"MessageType"];
     [myMsgTypes includeKey:@"type"];
     [myMsgTypes orderByAscending:@"createdAt"];
+    [myMsgTypes setLimit:30];
     [myMsgTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             //Unpin previous objects and then pin new collected ones

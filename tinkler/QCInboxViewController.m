@@ -18,6 +18,7 @@
     [super viewDidLoad];
     
     self.messageTabView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    [self setHasSentMsg:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -32,12 +33,14 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     bool hasReceivedMsg = [defaults boolForKey:@"hasReceivedMsg"];
     
-    if(hasReceivedMsg && [QCApi checkForNetwork]) {
+    if((_hasSentMsg || hasReceivedMsg) && [QCApi checkForNetwork]) {
         [self receivePushNotifications];
         //Set PushNotification Preference OFF
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:NO forKey:@"hasReceivedMsg"];
         [defaults synchronize];
+        
+        [self setHasSentMsg:NO];
     } else {
         [self refreshMessages];
     }
@@ -198,6 +201,7 @@
         NSIndexPath *indexPath = [self.messageTabView indexPathForSelectedRow];
         QCInboxDetailViewController *destViewController = segue.destinationViewController;
         destViewController.selectedConversation = [conversations objectAtIndex:indexPath.row];
+        [destViewController setParentVC:self];
     }
 }
 

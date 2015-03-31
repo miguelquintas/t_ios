@@ -99,23 +99,30 @@
     }
 }
 
-
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // [PFPush handlePush:userInfo];
     // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
-    if ([PFUser currentUser] != nil)
+    if ([PFUser currentUser])
     {
         NSLog(@"ViewController %@",[self topViewController]);
+        NSLog(@"USER INFO  %@",userInfo);
         //If inside Inbox tab load new messages
         if ([[self topViewController] isKindOfClass:[QCInboxViewController class]]){
-            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
             [(QCInboxViewController *)[self topViewController] receivePushNotifications];
         //if inside a chat show push note and load new messages
         }else if ([[self topViewController] isKindOfClass:[QCInboxDetailViewController class]]){
-            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
+            QCInboxDetailViewController * presentVC = (QCInboxDetailViewController *)[self topViewController];
+            QCConversation * currentConversations = presentVC.selectedConversation;
+            
+            if([currentConversations.talkingToUser.objectId isEqualToString:[userInfo objectForKey:@"from"]] && [currentConversations.talkingToTinkler.objectId isEqualToString:[userInfo objectForKey:@"tinkler"]]){
+                [presentVC updateConversationWithReceivedMsg:[userInfo objectForKey:@"message"]];
+            }else{
+                [presentVC setHasSentMsg:YES];
+                [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"aps"][@"alert"]];
+            }
         //else show push note, load new messages and change inbox icon to alert notifications
         }else{
-            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"alert"]];
+            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"aps"][@"alert"]];
         }
     }
 }

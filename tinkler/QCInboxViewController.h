@@ -21,6 +21,9 @@
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (strong, nonatomic) IBOutlet UITableView *messageTabView;
 @property (strong, nonatomic) IBOutlet UIView *noItemsView;
+//User sent a message flag
+@property (nonatomic) BOOL hasSentMsg;
+
 
 - (void)receivePushNotifications;
 

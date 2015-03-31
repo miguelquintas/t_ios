@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "AGPushNoteView.h"
 #import "QCInboxViewController.h"
+#import "QCInboxDetailViewController.h"
 
 @interface QCAppDelegate : UIResponder <UIApplicationDelegate>
 

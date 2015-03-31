@@ -273,6 +273,11 @@
     [self.selectedTinkler setTinklerQRCode: qrCodeFile];
     [self.selectedTinkler setTinklerQRCodeKey:newQrCodeKey];
     
+    //Set Updated Tinkler - ON
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
+    [defaults synchronize];
+    
     //Alert to warn user that the QR Code has been saved
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"QR Code Regenarated!" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alertView show];
