@@ -19,6 +19,13 @@
 @synthesize confirmPassword = _confirmPassword;
 @synthesize email = _email;
 
+- (void) viewDidLoad{
+    [self.view setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
+    [_registerButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_registerButton.layer setCornerRadius: 4.0f];
+}
+
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -85,11 +92,12 @@
                                                 
                                                 [defaults synchronize];
                                                 NSLog(@"Data saved");
+                                                
+                                                // Present the Home view controller
+                                                [(TKHomeViewController*)_parentVC setRegisteredEmail:_email.text];
                                                 // Push sent successfully
                                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Registration Success" message:@"Please check your email to validate your user then and log in" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                                 [alertView show];
-                                                // Present the log in view controller
-                                                [self performSegueWithIdentifier:@"loginAfterRegister" sender:self];
                                                 
                                             }else{
                                                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -111,6 +119,14 @@
     });
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0 && [alertView.title isEqualToString:@"Registration Success"] ){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+
 - (IBAction)registerButtonClicked:(id)sender{
     [_name resignFirstResponder];
     [_password resignFirstResponder];
@@ -119,12 +135,5 @@
     [self checkFields];
 }
 
-//Code to pass selected vehicle data to the Vehicle Edit View Controller
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"loginAfterRegister"]) {
-        QCLoginViewController *destViewController = segue.destinationViewController;
-        destViewController.registeredEmail = _email.text;
-    }
-}
 
 @end

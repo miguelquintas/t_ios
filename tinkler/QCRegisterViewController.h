@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "QCApi.h"
-#import "QCLoginViewController.h"
+#import "TKHomeViewController.h"
 #import "MBProgressHUD.h"
 
 @interface QCRegisterViewController : UIViewController
+
+@property (strong, nonatomic) UIViewController *parentVC;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property(nonatomic, strong) IBOutlet UITextField *email;

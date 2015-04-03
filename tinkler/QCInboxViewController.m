@@ -79,6 +79,7 @@
                 //If there are any conversations stored locally load them
                 if(localConversationsArray.count > 0){
                     [self.noItemsView setHidden:YES];
+                    [self.messageTabView setHidden:NO];
                     self.conversations = localConversationsArray;
                     [self.messageTabView reloadData];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -127,6 +128,8 @@
         if ([QCApi checkForNetwork]){
             [QCApi getOnlineConversations:^(NSMutableArray *onlineConversationsArray, NSError *error) {
                 if (error == nil){
+                    [self.noItemsView setHidden:YES];
+                    [self.messageTabView setHidden:NO];
                     self.conversations = onlineConversationsArray;
                     [self.messageTabView reloadData];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];

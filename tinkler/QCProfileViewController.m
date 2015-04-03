@@ -93,10 +93,6 @@
     
     if(hasUpdatedTinklers && [QCApi checkForNetwork]) {
         [self getTinklersOnline];
-        //Set PushNotification Preference OFF
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:NO forKey:@"hasUpdatedTinkler"];
-        [defaults synchronize];
     } else {
         [self refreshTinklers];
     }
@@ -113,6 +109,7 @@
                 //If there are any conversations stored locally load them
                 if(localTinklersArray.count > 0){
                     [self.noItemsView setHidden:YES];
+                    [self.tinklersTabView setHidden:NO];
                     self.tinklers = localTinklersArray;
                     [self.tinklersTabView reloadData];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -123,6 +120,7 @@
                                 //If there are any conversations to load from parse load them
                                 if(onlineTinklersArray.count > 0){
                                     [self.noItemsView setHidden:YES];
+                                    [self.tinklersTabView setHidden:NO];
                                     self.tinklers = onlineTinklersArray;
                                     [self.tinklersTabView reloadData];
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -162,6 +160,12 @@
         if ([QCApi checkForNetwork]){
             [QCApi getOnlineTinklers:^(NSMutableArray *onlineTinklersArray, NSError *error) {
                 if (error == nil){
+                    [self.noItemsView setHidden:YES];
+                    [self.tinklersTabView setHidden:NO];
+                    //Set PushNotification Preference OFF
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setBool:NO forKey:@"hasUpdatedTinkler"];
+                    [defaults synchronize];
                     self.tinklers = onlineTinklersArray;
                     [self.tinklersTabView reloadData];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
