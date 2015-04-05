@@ -23,11 +23,12 @@
     [self.view setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
     [_registerButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_registerButton.layer setCornerRadius: 4.0f];
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
 }
 
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
 }
 

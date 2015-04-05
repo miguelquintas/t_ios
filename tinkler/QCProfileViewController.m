@@ -48,7 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     
-    //Set the logout button conversation button
+    //Set the settings button
     CGSize result = [[UIScreen mainScreen] bounds].size;
     CGFloat scale = [UIScreen mainScreen].scale;
     result = CGSizeMake(result.width * scale, result.height * scale);
@@ -96,8 +96,6 @@
     } else {
         [self refreshTinklers];
     }
-    
-    
 }
 
 - (void)refreshTinklers{

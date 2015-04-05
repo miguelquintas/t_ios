@@ -20,10 +20,8 @@
     if(hasReceivedMsg) {
         self.selectedIndex = 0;
     } else {
-        self.selectedIndex = 1;
+        self.selectedIndex = 2;
     }
-    
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.navigationItem.hidesBackButton = YES;
 }
