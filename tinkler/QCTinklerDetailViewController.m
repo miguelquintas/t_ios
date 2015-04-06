@@ -29,17 +29,17 @@
     [_regenerateButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_regenerateButton.layer setBorderWidth:1.0];
     [_regenerateButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_regenerateButton.layer setCornerRadius: 6.0f];
+    [_regenerateButton.layer setCornerRadius: 4.0f];
     
     [_deleteButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_deleteButton.layer setBorderWidth:1.0];
     [_deleteButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_deleteButton.layer setCornerRadius: 6.0f];
+    [_deleteButton.layer setCornerRadius: 4.0f];
     
     [_updateButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_updateButton.layer setBorderWidth:1.0];
     [_updateButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_updateButton.layer setCornerRadius: 6.0f];
+    [_updateButton.layer setCornerRadius: 4.0f];
     
     //Set Tinkler Image
     if([self.selectedTinkler tinklerImage] != nil){
@@ -117,13 +117,26 @@
     [_tinklerTypeEdit addTarget:self action:@selector(showTinklerTypePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    _tinklerNameEdit.layer.cornerRadius=4.0f;
+    _tinklerNameEdit.layer.masksToBounds=YES;
+    _tinklerNameEdit.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _tinklerNameEdit.layer.borderWidth= 1.0f;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void) createBagsAcessoriesAdditionalFields{
+    
     _brandTF = [[UITextField alloc] init];
+    _brandTF.layer.cornerRadius=4.0f;
+    _brandTF.layer.masksToBounds=YES;
+    _brandTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _brandTF.layer.borderWidth= 1.0f;
     _brandTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
     _brandTF.delegate = self;
     _brandTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -132,6 +145,10 @@
     _brandTF.text = [self.selectedTinkler brand];
     
     _colorTF = [[UITextField alloc] init];
+    _colorTF.layer.cornerRadius=4.0f;
+    _colorTF.layer.masksToBounds=YES;
+    _colorTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _colorTF.layer.borderWidth= 1.0f;
     _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+50, 250.0f, 40.0f);
     _colorTF.delegate = self;
     _colorTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -146,6 +163,10 @@
 
 - (void) createPetAdditionalFields{
     _petBreedTF = [[UITextField alloc] init];
+    _petBreedTF.layer.cornerRadius=4.0f;
+    _petBreedTF.layer.masksToBounds=YES;
+    _petBreedTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _petBreedTF.layer.borderWidth= 1.0f;
     _petBreedTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
     _petBreedTF.delegate = self;
     _petBreedTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -154,6 +175,10 @@
     _petBreedTF.text = [self.selectedTinkler petBreed];
     
     _petAgeTF = [[UITextField alloc] init];
+    _petAgeTF.layer.cornerRadius=4.0f;
+    _petAgeTF.layer.masksToBounds=YES;
+    _petAgeTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _petAgeTF.layer.borderWidth= 1.0f;
     _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 40.0f);
     _petAgeTF.delegate = self;
     _petAgeTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -176,6 +201,10 @@
 
 - (void) createVehicleAdditionalFields{
     _vehiclePlateTF = [[UITextField alloc] init];
+    _vehiclePlateTF.layer.cornerRadius=4.0f;
+    _vehiclePlateTF.layer.masksToBounds=YES;
+    _vehiclePlateTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _vehiclePlateTF.layer.borderWidth= 1.0f;
     _vehiclePlateTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
     _vehiclePlateTF.delegate = self;
     _vehiclePlateTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -184,6 +213,10 @@
     _vehiclePlateTF.text = [self.selectedTinkler vehiclePlate];
     
     _vehicleYearTF = [[UITextField alloc] init];
+    _vehicleYearTF.layer.cornerRadius=4.0f;
+    _vehicleYearTF.layer.masksToBounds=YES;
+    _vehicleYearTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _vehicleYearTF.layer.borderWidth= 1.0f;
     _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 40.0f);
     _vehicleYearTF.delegate = self;
     _vehicleYearTF.borderStyle = UITextBorderStyleRoundedRect;
