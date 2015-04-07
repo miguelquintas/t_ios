@@ -63,21 +63,11 @@
     
     int scanBorderWidth = self.view.frame.size.width * 0.9;
     
-    UIImageView *scanBoarder = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - scanBorderWidth / 2, self.view.frame.size.height / 2 - scanBorderWidth / 2, scanBorderWidth, scanBorderWidth)];
+    UIImageView *scanBoarder = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - scanBorderWidth / 2, (self.view.frame.size.height-44) / 2 - scanBorderWidth / 2, scanBorderWidth, scanBorderWidth)];
     [scanBoarder setImage:[UIImage imageNamed:@"scan_border.png"]];
     
     [self.view addSubview:scanBoarder];
 
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
-    //Place the QR Code Image in the screen during some time
-    if([QCApi checkForNetwork]){
-        
-    }
-    
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
