@@ -20,7 +20,7 @@
     if(hasReceivedMsg) {
         self.selectedIndex = 0;
     } else {
-        self.selectedIndex = 0;
+        self.selectedIndex = 2;
     }
     
     self.navigationItem.hidesBackButton = YES;
