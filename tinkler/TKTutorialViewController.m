@@ -26,9 +26,59 @@
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.title = @"Tutorial";
     
-    // Create the data model
-    _pageImages = @[@"tutorial1.png", @"tutorial2.png", @"tutorial3.png", @"tutorial4.png", @"tutorial5.png"];
-    _pageDescriptions = @[@"Think of everything you would like to always be connected to and create a Tinkler of it", @"Shortly after, you'll receive an email with the QR-Code for your Tinkler. Print it!", @"Place the QR-Code in your Tinkler so that it stays visible and scannable by everyone", @"From now on when someone scans that QR-Code using Tinkler you'll be notified", @"You can now communicate without having to share personal information between Tinkler users. Enjoy!"];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        if ([[UIScreen mainScreen] respondsToSelector: @selector(scale)]) {
+            CGSize result = [[UIScreen mainScreen] bounds].size;
+            CGFloat scale = [UIScreen mainScreen].scale;
+            result = CGSizeMake(result.width * scale, result.height * scale);
+            
+            if(result.height == 960) {
+                NSLog(@"iPhone 4 Resolution");
+                self.pageImages = @[@"iphone4-01.png",
+                                    @"iphone4-02.png",
+                                    @"iphone4-03.png",
+                                    @"iphone4-04.png",
+                                    @"iphone4-05.png"];
+            }
+            if(result.height == 1136) {
+                NSLog(@"iPhone 5 Resolution");
+                self.pageImages = @[@"iphone5-01.png",
+                                    @"iphone5-02.png",
+                                    @"iphone5-03.png",
+                                    @"iphone5-04.png",
+                                    @"iphone5-05.png"];
+            }
+            if(result.height == 1334) {
+                NSLog(@"iPhone 6 Resolution");
+                self.pageImages = @[@"iphone6-01.png",
+                                    @"iphone6-02.png",
+                                    @"iphone6-03.png",
+                                    @"iphone6-04.png",
+                                    @"iphone6-05.png"];
+            }
+            if(result.height == 2208) {
+                NSLog(@"iPhone 6 Plus Resolution");
+                self.pageImages = @[@"iphone6+-01.png",
+                                    @"iphone6+-02.png",
+                                    @"iphone6+-03.png",
+                                    @"iphone6+-04.png",
+                                    @"iphone6+-05.png"];
+            }
+        }else{
+            NSLog(@"Standard Resolution");
+            self.pageImages = @[@"iphone4-01.png",
+                                @"iphone4-02.png",
+                                @"iphone4-03.png",
+                                @"iphone4-04.png",
+                                @"iphone4-05.png"];
+        }
+    }
+    
+    self.pageDescriptions = @[@"Think of everything you would like to always be connected to and create a Tinkler of it",
+                              @"Shortly after, you'll receive an email with the QR-Code for your Tinkler. Print it!",
+                              @"Place the QR-Code in your Tinkler so that it stays visible and scannable by everyone",
+                              @"From now on when someone scans that QR-Code using Tinkler you'll be notified",
+                              @"You can now communicate without having to share personal information between Tinkler users. Enjoy!"];
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -52,8 +102,8 @@
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + 40);
     [self.pageViewController setDelegate:self];
     
-    [self addChildViewController:_pageViewController];
-    [self.view addSubview:_pageViewController.view];
+    [self addChildViewController:self.pageViewController];
+    [self.view addSubview:self.pageViewController.view];
     [self.view addSubview:self.skipButton];
     [self.view addSubview:self.pageControl];
     [self.pageViewController didMoveToParentViewController:self];
