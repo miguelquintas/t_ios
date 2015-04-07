@@ -44,7 +44,7 @@
         [self.customMsgSwitch setOn:NO];
     
     //Edit the buttons style
-    [_tutorialButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_tutorialButton setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
     [_tutorialButton.layer setBorderWidth:1.0];
     [_tutorialButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
     [_tutorialButton.layer setCornerRadius: 6.0f];
