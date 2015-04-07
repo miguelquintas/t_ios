@@ -19,7 +19,22 @@
     
     self.title = @"Settings";
     
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+    self.profilePic.clipsToBounds = YES;
+    
+    // Get the stored data before the view loads
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *imageData = [defaults dataForKey:@"profilePic"];
+    UIImage *storedProfilePic = [UIImage imageWithData:imageData];
+    
+    //Set profile pic from NSUserDefaults
+    if(imageData == nil){
+        //Load the default profile pic
+        self.profilePic.image = [UIImage imageNamed:@"default_pic.jpg"];
+    }else{
+        self.profilePic.image = storedProfilePic;
+    }
+    
     [self.userNameEdit setText:[defaults stringForKey:@"name"]];
     
     //Set the user's switch value
@@ -27,6 +42,22 @@
         [self.customMsgSwitch setOn:YES];
     else
         [self.customMsgSwitch setOn:NO];
+    
+    //Edit the buttons style
+    [_tutorialButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_tutorialButton.layer setBorderWidth:1.0];
+    [_tutorialButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_tutorialButton.layer setCornerRadius: 4.0f];
+    
+    [_logoutButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_logoutButton.layer setBorderWidth:1.0];
+    [_logoutButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_logoutButton.layer setCornerRadius: 4.0f];
+    
+    [_resetPassButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
+    [_resetPassButton.layer setBorderWidth:1.0];
+    [_resetPassButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_resetPassButton.layer setCornerRadius: 4.0f];
     
 }
 
@@ -77,11 +108,65 @@
 
 }
 
+//Delegate methods for imagePicker
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.profilePic.image = chosenImage;
+    
+    //Set image to NSUserDefaults preferences
+    // Create instances of NSData
+    NSData *imageData = UIImageJPEGRepresentation(chosenImage, 100);
+    // Store the data
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:imageData forKey:@"profilePic"];
+    
+    [defaults synchronize];
+    NSLog(@"Data saved");
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Button %ld", (long)buttonIndex);
+    if(buttonIndex == 0){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }else if (buttonIndex == 1){
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
+- (IBAction)selectPhoto:(id)sender {
+    _photoSourceMenu = [[UIActionSheet alloc] initWithTitle:@"Select the picture's source"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                     destructiveButtonTitle:nil
+                                          otherButtonTitles:@"Camera", @"Photo Library", nil];
+    
+    // Show the sheet
+    [_photoSourceMenu showInView:self.view];
+}
+
 - (IBAction)logoutButton:(id)sender {
     [PFUser logOut];
     
     // Present the home view controller
     [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:0] animated:YES];
+}
+
+- (IBAction)goToTutorial:(id)sender {
 }
 
 @end

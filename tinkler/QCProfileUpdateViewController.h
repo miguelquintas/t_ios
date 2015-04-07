@@ -10,13 +10,25 @@
 #import <Parse/Parse.h>
 #import "QCApi.h"
 
-@interface QCProfileUpdateViewController : UIViewController
+@interface QCProfileUpdateViewController :UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 
 @property (strong, nonatomic) IBOutlet UITextField *userNameEdit;
 
+@property (weak, nonatomic) IBOutlet UIButton *tutorialButton;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetPassButton;
+
 - (IBAction)changePasswordButton:(id)sender;
 
+//Menu to select photo source
+@property (strong, nonatomic) UIActionSheet *photoSourceMenu;
+
 @property (strong, nonatomic) IBOutlet UISwitch *customMsgSwitch;
+
+- (IBAction)selectPhoto:(id)sender;
 - (IBAction)logoutButton:(id)sender;
+- (IBAction)goToTutorial:(id)sender;
 
 @end
