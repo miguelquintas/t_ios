@@ -34,7 +34,7 @@
     //Set profile pic from NSUserDefaults
     if(imageData == nil){
         //Load the default profile pic
-        self.profilePic.image = [UIImage imageNamed:@"default_pic.jpg"];
+        self.profilePic.image = [UIImage imageNamed:@"default_pic.png"];
     }else{
         self.profilePic.image = storedProfilePic;
     }
@@ -202,7 +202,7 @@
     cell.tinklerNameLabel.text = [thisTinkler tinklerName];
     
     if(thisTinkler.tinklerImage == nil){
-        [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_pic.jpg"]];
+        [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_pic.png"]];
     }else{
         [thisTinkler.tinklerImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {

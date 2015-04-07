@@ -167,7 +167,7 @@
     cell.sentDate.text = thisConversation.lastSentDate;
     
     if(tinklerImage== nil){
-        [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_pic.jpg"]];
+        [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_pic.png"]];
     }else{
         [tinklerImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {

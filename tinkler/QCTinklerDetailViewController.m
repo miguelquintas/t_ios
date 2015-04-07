@@ -51,7 +51,7 @@
         
     }else{
         //Load the default vehicle pic
-        self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
+        self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
     }
     
     self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;
@@ -69,7 +69,7 @@
         
     }else{
         //Load the default vehicle pic
-        self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
+        self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
     }
     
     //Display the optional fields for each tinkler type

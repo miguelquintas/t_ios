@@ -39,6 +39,9 @@
 		5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170ED18C68ACD0098DD3B /* Main.storyboard */; };
 		5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170F018C68ACD0098DD3B /* Images.xcassets */; };
 		5DB52C971AA6646500A5CE30 /* TKPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */; };
+		5DDDAD9F1AD47CA000244176 /* tinklers_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDAD9E1AD47CA000244176 /* tinklers_empty@2x.png */; };
+		5DDDADA21AD47D1300244176 /* default_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDADA01AD47D1300244176 /* default_pic@2x.png */; };
+		5DDDADA31AD47D1300244176 /* default_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDADA11AD47D1300244176 /* default_pic@3x.png */; };
 		5DE27AEC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */; };
 		5DE27AED18C90A6F00C4C763 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADE18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.m */; };
 		5DE27AEE18C90A6F00C4C763 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27AE018C90A6E00C4C763 /* UIAlertView+AFNetworking.m */; };
@@ -57,7 +60,6 @@
 		5DE27B0F18C90A9600C4C763 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27B0518C90A9600C4C763 /* AFURLResponseSerialization.m */; };
 		5DE27B1018C90A9600C4C763 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27B0718C90A9600C4C763 /* AFURLSessionManager.m */; };
 		5DE27B1618C91ED700C4C763 /* QCRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27B1518C91ED700C4C763 /* QCRegisterViewController.m */; };
-		BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BC10829619E73ACB007BD62C /* default_pic.jpg */; };
 		BC10F0511A6055A4000DC54E /* QCTinklerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC10F0501A6055A4000DC54E /* QCTinklerDetailViewController.m */; };
 		BC181AD119FF05CA0009B2FC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC181AD019FF05CA0009B2FC /* MBProgressHUD.m */; };
 		BC1A252A19DB5E9D00CACAF5 /* QCQrCode.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1A252919DB5E9D00CACAF5 /* QCQrCode.m */; };
@@ -211,6 +213,9 @@
 		5D4170F718C68ACD0098DD3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5DB52C951AA6646500A5CE30 /* TKPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPageContentViewController.h; sourceTree = "<group>"; };
 		5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPageContentViewController.m; sourceTree = "<group>"; };
+		5DDDAD9E1AD47CA000244176 /* tinklers_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers_empty@2x.png"; sourceTree = "<group>"; };
+		5DDDADA01AD47D1300244176 /* default_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_pic@2x.png"; sourceTree = "<group>"; };
+		5DDDADA11AD47D1300244176 /* default_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_pic@3x.png"; sourceTree = "<group>"; };
 		5DE27ADB18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		5DE27ADD18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -249,7 +254,6 @@
 		5DE27B0718C90A9600C4C763 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		5DE27B1418C91ED700C4C763 /* QCRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCRegisterViewController.h; sourceTree = "<group>"; };
 		5DE27B1518C91ED700C4C763 /* QCRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCRegisterViewController.m; sourceTree = "<group>"; };
-		BC10829619E73ACB007BD62C /* default_pic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_pic.jpg; sourceTree = "<group>"; };
 		BC10F04F1A6055A4000DC54E /* QCTinklerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCTinklerDetailViewController.h; sourceTree = "<group>"; };
 		BC10F0501A6055A4000DC54E /* QCTinklerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerDetailViewController.m; sourceTree = "<group>"; };
 		BC181ACF19FF05CA0009B2FC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -948,6 +952,8 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5DDDADA01AD47D1300244176 /* default_pic@2x.png */,
+				5DDDADA11AD47D1300244176 /* default_pic@3x.png */,
 				5D3409611AD46C0500DFDC35 /* scan_border@3x.png */,
 				5D34095F1AD46B7D00DFDC35 /* scan_border@2x.png */,
 				5D34092E1AD45DF400DFDC35 /* splashscreen */,
@@ -956,6 +962,7 @@
 				BC6815561AC6FECD0035CCDE /* settings@2x.png */,
 				BC6815571AC6FECD0035CCDE /* settings@3x.png */,
 				5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */,
+				5DDDAD9E1AD47CA000244176 /* tinklers_empty@2x.png */,
 				BCDFFF9A1ABF99EF004D392E /* tinklernav.png */,
 				BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */,
 				BC782F9F1AC8B42A004FF2F8 /* qrcode_border.png */,
@@ -974,7 +981,6 @@
 				BC956DC01A9E7E710050C291 /* scan@3x.png */,
 				BCA7CED01A96C5D0000C6E1D /* logo_home.png */,
 				BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */,
-				BC10829619E73ACB007BD62C /* default_pic.jpg */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -1078,7 +1084,6 @@
 				5D3409351AD4613F00DFDC35 /* iphone4-02.png in Resources */,
 				5D3409621AD46C0500DFDC35 /* scan_border@3x.png in Resources */,
 				5D3409541AD4617000DFDC35 /* iphone6+-03.png in Resources */,
-				BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */,
 				5D3409411AD4615900DFDC35 /* iphone6-04.png in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */,
@@ -1102,6 +1107,7 @@
 				5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */,
 				BC824C941ACEE84E00A36024 /* splash_6+@3x.png in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				5DDDADA21AD47D1300244176 /* default_pic@2x.png in Resources */,
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
 				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
 				BCDFFF9E1ABF99EF004D392E /* tinklernav@2x.png in Resources */,
@@ -1109,10 +1115,12 @@
 				5D3409341AD4613F00DFDC35 /* iphone4-01.png in Resources */,
 				BC6815591AC6FECD0035CCDE /* settings@2x.png in Resources */,
 				5D3409561AD4617000DFDC35 /* iphone6+-05.png in Resources */,
+				5DDDAD9F1AD47CA000244176 /* tinklers_empty@2x.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
 				5D3409361AD4613F00DFDC35 /* iphone4-03.png in Resources */,
 				BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */,
+				5DDDADA31AD47D1300244176 /* default_pic@3x.png in Resources */,
 				5D34094A1AD4616500DFDC35 /* iphone5-03.png in Resources */,
 				BC782FA01AC8B42A004FF2F8 /* qrcode_border.png in Resources */,
 				BC824C911ACEE84E00A36024 /* splash_4@2x.png in Resources */,

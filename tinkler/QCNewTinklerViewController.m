@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     //Load the default vehicle pic
-    self.tinklerImage.image = [UIImage imageNamed:@"default_pic.jpg"];
+    self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
     
     //Set the border color of the name textfield
     _tinklerName.layer.cornerRadius=4.0f;
