@@ -28,6 +28,8 @@
 		5D3409541AD4617000DFDC35 /* iphone6+-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D34094F1AD4617000DFDC35 /* iphone6+-03.png */; };
 		5D3409551AD4617000DFDC35 /* iphone6+-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3409501AD4617000DFDC35 /* iphone6+-04.png */; };
 		5D3409561AD4617000DFDC35 /* iphone6+-05.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3409511AD4617000DFDC35 /* iphone6+-05.png */; };
+		5D3409601AD46B7D00DFDC35 /* scan_border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D34095F1AD46B7D00DFDC35 /* scan_border@2x.png */; };
+		5D3409621AD46C0500DFDC35 /* scan_border@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3409611AD46C0500DFDC35 /* scan_border@3x.png */; };
 		5D4170D318C68ACD0098DD3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4170D218C68ACD0098DD3B /* Foundation.framework */; };
 		5D4170D518C68ACD0098DD3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4170D418C68ACD0098DD3B /* CoreGraphics.framework */; };
 		5D4170D718C68ACD0098DD3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4170D618C68ACD0098DD3B /* UIKit.framework */; };
@@ -192,6 +194,8 @@
 		5D34094F1AD4617000DFDC35 /* iphone6+-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone6+-03.png"; sourceTree = "<group>"; };
 		5D3409501AD4617000DFDC35 /* iphone6+-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone6+-04.png"; sourceTree = "<group>"; };
 		5D3409511AD4617000DFDC35 /* iphone6+-05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone6+-05.png"; sourceTree = "<group>"; };
+		5D34095F1AD46B7D00DFDC35 /* scan_border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_border@2x.png"; sourceTree = "<group>"; };
+		5D3409611AD46C0500DFDC35 /* scan_border@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan_border@3x.png"; sourceTree = "<group>"; };
 		5D4170CF18C68ACD0098DD3B /* Tinkler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinkler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4170D218C68ACD0098DD3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D4170D418C68ACD0098DD3B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -944,6 +948,8 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5D3409611AD46C0500DFDC35 /* scan_border@3x.png */,
+				5D34095F1AD46B7D00DFDC35 /* scan_border@2x.png */,
 				5D34092E1AD45DF400DFDC35 /* splashscreen */,
 				5D34092D1AD45DE100DFDC35 /* tutorial */,
 				BC6815551AC6FECD0035CCDE /* settings.png */,
@@ -1070,6 +1076,7 @@
 				BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */,
 				BCDFFF991ABF93E4004D392E /* tinklers@3x.png in Resources */,
 				5D3409351AD4613F00DFDC35 /* iphone4-02.png in Resources */,
+				5D3409621AD46C0500DFDC35 /* scan_border@3x.png in Resources */,
 				5D3409541AD4617000DFDC35 /* iphone6+-03.png in Resources */,
 				BC10829719E73ACB007BD62C /* default_pic.jpg in Resources */,
 				5D3409411AD4615900DFDC35 /* iphone6-04.png in Resources */,
@@ -1088,6 +1095,7 @@
 				BC72B7C51A6858F700AC720B /* JSQMessages.strings in Resources */,
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
 				5D34093E1AD4615900DFDC35 /* iphone6-01.png in Resources */,
+				5D3409601AD46B7D00DFDC35 /* scan_border@2x.png in Resources */,
 				5D3409371AD4613F00DFDC35 /* iphone4-04.png in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				5D3409481AD4616500DFDC35 /* iphone5-01.png in Resources */,
@@ -1264,6 +1272,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1302,6 +1311,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1323,8 +1333,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Diogo Guimaraes (JR7EHCE7SV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Diogo Guimaraes (JR7EHCE7SV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1335,7 +1345,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Tinkler;
-				PROVISIONING_PROFILE = "92dd5748-0e4b-418f-8f4b-46c924cfbddf";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1345,8 +1355,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Diogo Guimaraes (JR7EHCE7SV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Diogo Guimaraes (JR7EHCE7SV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1357,7 +1367,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = Tinkler;
-				PROVISIONING_PROFILE = "92dd5748-0e4b-418f-8f4b-46c924cfbddf";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
