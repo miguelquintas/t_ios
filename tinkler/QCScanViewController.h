@@ -14,6 +14,8 @@
 
 @interface QCScanViewController : UIViewController <UIActionSheetDelegate, AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) IBOutlet UIView *qrCam;
+@property (strong, nonatomic) IBOutlet UIView *noItemsView;
+
 @property (nonatomic, strong) AVCaptureSession *captureSession;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 

@@ -19,6 +19,8 @@
     
     _captureSession = nil;
     
+    [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+    
     //Check connectivity
     if([QCApi checkForNetwork]){
         [QCApi getOnlineMessageTypes:^(NSMutableArray *msgTypeArray, NSError *error) {
@@ -50,34 +52,24 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     
-    //Set Tab Title
     self.scannedTinklerId = @"";
     
     //if there's no internet connection hide qrCam frame
     if(![QCApi checkForNetwork]){
         [_qrCam setHidden:YES];
-    }else{
+        [self.noItemsView setHidden:NO];
+    } else {
+        [self.noItemsView setHidden:YES];
         [_qrCam setHidden:NO];
         [self startQrCodeRead];
-    }
-    
-    int scanBorderWidth = self.view.frame.size.width * 0.9;
-    
-    UIImageView *scanBoarder = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - scanBorderWidth / 2, self.view.frame.size.height / 2 - scanBorderWidth / 2, scanBorderWidth, scanBorderWidth)];
-    [scanBoarder setImage:[UIImage imageNamed:@"scan_border.png"]];
-    
-    [self.view addSubview:scanBoarder];
-
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
-    //Place the QR Code Image in the screen during some time
-    if([QCApi checkForNetwork]){
         
+        int scanBorderWidth = self.view.frame.size.width * 0.9;
+        
+        UIImageView *scanBoarder = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - scanBorderWidth / 2, self.view.frame.size.height / 2 - scanBorderWidth / 2, scanBorderWidth, scanBorderWidth)];
+        [scanBoarder setImage:[UIImage imageNamed:@"scan_border.png"]];
+        
+        [self.view addSubview:scanBoarder];
     }
-    
 }
 
 -(void)viewDidDisappear:(BOOL)animated {

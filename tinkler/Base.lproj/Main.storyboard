@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -313,6 +313,30 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dlg-Xi-Kny">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="no internet connection" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmw-gR-8S5">
+                                        <rect key="frame" x="94" y="393" width="132" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="tinklers_empty@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="86U-Pm-87h">
+                                        <rect key="frame" x="60" y="128" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="Ado-jY-wgf"/>
+                                            <constraint firstAttribute="height" constant="200" id="lsd-H3-8Sp"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="86U-Pm-87h" secondAttribute="centerY" constant="-0.5" id="Itq-rh-J6t"/>
+                                    <constraint firstAttribute="bottom" secondItem="fmw-gR-8S5" secondAttribute="bottom" constant="41" id="m5w-2n-ikh"/>
+                                    <constraint firstAttribute="centerX" secondItem="fmw-gR-8S5" secondAttribute="centerX" id="tWb-zO-P8I"/>
+                                    <constraint firstAttribute="centerX" secondItem="86U-Pm-87h" secondAttribute="centerX" id="w4t-HY-9Qj"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPp-T4-MGt">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -321,14 +345,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BPp-T4-MGt" firstAttribute="width" secondItem="Usg-pU-K5g" secondAttribute="width" id="5ry-P8-RhT"/>
+                            <constraint firstItem="Dlg-Xi-Kny" firstAttribute="width" secondItem="Usg-pU-K5g" secondAttribute="width" id="AHj-b1-Zjb"/>
                             <constraint firstAttribute="centerY" secondItem="BPp-T4-MGt" secondAttribute="centerY" id="K0R-bD-v8t"/>
                             <constraint firstItem="BPp-T4-MGt" firstAttribute="height" secondItem="Usg-pU-K5g" secondAttribute="height" id="PtP-z4-Arh"/>
+                            <constraint firstItem="Dlg-Xi-Kny" firstAttribute="height" secondItem="Usg-pU-K5g" secondAttribute="height" id="o44-8A-2BG"/>
                             <constraint firstAttribute="centerX" secondItem="BPp-T4-MGt" secondAttribute="centerX" id="oKP-Tm-Fyh"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Scan" image="scan.png" id="TlR-3O-2Gr"/>
                     <connections>
+                        <outlet property="noItemsView" destination="Dlg-Xi-Kny" id="M9N-EM-Cpk"/>
                         <outlet property="qrCam" destination="BPp-T4-MGt" id="KCD-Dd-vHs"/>
                         <segue destination="jFg-YT-aMo" kind="push" identifier="CapturedQrCode" id="MEn-OT-2qv"/>
                     </connections>
@@ -422,7 +449,7 @@
                                     <constraint firstAttribute="bottom" secondItem="9DH-4A-NDw" secondAttribute="bottom" constant="41" id="s9O-DS-gaz"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dG-4D-P1R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dG-4D-P1R">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="bcZ-Ki-tUO"/>
                                 </constraints>
