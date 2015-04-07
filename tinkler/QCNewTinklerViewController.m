@@ -195,7 +195,7 @@
         for (PFObject *selectedTinklerType in self.tinklerTypes){
             
             NSLog(@"Tinkler Type Name %@", [selectedTinklerType objectForKey:@"typeName"]);
-            if ([[selectedTinklerType objectForKey:@"typeName"] isEqualToString:_tinklerType.titleLabel.text]){
+            if ([[selectedTinklerType objectForKey:@"typeName"] isEqualToString:_tinklerTypeTF.text]){
                 NSLog(@"Added the Tinkler Type Successfully");
                 destViewController.tinklerType = selectedTinklerType;
             }

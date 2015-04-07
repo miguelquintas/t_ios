@@ -1084,7 +1084,7 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tinkler Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HuU-Rx-AYu">
-                                <rect key="frame" x="35" y="170" width="250" height="40"/>
+                                <rect key="frame" x="35" y="164" width="250" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="8II-gN-IVh"/>
                                     <constraint firstAttribute="height" constant="40" id="VTL-TQ-GRI"/>
@@ -1092,12 +1092,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tinkler Type" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8mR-iX-Gh2">
+                                <rect key="frame" x="35" y="210" width="250" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="RYw-1T-4t2"/>
+                                    <constraint firstAttribute="height" constant="40" id="nee-YD-VeW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XO5-5n-o0h">
-                                <rect key="frame" x="35" y="218" width="250" height="30"/>
+                                <rect key="frame" x="35" y="210" width="250" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="8mb-GQ-3rP"/>
+                                    <constraint firstAttribute="height" constant="40" id="eaJ-1d-soR"/>
                                 </constraints>
-                                <state key="normal" title="Tinkler Type">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -1109,7 +1119,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUj-Lo-QyX">
-                                <rect key="frame" x="35" y="344" width="250" height="124"/>
+                                <rect key="frame" x="35" y="347" width="250" height="124"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlP-AZ-DTL">
                                         <rect key="frame" x="130" y="84" width="120" height="40"/>
@@ -1179,17 +1189,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="HuU-Rx-AYu" secondAttribute="centerX" id="2jh-Yy-X5Q"/>
+                            <constraint firstAttribute="centerX" secondItem="8mR-iX-Gh2" secondAttribute="centerX" id="DsW-UQ-8jx"/>
+                            <constraint firstItem="OCX-3B-buy" firstAttribute="top" secondItem="8mR-iX-Gh2" secondAttribute="bottom" constant="6" id="FAr-Ui-q59"/>
                             <constraint firstItem="OCX-3B-buy" firstAttribute="width" secondItem="HuU-Rx-AYu" secondAttribute="width" id="K8G-nr-b7V"/>
-                            <constraint firstItem="XO5-5n-o0h" firstAttribute="top" secondItem="HuU-Rx-AYu" secondAttribute="bottom" constant="8" id="Nl3-uq-CbI"/>
-                            <constraint firstItem="HuU-Rx-AYu" firstAttribute="top" secondItem="DOo-0W-b6L" secondAttribute="bottom" constant="18" id="Pr3-o6-5HQ"/>
+                            <constraint firstItem="HuU-Rx-AYu" firstAttribute="top" secondItem="DOo-0W-b6L" secondAttribute="bottom" constant="12" id="Pr3-o6-5HQ"/>
+                            <constraint firstItem="8mR-iX-Gh2" firstAttribute="top" secondItem="HuU-Rx-AYu" secondAttribute="bottom" constant="6" id="W2I-Pe-hX2"/>
                             <constraint firstAttribute="centerX" secondItem="GUj-Lo-QyX" secondAttribute="centerX" id="Xdc-zt-bGG"/>
-                            <constraint firstItem="OCX-3B-buy" firstAttribute="top" secondItem="XO5-5n-o0h" secondAttribute="bottom" constant="8" id="Yh9-Aj-HTr"/>
                             <constraint firstAttribute="centerX" secondItem="XO5-5n-o0h" secondAttribute="centerX" id="gtp-r2-kTQ"/>
                             <constraint firstAttribute="centerX" secondItem="HlF-Io-1lI" secondAttribute="centerX" id="kYI-fs-tE0"/>
                             <constraint firstAttribute="centerX" secondItem="DOo-0W-b6L" secondAttribute="centerX" id="ml5-N0-4FF"/>
                             <constraint firstItem="DOo-0W-b6L" firstAttribute="top" secondItem="p5E-mT-3Nm" secondAttribute="bottom" constant="8" id="ofT-Ri-i9v"/>
                             <constraint firstItem="DOo-0W-b6L" firstAttribute="top" secondItem="HlF-Io-1lI" secondAttribute="top" id="rB3-5c-FxJ"/>
-                            <constraint firstItem="GUj-Lo-QyX" firstAttribute="top" secondItem="OCX-3B-buy" secondAttribute="bottom" constant="25" id="tgx-dQ-dCT"/>
+                            <constraint firstItem="XO5-5n-o0h" firstAttribute="top" secondItem="8mR-iX-Gh2" secondAttribute="top" id="sv3-p8-IWv"/>
+                            <constraint firstItem="GUj-Lo-QyX" firstAttribute="top" secondItem="OCX-3B-buy" secondAttribute="bottom" constant="28" id="tgx-dQ-dCT"/>
                             <constraint firstAttribute="centerX" secondItem="OCX-3B-buy" secondAttribute="centerX" id="tjK-QK-A85"/>
                         </constraints>
                     </view>
@@ -1202,6 +1214,7 @@
                         <outlet property="tinklerImage" destination="DOo-0W-b6L" id="ldE-6t-QEa"/>
                         <outlet property="tinklerNameEdit" destination="HuU-Rx-AYu" id="fxN-eM-3lL"/>
                         <outlet property="tinklerTypeEdit" destination="XO5-5n-o0h" id="daM-OT-Tl4"/>
+                        <outlet property="tinklerTypeTF" destination="8mR-iX-Gh2" id="I9k-sE-Ck1"/>
                         <outlet property="updateButton" destination="S2d-NR-BFo" id="u0I-tq-bCR"/>
                     </connections>
                 </viewController>

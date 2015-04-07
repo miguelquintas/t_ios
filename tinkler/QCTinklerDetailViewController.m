@@ -18,12 +18,17 @@
     [super viewDidLoad];
     self.hasNewPhoto = false;
     self.tinklerNameEdit.text = [self.selectedTinkler tinklerName];
-    [_tinklerTypeEdit setTitle:[[self.selectedTinkler tinklerType] objectForKey:@"typeName"] forState:UIControlStateNormal];
+    [_tinklerTypeTF setText:[[self.selectedTinkler tinklerType] objectForKey:@"typeName"]];
     
     //Set Profile View background color
     [_tinklerDetailView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
     
     self.title = [self.selectedTinkler tinklerName];
+    
+    _tinklerTypeTF.layer.cornerRadius=4.0f;
+    _tinklerTypeTF.layer.masksToBounds=YES;
+    _tinklerTypeTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _tinklerTypeTF.layer.borderWidth= 1.0f;
     
     //Edit the buttons style
     [_regenerateButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
@@ -151,7 +156,7 @@
     _colorTF.layer.masksToBounds=YES;
     _colorTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
     _colorTF.layer.borderWidth= 1.0f;
-    _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+50, 250.0f, 40.0f);
+    _colorTF.frame = CGRectMake(0.0f, _brandTF.frame.origin.y+46, 250.0f, 40.0f);
     _colorTF.delegate = self;
     _colorTF.borderStyle = UITextBorderStyleRoundedRect;
     _colorTF.placeholder = @"Color";
@@ -181,7 +186,7 @@
     _petAgeTF.layer.masksToBounds=YES;
     _petAgeTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
     _petAgeTF.layer.borderWidth= 1.0f;
-    _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+45, 250.0f, 40.0f);
+    _petAgeTF.frame = CGRectMake(0.0f, _petBreedTF.frame.origin.y+46, 250.0f, 40.0f);
     _petAgeTF.delegate = self;
     _petAgeTF.borderStyle = UITextBorderStyleRoundedRect;
     _petAgeTF.placeholder = @"Birth Date";
@@ -219,7 +224,7 @@
     _vehicleYearTF.layer.masksToBounds=YES;
     _vehicleYearTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
     _vehicleYearTF.layer.borderWidth= 1.0f;
-    _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+45, 250.0f, 40.0f);
+    _vehicleYearTF.frame = CGRectMake(0.0f, _vehiclePlateTF.frame.origin.y+46, 250.0f, 40.0f);
     _vehicleYearTF.delegate = self;
     _vehicleYearTF.borderStyle = UITextBorderStyleRoundedRect;
     _vehicleYearTF.placeholder = @"Year";
@@ -263,7 +268,7 @@
     for (PFObject *selectedTinklerType in self.tinklerTypes){
         
         NSLog(@"Tinkler Type Name %@", [selectedTinklerType objectForKey:@"typeName"]);
-        if ([[selectedTinklerType objectForKey:@"typeName"] isEqualToString:_tinklerTypeEdit.titleLabel.text]){
+        if ([[selectedTinklerType objectForKey:@"typeName"] isEqualToString:_tinklerTypeTF.text]){
             [self.selectedTinkler setTinklerType:selectedTinklerType];
             NSLog(@"Added the Tinkler Type Successfully");
         }
@@ -520,7 +525,7 @@
 //Vehicle Picker Delegate Methods
 #pragma mark - SBPickerSelectorDelegate
 -(void) SBPickerSelector:(SBPickerSelector *)selector selectedValue:(NSString *)value index:(NSInteger)idx{
-    [_tinklerTypeEdit setTitle:value forState:UIControlStateNormal];
+    [_tinklerTypeTF setText:value];
 }
 
 -(void) SBPickerSelector:(SBPickerSelector *)selector cancelPicker:(BOOL)cancel{
