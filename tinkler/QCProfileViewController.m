@@ -78,8 +78,6 @@
     
     //Set Profile View background color
     [_profileView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
-//    [self.view setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
-//    [_tinklersTabView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
     
     //Set Text Color
     [_usernameLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
