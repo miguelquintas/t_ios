@@ -56,6 +56,8 @@
     
     self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;
     self.tinklerImage.clipsToBounds = YES;
+    self.tinklerImage.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    self.tinklerImage.layer.borderWidth= 1.0f;
     
     //Set Tinkler's QR-Code Image
     if([self.selectedTinkler tinklerQRCode] != nil){

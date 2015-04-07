@@ -166,6 +166,9 @@
     //Get the proper date format
     cell.sentDate.text = thisConversation.lastSentDate;
     
+    cell.tinklerThumb.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    cell.tinklerThumb.layer.borderWidth= 1.0f;
+    
     if(tinklerImage== nil){
         [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_pic.png"]];
     }else{
