@@ -25,10 +25,9 @@
     UIImage *storedProfilePic = [UIImage imageWithData:imageData];
     
     //Edit the buttons style
-    [_createNewButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_createNewButton.layer setBorderWidth:1.0];
-    [_createNewButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_createNewButton.layer setCornerRadius: 6.0f];
+    [_createNewButton.layer setBorderColor:[[QCApi colorWithHexString:@"EE463E"] CGColor]];
+    [_createNewButton.layer setCornerRadius: self.createNewButton.frame.size.width / 2];
     
     
     //Set profile pic from NSUserDefaults

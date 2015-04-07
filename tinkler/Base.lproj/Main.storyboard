@@ -1000,13 +1000,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-2C-q5E">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-d6-ddL">
-                                        <rect key="frame" x="85" y="20" width="150" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-d6-ddL">
+                                        <rect key="frame" x="125" y="5" width="70" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="0b7-Uw-K1T"/>
-                                            <constraint firstAttribute="height" constant="40" id="7qy-6S-BHB"/>
+                                            <constraint firstAttribute="width" constant="70" id="0b7-Uw-K1T"/>
+                                            <constraint firstAttribute="height" constant="70" id="7qy-6S-BHB"/>
                                         </constraints>
-                                        <state key="normal" title="create new">
+                                        <state key="normal" backgroundImage="add_new_tinkler.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1019,8 +1019,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="6Nw-Nq-IXZ"/>
                                     <constraint firstAttribute="width" constant="320" id="A7I-JL-FMM"/>
-                                    <constraint firstAttribute="centerY" secondItem="fXI-d6-ddL" secondAttribute="centerY" id="Bw2-hc-k6u"/>
-                                    <constraint firstAttribute="centerX" secondItem="fXI-d6-ddL" secondAttribute="centerX" id="gnV-Gr-wpb"/>
+                                    <constraint firstAttribute="centerY" secondItem="fXI-d6-ddL" secondAttribute="centerY" id="VgN-bz-wJ3"/>
+                                    <constraint firstAttribute="centerX" secondItem="fXI-d6-ddL" secondAttribute="centerX" id="a8j-hF-Ww5"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1211,6 +1211,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_new_tinkler.png" width="112" height="112"/>
         <image name="inbox.png" width="25" height="25"/>
         <image name="scan.png" width="25" height="25"/>
         <image name="tinklernav.png" width="25" height="25"/>
