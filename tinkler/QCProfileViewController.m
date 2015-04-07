@@ -195,11 +195,13 @@
     static NSString *simpleTableIdentifier = @"TinklerCell";
     
     QCTinklerTableViewCell *cell = (QCTinklerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-//    [cell setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
     
     QCTinkler *thisTinkler = [_tinklers objectAtIndex:indexPath.row];
     
     cell.tinklerNameLabel.text = [thisTinkler tinklerName];
+    
+    cell.thumbnailImageView.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    cell.thumbnailImageView.layer.borderWidth= 1.0f;
     
     if(thisTinkler.tinklerImage == nil){
         [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_pic.png"]];

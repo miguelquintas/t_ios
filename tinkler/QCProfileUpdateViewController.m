@@ -21,6 +21,8 @@
     
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     self.profilePic.clipsToBounds = YES;
+    self.profilePic.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    self.profilePic.layer.borderWidth= 1.0f;
     
     // Get the stored data before the view loads
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

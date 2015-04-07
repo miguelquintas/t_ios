@@ -17,8 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Load the default vehicle pic
+    //Load the default pic
     [self.tinklerImage setImage:_selectedImage];
+    
+    self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;
+    self.tinklerImage.clipsToBounds = YES;
+    self.tinklerImage.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    self.tinklerImage.layer.borderWidth= 1.0f;
+    
     //Set the tinkler name and type to the respective labels
     self.title = _tinklerName;
     
