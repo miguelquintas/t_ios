@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */; };
+		5D20E8BF1AD4883300BF81E9 /* add_new_tinkler@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */; };
+		5D20E8C01AD4883300BF81E9 /* add_new_tinkler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */; };
 		5D3409341AD4613F00DFDC35 /* iphone4-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D34092F1AD4613F00DFDC35 /* iphone4-01.png */; };
 		5D3409351AD4613F00DFDC35 /* iphone4-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3409301AD4613F00DFDC35 /* iphone4-02.png */; };
 		5D3409361AD4613F00DFDC35 /* iphone4-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3409311AD4613F00DFDC35 /* iphone4-03.png */; };
@@ -176,6 +178,8 @@
 
 /* Begin PBXFileReference section */
 		5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers_empty@3x.png"; sourceTree = "<group>"; };
+		5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_tinkler@3x.png"; sourceTree = "<group>"; };
+		5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_tinkler@2x.png"; sourceTree = "<group>"; };
 		5D34092F1AD4613F00DFDC35 /* iphone4-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone4-01.png"; sourceTree = "<group>"; };
 		5D3409301AD4613F00DFDC35 /* iphone4-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone4-02.png"; sourceTree = "<group>"; };
 		5D3409311AD4613F00DFDC35 /* iphone4-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone4-03.png"; sourceTree = "<group>"; };
@@ -952,6 +956,8 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */,
+				5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */,
 				5DDDADA01AD47D1300244176 /* default_pic@2x.png */,
 				5DDDADA11AD47D1300244176 /* default_pic@3x.png */,
 				5D3409611AD46C0500DFDC35 /* scan_border@3x.png */,
@@ -1062,6 +1068,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */,
+				5D20E8C01AD4883300BF81E9 /* add_new_tinkler@2x.png in Resources */,
 				5D34093F1AD4615900DFDC35 /* iphone6-02.png in Resources */,
 				BCDFFF9F1ABF99EF004D392E /* tinklernav@3x.png in Resources */,
 				BC956DC71A9E7E710050C291 /* scan.png in Resources */,
@@ -1092,6 +1099,7 @@
 				BCDFFF9D1ABF99EF004D392E /* tinklernav.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
 				BC72B7C41A6858F700AC720B /* JSQMessagesAssets.bundle in Resources */,
+				5D20E8BF1AD4883300BF81E9 /* add_new_tinkler@3x.png in Resources */,
 				5D3409421AD4615900DFDC35 /* iphone6-05.png in Resources */,
 				BC824C931ACEE84E00A36024 /* splash_6@2x.png in Resources */,
 				BC956DC51A9E7E710050C291 /* profile@2x.png in Resources */,
