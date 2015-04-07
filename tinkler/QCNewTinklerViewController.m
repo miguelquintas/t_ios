@@ -30,6 +30,11 @@
     _tinklerName.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
     _tinklerName.layer.borderWidth= 1.0f;
     
+    _tinklerTypeTF.layer.cornerRadius=4.0f;
+    _tinklerTypeTF.layer.masksToBounds=YES;
+    _tinklerTypeTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _tinklerTypeTF.layer.borderWidth= 1.0f;
+    
     //Get the existing Tinkler Types
     //Check connectivity
     if([QCApi checkForNetwork]){
@@ -106,7 +111,7 @@
 
 - (IBAction)nextButton:(id)sender {
     
-    if(!([_tinklerName.text length] == 0) && ![_tinklerType.titleLabel.text isEqualToString:@"Select Type"]){
+    if(!([_tinklerName.text length] == 0) && !([_tinklerTypeTF.text length] == 0)){
         [self performSegueWithIdentifier:@"submitTinkler" sender:self];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Missing Data" message:@"Please fill in the name and type of your new Tinkler before continuing" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -162,7 +167,7 @@
 #pragma mark - SBPickerSelectorDelegate
 
 -(void) SBPickerSelector:(SBPickerSelector *)selector selectedValue:(NSString *)value index:(NSInteger)idx{
-    [_tinklerType setTitle:value forState:UIControlStateNormal];
+    [_tinklerTypeTF setText:value];
 }
 
 -(void) SBPickerSelector:(SBPickerSelector *)selector cancelPicker:(BOOL)cancel{

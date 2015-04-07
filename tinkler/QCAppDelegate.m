@@ -75,7 +75,7 @@
     NSLog(@"currentInstallation %@", currentInstallation);
     
     [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"success : %d  with error : %@",succeeded,error);
+//        NSLog(@"success : %d  with error : %@",succeeded,error);
     }];
     
 }

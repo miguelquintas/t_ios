@@ -17,9 +17,9 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *tinklerName;
 @property (strong, nonatomic) IBOutlet UIButton *tinklerType;
-@property (strong, nonatomic) IBOutlet UILabel *tinklerTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
 @property (weak, nonatomic) IBOutlet UIImageView *tinklerImage;
+@property (weak, nonatomic) IBOutlet UITextField *tinklerTypeTF;
 
 //Array with the existing tinkler types objects
 @property (strong, nonatomic) NSArray *tinklerTypes;

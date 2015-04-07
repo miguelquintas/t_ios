@@ -854,28 +854,35 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5gN-uH-P7u">
                                 <rect key="frame" x="35" y="302" width="250" height="58"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tinkler Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wy1-ha-cNP">
-                                        <rect key="frame" x="0.0" y="18" width="92" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tinkler Type" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SNM-Eo-Vat">
+                                        <rect key="frame" x="0.0" y="9" width="250" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="E9D-Vb-vUB"/>
+                                            <constraint firstAttribute="width" constant="250" id="O7H-4c-h1a"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuW-4v-lP1">
-                                        <rect key="frame" x="100" y="13" width="89" height="33"/>
+                                        <rect key="frame" x="0.0" y="9" width="250" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="EZ8-bU-zNT"/>
+                                            <constraint firstAttribute="height" constant="40" id="gNr-Bs-Wxl"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Select Type">
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="Wy1-ha-cNP" secondAttribute="centerY" constant="0.5" id="9Ik-Oq-g6q"/>
-                                    <constraint firstItem="Wy1-ha-cNP" firstAttribute="leading" secondItem="5gN-uH-P7u" secondAttribute="leading" id="Men-Cs-d6g"/>
+                                    <constraint firstAttribute="centerY" secondItem="SNM-Eo-Vat" secondAttribute="centerY" id="3hn-Og-Op9"/>
                                     <constraint firstAttribute="width" constant="250" id="Ptw-cU-hAB"/>
                                     <constraint firstAttribute="height" constant="58" id="ZjL-Ex-bdm"/>
                                     <constraint firstAttribute="centerY" secondItem="tuW-4v-lP1" secondAttribute="centerY" id="ujd-uh-KEH"/>
-                                    <constraint firstItem="tuW-4v-lP1" firstAttribute="leading" secondItem="Wy1-ha-cNP" secondAttribute="trailing" constant="8" id="zcB-jG-mZs"/>
+                                    <constraint firstAttribute="centerX" secondItem="SNM-Eo-Vat" secondAttribute="centerX" id="yFi-eM-ojO"/>
+                                    <constraint firstAttribute="centerX" secondItem="tuW-4v-lP1" secondAttribute="centerX" id="zgN-FK-hEO"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RJ-Iq-5RJ">
@@ -913,7 +920,7 @@
                         <outlet property="tinklerImage" destination="d3N-8F-IJQ" id="cju-ez-bNw"/>
                         <outlet property="tinklerName" destination="NG6-oq-a5s" id="3Ib-9K-Ao1"/>
                         <outlet property="tinklerType" destination="tuW-4v-lP1" id="odu-0s-VYQ"/>
-                        <outlet property="tinklerTypeLabel" destination="Wy1-ha-cNP" id="Ti4-gd-qhI"/>
+                        <outlet property="tinklerTypeTF" destination="SNM-Eo-Vat" id="iM2-wg-I5o"/>
                         <segue destination="hmI-ve-gs6" kind="push" identifier="submitTinkler" id="H7z-Kg-VYV"/>
                     </connections>
                 </viewController>
