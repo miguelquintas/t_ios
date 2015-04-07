@@ -47,17 +47,17 @@
     [_tutorialButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_tutorialButton.layer setBorderWidth:1.0];
     [_tutorialButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_tutorialButton.layer setCornerRadius: 4.0f];
+    [_tutorialButton.layer setCornerRadius: 6.0f];
     
     [_logoutButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_logoutButton.layer setBorderWidth:1.0];
     [_logoutButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_logoutButton.layer setCornerRadius: 4.0f];
+    [_logoutButton.layer setCornerRadius: 6.0f];
     
     [_resetPassButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_resetPassButton.layer setBorderWidth:1.0];
     [_resetPassButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_resetPassButton.layer setCornerRadius: 4.0f];
+    [_resetPassButton.layer setCornerRadius: 6.0f];
     
 }
 
