@@ -451,7 +451,7 @@
                                     <constraint firstAttribute="bottom" secondItem="9DH-4A-NDw" secondAttribute="bottom" constant="41" id="s9O-DS-gaz"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dG-4D-P1R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dG-4D-P1R">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="bcZ-Ki-tUO"/>
                                 </constraints>
@@ -664,6 +664,7 @@
                                 </state>
                                 <connections>
                                     <action selector="goToTutorial:" destination="oCD-1L-rFO" eventType="touchUpInside" id="dAO-En-Puz"/>
+                                    <segue destination="nZ9-5f-eA6" kind="push" id="rip-a9-MhR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1236,4 +1237,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="rip-a9-MhR"/>
+    </inferredMetricsTieBreakers>
 </document>

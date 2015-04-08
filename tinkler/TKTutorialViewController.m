@@ -18,11 +18,6 @@
     [super viewWillAppear:YES];
 
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.title = @"Tutorial";
     
@@ -107,6 +102,11 @@
     [self.view addSubview:self.skipButton];
     [self.view addSubview:self.pageControl];
     [self.pageViewController didMoveToParentViewController:self];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
 }
 
 - (void)goToScanPage {
@@ -142,14 +142,6 @@
     pageContentViewController.pageIndex = index;
     pageContentViewController.descriptionText = self.pageDescriptions[index];
     
-    if (index == [self.pageImages count] - 1){
-        pageContentViewController.buttonHidden = NO;
-        [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
-    } else {
-        [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
-        pageContentViewController.buttonHidden = YES;
-    }
-    
     return pageContentViewController;
 }
 
@@ -158,6 +150,20 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((TKPageContentViewController*) viewController).pageIndex;
+    
+    // Create a new view controller and pass suitable data.
+    TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    pageContentViewController.imageFile = self.pageImages[index];
+    pageContentViewController.pageIndex = index;
+    pageContentViewController.descriptionText = self.pageDescriptions[index];
+    
+    if (index == [self.pageImages count]-1){
+        pageContentViewController.buttonHidden = NO;
+        [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
+    } else {
+        [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
+        pageContentViewController.buttonHidden = YES;
+    }
     
     if ((index == 0) || (index == NSNotFound)) {
         [self.pageControl setCurrentPage:index];
@@ -174,6 +180,20 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     NSUInteger index = ((TKPageContentViewController*) viewController).pageIndex;
+    
+    // Create a new view controller and pass suitable data.
+    TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+    pageContentViewController.imageFile = self.pageImages[index];
+    pageContentViewController.pageIndex = index;
+    pageContentViewController.descriptionText = self.pageDescriptions[index];
+    
+    if (index == [self.pageImages count]-1){
+        pageContentViewController.buttonHidden = NO;
+        [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
+    } else {
+        [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
+        pageContentViewController.buttonHidden = YES;
+    }
     
     if (index == NSNotFound) {
         return nil;

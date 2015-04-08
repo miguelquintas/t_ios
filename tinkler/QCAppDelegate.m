@@ -72,7 +72,7 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[ @"global" ];
     
-    NSLog(@"currentInstallation %@", currentInstallation);
+//    NSLog(@"currentInstallation %@", currentInstallation);
     
     [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 //        NSLog(@"success : %d  with error : %@",succeeded,error);

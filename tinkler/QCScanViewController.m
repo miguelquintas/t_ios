@@ -199,8 +199,13 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     //Re Start the qrcode reader only after the users presses "ok"
-    if(buttonIndex == 0){
-        [self startQrCodeRead];
+    if(buttonIndex == 0 && [alertView.title isEqualToString:@"Message Sent"]){
+        //Set PushNotification Preference ON
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"hasReceivedMsg"];
+        [defaults synchronize];
+        
+        [self.tabBarController setSelectedIndex:0];
     }
     
     if (buttonIndex == 1) {
