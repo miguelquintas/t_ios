@@ -68,6 +68,8 @@
 		BC1D468719F9AADF00DAC450 /* LTHMonthYearPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D468619F9AADF00DAC450 /* LTHMonthYearPickerView.m */; };
 		BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1D468A19F9BA9100DAC450 /* SBPickerSelector.xib */; };
 		BC1D468F19F9BA9100DAC450 /* SBPickerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D468D19F9BA9100DAC450 /* SBPickerSelector.m */; };
+		BC3F6F061AD9725E006177C9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F6F041AD9725E006177C9 /* Bolts.framework */; };
+		BC3F6F071AD9725E006177C9 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F6F051AD9725E006177C9 /* Parse.framework */; };
 		BC4B94DD19BCBC9C0069D3A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94D819BCBC9C0069D3A7 /* AVFoundation.framework */; };
 		BC4B94DE19BCBC9C0069D3A7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94D919BCBC9C0069D3A7 /* CoreAudio.framework */; };
 		BC4B94DF19BCBC9C0069D3A7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94DA19BCBC9C0069D3A7 /* CoreMedia.framework */; };
@@ -171,8 +173,6 @@
 		BCEF3D8E1A5861A1004F3F26 /* QCNewTinklerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D8D1A5861A1004F3F26 /* QCNewTinklerViewController.m */; };
 		BCEF3D911A5862A0004F3F26 /* QCTinklerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */; };
 		BCEF3D941A587114004F3F26 /* QCTinklerType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEF3D931A587114004F3F26 /* QCTinklerType.m */; };
-		BCFBDD541AB2473D00D74DBD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFBDD521AB2473D00D74DBD /* Bolts.framework */; };
-		BCFBDD551AB2473D00D74DBD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFBDD531AB2473D00D74DBD /* Parse.framework */; };
 		BCFBDD571AB24DB700D74DBD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BCFBDD561AB24DB700D74DBD /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +269,8 @@
 		BC1D468A19F9BA9100DAC450 /* SBPickerSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBPickerSelector.xib; sourceTree = "<group>"; };
 		BC1D468C19F9BA9100DAC450 /* SBPickerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPickerSelector.h; sourceTree = "<group>"; };
 		BC1D468D19F9BA9100DAC450 /* SBPickerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPickerSelector.m; sourceTree = "<group>"; };
+		BC3F6F041AD9725E006177C9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		BC3F6F051AD9725E006177C9 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		BC4B94D819BCBC9C0069D3A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BC4B94D919BCBC9C0069D3A7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		BC4B94DA19BCBC9C0069D3A7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -449,8 +451,6 @@
 		BCEF3D901A5862A0004F3F26 /* QCTinklerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerTableViewCell.m; sourceTree = "<group>"; };
 		BCEF3D921A587114004F3F26 /* QCTinklerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCTinklerType.h; sourceTree = "<group>"; };
 		BCEF3D931A587114004F3F26 /* QCTinklerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerType.m; sourceTree = "<group>"; };
-		BCFBDD521AB2473D00D74DBD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		BCFBDD531AB2473D00D74DBD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		BCFBDD561AB24DB700D74DBD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -469,11 +469,11 @@
 				BCE548DF19B79B3200B8B0BE /* CoreLocation.framework in Frameworks */,
 				BCE548E019B79B3200B8B0BE /* libz.dylib in Frameworks */,
 				BCE548E119B79B3200B8B0BE /* MobileCoreServices.framework in Frameworks */,
+				BC3F6F071AD9725E006177C9 /* Parse.framework in Frameworks */,
 				BCE548E219B79B3200B8B0BE /* QuartzCore.framework in Frameworks */,
-				BCFBDD551AB2473D00D74DBD /* Parse.framework in Frameworks */,
 				BCE548E319B79B3200B8B0BE /* Security.framework in Frameworks */,
 				BCE548E519B79B3200B8B0BE /* SystemConfiguration.framework in Frameworks */,
-				BCFBDD541AB2473D00D74DBD /* Bolts.framework in Frameworks */,
+				BC3F6F061AD9725E006177C9 /* Bolts.framework in Frameworks */,
 				BCE548D719B79A9100B8B0BE /* CFNetwork.framework in Frameworks */,
 				BCE548D519B79A8500B8B0BE /* AudioToolbox.framework in Frameworks */,
 				5D4170D718C68ACD0098DD3B /* UIKit.framework in Frameworks */,
@@ -525,8 +525,8 @@
 		5D4170C618C68ACD0098DD3B = {
 			isa = PBXGroup;
 			children = (
-				BCFBDD521AB2473D00D74DBD /* Bolts.framework */,
-				BCFBDD531AB2473D00D74DBD /* Parse.framework */,
+				BC3F6F041AD9725E006177C9 /* Bolts.framework */,
+				BC3F6F051AD9725E006177C9 /* Parse.framework */,
 				5D4170D818C68ACD0098DD3B /* tinkler */,
 				5D4170D118C68ACD0098DD3B /* Frameworks */,
 				5D4170D018C68ACD0098DD3B /* Products */,

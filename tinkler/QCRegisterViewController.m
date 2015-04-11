@@ -20,6 +20,7 @@
 @synthesize email = _email;
 
 - (void) viewDidLoad{
+    [super viewDidLoad];
     [self.view setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
     [_registerButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_registerButton.layer setCornerRadius: 4.0f];

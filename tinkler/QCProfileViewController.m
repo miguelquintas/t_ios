@@ -40,7 +40,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillAppear:YES];
+    [super viewWillDisappear:YES];
     self.tabBarController.navigationItem.rightBarButtonItem =nil;
 }
 
