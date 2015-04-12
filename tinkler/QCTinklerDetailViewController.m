@@ -20,9 +20,6 @@
     self.tinklerNameEdit.text = [self.selectedTinkler tinklerName];
     [_tinklerTypeTF setText:[[self.selectedTinkler tinklerType] objectForKey:@"typeName"]];
     
-    //Set Profile View background color
-    [_tinklerDetailView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
-    
     self.title = [self.selectedTinkler tinklerName];
     
     _tinklerTypeTF.layer.cornerRadius=4.0f;
@@ -294,33 +291,56 @@
 
 - (IBAction)generateQRCode:(id)sender {
     
-    //set new QR-Code key
-    NSNumber *newQrCodeKey = [NSNumber numberWithInt:[[self.selectedTinkler tinklerQRCodeKey] intValue] + 1];
+    //Validate if there is network connectivity
+    if ([QCApi checkForNetwork]) {
+        //set new QR-Code key
+        NSNumber *newQrCodeKey = [NSNumber numberWithInt:[[self.selectedTinkler tinklerQRCodeKey] intValue] + 1];
     
-    //Save QRCode image to camera roll
-    UIImage *newQrCode = [QCQrCode generateQRCode:[self.selectedTinkler tinklerId] :newQrCodeKey :[self.selectedTinkler.tinklerType objectForKey:@"typeName"]];
-    UIImageWriteToSavedPhotosAlbum(newQrCode, nil, nil, nil);
+        //Save QRCode image to camera roll
+        UIImage *newQrCode = [QCQrCode generateQRCode:[self.selectedTinkler tinklerId] :newQrCodeKey :[self.selectedTinkler.tinklerType objectForKey:@"typeName"]];
+        UIImageWriteToSavedPhotosAlbum(newQrCode, nil, nil, nil);
     
-    //String with the alert message
-    NSString* alertmessage = [NSString stringWithFormat: @"The QR-Code for %@ was regenarated. The previous one will no longer be valid", self.tinklerNameEdit.text];
+        //String with the alert message
+        NSString* alertmessage = [NSString stringWithFormat: @"The QR-Code for %@ was regenarated. The previous one will no longer be valid", self.tinklerNameEdit.text];
     
-    //Send an email with the regenarated QR-Code
-    [QCApi sendQrCodeEmail:[self.selectedTinkler tinklerId]];
+        //Update QrCode and QrCodeKey
+        NSData *imageData = UIImageJPEGRepresentation(newQrCode, 0.05f);
+        PFFile *qrCodeFile = [PFFile fileWithName:@"qrCode.jpg" data:imageData];
+        [self.selectedTinkler setTinklerQRCode: qrCodeFile];
+        [self.selectedTinkler setTinklerQRCodeKey:newQrCodeKey];
     
-    //Update QrCode and QrCodeKey
-    NSData *imageData = UIImageJPEGRepresentation(newQrCode, 0.05f);
-    PFFile *qrCodeFile = [PFFile fileWithName:@"qrCode.jpg" data:imageData];
-    [self.selectedTinkler setTinklerQRCode: qrCodeFile];
-    [self.selectedTinkler setTinklerQRCodeKey:newQrCodeKey];
     
-    //Set Updated Tinkler - ON
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
-    [defaults synchronize];
+        //Loading spinner
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            //Save edited object
+            [self editTinkler];
+            [QCApi editTinklerWithCompletion:self.selectedTinkler completion:^void(BOOL finished) {
+                if (finished) {
+                    NSLog(@"Updates were saved!");
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    });
+                    //Set Updated Tinkler - ON
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setBool:YES forKey:@"hasUpdatedTinkler"];
+                    [defaults synchronize];
+                    
+                    //Send an email with the regenarated QR-Code
+                    [QCApi sendQrCodeEmail:[self.selectedTinkler tinklerId]];
+                    
+                    //Alert to warn user that the QR Code has been saved
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"QR Code Regenarated!" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [alertView show];
+                }
+            }];
+        });
+    }else{
+        //Warn user
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Update Failed" message:@"You need to have network connectivity to perform this action" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
     
-    //Alert to warn user that the QR Code has been saved
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"QR Code Regenarated!" message:alertmessage delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alertView show];
 }
 
 - (void) showTinklerTypePicker:(id)sender{
