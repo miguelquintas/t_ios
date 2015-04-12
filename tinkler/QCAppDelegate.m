@@ -104,6 +104,10 @@
     // the userInfo dictionary usually contains the same information as the notificationPayload dictionary
     if ([PFUser currentUser])
     {
+        NSString *sound = [userInfo objectForKey:@"aps"][@"sound"];
+        NSLog(@"Received Push Sound: %@", sound);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        
         NSLog(@"ViewController %@",[self topViewController]);
         NSLog(@"USER INFO  %@",userInfo);
         //If inside Inbox tab load new messages
@@ -123,6 +127,10 @@
         //else show push note, load new messages and change inbox icon to alert notifications
         }else{
             [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"aps"][@"alert"]];
+            //Set PushNotification Preference ON
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:YES forKey:@"hasReceivedMsg"];
+            [defaults synchronize];
         }
     }
 }
