@@ -18,6 +18,8 @@
 
 @interface QCInboxViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UILabel *offlineTopLayer;
+@property (weak, nonatomic) IBOutlet UILabel *offlineBottomLayer;
 @property (strong, nonatomic) NSMutableArray *conversations;
 @property (strong, nonatomic) IBOutlet UITableView *messageTabView;
 @property (strong, nonatomic) IBOutlet UIView *noItemsView;

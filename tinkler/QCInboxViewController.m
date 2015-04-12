@@ -26,6 +26,12 @@
     //Set Tab Title
     [self setTitle:@"Inbox"];
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+    [_offlineTopLayer setText:@"You don't have any active conversation yet"];
+    [_offlineTopLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineTopLayer setFont:[UIFont boldSystemFontOfSize:20]];
+    [_offlineBottomLayer setText:@"Create your Tinklers and scan QR-Codes to start conversations"];
+    [_offlineBottomLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineBottomLayer setFont:[UIFont boldSystemFontOfSize:20]];
     
     [self.messageTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
     

@@ -13,39 +13,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.title = @"Tinklers";
     self.tinklersTabView.allowsMultipleSelectionDuringEditing = NO;
-    
-    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
-    self.profilePic.clipsToBounds = YES;
-    
-    // Get the stored data before the view loads
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *imageData = [defaults dataForKey:@"profilePic"];
-    UIImage *storedProfilePic = [UIImage imageWithData:imageData];
     
     //Edit the buttons style
     [_createNewButton.layer setBorderWidth:1.0];
     [_createNewButton.layer setBorderColor:[[QCApi colorWithHexString:@"EE463E"] CGColor]];
     [_createNewButton.layer setCornerRadius: self.createNewButton.frame.size.width / 2];
-    
-    
-    //Set profile pic from NSUserDefaults
-    if(imageData == nil){
-        //Load the default profile pic
-        self.profilePic.image = [UIImage imageNamed:@"default_pic.png"];
-    }else{
-        self.profilePic.image = storedProfilePic;
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:YES];
-    self.tabBarController.navigationItem.rightBarButtonItem =nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
     
     //Set the settings button
     CGSize result = [[UIScreen mainScreen] bounds].size;
@@ -66,20 +41,29 @@
         self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     }
     
+    [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+    [_offlineTopLayer setText:@"Create your Tinklers, place your QR-Codes and start communicating!"];
+    [_offlineTopLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineTopLayer setFont:[UIFont boldSystemFontOfSize:20]];
+    [_offlineBottomLayer setText:@"You don't have any created Tinklers yet"];
+    [_offlineBottomLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineBottomLayer setFont:[UIFont boldSystemFontOfSize:20]];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    self.tabBarController.navigationItem.rightBarButtonItem =nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     
     [self.tinklersTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
     
     //Set Tab Title
     [self.tinklersTabView reloadData];
     
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _usernameLabel.text = [defaults stringForKey:@"name"];
-    
-    //Set Profile View background color
-    [_profileView setBackgroundColor:[QCApi colorWithHexString:@"D9F7F9"]];
-    
-    //Set Text Color
-    [_usernameLabel setTextColor:[QCApi colorWithHexString:@"2C8C90"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -104,6 +88,7 @@
                 //If there are any conversations stored locally load them
                 if(localTinklersArray.count > 0){
                     [self.noItemsView setHidden:YES];
+                    [self.buttonView setBackgroundColor:[UIColor whiteColor]];
                     [self.tinklersTabView setHidden:NO];
                     self.tinklers = localTinklersArray;
                     [self.tinklersTabView reloadData];
@@ -115,6 +100,7 @@
                                 //If there are any conversations to load from parse load them
                                 if(onlineTinklersArray.count > 0){
                                     [self.noItemsView setHidden:YES];
+                                    [self.buttonView setBackgroundColor:[UIColor whiteColor]];
                                     [self.tinklersTabView setHidden:NO];
                                     self.tinklers = onlineTinklersArray;
                                     [self.tinklersTabView reloadData];
@@ -122,6 +108,7 @@
                                 }else{//Show empty conversations placeholder
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                                     [self.noItemsView setHidden:NO];
+                                    [self.buttonView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
                                     [self.tinklersTabView setHidden:YES];
                                 }
                             }else{
@@ -134,6 +121,7 @@
                     }else{//Show empty conversations placeholder
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self.noItemsView setHidden:NO];
+                        [self.buttonView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
                         [self.tinklersTabView setHidden:YES];
                     }
                 }
@@ -156,6 +144,7 @@
             [QCApi getOnlineTinklers:^(NSMutableArray *onlineTinklersArray, NSError *error) {
                 if (error == nil){
                     [self.noItemsView setHidden:YES];
+                    [self.buttonView setBackgroundColor:[UIColor whiteColor]];
                     [self.tinklersTabView setHidden:NO];
                     //Set PushNotification Preference OFF
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -232,57 +221,7 @@
     }
 }
 
-//Delegate methods for imagePicker
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.profilePic.image = chosenImage;
-    
-    //Set image to NSUserDefaults preferences
-    // Create instances of NSData
-    NSData *imageData = UIImageJPEGRepresentation(chosenImage, 100);
-    // Store the data
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:imageData forKey:@"profilePic"];
-    
-    [defaults synchronize];
-    NSLog(@"Data saved");
-    
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"Button %ld", (long)buttonIndex);
-    if(buttonIndex == 0){
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
-        [self presentViewController:picker animated:YES completion:NULL];
-    }else if (buttonIndex == 1){
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
-        [self presentViewController:picker animated:YES completion:NULL];
-    }
-}
-
 //End of Delegate methods
 
-- (IBAction)selectPhoto:(id)sender {
-    _photoSourceMenu = [[UIActionSheet alloc] initWithTitle:@"Select the picture's source"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                     destructiveButtonTitle:nil
-                                          otherButtonTitles:@"Camera", @"Photo Library", nil];
-    
-    // Show the sheet
-    [_photoSourceMenu showInView:self.view];
-}
 
 @end

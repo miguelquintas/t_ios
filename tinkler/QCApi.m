@@ -431,7 +431,19 @@
     // Tinkler to delete
     PFObject *tinklerToDelete = [PFObject objectWithoutDataWithClassName:@"Tinkler"
                                                                 objectId:[tinkler tinklerId]];
-
+    NSMutableArray *objectsToUnpin = [NSMutableArray new];
+    [objectsToUnpin addObject:tinklerToDelete];
+    
+    //Unpin previous objects and then pin new collected ones
+    [PFObject unpinAllInBackground:objectsToUnpin withName:@"pinnedTinklers" block:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            NSLog(@"Tinkler Unpinned!");
+        }else{
+            // Log details of the failure
+            NSLog(@"Error unpinning objects: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
     //Delete all conversations regarding this Tinkler
     PFQuery *conversationsToDelete = [PFQuery queryWithClassName:@"Conversation"];
     [conversationsToDelete whereKey:@"talkingToTinkler" equalTo:tinklerToDelete];

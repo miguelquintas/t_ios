@@ -20,6 +20,12 @@
     _captureSession = nil;
     
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+    [_offlineTopLayer setText:@"There is no internet connection"];
+    [_offlineTopLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineTopLayer setFont:[UIFont boldSystemFontOfSize:20]];
+    [_offlineBottomLayer setText:@"You need to have network connectivity to scan QR-Codes"];
+    [_offlineBottomLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineBottomLayer setFont:[UIFont boldSystemFontOfSize:20]];
     
     //Check connectivity
     if([QCApi checkForNetwork]){

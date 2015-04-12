@@ -15,20 +15,16 @@
 #import "QCTinklerDetailViewController.h"
 #import "MBProgressHUD.h"
 
-@interface QCProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface QCProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIView *profileView;
+@property (weak, nonatomic) IBOutlet UIView *buttonView;
+@property (weak, nonatomic) IBOutlet UILabel *offlineTopLayer;
+@property (weak, nonatomic) IBOutlet UILabel *offlineBottomLayer;
 @property (strong, nonatomic) NSMutableArray *tinklers;
 @property (strong, nonatomic) NSArray *thumbnails;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
-@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UITableView *tinklersTabView;
 @property (strong, nonatomic) IBOutlet UIView *noItemsView;
 @property (weak, nonatomic) IBOutlet UIButton *createNewButton;
 
-//Menu to select photo source
-@property (strong, nonatomic) UIActionSheet *photoSourceMenu;
-
-- (IBAction)selectPhoto:(id)sender;
 
 @end
