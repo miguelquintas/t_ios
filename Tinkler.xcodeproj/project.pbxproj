@@ -68,6 +68,7 @@
 		BC1D468719F9AADF00DAC450 /* LTHMonthYearPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D468619F9AADF00DAC450 /* LTHMonthYearPickerView.m */; };
 		BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1D468A19F9BA9100DAC450 /* SBPickerSelector.xib */; };
 		BC1D468F19F9BA9100DAC450 /* SBPickerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1D468D19F9BA9100DAC450 /* SBPickerSelector.m */; };
+		BC2B66071ADDC41F005B1F84 /* MPGNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2B66061ADDC41F005B1F84 /* MPGNotification.m */; };
 		BC3F6F061AD9725E006177C9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F6F041AD9725E006177C9 /* Bolts.framework */; };
 		BC3F6F071AD9725E006177C9 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F6F051AD9725E006177C9 /* Parse.framework */; };
 		BC4B94DD19BCBC9C0069D3A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94D819BCBC9C0069D3A7 /* AVFoundation.framework */; };
@@ -141,8 +142,6 @@
 		BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DBF1A9E7E710050C291 /* scan@2x.png */; };
 		BC956DC91A9E7E710050C291 /* scan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC956DC01A9E7E710050C291 /* scan@3x.png */; };
 		BCA7CED11A96C5D0000C6E1D /* logo_home.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA7CED01A96C5D0000C6E1D /* logo_home.png */; };
-		BCA8D2801AC832D70012085D /* AGPushNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA8D27F1AC832D70012085D /* AGPushNoteView.m */; };
-		BCA8D2821AC834120012085D /* AGPushNoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCA8D2811AC834120012085D /* AGPushNoteView.xib */; };
 		BCAFD6921A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */; };
 		BCB7ADCA1A0557E200AE9CBD /* QCMessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB7ADC91A0557E200AE9CBD /* QCMessageType.m */; };
 		BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */; };
@@ -269,6 +268,8 @@
 		BC1D468A19F9BA9100DAC450 /* SBPickerSelector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SBPickerSelector.xib; sourceTree = "<group>"; };
 		BC1D468C19F9BA9100DAC450 /* SBPickerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBPickerSelector.h; sourceTree = "<group>"; };
 		BC1D468D19F9BA9100DAC450 /* SBPickerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBPickerSelector.m; sourceTree = "<group>"; };
+		BC2B66051ADDC41F005B1F84 /* MPGNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGNotification.h; sourceTree = "<group>"; };
+		BC2B66061ADDC41F005B1F84 /* MPGNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGNotification.m; sourceTree = "<group>"; };
 		BC3F6F041AD9725E006177C9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		BC3F6F051AD9725E006177C9 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		BC4B94D819BCBC9C0069D3A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -403,9 +404,6 @@
 		BC956DBF1A9E7E710050C291 /* scan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@2x.png"; sourceTree = "<group>"; };
 		BC956DC01A9E7E710050C291 /* scan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@3x.png"; sourceTree = "<group>"; };
 		BCA7CED01A96C5D0000C6E1D /* logo_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_home.png; sourceTree = "<group>"; };
-		BCA8D27E1AC832D70012085D /* AGPushNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPushNoteView.h; sourceTree = "<group>"; };
-		BCA8D27F1AC832D70012085D /* AGPushNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPushNoteView.m; sourceTree = "<group>"; };
-		BCA8D2811AC834120012085D /* AGPushNoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGPushNoteView.xib; sourceTree = "<group>"; };
 		BCAFD6901A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCNewTinklerSubmitViewController.h; sourceTree = "<group>"; };
 		BCAFD6911A62DE5500FAC3CE /* QCNewTinklerSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCNewTinklerSubmitViewController.m; sourceTree = "<group>"; };
 		BCB7ADC81A0557E200AE9CBD /* QCMessageType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMessageType.h; sourceTree = "<group>"; };
@@ -626,7 +624,7 @@
 		5DE27AD918C90A6300C4C763 /* libraries */ = {
 			isa = PBXGroup;
 			children = (
-				BCA8D27D1AC832D70012085D /* AGPushNote */,
+				BC2B66041ADDC41F005B1F84 /* MPGNotification */,
 				BC94EDE51AB5CAE1006B7D4E /* Reachability_TM */,
 				BC72B7EF1A68591400AC720B /* JSQSystemSoundPlayer */,
 				BC72B7571A6858F700AC720B /* JSQMessagesViewController */,
@@ -731,6 +729,15 @@
 				BC1D468D19F9BA9100DAC450 /* SBPickerSelector.m */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		BC2B66041ADDC41F005B1F84 /* MPGNotification */ = {
+			isa = PBXGroup;
+			children = (
+				BC2B66051ADDC41F005B1F84 /* MPGNotification.h */,
+				BC2B66061ADDC41F005B1F84 /* MPGNotification.m */,
+			);
+			path = MPGNotification;
 			sourceTree = "<group>";
 		};
 		BC72B7571A6858F700AC720B /* JSQMessagesViewController */ = {
@@ -943,16 +950,6 @@
 			path = Reachability_TM;
 			sourceTree = "<group>";
 		};
-		BCA8D27D1AC832D70012085D /* AGPushNote */ = {
-			isa = PBXGroup;
-			children = (
-				BCA8D2811AC834120012085D /* AGPushNoteView.xib */,
-				BCA8D27E1AC832D70012085D /* AGPushNoteView.h */,
-				BCA8D27F1AC832D70012085D /* AGPushNoteView.m */,
-			);
-			path = AGPushNote;
-			sourceTree = "<group>";
-		};
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1132,7 +1129,6 @@
 				5D34094A1AD4616500DFDC35 /* iphone5-03.png in Resources */,
 				BC782FA01AC8B42A004FF2F8 /* qrcode_border.png in Resources */,
 				BC824C911ACEE84E00A36024 /* splash_4@2x.png in Resources */,
-				BCA8D2821AC834120012085D /* AGPushNoteView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,6 +1159,7 @@
 				BC72B7EB1A6858F700AC720B /* JSQMessagesToolbarContentView.m in Sources */,
 				BC72B7E71A6858F700AC720B /* JSQMessagesLabel.m in Sources */,
 				BC72B7D51A6858F700AC720B /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
+				BC2B66071ADDC41F005B1F84 /* MPGNotification.m in Sources */,
 				5DE27B0918C90A9600C4C763 /* AFHTTPRequestOperationManager.m in Sources */,
 				BCEF3D8B1A585A22004F3F26 /* QCTinkler.m in Sources */,
 				5DB52C971AA6646500A5CE30 /* TKPageContentViewController.m in Sources */,
@@ -1202,7 +1199,6 @@
 				BC72B7D71A6858F700AC720B /* JSQLocationMediaItem.m in Sources */,
 				BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */,
 				BCE30F191A755BB00087C03A /* TKHomeViewController.m in Sources */,
-				BCA8D2801AC832D70012085D /* AGPushNoteView.m in Sources */,
 				BC72B7ED1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				BC1A252A19DB5E9D00CACAF5 /* QCQrCode.m in Sources */,
 				5DE27B1018C90A9600C4C763 /* AFURLSessionManager.m in Sources */,

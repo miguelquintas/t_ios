@@ -108,6 +108,9 @@
         
         NSLog(@"ViewController %@",[self topViewController]);
         NSLog(@"USER INFO  %@",userInfo);
+    
+        UIImage *tinklerImage = [UIImage imageNamed:@"tinklernav@3x.png"];
+        
         //If inside Inbox tab load new messages
         if ([[self topViewController] isKindOfClass:[QCInboxViewController class]]){
             [(QCInboxViewController *)[self topViewController] receivePushNotifications];
@@ -120,11 +123,21 @@
                 [presentVC updateConversationWithReceivedMsg:[userInfo objectForKey:@"message"]];
             }else{
                 [presentVC setHasSentMsg:YES];
-                [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"aps"][@"alert"]];
+                MPGNotification *pushNotification =
+                [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
+                                              subtitle:[userInfo objectForKey:@"message"]
+                                       backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
+                                             iconImage:tinklerImage];
+                [pushNotification show];
             }
         //else show push note, load new messages and change inbox icon to alert notifications
         }else{
-            [AGPushNoteView showWithNotificationMessage:[userInfo objectForKey:@"aps"][@"alert"]];
+            MPGNotification *pushNotification =
+            [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
+                                          subtitle:[userInfo objectForKey:@"message"]
+                                   backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
+                                         iconImage:[UIImage imageNamed:@"radical"]];
+            [pushNotification show];
             //Set PushNotification Preference ON
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setBool:YES forKey:@"hasReceivedMsg"];

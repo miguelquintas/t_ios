@@ -22,6 +22,24 @@
     [_createNewButton.layer setBorderColor:[[QCApi colorWithHexString:@"EE463E"] CGColor]];
     [_createNewButton.layer setCornerRadius: self.createNewButton.frame.size.width / 2];
     
+    [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
+    [_offlineTopLayer setText:@"Create your Tinklers, place your QR-Codes and start communicating!"];
+    [_offlineTopLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineTopLayer setFont:[UIFont boldSystemFontOfSize:20]];
+    [_offlineBottomLayer setText:@"You don't have any created Tinklers yet"];
+    [_offlineBottomLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
+    [_offlineBottomLayer setFont:[UIFont boldSystemFontOfSize:20]];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    self.tabBarController.navigationItem.rightBarButtonItem =nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
     //Set the settings button
     CGSize result = [[UIScreen mainScreen] bounds].size;
     CGFloat scale = [UIScreen mainScreen].scale;
@@ -40,24 +58,6 @@
         UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@3x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
         self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     }
-    
-    [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
-    [_offlineTopLayer setText:@"Create your Tinklers, place your QR-Codes and start communicating!"];
-    [_offlineTopLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
-    [_offlineTopLayer setFont:[UIFont boldSystemFontOfSize:20]];
-    [_offlineBottomLayer setText:@"You don't have any created Tinklers yet"];
-    [_offlineBottomLayer setTextColor:[QCApi colorWithHexString:@"5BBABD"]];
-    [_offlineBottomLayer setFont:[UIFont boldSystemFontOfSize:20]];
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:YES];
-    self.tabBarController.navigationItem.rightBarButtonItem =nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
     
     [self.tinklersTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
     
