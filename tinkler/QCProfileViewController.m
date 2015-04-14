@@ -88,7 +88,6 @@
                 //If there are any conversations stored locally load them
                 if(localTinklersArray.count > 0){
                     [self.noItemsView setHidden:YES];
-                    [self.buttonView setBackgroundColor:[UIColor whiteColor]];
                     [self.tinklersTabView setHidden:NO];
                     self.tinklers = localTinklersArray;
                     [self.tinklersTabView reloadData];
@@ -100,7 +99,6 @@
                                 //If there are any conversations to load from parse load them
                                 if(onlineTinklersArray.count > 0){
                                     [self.noItemsView setHidden:YES];
-                                    [self.buttonView setBackgroundColor:[UIColor whiteColor]];
                                     [self.tinklersTabView setHidden:NO];
                                     self.tinklers = onlineTinklersArray;
                                     [self.tinklersTabView reloadData];
@@ -108,7 +106,6 @@
                                 }else{//Show empty conversations placeholder
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                                     [self.noItemsView setHidden:NO];
-                                    [self.buttonView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
                                     [self.tinklersTabView setHidden:YES];
                                 }
                             }else{
@@ -121,7 +118,6 @@
                     }else{//Show empty conversations placeholder
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
                         [self.noItemsView setHidden:NO];
-                        [self.buttonView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
                         [self.tinklersTabView setHidden:YES];
                     }
                 }
@@ -144,7 +140,6 @@
             [QCApi getOnlineTinklers:^(NSMutableArray *onlineTinklersArray, NSError *error) {
                 if (error == nil){
                     [self.noItemsView setHidden:YES];
-                    [self.buttonView setBackgroundColor:[UIColor whiteColor]];
                     [self.tinklersTabView setHidden:NO];
                     //Set PushNotification Preference OFF
                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

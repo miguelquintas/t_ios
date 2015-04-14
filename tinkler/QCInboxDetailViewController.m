@@ -108,7 +108,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"%ld", (long)buttonIndex);
     if(buttonIndex == 1)
     {
         [QCApi blockConversationWithCompletion:_selectedConversation completion:^void(BOOL finished) {

@@ -91,9 +91,7 @@
                                                 // Store the data
                                                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                                                 [defaults setObject:name forKey:@"name"];
-                                                
                                                 [defaults synchronize];
-                                                NSLog(@"Data saved");
                                                 
                                                 // Present the Home view controller
                                                 [(TKHomeViewController*)_parentVC setRegisteredEmail:_email.text];

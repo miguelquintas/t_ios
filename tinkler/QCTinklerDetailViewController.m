@@ -82,7 +82,6 @@
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Pet"]){
         [self createPetAdditionalFields];
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Realty or Location"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Key"]){
-        NSLog(@"It's a key or a realty/location");
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Accessory"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Object"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Bag or Suitcase"]){
         [self createBagsAcessoriesAdditionalFields];
     }
@@ -94,7 +93,6 @@
             if (error == nil){
                 self.tinklerTypes = tinklerTypeArray;
                 self.tinklerTypeNames = typeNameArray;
-                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
             } else {
                 NSLog(@"%@", error);
                 //Warn user
@@ -107,7 +105,6 @@
             if (error == nil){
                 self.tinklerTypes = tinklerTypeArray;
                 self.tinklerTypeNames = typeNameArray;
-                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
             } else {
                 NSLog(@"%@", error);
                 //Warn user
@@ -263,8 +260,6 @@
     
     //Set TinklerType Object to the editted Tinkler
     for (PFObject *selectedTinklerType in self.tinklerTypes){
-        
-        NSLog(@"Tinkler Type Name %@", [selectedTinklerType objectForKey:@"typeName"]);
         if ([[selectedTinklerType objectForKey:@"typeName"] isEqualToString:_tinklerTypeTF.text]){
             [self.selectedTinkler setTinklerType:selectedTinklerType];
             NSLog(@"Added the Tinkler Type Successfully");
@@ -458,7 +453,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button %ld", (long)buttonIndex);
     if(buttonIndex == 0){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;

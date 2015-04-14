@@ -42,7 +42,6 @@
             if (error == nil){
                 self.tinklerTypes = tinklerTypeArray;
                 self.tinklerTypeNames = typeNameArray;
-                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
             } else {
                 NSLog(@"%@", error);
                 //Warn user
@@ -55,7 +54,6 @@
             if (error == nil){
                 self.tinklerTypes = tinklerTypeArray;
                 self.tinklerTypeNames = typeNameArray;
-                NSLog(@"Tinkler Type Names Array %@", self.tinklerTypeNames);
             } else {
                 NSLog(@"%@", error);
                 //Warn user
@@ -145,7 +143,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button %ld", (long)buttonIndex);
     if(buttonIndex == 0){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -193,8 +190,6 @@
         
         //Set TinklerType Object to the new Tinkler
         for (PFObject *selectedTinklerType in self.tinklerTypes){
-            
-            NSLog(@"Tinkler Type Name %@", [selectedTinklerType objectForKey:@"typeName"]);
             if ([[selectedTinklerType objectForKey:@"typeName"] isEqualToString:_tinklerTypeTF.text]){
                 NSLog(@"Added the Tinkler Type Successfully");
                 destViewController.tinklerType = selectedTinklerType;

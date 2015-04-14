@@ -17,7 +17,6 @@
 
 @interface QCProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIView *buttonView;
 @property (weak, nonatomic) IBOutlet UILabel *offlineTopLayer;
 @property (weak, nonatomic) IBOutlet UILabel *offlineBottomLayer;
 @property (strong, nonatomic) NSMutableArray *tinklers;

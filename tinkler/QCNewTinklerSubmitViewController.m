@@ -43,7 +43,7 @@
     }else if ([tinklerTypeName isEqualToString:@"Pet"]){
         [self createPetAdditionalFields];
     }else if ([tinklerTypeName isEqualToString:@"Realty or Location"] || [tinklerTypeName isEqualToString:@"Key"]){
-        NSLog(@"It's a key or a realty/location");
+        
     }else if ([tinklerTypeName isEqualToString:@"Accessory"] || [tinklerTypeName isEqualToString:@"Object"] || [tinklerTypeName isEqualToString:@"Bag or Suitcase"]){
         [self createBagsAcessoriesAdditionalFields];
     }
@@ -274,7 +274,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button %ld", (long)buttonIndex);
     if(buttonIndex == 0){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;

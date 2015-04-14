@@ -13,7 +13,6 @@
 - (NSString *) conversationDateToString:(NSDate *) updateDate{
     //Yesterday's date
     long intervalDays=[self daysBetweenDate:[NSDate date] andDate:updateDate];
-    NSLog(@"Days Between: %ld", intervalDays);
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     

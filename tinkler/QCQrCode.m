@@ -55,7 +55,6 @@
     qrContent = [qrContent stringByAppendingString:[qrCodeKey stringValue]];
     qrContent = [qrContent stringByAppendingString:@"&"];
     qrContent = [qrContent stringByAppendingString:tinklerType];
-    NSLog(@"%@", qrContent);
     
     // Generate the image
     CIImage *qrCode = [self createQRForString:qrContent];

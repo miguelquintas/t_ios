@@ -13,7 +13,6 @@
 - (NSString *) messageDateToString:(NSDate *) messageDate{
     //Yesterday's date
     long intervalDays=[self daysBetweenDate:[NSDate date] andDate:messageDate];
-    NSLog(@"Days Between: %ld", intervalDays);
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     

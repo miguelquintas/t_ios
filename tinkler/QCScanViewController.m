@@ -32,7 +32,6 @@
         [QCApi getOnlineMessageTypes:^(NSMutableArray *msgTypeArray, NSError *error) {
             if (error == nil){
                 self.msgTypes = msgTypeArray;
-                NSLog(@"Msg type Array: %@", [self.msgTypes objectAtIndex:0]);
             } else {
                 NSLog(@"%@", error);
                 //Warn user
@@ -44,7 +43,6 @@
         [QCApi getLocalMessageTypes:^(NSMutableArray *msgTypeArray, NSError *error) {
             if (error == nil){
                 self.msgTypes = msgTypeArray;
-                NSLog(@"Msg type Array: %@", [self.msgTypes objectAtIndex:0]);
             } else {
                 NSLog(@"%@", error);
                 //Warn user
@@ -170,8 +168,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button %ld", (long)buttonIndex);
-    
     if (buttonIndex == actionSheet.destructiveButtonIndex){
         //Cancel button pressed so re start the qrcode reading
         [self startQrCodeRead];
@@ -183,7 +179,6 @@
     
     //If it is a custom message start type menu
     if ([clicked isEqualToString:@"Custom Message"]){
-        NSLog(@"Selected %@", clicked);
         UIAlertView *customMsgAlert = [[UIAlertView alloc] initWithTitle:@"Custom Message" message:@"Enter the message text to send" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil] ;
         customMsgAlert.tag = 2;
         customMsgAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -191,7 +186,6 @@
        
     //If it is a regular message send push notification with the message text
     }else{
-        NSLog(@"Selected %@", clicked);
         if([QCApi checkForNetwork]){
             [self sendPushNotification:clicked :clicked];
         }else{
@@ -217,7 +211,6 @@
     if (buttonIndex == 1) {
         //Get textfield from the custom messages
         UITextField * alertTextField = [alertView textFieldAtIndex:0];
-        NSLog(@"Custom Message Text - %@",alertTextField.text);
         [self sendPushNotification:@"Custom Message" :alertTextField.text];
     }
     
@@ -238,15 +231,14 @@
         
         //Get the objectID, objectKey and tinklerType from the second part of the qrCode content
         self.scannedTinklerId = [[objectData componentsSeparatedByString:@"!"] objectAtIndex:0];
-        NSLog(@"Tinkler ID: %@", self.scannedTinklerId);
+
         //Separate the objectKey from the tinklerType by checking the "&" char
         self.scannedTinklerType = [[[[objectData componentsSeparatedByString:@"!"] objectAtIndex:1] componentsSeparatedByString:@"&"] objectAtIndex:1];
-        NSLog(@"Tinkler Type: %@", self.scannedTinklerType);
+        
         //Convert the objectkey String to Number
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         self.scannedTinklerKey = [f numberFromString:[[[[objectData componentsSeparatedByString:@"!"] objectAtIndex:1] componentsSeparatedByString:@"&"] objectAtIndex:0]];
-        NSLog(@"Tinkler Key: %@", self.scannedTinklerKey);
         
         if([QCApi checkForNetwork]){
             //Validate Object QR-Code and Custom Messages boolean
@@ -280,8 +272,6 @@
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
             
             [self performSelectorOnMainThread:@selector(stopQrCodeRead) withObject:nil waitUntilDone:NO];
-            
-            NSLog(@"%@", [metadataObj stringValue]);
             
             [self performSelectorOnMainThread:@selector(postScanTasks:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             

@@ -21,15 +21,11 @@
     [myTinklers findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %lu tinklers.", (unsigned long)objects.count);
-            
             // Create the tinkler objects to include in the tinkler array
             block([self createTinklerObj:objects], nil);
-            
         }else{
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
-            
             block(nil,error);
         }
     }];

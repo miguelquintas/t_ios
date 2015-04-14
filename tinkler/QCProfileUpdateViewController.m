@@ -132,7 +132,6 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"Button %ld", (long)buttonIndex);
     if(buttonIndex == 0){
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;

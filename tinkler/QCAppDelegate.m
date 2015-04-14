@@ -39,7 +39,7 @@
     // Extract the notification data
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     //If there is something in the notification payload go to the Inbox Tab
-    if(notificationPayload) {
+    if(notificationPayload || application.applicationIconBadgeNumber>0) {
         //Set PushNotification Preference ON
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:YES forKey:@"hasReceivedMsg"];
@@ -71,8 +71,6 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     currentInstallation.channels = @[ @"global" ];
-    
-//    NSLog(@"currentInstallation %@", currentInstallation);
     
     [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
 //        NSLog(@"success : %d  with error : %@",succeeded,error);
@@ -155,6 +153,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    //If the badge has not been cleand go to the Inbox Tab and load new messages
+    if(application.applicationIconBadgeNumber>0) {
+        //Set PushNotification Preference ON
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"hasReceivedMsg"];
+        [defaults synchronize];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
