@@ -71,6 +71,7 @@
                         [QCApi getOnlineMessages:_selectedConversation:^(NSMutableArray *onlineMessagesArray, NSError *error) {
                             if (error == nil){
                                 [self loadMessagesToView:onlineMessagesArray];
+                                [(QCInboxViewController*)_parentVC setInboxIcon];
                             } else {
                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                 [alertView show];

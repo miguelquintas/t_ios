@@ -154,6 +154,18 @@
     });
 }
 
+-(void) setPushIcon{
+    //Change the icon to the pushnotification icon
+    [self.tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+    [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+}
+
+-(void) setInboxIcon{
+    //Change the icon to the pushnotification icon
+    [self.tabBarItem setImage:[UIImage imageNamed:@"inbox.png"]];
+    [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox.png"]];
+}
+
 //Delegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

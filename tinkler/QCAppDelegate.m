@@ -78,14 +78,34 @@
     
 }
 
-- (UIViewController*)topViewController {
-    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+- (UIViewController*)topViewController:(NSString *) controllerType{
+    
+    if([controllerType isEqualToString:@"selectedVC"]){
+        return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    }else{
+       return [self tabBarControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    }
 }
 
 - (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {
         UITabBarController* tabBarController = (UITabBarController*)rootViewController;
         return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    } else {
+        return rootViewController;
+    }
+}
+
+- (UIViewController*)tabBarControllerWithRootViewController:(UIViewController*)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController* tabBarController = (UITabBarController*)rootViewController;
+        return tabBarController;
     } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController* navigationController = (UINavigationController*)rootViewController;
         return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
@@ -106,37 +126,48 @@
         NSLog(@"Received Push Sound: %@", sound);
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         
-        NSLog(@"ViewController %@",[self topViewController]);
+        NSLog(@"ViewController %@",[self topViewController:@"selectedVC"]);
         NSLog(@"USER INFO  %@",userInfo);
-    
-        UIImage *tinklerImage = [UIImage imageNamed:@"tinklernav@3x.png"];
         
         //If inside Inbox tab load new messages
-        if ([[self topViewController] isKindOfClass:[QCInboxViewController class]]){
-            [(QCInboxViewController *)[self topViewController] receivePushNotifications];
+        if ([[self topViewController:@"selectedVC"] isKindOfClass:[QCInboxViewController class]]){
+            [(QCInboxViewController *)[self topViewController:@"selectedVC"] receivePushNotifications];
+            [(QCInboxViewController *)[self topViewController:@"selectedVC"] setPushIcon];
         //if inside a chat show push note and load new messages
-        }else if ([[self topViewController] isKindOfClass:[QCInboxDetailViewController class]]){
-            QCInboxDetailViewController * presentVC = (QCInboxDetailViewController *)[self topViewController];
+        }else if ([[self topViewController:@"selectedVC"] isKindOfClass:[QCInboxDetailViewController class]]){
+            QCInboxDetailViewController * presentVC = (QCInboxDetailViewController *)[self topViewController:@"selectedVC"];
             QCConversation * currentConversations = presentVC.selectedConversation;
             
             if([currentConversations.talkingToUser.objectId isEqualToString:[userInfo objectForKey:@"from"]] && [currentConversations.talkingToTinkler.objectId isEqualToString:[userInfo objectForKey:@"tinkler"]]){
                 [presentVC updateConversationWithReceivedMsg:[userInfo objectForKey:@"message"]];
             }else{
+                //Set the push_inbox icon
+                UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
+                UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
+                [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+                [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+                
                 [presentVC setHasSentMsg:YES];
                 MPGNotification *pushNotification =
                 [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
                                               subtitle:[userInfo objectForKey:@"message"]
                                        backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
-                                             iconImage:tinklerImage];
+                                             iconImage:[UIImage imageNamed:@"tinklernav@2x.png"]];
                 [pushNotification show];
             }
         //else show push note, load new messages and change inbox icon to alert notifications
         }else{
+            //Set the push_inbox icon
+            UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
+            UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
+            [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+            [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+            
             MPGNotification *pushNotification =
             [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
                                           subtitle:[userInfo objectForKey:@"message"]
                                    backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
-                                         iconImage:[UIImage imageNamed:@"radical"]];
+                                         iconImage:[UIImage imageNamed:@"tinklernav@2x.png"]];
             [pushNotification show];
             //Set PushNotification Preference ON
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

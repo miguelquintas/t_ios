@@ -27,6 +27,8 @@
 @property (nonatomic) BOOL hasSentMsg;
 
 
-- (void)receivePushNotifications;
+-(void)receivePushNotifications;
+-(void) setPushIcon;
+-(void) setInboxIcon;
 
 @end

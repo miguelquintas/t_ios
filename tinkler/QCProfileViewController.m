@@ -61,13 +61,6 @@
     
     [self.tinklersTabView setSeparatorColor:[QCApi colorWithHexString:@"00CEBA"]];
     
-    //Set Tab Title
-    [self.tinklersTabView reloadData];
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
     //Verify if user has updated the tinklers list - through user preferences
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     bool hasUpdatedTinklers = [defaults boolForKey:@"hasUpdatedTinkler"];
@@ -77,6 +70,10 @@
     } else {
         [self refreshTinklers];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (void)refreshTinklers{

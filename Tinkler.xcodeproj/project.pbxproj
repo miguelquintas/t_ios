@@ -76,6 +76,9 @@
 		BC4B94DF19BCBC9C0069D3A7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94DA19BCBC9C0069D3A7 /* CoreMedia.framework */; };
 		BC4B94E019BCBC9C0069D3A7 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94DB19BCBC9C0069D3A7 /* CoreVideo.framework */; };
 		BC4B94E119BCBC9C0069D3A7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4B94DC19BCBC9C0069D3A7 /* libiconv.dylib */; };
+		BC6322891ADF2661000D39C3 /* inbox_push.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6322861ADF2661000D39C3 /* inbox_push.png */; };
+		BC63228A1ADF2661000D39C3 /* inbox_push@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6322871ADF2661000D39C3 /* inbox_push@2x.png */; };
+		BC63228B1ADF2661000D39C3 /* inbox_push@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6322881ADF2661000D39C3 /* inbox_push@3x.png */; };
 		BC650F3319C7605300C5F374 /* QCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BC650F3219C7605300C5F374 /* QCMessage.m */; };
 		BC6815581AC6FECD0035CCDE /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6815551AC6FECD0035CCDE /* settings.png */; };
 		BC6815591AC6FECD0035CCDE /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6815561AC6FECD0035CCDE /* settings@2x.png */; };
@@ -277,6 +280,9 @@
 		BC4B94DA19BCBC9C0069D3A7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BC4B94DB19BCBC9C0069D3A7 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		BC4B94DC19BCBC9C0069D3A7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		BC6322861ADF2661000D39C3 /* inbox_push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox_push.png; sourceTree = "<group>"; };
+		BC6322871ADF2661000D39C3 /* inbox_push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox_push@2x.png"; sourceTree = "<group>"; };
+		BC6322881ADF2661000D39C3 /* inbox_push@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inbox_push@3x.png"; sourceTree = "<group>"; };
 		BC650F3119C7605300C5F374 /* QCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMessage.h; sourceTree = "<group>"; };
 		BC650F3219C7605300C5F374 /* QCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCMessage.m; sourceTree = "<group>"; };
 		BC6815551AC6FECD0035CCDE /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -953,6 +959,9 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BC6322861ADF2661000D39C3 /* inbox_push.png */,
+				BC6322871ADF2661000D39C3 /* inbox_push@2x.png */,
+				BC6322881ADF2661000D39C3 /* inbox_push@3x.png */,
 				5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */,
 				5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */,
 				5DDDADA01AD47D1300244176 /* default_pic@2x.png */,
@@ -1110,10 +1119,12 @@
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				5D3409481AD4616500DFDC35 /* iphone5-01.png in Resources */,
 				5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */,
+				BC63228B1ADF2661000D39C3 /* inbox_push@3x.png in Resources */,
 				BC824C941ACEE84E00A36024 /* splash_6+@3x.png in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				5DDDADA21AD47D1300244176 /* default_pic@2x.png in Resources */,
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
+				BC6322891ADF2661000D39C3 /* inbox_push.png in Resources */,
 				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
 				BCDFFF9E1ABF99EF004D392E /* tinklernav@2x.png in Resources */,
 				5D3409521AD4617000DFDC35 /* iphone6+-01.png in Resources */,
@@ -1122,6 +1133,7 @@
 				5D3409561AD4617000DFDC35 /* iphone6+-05.png in Resources */,
 				5DDDAD9F1AD47CA000244176 /* tinklers_empty@2x.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
+				BC63228A1ADF2661000D39C3 /* inbox_push@2x.png in Resources */,
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
 				5D3409361AD4613F00DFDC35 /* iphone4-03.png in Resources */,
 				BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */,
