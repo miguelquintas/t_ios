@@ -108,10 +108,10 @@
         return tabBarController;
     } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController* navigationController = (UINavigationController*)rootViewController;
-        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+        return [self tabBarControllerWithRootViewController:navigationController.visibleViewController];
     } else if (rootViewController.presentedViewController) {
         UIViewController* presentedViewController = rootViewController.presentedViewController;
-        return [self topViewControllerWithRootViewController:presentedViewController];
+        return [self tabBarControllerWithRootViewController:presentedViewController];
     } else {
         return rootViewController;
     }
@@ -142,32 +142,47 @@
                 [presentVC updateConversationWithReceivedMsg:[userInfo objectForKey:@"message"]];
             }else{
                 //Set the push_inbox icon
-//                UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
-//                UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
-//                [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
-//                [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+                UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
+                UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
+                [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+                [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
                 
                 [presentVC setHasSentMsg:YES];
                 MPGNotification *pushNotification =
                 [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
                                               subtitle:[userInfo objectForKey:@"message"]
                                        backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
-                                             iconImage:[UIImage imageNamed:@"tinklernav@2x.png"]];
+                                             iconImage:[UIImage imageNamed:@"tinklernav@3x.png"]];
+                pushNotification.duration = 2.0;
                 [pushNotification show];
             }
-        //else show push note, load new messages and change inbox icon to alert notifications
-        }else{
+        //if inside any other tab show push note, load new messages and change inbox icon to alert notifications
+        }else if([[self topViewController:@"selectedVC"] isKindOfClass:[QCScanViewController class]] || [[self topViewController:@"selectedVC"] isKindOfClass:[QCProfileViewController class]]){
             //Set the push_inbox icon
-//            UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
-//            UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
-//            [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
-//            [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+            UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
+            UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
+            [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+            [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
             
             MPGNotification *pushNotification =
             [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
                                           subtitle:[userInfo objectForKey:@"message"]
                                    backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
-                                         iconImage:[UIImage imageNamed:@"tinklernav@2x.png"]];
+                                         iconImage:[UIImage imageNamed:@"tinklernav@3x.png"]];
+            pushNotification.duration = 2.0;
+            [pushNotification show];
+            //Set PushNotification Preference ON
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:YES forKey:@"hasReceivedMsg"];
+            [defaults synchronize];
+            
+        }else{
+            MPGNotification *pushNotification =
+            [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
+                                          subtitle:[userInfo objectForKey:@"message"]
+                                   backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
+                                         iconImage:[UIImage imageNamed:@"tinklernav@3x.png"]];
+            pushNotification.duration = 2.0;
             [pushNotification show];
             //Set PushNotification Preference ON
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

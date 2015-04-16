@@ -12,6 +12,8 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "QCInboxViewController.h"
 #import "QCInboxDetailViewController.h"
+#import "QCScanViewController.h"
+#import "QCProfileViewController.h"
 #import "MPGNotification.h"
 
 @interface QCAppDelegate : UIResponder <UIApplicationDelegate>

@@ -190,7 +190,7 @@
             [conversation setWasDeleted:[[object objectForKey:@"wasDeletedByTo"]boolValue]];
             [conversation setIsLocked:[[object objectForKey:@"isLockedByTo"]boolValue]];
             [conversation setHasUnreadMsg:[[object objectForKey:@"toHasUnreadMsgs"]boolValue]];
-            [conversation setHasUnreadMsg:[[object objectForKey:@"starterHasUnreadMsgs"]boolValue]];
+            [conversation setHasUnreadMsg:[[object objectForKey:@"toHasUnreadMsgs"]boolValue]];
             [conversation setHasSentMsg:[[object objectForKey:@"toHasSentMsg"]boolValue]];
         } 
         
