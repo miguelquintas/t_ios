@@ -110,6 +110,9 @@
                                         }];
                         
             }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                });
                 NSLog(@"Error while registering!");
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Register Failed" message:@"Error while registering!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                 [alertView show];

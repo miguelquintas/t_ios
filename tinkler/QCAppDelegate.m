@@ -142,10 +142,10 @@
                 [presentVC updateConversationWithReceivedMsg:[userInfo objectForKey:@"message"]];
             }else{
                 //Set the push_inbox icon
-                UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
-                UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
-                [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
-                [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+//                UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
+//                UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
+//                [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+//                [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
                 
                 [presentVC setHasSentMsg:YES];
                 MPGNotification *pushNotification =
@@ -158,10 +158,10 @@
         //else show push note, load new messages and change inbox icon to alert notifications
         }else{
             //Set the push_inbox icon
-            UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
-            UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
-            [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
-            [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
+//            UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
+//            UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
+//            [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
+//            [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
             
             MPGNotification *pushNotification =
             [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
