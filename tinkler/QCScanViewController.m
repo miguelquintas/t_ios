@@ -70,7 +70,7 @@
         if (self.scanBorder == nil){
             int scanBorderWidth = self.view.frame.size.width * 0.9;
             
-            self.scanBorder = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - scanBorderWidth / 2, (self.view.frame.size.height-44) / 2 - scanBorderWidth / 2, scanBorderWidth, scanBorderWidth)];
+            self.scanBorder = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - scanBorderWidth / 2, (self.view.frame.size.height-70) / 2 - scanBorderWidth / 2, scanBorderWidth, scanBorderWidth)];
             [self.scanBorder setImage:[UIImage imageNamed:@"scan_border.png"]];
         
             [self.view addSubview:self.scanBorder];

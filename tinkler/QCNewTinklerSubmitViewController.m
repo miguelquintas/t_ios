@@ -51,6 +51,7 @@
 
 - (void) createBagsAcessoriesAdditionalFields{
     _brandTF = [[UITextField alloc] init];
+    _brandTF.font = [UIFont fontWithName:@"Helvetica" size:14];
     _brandTF.layer.cornerRadius=4.0f;
     _brandTF.layer.masksToBounds=YES;
     _brandTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
@@ -62,6 +63,7 @@
     _brandTF.userInteractionEnabled = YES;
     
     _colorTF = [[UITextField alloc] init];
+    _colorTF.font = [UIFont fontWithName:@"Helvetica" size:14];
     _colorTF.layer.cornerRadius=4.0f;
     _colorTF.layer.masksToBounds=YES;
     _colorTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
@@ -79,6 +81,7 @@
 
 - (void) createPetAdditionalFields{
     _petBreedTF = [[UITextField alloc] init];
+    _petBreedTF.font = [UIFont fontWithName:@"Helvetica" size:14];
     _petBreedTF.layer.cornerRadius=4.0f;
     _petBreedTF.layer.masksToBounds=YES;
     _petBreedTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
@@ -90,6 +93,7 @@
     _petBreedTF.userInteractionEnabled = YES;
     
     _petAgeTF = [[UITextField alloc] init];
+    _petAgeTF.font = [UIFont fontWithName:@"Helvetica" size:14];
     _petAgeTF.layer.cornerRadius=4.0f;
     _petAgeTF.layer.masksToBounds=YES;
     _petAgeTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
@@ -115,6 +119,7 @@
 
 - (void) createVehicleAdditionalFields{
     _vehiclePlateTF = [[UITextField alloc] init];
+    _vehiclePlateTF.font = [UIFont fontWithName:@"Helvetica" size:14];
     _vehiclePlateTF.layer.cornerRadius=4.0f;
     _vehiclePlateTF.layer.masksToBounds=YES;
     _vehiclePlateTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
@@ -126,6 +131,7 @@
     _vehiclePlateTF.userInteractionEnabled = YES;
     
     _vehicleYearTF = [[UITextField alloc] init];
+    _vehicleYearTF.font = [UIFont fontWithName:@"Helvetica" size:14];
     _vehicleYearTF.layer.cornerRadius=4.0f;
     _vehicleYearTF.layer.masksToBounds=YES;
     _vehicleYearTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];

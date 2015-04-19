@@ -16,6 +16,7 @@
     
     self.title = @"Tinklers";
     self.tinklersTabView.allowsMultipleSelectionDuringEditing = NO;
+    [self.noItemsView setHidden:YES];
     
     //Edit the buttons style
     [_createNewButton.layer setBorderWidth:1.0];
@@ -51,7 +52,7 @@
         self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     }else if(result.height == 1136) {
         NSLog(@"iPhone 5 Resolution");
-        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings@2x.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings.png"] style:UIBarButtonItemStylePlain target:self action:@selector(goToSettings)];
         self.tabBarController.navigationItem.rightBarButtonItem = anotherButton;
     }else{
         NSLog(@"iPhone 6 or more Resolution");

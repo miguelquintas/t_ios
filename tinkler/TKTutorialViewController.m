@@ -33,7 +33,8 @@
                                     @"iphone4-02.png",
                                     @"iphone4-03.png",
                                     @"iphone4-04.png",
-                                    @"iphone4-05.png"];
+                                    @"iphone4-05.png",
+                                    @"splash_4.png"];
             }
             if(result.height == 1136) {
                 NSLog(@"iPhone 5 Resolution");
@@ -41,7 +42,8 @@
                                     @"iphone5-02.png",
                                     @"iphone5-03.png",
                                     @"iphone5-04.png",
-                                    @"iphone5-05.png"];
+                                    @"iphone5-05.png",
+                                    @"splash_5.png"];
             }
             if(result.height == 1334) {
                 NSLog(@"iPhone 6 Resolution");
@@ -49,7 +51,8 @@
                                     @"iphone6-02.png",
                                     @"iphone6-03.png",
                                     @"iphone6-04.png",
-                                    @"iphone6-05.png"];
+                                    @"iphone6-05.png",
+                                    @"splash_6.png"];
             }
             if(result.height == 2208) {
                 NSLog(@"iPhone 6 Plus Resolution");
@@ -57,7 +60,8 @@
                                     @"iphone6+-02.png",
                                     @"iphone6+-03.png",
                                     @"iphone6+-04.png",
-                                    @"iphone6+-05.png"];
+                                    @"iphone6+-05.png",
+                                    @"splash_6+.png"];
             }
         }else{
             NSLog(@"Standard Resolution");
@@ -65,7 +69,8 @@
                                 @"iphone4-02.png",
                                 @"iphone4-03.png",
                                 @"iphone4-04.png",
-                                @"iphone4-05.png"];
+                                @"iphone4-05.png",
+                                @"splash_4.png"];
         }
     }
     
@@ -73,7 +78,8 @@
                               @"Shortly after, you'll receive an email with the QR-Code for your Tinkler. Print it!",
                               @"Place the QR-Code in your Tinkler so that it stays visible and scannable by everyone",
                               @"From now on when someone scans that QR-Code using Tinkler you'll be notified",
-                              @"You can now communicate without having to share personal information between Tinkler users. Enjoy!"];
+                              @"You can now communicate without having to share personal information between Tinkler users. Enjoy!",
+                              @""];
     
     // Create page view controller
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
@@ -84,7 +90,7 @@
     [self.skipButton addTarget:self action:@selector(goToScanPage) forControlEvents:UIControlEventTouchUpInside];
     
     self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - 50, self.view.frame.size.height - 50, 100, 50)];
-    self.pageControl.numberOfPages = [self.pageImages count];
+    self.pageControl.numberOfPages = 5;
     self.pageControl.currentPage = 0;
     self.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     self.pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0 green:.89 blue:.20 alpha:1];
@@ -122,7 +128,7 @@
     if (navController) {
         //Code to show the navigation bar
         [[self navigationController] setNavigationBarHidden:NO animated:YES];
-        [navController pushViewController:targetViewController animated:NO];
+        [navController pushViewController:targetViewController animated:YES];
     }
 }
 
@@ -132,15 +138,16 @@
 
 - (TKPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    if (([self.pageImages count] == 0) || (index >= [self.pageImages count])) {
-        return nil;
-    }
-    
     // Create a new view controller and pass suitable data.
     TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    pageContentViewController.imageFile = self.pageImages[index];
-    pageContentViewController.pageIndex = index;
-    pageContentViewController.descriptionText = self.pageDescriptions[index];
+    
+    if (([self.pageImages count] == 0)) {
+        return nil;
+    }else{
+        pageContentViewController.imageFile = self.pageImages[index];
+        pageContentViewController.pageIndex = index;
+        pageContentViewController.descriptionText = self.pageDescriptions[index];
+    }
     
     return pageContentViewController;
 }
@@ -157,7 +164,7 @@
     pageContentViewController.pageIndex = index;
     pageContentViewController.descriptionText = self.pageDescriptions[index];
     
-    if (index == [self.pageImages count]-1){
+    if (index == 4){
         pageContentViewController.buttonHidden = NO;
         [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
     } else {
@@ -181,33 +188,35 @@
 {
     NSUInteger index = ((TKPageContentViewController*) viewController).pageIndex;
     
-    // Create a new view controller and pass suitable data.
-    TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
-    pageContentViewController.imageFile = self.pageImages[index];
-    pageContentViewController.pageIndex = index;
-    pageContentViewController.descriptionText = self.pageDescriptions[index];
+    if (index == 5) {
+        [self goToScanPage];
+    }else{
+        // Create a new view controller and pass suitable data.
+        TKPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
+        pageContentViewController.imageFile = self.pageImages[index];
+        pageContentViewController.pageIndex = index;
+        pageContentViewController.descriptionText = self.pageDescriptions[index];
+        
+        if (index == 4){
+            pageContentViewController.buttonHidden = NO;
+            [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
+        } else {
+            [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
+            pageContentViewController.buttonHidden = YES;
+        }
+        
+        if (index == NSNotFound) {
+            return nil;
+        }
+        
+        [self.pageControl setCurrentPage:index];
+        
+        index++;
     
-    if (index == [self.pageImages count]-1){
-        pageContentViewController.buttonHidden = NO;
-        [self.skipButton setTitle:@"Finish" forState:UIControlStateNormal];
-    } else {
-        [self.skipButton setTitle:@"Skip" forState:UIControlStateNormal];
-        pageContentViewController.buttonHidden = YES;
+        return [self viewControllerAtIndex:index];
     }
     
-    if (index == NSNotFound) {
-        return nil;
-    }
-    
-    [self.pageControl setCurrentPage:index];
-    
-    index++;
-    
-    if (index == [self.pageImages count]) {
-        return nil;
-    }
-    
-    return [self viewControllerAtIndex:index];
+    return nil;
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
