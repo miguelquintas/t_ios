@@ -140,20 +140,14 @@
             
             if([currentConversations.talkingToUser.objectId isEqualToString:[userInfo objectForKey:@"from"]] && [currentConversations.talkingToTinkler.objectId isEqualToString:[userInfo objectForKey:@"tinkler"]]){
                 [presentVC updateConversationWithReceivedMsg:[userInfo objectForKey:@"message"]];
-            }else{
-                //Set the push_inbox icon
-                UITabBarController* tabBarController = (UITabBarController*)[self topViewController:@"tabVC"];
-                UITabBarItem *tabBarItem = (UITabBarItem *)[tabBarController.tabBar.items objectAtIndex:0];
-                [tabBarItem setImage:[UIImage imageNamed:@"inbox_push.png"]];
-                [tabBarItem setSelectedImage:[UIImage imageNamed:@"inbox_push.png"]];
-                
+            }else{                
                 [presentVC setHasSentMsg:YES];
                 MPGNotification *pushNotification =
                 [MPGNotification notificationWithTitle:[userInfo objectForKey:@"tinklerName"]
                                               subtitle:[userInfo objectForKey:@"message"]
                                        backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
                                              iconImage:[UIImage imageNamed:@"tinklernav@3x.png"]];
-                pushNotification.duration = 2.0;
+                pushNotification.duration = 3.0;
                 [pushNotification show];
             }
         //if inside any other tab show push note, load new messages and change inbox icon to alert notifications
@@ -169,7 +163,7 @@
                                           subtitle:[userInfo objectForKey:@"message"]
                                    backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
                                          iconImage:[UIImage imageNamed:@"tinklernav@3x.png"]];
-            pushNotification.duration = 2.0;
+            pushNotification.duration = 3.0;
             [pushNotification show];
             //Set PushNotification Preference ON
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -182,7 +176,7 @@
                                           subtitle:[userInfo objectForKey:@"message"]
                                    backgroundColor:[QCApi colorWithHexString:@"00CEBA"]
                                          iconImage:[UIImage imageNamed:@"tinklernav@3x.png"]];
-            pushNotification.duration = 2.0;
+            pushNotification.duration = 3.0;
             [pushNotification show];
             //Set PushNotification Preference ON
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

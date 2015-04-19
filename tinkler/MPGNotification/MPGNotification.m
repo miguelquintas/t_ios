@@ -151,7 +151,7 @@ static const CGFloat kColorAdjustmentLight = 0.35;
     
     [super layoutSubviews];
     
-    static const CGFloat kPaddingX = 5;
+    static const CGFloat kPaddingX = 10;
     CGFloat notificationWidth = CGRectGetWidth(self.bounds);
     
     CGFloat maxWidth = 0.5 * (notificationWidth - kMaximumNotificationWidth);
@@ -225,7 +225,7 @@ static const CGFloat kColorAdjustmentLight = 0.35;
     
     CGFloat titleLabelPaddingY = (subtitleEmpty) ? 18 : (subtitleOneLiner) ? 13 : 3;
     
-    self.titleLabel.frame = CGRectMake(textPaddingX,
+    self.titleLabel.frame = CGRectMake(textPaddingX+kTitleLabelPaddingX,
                                        titleLabelPaddingY,
                                        textWidth,
                                        kTitleLabelHeight);
