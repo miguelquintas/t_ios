@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"Current User %@",[PFUser currentUser]);
+    NSLog(@"Email Verified User %i",[[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]);
     //validate viewController one being displayed
     if([PFUser currentUser].username != nil && [[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue]){
         

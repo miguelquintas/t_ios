@@ -73,6 +73,7 @@
                             if (error == nil){
                                 [self loadMessagesToView:onlineMessagesArray];
                                 [(QCInboxViewController*)_parentVC setInboxIcon];
+                                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
                             } else {
                                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Connection Failed" message:@"There was an error loading your conversations. Please try again later." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                                 [alertView show];
@@ -258,6 +259,7 @@
                 [self addMsgToSelConversations: text];
                 [self finishSendingMessageAnimated:YES];
             }else{
+                [self.messages removeLastObject];
                 //Warn user, clean input field and hide keyboard
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message Send Failed" message:@"This conversation is locked until you get an answer from the other Tinkler user" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                 [alertView show];

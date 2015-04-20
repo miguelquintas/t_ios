@@ -257,6 +257,7 @@
                         [alertView show];
                     }
                 }
+                [self startQrCodeRead];
             }];
         }else{
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Scan Failed" message:@"You need to have network connectivity to scan Tinklers" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

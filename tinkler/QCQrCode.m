@@ -60,7 +60,7 @@
     CIImage *qrCode = [self createQRForString:qrContent];
     
     // Convert to an UIImage
-    UIImage *qrCodeImg = [self createNonInterpolatedUIImageFromCIImage:qrCode withScale:6*[[UIScreen mainScreen] scale]];
+    UIImage *qrCodeImg = [self createNonInterpolatedUIImageFromCIImage:qrCode withScale:5*[[UIScreen mainScreen] scale]];
     
     //Code to merge it with the border image
     UIImage *borderImage = [UIImage imageNamed:@"qrcode_border"]; //background image
