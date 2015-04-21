@@ -32,7 +32,7 @@
     //Set profile pic from NSUserDefaults
     if(imageData == nil){
         //Load the default profile pic
-        self.profilePic.image = [UIImage imageNamed:@"default_pic.png"];
+        self.profilePic.image = [UIImage imageNamed:@"default_user.png"];
     }else{
         self.profilePic.image = storedProfilePic;
     }

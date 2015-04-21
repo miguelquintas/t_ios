@@ -19,9 +19,10 @@
     [self.noItemsView setHidden:YES];
     
     //Edit the buttons style
+    [_createNewButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_createNewButton.layer setBorderWidth:1.0];
-    [_createNewButton.layer setBorderColor:[[QCApi colorWithHexString:@"EE463E"] CGColor]];
-    [_createNewButton.layer setCornerRadius: self.createNewButton.frame.size.width / 2];
+    [_createNewButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_createNewButton.layer setCornerRadius: 5.0f];
     
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
     [_offlineTopLayer setText:@"Create your Tinklers, place your QR-Codes and start communicating!"];

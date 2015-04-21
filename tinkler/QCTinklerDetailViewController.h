@@ -15,7 +15,7 @@
 #import "SBPickerSelector.h"
 #import "MBProgressHUD.h"
 
-@interface QCTinklerDetailViewController : UIViewController <LTHMonthYearPickerViewDelegate, UIActionSheetDelegate, SBPickerSelectorDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface QCTinklerDetailViewController : UIViewController <LTHMonthYearPickerViewDelegate, UIActionSheetDelegate, SBPickerSelectorDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *aditionalFieldsView;
 @property (strong, nonatomic) IBOutlet UITextField * tinklerNameEdit;
@@ -24,6 +24,9 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView * tinklerImage;
 @property (strong, nonatomic) IBOutlet UIImageView *qrCodeImage;
+
+@property (strong, nonatomic) IBOutlet UIView *coverView;
+@property (strong, nonatomic) IBOutlet UIImageView *qrCodeBigImage;
 
 //Array with the existing tinkler types objects
 @property (strong, nonatomic) NSArray *tinklerTypes;
@@ -61,5 +64,6 @@
 - (IBAction)selectPhoto:(id)sender;
 - (IBAction)deleteTinkler:(id)sender;
 - (IBAction)updateTinkler:(id)sender;
+- (IBAction)viewQrCode:(id)sender;
 
 @end

@@ -52,7 +52,7 @@
         }];
         
     }else{
-        //Load the default vehicle pic
+        //Load the default tinkler pic
         self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
     }
     
@@ -62,19 +62,13 @@
     self.tinklerImage.layer.borderWidth= 1.0f;
     
     //Set Tinkler's QR-Code Image
-    if([self.selectedTinkler tinklerQRCode] != nil){
-        [[self.selectedTinkler tinklerQRCode] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                [self.qrCodeImage setImage:[UIImage imageWithData:data]];
-                self.qrCodeImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 10;
-                self.qrCodeImage.clipsToBounds = YES;
-            }
-        }];
-        
-    }else{
-        //Load the default vehicle pic
-        self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
-    }
+    //Load the default tinkler pic
+    self.qrCodeImage.image = [UIImage imageNamed:@"default_qrcode.png"];
+    self.qrCodeImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 10;
+    self.qrCodeImage.clipsToBounds = YES;
+    self.qrCodeImage.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    self.qrCodeImage.layer.borderWidth= 1.0f;
+ 
     
     //Display the optional fields for each tinkler type
     if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Vehicle"]) {
@@ -432,6 +426,48 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Tinkler Update Failed" message:@"You need to have network connectivity to update this tinkler" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alertView show];
     }
+}
+
+- (IBAction)viewQrCode:(id)sender {
+    
+    // get your window screen size
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    //initialize the cover view with the same size
+    _coverView = [[UIView alloc] initWithFrame:screenRect];
+    // change the background color to black and the opacity to 0.6
+    _coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    // add this new view to your main view
+    int borderWidth = self.view.frame.size.width * 0.9;
+    _qrCodeBigImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - borderWidth / 2, (self.view.frame.size.height) / 2 - borderWidth / 2, borderWidth, borderWidth)];
+    
+    if([self.selectedTinkler tinklerQRCode] != nil){
+        [[self.selectedTinkler tinklerQRCode] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                [_qrCodeBigImage setImage:[UIImage imageWithData:data]];
+                _qrCodeBigImage.layer.cornerRadius = 10.0f;
+                _qrCodeBigImage.clipsToBounds = YES;
+                _qrCodeBigImage.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+                _qrCodeBigImage.layer.borderWidth= 1.0f;
+            }
+        }];
+        
+    }
+    
+    _qrCodeBigImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(tapGesture:)];
+    tapGesture1.numberOfTapsRequired = 1;
+    [tapGesture1 setDelegate:self];
+    [_qrCodeBigImage addGestureRecognizer:tapGesture1];
+    
+    [_coverView addSubview:_qrCodeBigImage];
+    [self.view addSubview:_coverView];
+    
+}
+
+//Tap Gesture to dismiss coverview
+- (void) tapGesture: (id)sender
+{
+    [_coverView removeFromSuperview];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

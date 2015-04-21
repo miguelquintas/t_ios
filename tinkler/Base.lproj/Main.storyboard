@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mFJ-Lw-yG8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -1019,12 +1019,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXI-d6-ddL">
-                                <rect key="frame" x="125" y="7" width="70" height="70"/>
+                                <rect key="frame" x="51" y="20" width="218" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="0b7-Uw-K1T"/>
-                                    <constraint firstAttribute="height" constant="70" id="7qy-6S-BHB"/>
+                                    <constraint firstAttribute="height" constant="40" id="7qy-6S-BHB"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="add_new_tinkler.png">
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="create new">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1033,7 +1033,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hn7-Qo-osa">
-                                <rect key="frame" x="0.0" y="88" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="375"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TinklerCell" rowHeight="78" id="PMO-wX-GaK" userLabel="TinklerCell" customClass="QCTinklerTableViewCell">
@@ -1069,12 +1069,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="hn7-Qo-osa" secondAttribute="centerX" id="0aC-5g-FGC"/>
-                            <constraint firstItem="hn7-Qo-osa" firstAttribute="top" secondItem="fXI-d6-ddL" secondAttribute="bottom" constant="11" id="3An-Pv-54m"/>
-                            <constraint firstItem="fXI-d6-ddL" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" constant="7" id="F2C-2k-b1g"/>
+                            <constraint firstItem="hn7-Qo-osa" firstAttribute="top" secondItem="fXI-d6-ddL" secondAttribute="bottom" constant="20" id="3An-Pv-54m"/>
+                            <constraint firstItem="fXI-d6-ddL" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" constant="20" id="F2C-2k-b1g"/>
                             <constraint firstItem="oBw-Uj-sm8" firstAttribute="top" secondItem="u26-v2-aJt" secondAttribute="bottom" id="FUZ-i4-dCB"/>
                             <constraint firstItem="oBw-Uj-sm8" firstAttribute="width" secondItem="yl0-Gi-K1d" secondAttribute="width" id="TZ0-5J-HhV"/>
                             <constraint firstItem="yoH-Ef-7lc" firstAttribute="top" secondItem="hn7-Qo-osa" secondAttribute="bottom" id="X4N-Oo-BcW"/>
                             <constraint firstItem="yoH-Ef-7lc" firstAttribute="top" secondItem="oBw-Uj-sm8" secondAttribute="bottom" id="Yn6-RO-oSJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fXI-d6-ddL" secondAttribute="trailing" constant="35" id="dyG-xv-R7y"/>
+                            <constraint firstItem="fXI-d6-ddL" firstAttribute="leading" secondItem="yl0-Gi-K1d" secondAttribute="leadingMargin" constant="35" id="lOU-M5-DAD"/>
                             <constraint firstAttribute="centerX" secondItem="fXI-d6-ddL" secondAttribute="centerX" id="p00-ni-zXV"/>
                             <constraint firstAttribute="centerX" secondItem="oBw-Uj-sm8" secondAttribute="centerX" id="q33-gG-2oG"/>
                             <constraint firstItem="hn7-Qo-osa" firstAttribute="width" secondItem="yl0-Gi-K1d" secondAttribute="width" id="uLq-aX-9em"/>
@@ -1214,6 +1216,19 @@
                                             <action selector="generateQRCode:" destination="VIG-YS-9ac" eventType="touchUpInside" id="8Xm-DO-BoF"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3W-fU-6jX">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="CGE-ni-Jnp"/>
+                                            <constraint firstAttribute="width" constant="80" id="Ghc-0T-fHS"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewQrCode:" destination="VIG-YS-9ac" eventType="touchUpInside" id="i7c-Le-2OX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1223,6 +1238,8 @@
                                     <constraint firstAttribute="trailing" secondItem="AWs-RR-8As" secondAttribute="trailing" id="AaL-H2-K8N"/>
                                     <constraint firstAttribute="height" constant="124" id="C7r-gK-QBU"/>
                                     <constraint firstAttribute="trailing" secondItem="IlP-AZ-DTL" secondAttribute="trailing" id="CMI-oY-rff"/>
+                                    <constraint firstItem="x3W-fU-6jX" firstAttribute="top" secondItem="4rA-gb-2ue" secondAttribute="top" id="K2s-my-t0X"/>
+                                    <constraint firstItem="x3W-fU-6jX" firstAttribute="leading" secondItem="4rA-gb-2ue" secondAttribute="leading" id="Lkf-x7-cle"/>
                                     <constraint firstItem="S2d-NR-BFo" firstAttribute="leading" secondItem="GUj-Lo-QyX" secondAttribute="leading" id="Pcc-LP-yr1"/>
                                     <constraint firstItem="4rA-gb-2ue" firstAttribute="top" secondItem="GUj-Lo-QyX" secondAttribute="top" id="ary-rY-dIq"/>
                                     <constraint firstAttribute="width" constant="250" id="vYU-a2-M67"/>
@@ -1268,7 +1285,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_new_tinkler.png" width="112" height="112"/>
         <image name="inbox.png" width="25" height="25"/>
         <image name="scan.png" width="25" height="25"/>
         <image name="tinklernav.png" width="25" height="25"/>
