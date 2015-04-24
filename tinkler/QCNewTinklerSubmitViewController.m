@@ -43,7 +43,7 @@
     }else if ([tinklerTypeName isEqualToString:@"Pet"]){
         [self createPetAdditionalFields];
     }else if ([tinklerTypeName isEqualToString:@"Realty or Location"] || [tinklerTypeName isEqualToString:@"Key"]){
-        
+        [self createLocationAdditionalFields];
     }else if ([tinklerTypeName isEqualToString:@"Accessory"] || [tinklerTypeName isEqualToString:@"Object"] || [tinklerTypeName isEqualToString:@"Bag or Suitcase"]){
         [self createBagsAcessoriesAdditionalFields];
     }
@@ -156,6 +156,24 @@
     [self.view addSubview:_additionalFields];
 }
 
+- (void) createLocationAdditionalFields{
+    
+    _locationCityTF = [[UITextField alloc] init];
+    _locationCityTF.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _locationCityTF.layer.cornerRadius=4.0f;
+    _locationCityTF.layer.masksToBounds=YES;
+    _locationCityTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _locationCityTF.layer.borderWidth= 1.0f;
+    _locationCityTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
+    _locationCityTF.delegate = self;
+    _locationCityTF.borderStyle = UITextBorderStyleRoundedRect;
+    _locationCityTF.placeholder = @"City";
+    _locationCityTF.userInteractionEnabled = YES;
+    
+    [_additionalFields addSubview:_locationCityTF];
+    [self.view addSubview:_additionalFields];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -193,6 +211,7 @@
     [newTinkler setPetAge: [newTinkler tinklerStringToDate:_petAgeTF.text]];
     [newTinkler setBrand:_brandTF.text];
     [newTinkler setColor:_colorTF.text];
+    [newTinkler setLocationCity:_locationCityTF.text];
     
     //Creating a PFFile object with the selected tinkler image only when user has selected new photo
     if(_hasNewPhoto){

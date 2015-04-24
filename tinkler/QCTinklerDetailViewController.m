@@ -76,6 +76,7 @@
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Pet"]){
         [self createPetAdditionalFields];
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Realty or Location"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Key"]){
+        [self createLocationAdditionalFields];
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Accessory"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Object"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Bag or Suitcase"]){
         [self createBagsAcessoriesAdditionalFields];
     }
@@ -239,6 +240,25 @@
     [self.view addSubview:_aditionalFieldsView];
 }
 
+- (void) createLocationAdditionalFields{
+    
+    _locationCityTF = [[UITextField alloc] init];
+    _locationCityTF.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _locationCityTF.layer.cornerRadius=4.0f;
+    _locationCityTF.layer.masksToBounds=YES;
+    _locationCityTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _locationCityTF.layer.borderWidth= 1.0f;
+    _locationCityTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
+    _locationCityTF.delegate = self;
+    _locationCityTF.borderStyle = UITextBorderStyleRoundedRect;
+    _locationCityTF.placeholder = @"City";
+    _locationCityTF.userInteractionEnabled = YES;
+    _locationCityTF.text = [self.selectedTinkler locationCity];
+    
+    [_aditionalFieldsView addSubview:_locationCityTF];
+    [self.view addSubview:_aditionalFieldsView];
+}
+
 //Code to hide keyboard when return key is pressed
 -(BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     [_tinklerNameEdit resignFirstResponder];
@@ -246,6 +266,7 @@
     [_petBreedTF resignFirstResponder];
     [_brandTF resignFirstResponder];
     [_colorTF resignFirstResponder];
+    [_locationCityTF resignFirstResponder];
     return YES;
 }
 
@@ -273,6 +294,7 @@
     [self.selectedTinkler setPetAge: [self.selectedTinkler tinklerStringToDate:_petAgeTF.text]];
     [self.selectedTinkler setBrand:_brandTF.text];
     [self.selectedTinkler setColor:_colorTF.text];
+    [self.selectedTinkler setLocationCity:_locationCityTF.text];
     
     //Creating a PFFile object with the selected Tinkler image only when user has selected new photo
     if(_hasNewPhoto){

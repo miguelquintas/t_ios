@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSDate *petAge;
 @property (strong, nonatomic) NSString *brand;
 @property (strong, nonatomic) NSString *color;
+@property (strong, nonatomic) NSString *locationCity;
 @property (strong, nonatomic) PFFile *tinklerQRCode;
 @property (strong, nonatomic) NSNumber *tinklerQRCodeKey;
 

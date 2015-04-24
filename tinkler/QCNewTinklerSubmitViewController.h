@@ -45,6 +45,8 @@
 @property (strong, nonatomic) IBOutlet UITextField * petAgeTF;
 @property (strong, nonatomic) IBOutlet UITextField * brandTF;
 @property (strong, nonatomic) IBOutlet UITextField * colorTF;
+@property (strong, nonatomic) IBOutlet UITextField * locationCityTF;
+
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 - (QCTinkler*)saveNewTinkler;

@@ -45,11 +45,14 @@
     else
         [self.customMsgSwitch setOn:NO];
     
+    //Edit the line style
+    [_line1 setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
+    [_line2 setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
+    [_line3 setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
+    
     //Edit the buttons style
-    [_tutorialButton setBackgroundColor:[QCApi colorWithHexString:@"00CEBA"]];
-    [_tutorialButton.layer setBorderWidth:1.0];
-    [_tutorialButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [_tutorialButton.layer setCornerRadius: 6.0f];
+    [_tutorialButton setTintColor:[QCApi colorWithHexString:@"00CEBA"]];
+    [_tutorialButton setTitleColor:[QCApi colorWithHexString:@"00CEBA"] forState:UIControlStateNormal];
     
     [_logoutButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_logoutButton.layer setBorderWidth:1.0];

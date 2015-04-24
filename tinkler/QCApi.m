@@ -85,6 +85,7 @@
         [tinkler setPetBreed:[object objectForKey:@"petBreed"]];
         [tinkler setColor:[object objectForKey:@"color"]];
         [tinkler setBrand:[object objectForKey:@"brand"]];
+        [tinkler setLocationCity:[object objectForKey:@"locationCity"]];
         [tinkler setTinklerImage:[object objectForKey:@"picture"]];
         [tinkler setTinklerQRCode:[object objectForKey:@"qrCode"]];
         [tinkler setTinklerQRCodeKey:[object objectForKey:@"qrCodeKey"]];
@@ -340,6 +341,9 @@
         
     if([tinkler color] != nil)
         [tinklerToAdd setObject:[tinkler color] forKey:@"color"];
+    
+    if([tinkler locationCity] != nil)
+        [tinklerToAdd setObject:[tinkler locationCity] forKey:@"locationCity"];
    
     if([tinkler tinklerImage] != nil)
         [tinklerToAdd setObject:[tinkler tinklerImage] forKey:@"picture"];
@@ -406,6 +410,9 @@
     
     if([tinkler color] != nil)
         [tinklerToEdit setObject:[tinkler color] forKey:@"color"];
+    
+    if([tinkler locationCity] != nil)
+        [tinklerToEdit setObject:[tinkler locationCity] forKey:@"locationCity"];
     
     if([tinkler tinklerQRCode] != nil)
         [tinklerToEdit setObject:[tinkler tinklerQRCode] forKey:@"qrCode"];

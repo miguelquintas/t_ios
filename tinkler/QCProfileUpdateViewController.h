@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *tutorialButton;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 @property (weak, nonatomic) IBOutlet UIButton *resetPassButton;
+@property (strong, nonatomic) IBOutlet UIView *line1;
+@property (strong, nonatomic) IBOutlet UIView *line2;
+@property (strong, nonatomic) IBOutlet UIView *line3;
 
 - (IBAction)changePasswordButton:(id)sender;
 
