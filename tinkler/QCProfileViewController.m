@@ -21,7 +21,7 @@
     //Edit the buttons style
     [_createNewButton setBackgroundColor:[QCApi colorWithHexString:@"EE463E"]];
     [_createNewButton.layer setBorderWidth:1.0];
-    [_createNewButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_createNewButton.layer setBorderColor:[[QCApi colorWithHexString:@"EE463E"] CGColor]];
     [_createNewButton.layer setCornerRadius: 5.0f];
     
     [self.noItemsView setBackgroundColor:[QCApi colorWithHexString:@"7FD0D1"]];
@@ -186,7 +186,7 @@
     cell.thumbnailImageView.layer.borderWidth= 1.0f;
     
     if(thisTinkler.tinklerImage == nil){
-        [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_pic.png"]];
+        [cell.thumbnailImageView setImage:[UIImage imageNamed:@"default_icon_blue.png"]];
     }else{
         [thisTinkler.tinklerImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {

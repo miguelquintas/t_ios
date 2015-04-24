@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */; };
 		5D20E8BF1AD4883300BF81E9 /* add_new_tinkler@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */; };
 		5D20E8C01AD4883300BF81E9 /* add_new_tinkler@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */; };
 		5D3409341AD4613F00DFDC35 /* iphone4-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D34092F1AD4613F00DFDC35 /* iphone4-01.png */; };
@@ -41,9 +40,6 @@
 		5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170ED18C68ACD0098DD3B /* Main.storyboard */; };
 		5D4170F118C68ACD0098DD3B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4170F018C68ACD0098DD3B /* Images.xcassets */; };
 		5DB52C971AA6646500A5CE30 /* TKPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */; };
-		5DDDAD9F1AD47CA000244176 /* tinklers_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDAD9E1AD47CA000244176 /* tinklers_empty@2x.png */; };
-		5DDDADA21AD47D1300244176 /* default_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDADA01AD47D1300244176 /* default_pic@2x.png */; };
-		5DDDADA31AD47D1300244176 /* default_pic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDADA11AD47D1300244176 /* default_pic@3x.png */; };
 		5DE27AEC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */; };
 		5DE27AED18C90A6F00C4C763 /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27ADE18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.m */; };
 		5DE27AEE18C90A6F00C4C763 /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27AE018C90A6E00C4C763 /* UIAlertView+AFNetworking.m */; };
@@ -152,6 +148,9 @@
 		BCC181DA19E85BBE00B5D5BA /* QCInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181D919E85BBE00B5D5BA /* QCInboxTableViewCell.m */; };
 		BCC181DD19E8654700B5D5BA /* QCInboxDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */; };
 		BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */; };
+		BCCFF6521AEAC31C00B8D90A /* default_icon_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCFF6511AEAC31C00B8D90A /* default_icon_blue.png */; };
+		BCCFF6591AEAC6F700B8D90A /* default_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCFF6571AEAC6F700B8D90A /* default_icon@2x.png */; };
+		BCCFF65A1AEAC6F700B8D90A /* default_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCFF6581AEAC6F700B8D90A /* default_icon@3x.png */; };
 		BCD0822319FBD2430065A6EB /* QCConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0822219FBD2430065A6EB /* QCConversation.m */; };
 		BCD88F5119BB911D0090103B /* QCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5019BB911D0090103B /* QCProfileViewController.m */; };
 		BCD88F5419BB91340090103B /* QCInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5319BB91340090103B /* QCInboxViewController.m */; };
@@ -181,7 +180,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers_empty@3x.png"; sourceTree = "<group>"; };
 		5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_tinkler@3x.png"; sourceTree = "<group>"; };
 		5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_tinkler@2x.png"; sourceTree = "<group>"; };
 		5D34092F1AD4613F00DFDC35 /* iphone4-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone4-01.png"; sourceTree = "<group>"; };
@@ -221,9 +219,6 @@
 		5D4170F718C68ACD0098DD3B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5DB52C951AA6646500A5CE30 /* TKPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPageContentViewController.h; sourceTree = "<group>"; };
 		5DB52C961AA6646500A5CE30 /* TKPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPageContentViewController.m; sourceTree = "<group>"; };
-		5DDDAD9E1AD47CA000244176 /* tinklers_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tinklers_empty@2x.png"; sourceTree = "<group>"; };
-		5DDDADA01AD47D1300244176 /* default_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_pic@2x.png"; sourceTree = "<group>"; };
-		5DDDADA11AD47D1300244176 /* default_pic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_pic@3x.png"; sourceTree = "<group>"; };
 		5DE27ADB18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
 		5DE27ADC18C90A6E00C4C763 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
 		5DE27ADD18C90A6E00C4C763 /* UIActivityIndicatorView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+AFNetworking.h"; sourceTree = "<group>"; };
@@ -423,6 +418,9 @@
 		BCC181DB19E8654700B5D5BA /* QCInboxDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCInboxDetailViewController.h; sourceTree = "<group>"; };
 		BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxDetailViewController.m; sourceTree = "<group>"; };
 		BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialBG.png; sourceTree = "<group>"; };
+		BCCFF6511AEAC31C00B8D90A /* default_icon_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_icon_blue.png; sourceTree = "<group>"; };
+		BCCFF6571AEAC6F700B8D90A /* default_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_icon@2x.png"; sourceTree = "<group>"; };
+		BCCFF6581AEAC6F700B8D90A /* default_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_icon@3x.png"; sourceTree = "<group>"; };
 		BCD0822119FBD2430065A6EB /* QCConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCConversation.h; sourceTree = "<group>"; };
 		BCD0822219FBD2430065A6EB /* QCConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCConversation.m; sourceTree = "<group>"; };
 		BCD88F4F19BB911D0090103B /* QCProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCProfileViewController.h; sourceTree = "<group>"; };
@@ -963,6 +961,9 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BCCFF6571AEAC6F700B8D90A /* default_icon@2x.png */,
+				BCCFF6581AEAC6F700B8D90A /* default_icon@3x.png */,
+				BCCFF6511AEAC31C00B8D90A /* default_icon_blue.png */,
 				BC8F842A1AE6F18D00D987DB /* default_user.png */,
 				BC8F842E1AE6F95800D987DB /* default_qrcode.png */,
 				BC6322861ADF2661000D39C3 /* inbox_push.png */,
@@ -970,8 +971,6 @@
 				BC6322881ADF2661000D39C3 /* inbox_push@3x.png */,
 				5D20E8BD1AD4883300BF81E9 /* add_new_tinkler@3x.png */,
 				5D20E8BE1AD4883300BF81E9 /* add_new_tinkler@2x.png */,
-				5DDDADA01AD47D1300244176 /* default_pic@2x.png */,
-				5DDDADA11AD47D1300244176 /* default_pic@3x.png */,
 				5D3409611AD46C0500DFDC35 /* scan_border@3x.png */,
 				5D34095F1AD46B7D00DFDC35 /* scan_border@2x.png */,
 				5D34092E1AD45DF400DFDC35 /* splashscreen */,
@@ -979,8 +978,6 @@
 				BC6815551AC6FECD0035CCDE /* settings.png */,
 				BC6815561AC6FECD0035CCDE /* settings@2x.png */,
 				BC6815571AC6FECD0035CCDE /* settings@3x.png */,
-				5D1D27B91AC2050400D3E399 /* tinklers_empty@3x.png */,
-				5DDDAD9E1AD47CA000244176 /* tinklers_empty@2x.png */,
 				BCDFFF9A1ABF99EF004D392E /* tinklernav.png */,
 				BCDFFF9B1ABF99EF004D392E /* tinklernav@2x.png */,
 				BC782F9F1AC8B42A004FF2F8 /* qrcode_border.png */,
@@ -1088,6 +1085,7 @@
 				5D4170DD18C68ACD0098DD3B /* InfoPlist.strings in Resources */,
 				BC956DC91A9E7E710050C291 /* scan@3x.png in Resources */,
 				BC8F842B1AE6F18D00D987DB /* default_user.png in Resources */,
+				BCCFF65A1AEAC6F700B8D90A /* default_icon@3x.png in Resources */,
 				5D3409551AD4617000DFDC35 /* iphone6+-04.png in Resources */,
 				5D3409401AD4615900DFDC35 /* iphone6-03.png in Resources */,
 				5D34094C1AD4616500DFDC35 /* iphone5-05.png in Resources */,
@@ -1116,6 +1114,7 @@
 				5D20E8BF1AD4883300BF81E9 /* add_new_tinkler@3x.png in Resources */,
 				5D3409421AD4615900DFDC35 /* iphone6-05.png in Resources */,
 				BC824C931ACEE84E00A36024 /* splash_6@2x.png in Resources */,
+				BCCFF6591AEAC6F700B8D90A /* default_icon@2x.png in Resources */,
 				BC956DC51A9E7E710050C291 /* profile@2x.png in Resources */,
 				BC72B7E91A6858F700AC720B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */,
@@ -1123,14 +1122,13 @@
 				5D4170EF18C68ACD0098DD3B /* Main.storyboard in Resources */,
 				5D34093E1AD4615900DFDC35 /* iphone6-01.png in Resources */,
 				5D3409601AD46B7D00DFDC35 /* scan_border@2x.png in Resources */,
+				BCCFF6521AEAC31C00B8D90A /* default_icon_blue.png in Resources */,
 				5D3409371AD4613F00DFDC35 /* iphone4-04.png in Resources */,
 				BC72B7E21A6858F700AC720B /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				5D3409481AD4616500DFDC35 /* iphone5-01.png in Resources */,
-				5D1D27BA1AC2050400D3E399 /* tinklers_empty@3x.png in Resources */,
 				BC63228B1ADF2661000D39C3 /* inbox_push@3x.png in Resources */,
 				BC824C941ACEE84E00A36024 /* splash_6+@3x.png in Resources */,
 				BC72B7E41A6858F700AC720B /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
-				5DDDADA21AD47D1300244176 /* default_pic@2x.png in Resources */,
 				BC956DC21A9E7E710050C291 /* inbox@2x.png in Resources */,
 				BC6322891ADF2661000D39C3 /* inbox_push.png in Resources */,
 				BC956DC61A9E7E710050C291 /* profile@3x.png in Resources */,
@@ -1139,13 +1137,11 @@
 				5D3409341AD4613F00DFDC35 /* iphone4-01.png in Resources */,
 				BC6815591AC6FECD0035CCDE /* settings@2x.png in Resources */,
 				5D3409561AD4617000DFDC35 /* iphone6+-05.png in Resources */,
-				5DDDAD9F1AD47CA000244176 /* tinklers_empty@2x.png in Resources */,
 				BC72B7EC1A6858F700AC720B /* JSQMessagesToolbarContentView.xib in Resources */,
 				BC63228A1ADF2661000D39C3 /* inbox_push@2x.png in Resources */,
 				BC956DC11A9E7E710050C291 /* inbox.png in Resources */,
 				5D3409361AD4613F00DFDC35 /* iphone4-03.png in Resources */,
 				BC68155A1AC6FECD0035CCDE /* settings@3x.png in Resources */,
-				5DDDADA31AD47D1300244176 /* default_pic@3x.png in Resources */,
 				5D34094A1AD4616500DFDC35 /* iphone5-03.png in Resources */,
 				BC782FA01AC8B42A004FF2F8 /* qrcode_border.png in Resources */,
 				BC824C911ACEE84E00A36024 /* splash_4@2x.png in Resources */,

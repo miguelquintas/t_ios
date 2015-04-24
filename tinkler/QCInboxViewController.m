@@ -188,7 +188,7 @@
     cell.tinklerThumb.layer.borderWidth= 1.0f;
     
     if(tinklerImage== nil){
-        [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_pic.png"]];
+        [cell.tinklerThumb setImage:[UIImage imageNamed:@"default_icon_blue.png"]];
     }else{
         [tinklerImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (!error) {

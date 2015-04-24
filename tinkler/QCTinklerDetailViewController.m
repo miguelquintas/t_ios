@@ -53,7 +53,7 @@
         
     }else{
         //Load the default tinkler pic
-        self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
+        self.tinklerImage.image = [UIImage imageNamed:@"default_icon_blue.png"];
     }
     
     self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;

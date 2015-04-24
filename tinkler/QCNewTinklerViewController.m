@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     //Load the default pic
-    self.tinklerImage.image = [UIImage imageNamed:@"default_pic.png"];
+    self.tinklerImage.image = [UIImage imageNamed:@"default_icon_blue.png"];
     self.tinklerImage.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
     self.tinklerImage.layer.borderWidth= 1.0f;
     self.tinklerImage.layer.cornerRadius = self.tinklerImage.frame.size.width / 2;

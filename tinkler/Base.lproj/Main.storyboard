@@ -169,7 +169,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iC-yE-jIV">
-                                <rect key="frame" x="16" y="445" width="288" height="93"/>
+                                <rect key="frame" x="26" y="445" width="268" height="93"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="93" id="k3q-NO-m6u"/>
                                 </constraints>
@@ -180,13 +180,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="1iC-yE-jIV" firstAttribute="leading" secondItem="Mtm-Mf-n75" secondAttribute="leadingMargin" constant="10" id="0R1-M4-j0H"/>
                             <constraint firstItem="F9L-Bp-wAh" firstAttribute="top" secondItem="1iC-yE-jIV" secondAttribute="bottom" constant="30" id="AlD-ji-MIF"/>
                             <constraint firstItem="hfU-ox-02k" firstAttribute="height" secondItem="Mtm-Mf-n75" secondAttribute="height" id="ElN-fS-Lh2"/>
                             <constraint firstAttribute="centerX" secondItem="hfU-ox-02k" secondAttribute="centerX" id="HkK-b6-oBS"/>
                             <constraint firstAttribute="centerY" secondItem="hfU-ox-02k" secondAttribute="centerY" id="PmY-jh-iPb"/>
-                            <constraint firstItem="1iC-yE-jIV" firstAttribute="trailing" secondItem="Mtm-Mf-n75" secondAttribute="trailingMargin" id="jJ8-Qm-9Vy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1iC-yE-jIV" secondAttribute="trailing" constant="10" id="gaE-si-ei3"/>
                             <constraint firstItem="hfU-ox-02k" firstAttribute="width" secondItem="Mtm-Mf-n75" secondAttribute="width" id="l74-0e-08O"/>
-                            <constraint firstItem="1iC-yE-jIV" firstAttribute="leading" secondItem="Mtm-Mf-n75" secondAttribute="leadingMargin" id="obc-cy-LbX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sg9-mD-81t"/>
@@ -336,7 +336,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tinklers_empty@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="86U-Pm-87h">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="86U-Pm-87h">
                                         <rect key="frame" x="60" y="128" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="Ado-jY-wgf"/>
@@ -455,7 +455,7 @@
                                             <constraint firstAttribute="width" constant="270" id="cmN-74-oPN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no conversations" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DH-4A-NDw">
@@ -468,7 +468,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tinklers_empty@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="edr-vW-GbV">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="edr-vW-GbV">
                                         <rect key="frame" x="60" y="128" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="LnN-AZ-Z24"/>
@@ -587,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dx8-ge-bcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1121" y="1284"/>
+            <point key="canvasLocation" x="1116" y="1313"/>
         </scene>
         <!--Inbox Detail View Controller-->
         <scene sceneID="ULp-1B-LRC">
@@ -1014,7 +1014,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBw-Uj-sm8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tinklers_empty@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="am6-lk-D8H">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="am6-lk-D8H">
                                         <rect key="frame" x="60" y="153" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="CFS-XN-HmL"/>
@@ -1038,7 +1038,7 @@
                                             <constraint firstAttribute="height" constant="80" id="Kma-Jn-su5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1316,11 +1316,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="default_icon.png" width="125" height="125"/>
         <image name="inbox.png" width="25" height="25"/>
         <image name="scan.png" width="25" height="25"/>
         <image name="tinklernav.png" width="25" height="25"/>
         <image name="tinklers.png" width="25" height="25"/>
-        <image name="tinklers_empty@3x.png" width="300" height="299"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
