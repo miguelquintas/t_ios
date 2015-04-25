@@ -74,11 +74,11 @@
         }
     }
     
-    self.pageDescriptions = @[@"Think of everything you would like to always be connected to and create a Tinkler of it",
-                              @"Shortly after, you'll receive an email with the QR-Code for your Tinkler. Print it!",
+    self.pageDescriptions = @[@"Create a communication channel out of everything you can think of, turning it into a Tinkler",
+                              @"Shortly after, you'll receive an email with the QR-Code that enables that communication. Print it!",
                               @"Place the QR-Code in your Tinkler so that it stays visible and scannable by everyone",
-                              @"From now on when someone scans that QR-Code using Tinkler you'll be notified",
-                              @"You can now communicate without having to share personal information between Tinkler users. Enjoy!",
+                              @"From now on whenever someone scans that QR-Code using the Tinkler app, you'll be notified",
+                              @"You can now communicate without sharing personal information with others. Enjoy!",
                               @""];
     
     // Create page view controller
