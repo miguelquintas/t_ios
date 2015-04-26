@@ -46,6 +46,8 @@
 @property (strong, nonatomic) IBOutlet UITextField * brandTF;
 @property (strong, nonatomic) IBOutlet UITextField * colorTF;
 @property (strong, nonatomic) IBOutlet UITextField * locationCityTF;
+@property (strong, nonatomic) IBOutlet UITextField * eventDateTF;
+@property (strong, nonatomic) IBOutlet UITextField * adTypeTF;
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 

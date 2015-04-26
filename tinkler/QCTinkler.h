@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSString *brand;
 @property (strong, nonatomic) NSString *color;
 @property (strong, nonatomic) NSString *locationCity;
+@property (strong, nonatomic) NSDate *eventDate;
+@property (strong, nonatomic) NSString *adType;
 @property (strong, nonatomic) PFFile *tinklerQRCode;
 @property (strong, nonatomic) NSNumber *tinklerQRCodeKey;
 

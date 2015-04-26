@@ -77,8 +77,10 @@
         [self createPetAdditionalFields];
     }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Realty or Location"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Key"]){
         [self createLocationAdditionalFields];
-    }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Accessory"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Object"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Bag or Suitcase"]){
+    }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Object"] || [[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Bag or Suitcase"]){
         [self createBagsAcessoriesAdditionalFields];
+    }else if ([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Advertisement"]){
+        [self createAdAdditionalFields];
     }
     
     //Get the existing Tinkler Types
@@ -240,6 +242,46 @@
     [self.view addSubview:_aditionalFieldsView];
 }
 
+- (void) createAdAdditionalFields{
+    _adTypeTF = [[UITextField alloc] init];
+    _adTypeTF.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _adTypeTF.layer.cornerRadius=4.0f;
+    _adTypeTF.layer.masksToBounds=YES;
+    _adTypeTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _adTypeTF.layer.borderWidth= 1.0f;
+    _adTypeTF.frame = CGRectMake(0.0f, 0.0f, 250.0f, 40.0f);
+    _adTypeTF.delegate = self;
+    _adTypeTF.borderStyle = UITextBorderStyleRoundedRect;
+    _adTypeTF.placeholder = @"Ad Type";
+    _adTypeTF.userInteractionEnabled = YES;
+    _adTypeTF.text = [self.selectedTinkler adType];
+    
+    _eventDateTF = [[UITextField alloc] init];
+    _eventDateTF.font = [UIFont fontWithName:@"Helvetica" size:14];
+    _eventDateTF.layer.cornerRadius=4.0f;
+    _eventDateTF.layer.masksToBounds=YES;
+    _eventDateTF.layer.borderColor=[[QCApi colorWithHexString:@"00CEBA"]CGColor];
+    _eventDateTF.layer.borderWidth= 1.0f;
+    _eventDateTF.frame = CGRectMake(0.0f, _eventDateTF.frame.origin.y+46, 250.0f, 40.0f);
+    _eventDateTF.delegate = self;
+    _eventDateTF.borderStyle = UITextBorderStyleRoundedRect;
+    _eventDateTF.placeholder = @"Event Date";
+    _eventDateTF.userInteractionEnabled = YES;
+    _eventDateTF.text = [self.selectedTinkler tinklerDateToString:[self.selectedTinkler eventDate]];
+    
+    //Datepicker initialization
+    _monthYearPicker = [[LTHMonthYearPickerView alloc] initWithDate: [NSDate date]
+                                                        shortMonths: NO
+                                                     numberedMonths: NO
+                                                         andToolbar: YES];
+    _monthYearPicker.delegate = self;
+    _eventDateTF.inputView = _monthYearPicker;
+    
+    [_aditionalFieldsView addSubview:_adTypeTF];
+    [_aditionalFieldsView addSubview:_eventDateTF];
+    [self.view addSubview:_aditionalFieldsView];
+}
+
 - (void) createLocationAdditionalFields{
     
     _locationCityTF = [[UITextField alloc] init];
@@ -295,6 +337,8 @@
     [self.selectedTinkler setBrand:_brandTF.text];
     [self.selectedTinkler setColor:_colorTF.text];
     [self.selectedTinkler setLocationCity:_locationCityTF.text];
+    [self.selectedTinkler  setEventDate: [self.selectedTinkler  tinklerStringToDate:_eventDateTF.text]];
+    [self.selectedTinkler  setAdType:_adTypeTF.text];
     
     //Creating a PFFile object with the selected Tinkler image only when user has selected new photo
     if(_hasNewPhoto){
@@ -550,6 +594,12 @@
                           initialValues[@"month"],
                           initialValues[@"year"]];
         [_petAgeTF resignFirstResponder];
+    }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Advertisement"]){
+        _eventDateTF.text = [NSString stringWithFormat:
+                          @"%@ %@",
+                          initialValues[@"month"],
+                          initialValues[@"year"]];
+        [_eventDateTF resignFirstResponder];
     }
     
 }
@@ -562,6 +612,8 @@
     }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Pet"]){
         _petAgeTF.text = [NSString stringWithFormat: @"%@ %@", month, year];
         [_petAgeTF resignFirstResponder];
+    }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Advertisement"]){
+        [_eventDateTF resignFirstResponder];
     }
 }
 
@@ -572,6 +624,8 @@
         [_vehicleYearTF resignFirstResponder];
     }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Pet"]){
         [_petAgeTF resignFirstResponder];
+    }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Advertisement"]){
+        [_eventDateTF resignFirstResponder];
     }
 }
 
@@ -596,6 +650,8 @@
         _vehicleYearTF.text = [NSString stringWithFormat: @"%@ %@", month, year];
     }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Pet"]){
         _petAgeTF.text = [NSString stringWithFormat: @"%@ %@", month, year];
+    }else if([[_selectedTinkler.tinklerType objectForKey:@"typeName"] isEqualToString:@"Advertisement"]){
+        _eventDateTF.text = [NSString stringWithFormat: @"%@ %@", month, year];
     }
     
 }

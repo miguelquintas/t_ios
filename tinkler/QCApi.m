@@ -86,6 +86,8 @@
         [tinkler setColor:[object objectForKey:@"color"]];
         [tinkler setBrand:[object objectForKey:@"brand"]];
         [tinkler setLocationCity:[object objectForKey:@"locationCity"]];
+        [tinkler setEventDate:[object objectForKey:@"eventDate"]];
+        [tinkler setAdType:[object objectForKey:@"adType"]];
         [tinkler setTinklerImage:[object objectForKey:@"picture"]];
         [tinkler setTinklerQRCode:[object objectForKey:@"qrCode"]];
         [tinkler setTinklerQRCodeKey:[object objectForKey:@"qrCodeKey"]];
@@ -344,6 +346,12 @@
     
     if([tinkler locationCity] != nil)
         [tinklerToAdd setObject:[tinkler locationCity] forKey:@"locationCity"];
+    
+    if([tinkler eventDate] != nil)
+        [tinklerToAdd setObject:[tinkler eventDate] forKey:@"eventDate"];
+    
+    if([tinkler adType] != nil)
+        [tinklerToAdd setObject:[tinkler adType] forKey:@"adType"];
    
     if([tinkler tinklerImage] != nil)
         [tinklerToAdd setObject:[tinkler tinklerImage] forKey:@"picture"];
@@ -413,6 +421,12 @@
     
     if([tinkler locationCity] != nil)
         [tinklerToEdit setObject:[tinkler locationCity] forKey:@"locationCity"];
+    
+    if([tinkler eventDate] != nil)
+        [tinklerToEdit setObject:[tinkler eventDate] forKey:@"eventDate"];
+    
+    if([tinkler adType] != nil)
+        [tinklerToEdit setObject:[tinkler adType] forKey:@"adType"];
     
     if([tinkler tinklerQRCode] != nil)
         [tinklerToEdit setObject:[tinkler tinklerQRCode] forKey:@"qrCode"];
