@@ -207,8 +207,10 @@
         
         [self.tabBarController setSelectedIndex:0];
     }
-    
-    if (buttonIndex == 1) {
+    else if(buttonIndex == 0){
+        [self startQrCodeRead];
+        
+    }else if (buttonIndex == 1) {
         //Get textfield from the custom messages
         UITextField * alertTextField = [alertView textFieldAtIndex:0];
         [self sendPushNotification:@"Custom Message" :alertTextField.text];
