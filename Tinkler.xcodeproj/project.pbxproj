@@ -58,6 +58,8 @@
 		5DE27B0F18C90A9600C4C763 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27B0518C90A9600C4C763 /* AFURLResponseSerialization.m */; };
 		5DE27B1018C90A9600C4C763 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27B0718C90A9600C4C763 /* AFURLSessionManager.m */; };
 		5DE27B1618C91ED700C4C763 /* QCRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE27B1518C91ED700C4C763 /* QCRegisterViewController.m */; };
+		BC088DF81AEEC9D000CA465B /* default_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC088DF71AEEC9D000CA465B /* default_icon@2x.png */; };
+		BC088DFA1AEECA6F00CA465B /* default_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BC088DF91AEECA6F00CA465B /* default_icon.png */; };
 		BC10F0511A6055A4000DC54E /* QCTinklerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC10F0501A6055A4000DC54E /* QCTinklerDetailViewController.m */; };
 		BC181AD119FF05CA0009B2FC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC181AD019FF05CA0009B2FC /* MBProgressHUD.m */; };
 		BC1A252A19DB5E9D00CACAF5 /* QCQrCode.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1A252919DB5E9D00CACAF5 /* QCQrCode.m */; };
@@ -149,7 +151,6 @@
 		BCC181DD19E8654700B5D5BA /* QCInboxDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */; };
 		BCCE02881A8D73E700FA9AD9 /* tutorialBG.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */; };
 		BCCFF6521AEAC31C00B8D90A /* default_icon_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCFF6511AEAC31C00B8D90A /* default_icon_blue.png */; };
-		BCCFF6591AEAC6F700B8D90A /* default_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCFF6571AEAC6F700B8D90A /* default_icon@2x.png */; };
 		BCCFF65A1AEAC6F700B8D90A /* default_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCCFF6581AEAC6F700B8D90A /* default_icon@3x.png */; };
 		BCD0822319FBD2430065A6EB /* QCConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD0822219FBD2430065A6EB /* QCConversation.m */; };
 		BCD88F5119BB911D0090103B /* QCProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCD88F5019BB911D0090103B /* QCProfileViewController.m */; };
@@ -257,6 +258,8 @@
 		5DE27B0718C90A9600C4C763 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		5DE27B1418C91ED700C4C763 /* QCRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCRegisterViewController.h; sourceTree = "<group>"; };
 		5DE27B1518C91ED700C4C763 /* QCRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCRegisterViewController.m; sourceTree = "<group>"; };
+		BC088DF71AEEC9D000CA465B /* default_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_icon@2x.png"; sourceTree = "<group>"; };
+		BC088DF91AEECA6F00CA465B /* default_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_icon.png; sourceTree = "<group>"; };
 		BC10F04F1A6055A4000DC54E /* QCTinklerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCTinklerDetailViewController.h; sourceTree = "<group>"; };
 		BC10F0501A6055A4000DC54E /* QCTinklerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCTinklerDetailViewController.m; sourceTree = "<group>"; };
 		BC181ACF19FF05CA0009B2FC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -419,7 +422,6 @@
 		BCC181DC19E8654700B5D5BA /* QCInboxDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCInboxDetailViewController.m; sourceTree = "<group>"; };
 		BCCE02871A8D73E700FA9AD9 /* tutorialBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialBG.png; sourceTree = "<group>"; };
 		BCCFF6511AEAC31C00B8D90A /* default_icon_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_icon_blue.png; sourceTree = "<group>"; };
-		BCCFF6571AEAC6F700B8D90A /* default_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_icon@2x.png"; sourceTree = "<group>"; };
 		BCCFF6581AEAC6F700B8D90A /* default_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_icon@3x.png"; sourceTree = "<group>"; };
 		BCD0822119FBD2430065A6EB /* QCConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCConversation.h; sourceTree = "<group>"; };
 		BCD0822219FBD2430065A6EB /* QCConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCConversation.m; sourceTree = "<group>"; };
@@ -961,7 +963,8 @@
 		BCD85DC51A95499A0004875D /* images */ = {
 			isa = PBXGroup;
 			children = (
-				BCCFF6571AEAC6F700B8D90A /* default_icon@2x.png */,
+				BC088DF91AEECA6F00CA465B /* default_icon.png */,
+				BC088DF71AEEC9D000CA465B /* default_icon@2x.png */,
 				BCCFF6581AEAC6F700B8D90A /* default_icon@3x.png */,
 				BCCFF6511AEAC31C00B8D90A /* default_icon_blue.png */,
 				BC8F842A1AE6F18D00D987DB /* default_user.png */,
@@ -1104,9 +1107,11 @@
 				5D3409541AD4617000DFDC35 /* iphone6+-03.png in Resources */,
 				5D3409411AD4615900DFDC35 /* iphone6-04.png in Resources */,
 				BC72B7EE1A6858F700AC720B /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				BC088DFA1AEECA6F00CA465B /* default_icon.png in Resources */,
 				BC956DC81A9E7E710050C291 /* scan@2x.png in Resources */,
 				5D3409381AD4613F00DFDC35 /* iphone4-05.png in Resources */,
 				BC6815581AC6FECD0035CCDE /* settings.png in Resources */,
+				BC088DF81AEEC9D000CA465B /* default_icon@2x.png in Resources */,
 				BCDFFF9D1ABF99EF004D392E /* tinklernav.png in Resources */,
 				BC8F842F1AE6F95800D987DB /* default_qrcode.png in Resources */,
 				BC72B7CE1A6858F700AC720B /* JSQMessagesViewController.xib in Resources */,
@@ -1114,7 +1119,6 @@
 				5D20E8BF1AD4883300BF81E9 /* add_new_tinkler@3x.png in Resources */,
 				5D3409421AD4615900DFDC35 /* iphone6-05.png in Resources */,
 				BC824C931ACEE84E00A36024 /* splash_6@2x.png in Resources */,
-				BCCFF6591AEAC6F700B8D90A /* default_icon@2x.png in Resources */,
 				BC956DC51A9E7E710050C291 /* profile@2x.png in Resources */,
 				BC72B7E91A6858F700AC720B /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				BC1D468E19F9BA9100DAC450 /* SBPickerSelector.xib in Resources */,
