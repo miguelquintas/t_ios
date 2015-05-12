@@ -584,7 +584,6 @@
 
 + (void) getLocalTinklerTypes:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block{
     PFQuery *myTinklerTypes = [PFQuery queryWithClassName:@"TinklerType"];
-    [myTinklerTypes includeKey:@"type"];
     [myTinklerTypes orderByAscending:@"createdAt"];
     [myTinklerTypes fromPinWithName:@"pinnedTinklerTypes"];
     [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -601,7 +600,6 @@
 
 + (void) getOnlineTinklerTypes:(void (^)(NSArray *tinklerTypeArray, NSMutableArray *typeNameArray, NSError *error))block{
     PFQuery *myTinklerTypes = [PFQuery queryWithClassName:@"TinklerType"];
-    [myTinklerTypes includeKey:@"type"];
     [myTinklerTypes orderByAscending:@"createdAt"];
     [myTinklerTypes findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
@@ -678,6 +676,7 @@
                         NSLog(@"Tinkler exists - QR-Code valid and user doesnt allow custom msgs");
                     }
                 }else{
+                    completion(YES, NO, NO, NO, NO);
                     NSLog(@"Error querying the banned users");
                 }
             }];
